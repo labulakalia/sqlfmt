@@ -1,0 +1,69 @@
+// Copyright 2018 The Cockroach Authors.
+//
+// Use of this software is governed by the Business Source License
+// included in the file licenses/BSL.txt.
+//
+// As of the Change Date specified in that file, in accordance with
+// the Business Source License, use of this software will be governed
+// by the Apache License, Version 2.0, included in the file
+// licenses/APL.txt.
+
+package colencoding
+
+import (
+	"testing"
+
+	"sqlfmt/cockroach/pkg/col/coldata"
+	"sqlfmt/cockroach/pkg/col/coldataext"
+	"sqlfmt/cockroach/pkg/sql/randgen"
+	"sqlfmt/cockroach/pkg/sql/rowenc/valueside"
+	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"sqlfmt/cockroach/pkg/sql/types"
+	"sqlfmt/cockroach/pkg/util/encoding"
+	"sqlfmt/cockroach/pkg/util/randutil"
+)
+
+func TestDecodeTableValueToCol(t *testing.T) {
+	rng, _ := randutil.NewTestRand()
+	var (
+		da           tree.DatumAlloc
+		buf, scratch []byte
+	)
+	nCols := 1000
+	datums := make([]tree.Datum, nCols)
+	typs := make([]*types.T, nCols)
+	for i := 0; i < nCols; i++ {
+		ct := randgen.RandType(rng)
+		datum := randgen.RandDatum(rng, ct, false /* nullOk */)
+		typs[i] = ct
+		datums[i] = datum
+		var err error
+		buf, err = valueside.Encode(buf, valueside.NoColumnID, datum, scratch)
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	batch := coldata.NewMemBatchWithCapacity(typs, 1 /* capacity */, coldataext.NewExtendedColumnFactory(nil /*evalCtx */))
+	var vecs coldata.TypedVecs
+	vecs.SetBatch(batch)
+	for i := 0; i < nCols; i++ {
+		typeOffset, dataOffset, _, typ, err := encoding.DecodeValueTag(buf)
+		if err != nil {
+			t.Fatal(err)
+		}
+		buf, err = DecodeTableValueToCol(
+			&da, &vecs, i /* vecIdx */, 0 /* rowIdx */, typ,
+			dataOffset, typs[i], buf[typeOffset:],
+		)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		// TODO(jordan): should actually compare the outputs as well, but this is a
+		// decent enough smoke test.
+	}
+
+	if len(buf) != 0 {
+		t.Fatalf("leftover bytes %s", buf)
+	}
+}

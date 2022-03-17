@@ -1,0 +1,94 @@
+// Copyright 2019 The Cockroach Authors.
+//
+// Use of this software is governed by the Business Source License
+// included in the file licenses/BSL.txt.
+//
+// As of the Change Date specified in that file, in accordance with
+// the Business Source License, use of this software will be governed
+// by the Apache License, Version 2.0, included in the file
+// licenses/APL.txt.
+
+// Package ptprovider encapsulates the concrete implementation of the
+// protectedts.Provider.
+package ptprovider
+
+import (
+	"context"
+
+	"sqlfmt/cockroach/pkg/kv"
+	"sqlfmt/cockroach/pkg/kv/kvserver"
+	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts"
+	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptcache"
+	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptreconcile"
+	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptstorage"
+	"sqlfmt/cockroach/pkg/settings/cluster"
+	"sqlfmt/cockroach/pkg/sql/sqlutil"
+	"sqlfmt/cockroach/pkg/util/metric"
+	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/cockroachdb/errors"
+)
+
+// Config configures the Provider.
+type Config struct {
+	Settings             *cluster.Settings
+	DB                   *kv.DB
+	Stores               *kvserver.Stores
+	ReconcileStatusFuncs ptreconcile.StatusFuncs
+	InternalExecutor     sqlutil.InternalExecutor
+	Knobs                *protectedts.TestingKnobs
+}
+
+// Provider is the concrete implementation of protectedts.Provider interface.
+type Provider struct {
+	protectedts.Storage
+	protectedts.Cache
+	protectedts.Reconciler
+	metric.Struct
+}
+
+// New creates a new protectedts.Provider.
+func New(cfg Config) (protectedts.Provider, error) {
+	if err := validateConfig(cfg); err != nil {
+		return nil, err
+	}
+	storage := ptstorage.New(cfg.Settings, cfg.InternalExecutor, cfg.Knobs)
+	reconciler := ptreconcile.New(cfg.Settings, cfg.DB, storage, cfg.ReconcileStatusFuncs)
+	cache := ptcache.New(ptcache.Config{
+		DB:       cfg.DB,
+		Storage:  storage,
+		Settings: cfg.Settings,
+	})
+
+	return &Provider{
+		Storage:    storage,
+		Cache:      cache,
+		Reconciler: reconciler,
+		Struct:     reconciler.Metrics(),
+	}, nil
+}
+
+func validateConfig(cfg Config) error {
+	switch {
+	case cfg.Settings == nil:
+		return errors.Errorf("invalid nil Settings")
+	case cfg.DB == nil:
+		return errors.Errorf("invalid nil DB")
+	case cfg.InternalExecutor == nil:
+		return errors.Errorf("invalid nil InternalExecutor")
+	default:
+		return nil
+	}
+}
+
+// Start implements the protectedts.Provider interface.
+func (p *Provider) Start(ctx context.Context, stopper *stop.Stopper) error {
+	if cache, ok := p.Cache.(*ptcache.Cache); ok {
+		return cache.Start(ctx, stopper)
+	}
+	return nil
+}
+
+// Metrics implements the protectedts.Provider interface.
+func (p *Provider) Metrics() metric.Struct {
+	return p.Struct
+}

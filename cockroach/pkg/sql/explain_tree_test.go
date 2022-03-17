@@ -1,0 +1,103 @@
+// Copyright 2018 The Cockroach Authors.
+//
+// Use of this software is governed by the Business Source License
+// included in the file licenses/BSL.txt.
+//
+// As of the Change Date specified in that file, in accordance with
+// the Business Source License, use of this software will be governed
+// by the Apache License, Version 2.0, included in the file
+// licenses/APL.txt.
+
+package sql
+
+import (
+	"context"
+	"testing"
+
+	"sqlfmt/cockroach/pkg/base"
+	"sqlfmt/cockroach/pkg/kv"
+	"sqlfmt/cockroach/pkg/security"
+	"sqlfmt/cockroach/pkg/sql/execstats"
+	"sqlfmt/cockroach/pkg/sql/opt/exec/explain"
+	"sqlfmt/cockroach/pkg/sql/parser"
+	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"sqlfmt/cockroach/pkg/sql/sessionphase"
+	"sqlfmt/cockroach/pkg/testutils"
+	"sqlfmt/cockroach/pkg/testutils/serverutils"
+	"sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"sqlfmt/cockroach/pkg/util/leaktest"
+	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/cockroachdb/datadriven"
+	yaml "gopkg.in/yaml.v2"
+)
+
+func TestPlanToTreeAndPlanToString(t *testing.T) {
+	defer leaktest.AfterTest(t)()
+	defer log.Scope(t).Close(t)
+
+	ctx := context.Background()
+	s, sqlDB, db := serverutils.StartServer(t, base.TestServerArgs{})
+	defer s.Stopper().Stop(ctx)
+
+	execCfg := s.ExecutorConfig().(ExecutorConfig)
+	r := sqlutils.MakeSQLRunner(sqlDB)
+	r.Exec(t, `
+		SET CLUSTER SETTING sql.stats.automatic_collection.enabled = false;
+		CREATE DATABASE t;
+		USE t;
+	`)
+
+	datadriven.RunTest(t, testutils.TestDataPath(t, "explain_tree"), func(t *testing.T, d *datadriven.TestData) string {
+		switch d.Cmd {
+		case "exec":
+			r.Exec(t, d.Input)
+			return ""
+
+		case "plan-string", "plan-tree":
+			stmt, err := parser.ParseOne(d.Input)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			internalPlanner, cleanup := NewInternalPlanner(
+				"test",
+				kv.NewTxn(ctx, db, s.NodeID()),
+				security.RootUserName(),
+				&MemoryMetrics{},
+				&execCfg,
+				sessiondatapb.SessionData{},
+			)
+			defer cleanup()
+			p := internalPlanner.(*planner)
+
+			ih := &p.instrumentation
+			ih.codec = execCfg.Codec
+			ih.collectBundle = true
+			ih.savePlanForStats = true
+
+			p.stmt = makeStatement(stmt, ClusterWideID{})
+			if err := p.makeOptimizerPlan(ctx); err != nil {
+				t.Fatal(err)
+			}
+			p.curPlan.flags.Set(planFlagExecDone)
+			p.curPlan.close(ctx)
+			if d.Cmd == "plan-string" {
+				ob := ih.emitExplainAnalyzePlanToOutputBuilder(
+					explain.Flags{Verbose: true, ShowTypes: true},
+					sessionphase.NewTimes(),
+					&execstats.QueryLevelStats{},
+				)
+				return ob.BuildString()
+			}
+			treeYaml, err := yaml.Marshal(ih.PlanForStats(ctx))
+			if err != nil {
+				t.Fatal(err)
+			}
+			return string(treeYaml)
+
+		default:
+			t.Fatalf("unsupported command %s", d.Cmd)
+			return ""
+		}
+	})
+}
