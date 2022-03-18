@@ -12,3 +12,6 @@ Requires having the master branch of https://github.com/cockroachdb/cockroach ch
 ```go
 go get github.com/labulakalia/sqlfmt
 ```
+
+# TODO
+- [ ] remove unused package
