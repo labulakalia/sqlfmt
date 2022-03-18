@@ -13,11 +13,11 @@ package execstats
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/buildutil"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
 	"github.com/cockroachdb/errors"
 )
 

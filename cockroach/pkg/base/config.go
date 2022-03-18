@@ -15,12 +15,12 @@ import (
 	"net/url"
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/util/envutil"
-	"sqlfmt/cockroach/pkg/util/mon"
-	"sqlfmt/cockroach/pkg/util/retry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/retry"
 )
 
 // Base config defaults.

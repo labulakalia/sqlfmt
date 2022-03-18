@@ -10,7 +10,7 @@
 
 package tenantcostmodel
 
-import "sqlfmt/cockroach/pkg/roachpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 
 // RU stands for "Request Unit(s)"; the tenant cost model maps tenant activity
 // into this abstract unit.

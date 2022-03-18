@@ -27,7 +27,7 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
 )
 
 var (

@@ -18,8 +18,8 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/errors"
 	"github.com/stretchr/testify/assert"
 )

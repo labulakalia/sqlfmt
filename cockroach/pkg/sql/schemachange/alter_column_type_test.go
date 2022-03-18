@@ -19,17 +19,17 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 // TestColumnConversions rolls-up a lot of test plumbing to prevent

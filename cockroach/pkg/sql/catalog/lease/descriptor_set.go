@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 	"github.com/cockroachdb/errors"
 )
 

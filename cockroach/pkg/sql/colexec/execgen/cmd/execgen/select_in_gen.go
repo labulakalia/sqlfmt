@@ -15,7 +15,7 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
 )
 
 const selectInTmpl = "pkg/sql/colexec/select_in_tmpl.go"

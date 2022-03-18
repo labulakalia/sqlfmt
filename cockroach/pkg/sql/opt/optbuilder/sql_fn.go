@@ -13,12 +13,12 @@ package optbuilder
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/cockroachdb/redact"
 )
 

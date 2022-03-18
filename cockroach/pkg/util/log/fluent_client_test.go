@@ -19,11 +19,11 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/build"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log/channel"
-	"sqlfmt/cockroach/pkg/util/log/logconfig"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/stretchr/testify/require"
 )
 

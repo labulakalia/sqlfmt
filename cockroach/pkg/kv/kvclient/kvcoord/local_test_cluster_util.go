@@ -14,17 +14,17 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/gossip"
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/rpc"
-	"sqlfmt/cockroach/pkg/rpc/nodedialer"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/stop"
-	"sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/gossip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc/nodedialer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 )
 
 // localTestClusterTransport augments senderTransport with an optional

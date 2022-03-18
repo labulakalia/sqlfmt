@@ -14,11 +14,11 @@ import (
 	"bytes"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/bufalloc"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bufalloc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 )
 
 // MVCCLogicalOpType is an enum with values corresponding to each of the

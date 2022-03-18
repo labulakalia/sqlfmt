@@ -16,13 +16,13 @@ import (
 	"regexp"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/desctestutils"
-	"sqlfmt/cockroach/pkg/sql/tests"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/desctestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/tests"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func TestTableRefs(t *testing.T) {

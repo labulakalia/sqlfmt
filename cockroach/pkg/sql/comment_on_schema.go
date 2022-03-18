@@ -13,13 +13,13 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/sql/privilege"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 type commentOnSchemaNode struct {

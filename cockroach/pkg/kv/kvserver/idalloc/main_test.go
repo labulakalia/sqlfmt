@@ -11,8 +11,8 @@
 package idalloc_test
 
 import (
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/security/securitytest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security/securitytest"
 )
 
 //go:generate ../../../util/leaktest/add-leaktest.sh *_test.go

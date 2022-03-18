@@ -11,8 +11,8 @@
 package tree
 
 import (
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // GetRenderColName computes a name for a result column.

@@ -11,16 +11,16 @@
 package scdecomp
 
 import (
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/catpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/seqexpr"
-	"sqlfmt/cockroach/pkg/sql/catalog/typedesc"
-	"sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scerrors"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/seqexpr"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/typedesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scerrors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/lib/pq/oid"
 )
 

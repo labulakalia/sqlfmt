@@ -11,14 +11,14 @@
 package scstage
 
 import (
-	"sqlfmt/cockroach/pkg/jobs/jobspb"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scop"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/screl"
-	"sqlfmt/cockroach/pkg/util/iterutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/screl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/iterutil"
 	"github.com/cockroachdb/errors"
 )
 

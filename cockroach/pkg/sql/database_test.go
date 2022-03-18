@@ -14,15 +14,15 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/descs"
-	"sqlfmt/cockroach/pkg/sql/catalog/desctestutils"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/desctestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func TestDatabaseAccessors(t *testing.T) {

@@ -13,10 +13,10 @@ package instanceprovider
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/sqlinstance"
-	"sqlfmt/cockroach/pkg/sql/sqlinstance/instancestorage"
-	"sqlfmt/cockroach/pkg/sql/sqlliveness"
-	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlinstance"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlinstance/instancestorage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlliveness"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 )
 
 // TestInstanceProvider exposes ShutdownSQLInstanceForTest

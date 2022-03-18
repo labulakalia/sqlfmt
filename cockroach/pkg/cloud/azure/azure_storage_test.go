@@ -16,12 +16,12 @@ import (
 	"os"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cloud"
-	"sqlfmt/cockroach/pkg/cloud/cloudtestutils"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cloud"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/cloudtestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/errors"
 	"github.com/stretchr/testify/require"
 )

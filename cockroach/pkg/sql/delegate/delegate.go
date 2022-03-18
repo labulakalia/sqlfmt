@@ -13,12 +13,12 @@ package delegate
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/opt/cat"
-	"sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/cat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 )
 
 // Certain statements (most SHOW variants) are just syntactic sugar for a more

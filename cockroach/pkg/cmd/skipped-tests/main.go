@@ -145,7 +145,7 @@ func postReport(skipped []skippedTest) {
 func main() {
 	flag.Parse()
 
-	const root = "sqlfmt/cockroach"
+	const root = "github.com/labulakalia/sqlfmt/cockroach"
 
 	crdb, err := build.Import(root, "", build.FindOnly)
 	if err != nil {

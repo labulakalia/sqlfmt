@@ -13,17 +13,17 @@ package rowexec
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/execinfra"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
-	"sqlfmt/cockroach/pkg/sql/inverted"
-	"sqlfmt/cockroach/pkg/sql/opt/invertedidx"
-	"sqlfmt/cockroach/pkg/sql/rowcontainer"
-	"sqlfmt/cockroach/pkg/sql/rowenc"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/mon"
-	"sqlfmt/cockroach/pkg/util/optional"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfra"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/invertedidx"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowcontainer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/optional"
 	"github.com/cockroachdb/errors"
 )
 

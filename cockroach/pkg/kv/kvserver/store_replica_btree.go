@@ -13,8 +13,8 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/iterutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/iterutil"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 	"github.com/google/btree"

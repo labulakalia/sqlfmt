@@ -23,8 +23,8 @@ import (
 	"sync"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/ttycolor"
 	"golang.org/x/sync/errgroup"

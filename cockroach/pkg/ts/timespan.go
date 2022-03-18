@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // QueryTimespan describes the time range information for a query - the start

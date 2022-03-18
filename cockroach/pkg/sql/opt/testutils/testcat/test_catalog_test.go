@@ -13,10 +13,10 @@ package testcat_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt/testutils/opttester"
-	"sqlfmt/cockroach/pkg/sql/opt/testutils/testcat"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/testutils/opttester"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/testutils/testcat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/datadriven"
 )
 

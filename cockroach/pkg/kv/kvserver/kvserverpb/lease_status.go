@@ -11,8 +11,8 @@
 package kvserverpb
 
 import (
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 )
 
 // IsValid returns whether the lease was valid at the time that the

@@ -19,7 +19,7 @@ import (
 	"os"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/protoreflect"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/protoreflect"
 	"github.com/cockroachdb/errors"
 	"github.com/mattn/go-isatty"
 	"github.com/spf13/cobra"

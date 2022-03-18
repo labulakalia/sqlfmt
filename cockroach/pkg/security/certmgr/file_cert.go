@@ -15,7 +15,7 @@ import (
 	"crypto/tls"
 	"io/ioutil"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 )
 

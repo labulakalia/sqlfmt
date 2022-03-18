@@ -22,8 +22,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/internal/codeowners"
-	"sqlfmt/cockroach/pkg/internal/reporoot"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/codeowners"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/reporoot"
 )
 
 var walk = flag.Bool("walk", false, "recursively print ownership")

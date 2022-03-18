@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 )
 
 // SetClusterSetting executes set cluster settings statement, and then ensures that

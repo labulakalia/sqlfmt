@@ -14,14 +14,14 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/server/telemetry"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
-	"sqlfmt/cockroach/pkg/sql/privilege"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sqlerrors"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/log/eventpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlerrors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/eventpb"
 	"github.com/cockroachdb/errors"
 )
 

@@ -11,7 +11,7 @@ package kvevent
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/changefeedbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/changefeedbase"
 )
 
 type errorWrapperEventBuffer struct {

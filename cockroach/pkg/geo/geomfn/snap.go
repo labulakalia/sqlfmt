@@ -11,8 +11,8 @@
 package geomfn
 
 import (
-	"sqlfmt/cockroach/pkg/geo"
-	"sqlfmt/cockroach/pkg/geo/geos"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geos"
 )
 
 // Snap returns the input geometry with the vertices snapped to the target

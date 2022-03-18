@@ -11,19 +11,19 @@ package changefeedccl
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/config"
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/rpc"
-	"sqlfmt/cockroach/pkg/server/status"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/stop"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/status"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 // testServerShim is a kludge to get a few more tests working in

@@ -13,16 +13,16 @@ package migrations
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/migration"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/catalogkeys"
-	"sqlfmt/cockroach/pkg/sql/catalog/descidgen"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/descs"
-	"sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/migration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catalogkeys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descidgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // CreateSystemTable is a function to inject a new system table. If the table

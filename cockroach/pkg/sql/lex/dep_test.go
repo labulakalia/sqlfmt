@@ -13,14 +13,14 @@ package lex
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/lex", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex", true,
 		[]string{
-			"sqlfmt/cockroach/pkg/sql/sessiondatapb",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb",
 		}, nil,
 	)
 }

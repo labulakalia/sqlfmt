@@ -18,7 +18,7 @@ import (
 	"embed"
 	"io/fs"
 
-	"sqlfmt/cockroach/pkg/ui"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ui"
 )
 
 //go:embed assets/*

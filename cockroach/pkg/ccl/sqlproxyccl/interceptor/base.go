@@ -13,7 +13,7 @@ import (
 	"io"
 	"math"
 
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 	"github.com/cockroachdb/errors"
 )
 

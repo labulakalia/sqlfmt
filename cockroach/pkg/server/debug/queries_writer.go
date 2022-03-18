@@ -14,9 +14,9 @@ import (
 	"io"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/util/encoding/csv"
-	"sqlfmt/cockroach/pkg/util/uint128"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding/csv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uint128"
 )
 
 var csvHeader = []string{

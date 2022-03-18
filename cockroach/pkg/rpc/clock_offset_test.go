@@ -18,10 +18,10 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 )
 
 const errOffsetGreaterThanMaxOffset = "clock synchronization error: this node is more than .+ away from at least half of the known nodes"

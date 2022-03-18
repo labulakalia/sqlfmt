@@ -11,10 +11,10 @@
 package schemadesc
 
 import (
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/catconstants"
-	"sqlfmt/cockroach/pkg/sql/catalog/catpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catconstants"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 )
 
 // GetVirtualSchemaByID returns a virtual schema with a given ID if it exists.

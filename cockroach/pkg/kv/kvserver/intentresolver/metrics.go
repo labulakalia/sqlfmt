@@ -10,7 +10,7 @@
 
 package intentresolver
 
-import "sqlfmt/cockroach/pkg/util/metric"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 
 var (
 	// Intent resolver metrics.

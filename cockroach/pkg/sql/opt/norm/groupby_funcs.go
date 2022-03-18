@@ -11,12 +11,12 @@
 package norm
 
 import (
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/opt/props"
-	"sqlfmt/cockroach/pkg/sql/rowenc/keyside"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc/keyside"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

@@ -13,11 +13,11 @@ package randgen
 import (
 	"math/rand"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treebin"
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treebin"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 // randPartialIndexPredicateFromCols creates a partial index expression with a

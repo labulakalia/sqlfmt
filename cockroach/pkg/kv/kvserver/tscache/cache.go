@@ -16,10 +16,10 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/envutil"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 // MinRetentionWindow specifies the minimum duration to hold entries in the

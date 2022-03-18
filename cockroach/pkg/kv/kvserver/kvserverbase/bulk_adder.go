@@ -14,9 +14,9 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 )
 
 // BulkAdderOptions is used to configure the behavior of a BulkAdder.

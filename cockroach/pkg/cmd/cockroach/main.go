@@ -16,10 +16,10 @@
 package main
 
 import (
-	_ "sqlfmt/cockroach/pkg/ccl"        // ccl init hooks
-	_ "sqlfmt/cockroach/pkg/ccl/cliccl" // cliccl init hooks
-	"sqlfmt/cockroach/pkg/cli"
-	_ "sqlfmt/cockroach/pkg/ui/distccl" // ccl web UI init hook
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl"        // ccl init hooks
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/cliccl" // cliccl init hooks
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ui/distccl" // ccl web UI init hook
 )
 
 func main() {

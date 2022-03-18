@@ -10,7 +10,7 @@
 
 package clisqlexec
 
-import "sqlfmt/cockroach/pkg/cli/clicfg"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clicfg"
 
 // Context represents configuration for running SQL query
 // and presenting results to the screen.

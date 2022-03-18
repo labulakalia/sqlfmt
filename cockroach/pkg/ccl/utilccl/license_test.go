@@ -13,10 +13,10 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/ccl/utilccl/licenseccl"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/utilccl/licenseccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 func TestLicense(t *testing.T) {

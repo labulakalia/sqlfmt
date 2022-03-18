@@ -14,12 +14,12 @@ import (
 	"context"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
-	"sqlfmt/cockroach/pkg/spanconfig"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/spanconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 )
 

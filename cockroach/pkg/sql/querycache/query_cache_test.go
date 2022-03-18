@@ -16,8 +16,8 @@ import (
 	"sync"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/cockroachdb/errors"
 )
 

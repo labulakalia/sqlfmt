@@ -13,16 +13,16 @@ package rowexec
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/memsize"
-	"sqlfmt/cockroach/pkg/sql/rowcontainer"
-	"sqlfmt/cockroach/pkg/sql/rowenc"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/memsize"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowcontainer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 	"github.com/cockroachdb/errors"
 )
 

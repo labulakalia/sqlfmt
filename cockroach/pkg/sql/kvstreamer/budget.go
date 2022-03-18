@@ -14,8 +14,8 @@ import (
 	"context"
 	"sync"
 
-	"sqlfmt/cockroach/pkg/util/mon"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 )
 

@@ -16,9 +16,9 @@ import (
 	"net/http/httptest"
 	"net/url"
 
-	"sqlfmt/cockroach/pkg/server/diagnostics/diagnosticspb"
-	"sqlfmt/cockroach/pkg/util/protoutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/diagnostics/diagnosticspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // Server is a http server that implements a diagnostics endpoint. Its URL can

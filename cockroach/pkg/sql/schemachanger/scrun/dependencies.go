@@ -13,7 +13,7 @@ package scrun
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
 )
 
 // JobTxnFunc is used to run a transactional stage of a schema change on

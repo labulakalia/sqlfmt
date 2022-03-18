@@ -13,7 +13,7 @@ package pgwire
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 )
 
 // Authenticator is a component of an AuthMethod that determines if the

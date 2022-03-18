@@ -9,7 +9,7 @@ package execinfrapb
 
 import (
 	fmt "fmt"
-	types "sqlfmt/cockroach/pkg/sql/types"
+	types "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

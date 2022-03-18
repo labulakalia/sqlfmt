@@ -14,13 +14,13 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/server/settingswatcher"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/testutils/testcluster"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/settingswatcher"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/testcluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/stretchr/testify/require"
 )
 

@@ -13,7 +13,7 @@ package raftentry
 import (
 	"math/bits"
 
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 	"github.com/cockroachdb/errors"
 	"go.etcd.io/etcd/raft/v3/raftpb"
 )

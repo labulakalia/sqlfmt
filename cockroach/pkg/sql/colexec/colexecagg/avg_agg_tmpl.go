@@ -25,13 +25,13 @@ import (
 	"unsafe"
 
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colexec/execgen"
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
-	"sqlfmt/cockroach/pkg/sql/colmem"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/duration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/execgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colmem"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/cockroachdb/errors"
 )
 

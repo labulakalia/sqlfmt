@@ -15,10 +15,10 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/opt/cat"
-	"sqlfmt/cockroach/pkg/sql/opt/testutils/testcat"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/cat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/testutils/testcat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 func TestExpandDataSourceGlob(t *testing.T) {

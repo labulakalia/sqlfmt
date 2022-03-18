@@ -9,11 +9,11 @@ package execinfrapb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_jobs_jobspb "sqlfmt/cockroach/pkg/jobs/jobspb"
-	jobspb "sqlfmt/cockroach/pkg/jobs/jobspb"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
-	github_com_cockroachdb_cockroach_pkg_security "sqlfmt/cockroach/pkg/security"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	github_com_cockroachdb_cockroach_pkg_jobs_jobspb "github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	jobspb "github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

@@ -14,9 +14,9 @@ import (
 	"runtime"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 // TestLogic runs logic tests that were written by hand to test various

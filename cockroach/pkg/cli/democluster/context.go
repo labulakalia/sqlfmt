@@ -13,8 +13,8 @@ package democluster
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/cli/clicfg"
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clicfg"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 )
 
 // Context represents the input configuration and current state

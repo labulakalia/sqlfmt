@@ -19,9 +19,9 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/protoutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/errors/oserror"
 	"github.com/cockroachdb/pebble/record"

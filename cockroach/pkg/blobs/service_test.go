@@ -16,8 +16,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/blobs/blobspb"
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/blobs/blobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/cockroachdb/errors/oserror"
 )
 

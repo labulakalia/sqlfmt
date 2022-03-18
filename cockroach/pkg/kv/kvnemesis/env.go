@@ -16,9 +16,9 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach-go/v2/crdb"
-	"sqlfmt/cockroach/pkg/config/zonepb"
-	"sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach-go/v2/crdb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config/zonepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/cockroachdb/errors"
 )
 

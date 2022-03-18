@@ -21,12 +21,12 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/util/ioctx"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ioctx"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/errors"
 	"github.com/stretchr/testify/require"
 )

@@ -14,8 +14,8 @@ import (
 	"math/rand"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

@@ -14,10 +14,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/contention/contentionutils"
-	"sqlfmt/cockroach/pkg/util/syncutil"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/contention/contentionutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 var nodePool = &sync.Pool{

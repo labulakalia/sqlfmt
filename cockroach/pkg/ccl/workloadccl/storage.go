@@ -11,14 +11,14 @@ package workloadccl
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/cloud"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cloud"
 	// Import all the cloud provider storage we care about.
-	_ "sqlfmt/cockroach/pkg/cloud/amazon"
-	_ "sqlfmt/cockroach/pkg/cloud/azure"
-	_ "sqlfmt/cockroach/pkg/cloud/gcp"
-	"sqlfmt/cockroach/pkg/security"
-	clustersettings "sqlfmt/cockroach/pkg/settings/cluster"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/amazon"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/azure"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/gcp"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	clustersettings "github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"github.com/cockroachdb/errors"
 )
 

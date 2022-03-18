@@ -10,7 +10,7 @@
 
 package settingswatcher
 
-import "sqlfmt/cockroach/pkg/settings"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 
 // OverridesMonitor is an interface through which the settings watcher can
 // receive setting overrides. Used for non-system tenants.

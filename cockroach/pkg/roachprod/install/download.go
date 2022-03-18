@@ -18,7 +18,7 @@ import (
 	"path"
 	"path/filepath"
 
-	"sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 )
 
 const (

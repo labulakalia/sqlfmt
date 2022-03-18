@@ -13,9 +13,9 @@ package pgwire
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql/pgwire/hba"
-	"sqlfmt/cockroach/pkg/sql/pgwire/identmap"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/hba"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/identmap"
 	"github.com/cockroachdb/errors"
 )
 

@@ -15,10 +15,10 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/scheduledjobs"
-	"sqlfmt/cockroach/pkg/sql/catalog/systemschema"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/scheduledjobs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/systemschema"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // EnvTablesType tells JobSchedulerTestEnv whether to use the system tables,

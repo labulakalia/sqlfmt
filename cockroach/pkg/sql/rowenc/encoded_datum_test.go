@@ -17,17 +17,17 @@ import (
 	"unsafe"
 
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/sql/catalog/colinfo"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/randgen"
-	"sqlfmt/cockroach/pkg/sql/rowenc"
-	"sqlfmt/cockroach/pkg/sql/rowenc/valueside"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/encoding"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/randgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc/valueside"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 func TestEncDatum(t *testing.T) {

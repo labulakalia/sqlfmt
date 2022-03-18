@@ -14,9 +14,9 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/colinfo"
-	"sqlfmt/cockroach/pkg/sql/catalog/colinfo/colinfotestutils"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo/colinfotestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 var _ colinfotestutils.ColumnItemResolverTester = &scope{}

@@ -18,9 +18,9 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 type addrs struct{ listen, adv, http, advhttp, sql, advsql string }

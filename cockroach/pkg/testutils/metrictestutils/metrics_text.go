@@ -17,7 +17,7 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 // GetMetricsText scrapes a metrics registry, filters out the metrics according

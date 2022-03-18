@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/util/duration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 )
 
 // Bools is a slice of bool.

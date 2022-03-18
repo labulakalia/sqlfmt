@@ -14,14 +14,14 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/cat"
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/opt/norm"
-	"sqlfmt/cockroach/pkg/sql/opt/optbuilder"
-	"sqlfmt/cockroach/pkg/sql/opt/xform"
-	"sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/cat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/norm"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optbuilder"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/xform"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // BuildQuery initializes an optimizer and builds the given sql statement.

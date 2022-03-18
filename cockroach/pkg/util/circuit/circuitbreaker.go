@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"sync"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 	"github.com/cockroachdb/redact/interfaces"

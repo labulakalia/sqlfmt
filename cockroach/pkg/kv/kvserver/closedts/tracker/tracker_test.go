@@ -22,13 +22,13 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/syncutil"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/stretchr/testify/require"
 )
 

@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/cockroachdb/logtags"
 	"github.com/gogo/protobuf/types"
 )

@@ -5,7 +5,7 @@ package scpb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_sql_catalog_catpb "sqlfmt/cockroach/pkg/sql/catalog/catpb"
+	github_com_cockroachdb_cockroach_pkg_sql_catalog_catpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catpb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

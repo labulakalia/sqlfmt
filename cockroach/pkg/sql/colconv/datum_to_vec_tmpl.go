@@ -22,11 +22,11 @@
 package colconv
 
 import (
-	"sqlfmt/cockroach/pkg/col/typeconv"
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/typeconv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 	"github.com/cockroachdb/errors"
 )
 

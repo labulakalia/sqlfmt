@@ -13,8 +13,8 @@ package delegate
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // delegateShowDefaultPrivileges implements SHOW DEFAULT PRIVILEGES

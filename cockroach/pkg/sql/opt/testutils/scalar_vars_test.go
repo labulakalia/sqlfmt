@@ -16,7 +16,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
 	"github.com/stretchr/testify/assert"
 )
 

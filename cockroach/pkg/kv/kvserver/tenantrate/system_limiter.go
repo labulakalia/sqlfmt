@@ -13,7 +13,7 @@ package tenantrate
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
 )
 
 // systemLimiter implements Limiter for the use of tracking metrics for the

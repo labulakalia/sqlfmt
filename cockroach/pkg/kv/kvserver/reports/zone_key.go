@@ -13,8 +13,8 @@ package reports
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config"
 )
 
 // ZoneKey is the index of the first level in the constraint conformance report.

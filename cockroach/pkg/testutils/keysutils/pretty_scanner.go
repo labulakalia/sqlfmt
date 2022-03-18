@@ -14,12 +14,12 @@ import (
 	"fmt"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/rowenc/keyside"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/encoding"
-	"sqlfmt/cockroach/pkg/util/keysutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc/keyside"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/keysutil"
 )
 
 // MakePrettyScannerForNamedTables create a PrettyScanner that, beside what the

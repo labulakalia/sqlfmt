@@ -18,7 +18,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 )
 
 const certsDir = ".localcluster.certs"

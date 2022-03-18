@@ -20,8 +20,8 @@ import (
 	"math/rand"
 	"runtime"
 
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 )
 

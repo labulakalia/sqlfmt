@@ -13,9 +13,9 @@ package uncertainty
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 )
 
 // ComputeInterval returns the provided request's uncertainty interval to be

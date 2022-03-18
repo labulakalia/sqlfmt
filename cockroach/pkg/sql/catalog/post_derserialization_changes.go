@@ -10,7 +10,7 @@
 
 package catalog
 
-import "sqlfmt/cockroach/pkg/util"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 
 // PostDeserializationChangeType is used to indicate the type of
 // PostDeserializationChange which occurred for a descriptor.

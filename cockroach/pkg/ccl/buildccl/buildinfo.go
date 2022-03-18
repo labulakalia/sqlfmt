@@ -8,7 +8,7 @@
 
 package buildccl
 
-import "sqlfmt/cockroach/pkg/build"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 
 func init() {
 	build.Distribution = "CCL"

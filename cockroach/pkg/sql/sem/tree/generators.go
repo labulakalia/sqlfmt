@@ -13,8 +13,8 @@ package tree
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // Table generators, also called "set-generating functions", are

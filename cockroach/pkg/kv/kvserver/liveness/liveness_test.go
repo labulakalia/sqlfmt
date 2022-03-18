@@ -15,11 +15,11 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 )
 
 func TestShouldReplaceLiveness(t *testing.T) {

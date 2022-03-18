@@ -13,16 +13,16 @@ package span
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/inverted"
-	"sqlfmt/cockroach/pkg/sql/opt/constraint"
-	"sqlfmt/cockroach/pkg/sql/rowenc"
-	"sqlfmt/cockroach/pkg/sql/rowenc/keyside"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/constraint"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc/keyside"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 	"github.com/cockroachdb/errors"
 )
 

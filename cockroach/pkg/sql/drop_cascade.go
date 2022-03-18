@@ -13,17 +13,17 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/jobs/jobspb"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/dbdesc"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/resolver"
-	"sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
-	"sqlfmt/cockroach/pkg/sql/catalog/typedesc"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/dbdesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/resolver"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/typedesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/cockroachdb/errors"
 )
 

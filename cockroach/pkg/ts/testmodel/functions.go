@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"math"
 
-	"sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
 )
 
 type aggFunc func(DataSeries) float64

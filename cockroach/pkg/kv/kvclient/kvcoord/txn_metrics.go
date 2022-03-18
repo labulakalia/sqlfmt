@@ -13,8 +13,8 @@ package kvcoord
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/server/telemetry"
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 // TxnMetrics holds all metrics relating to KV transactions.

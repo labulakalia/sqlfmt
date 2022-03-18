@@ -13,14 +13,14 @@ package colexecwindow
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/colcontainer"
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
-	"sqlfmt/cockroach/pkg/sql/colmem"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colcontainer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colmem"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 	"github.com/cockroachdb/errors"
 	"github.com/marusama/semaphore"
 )

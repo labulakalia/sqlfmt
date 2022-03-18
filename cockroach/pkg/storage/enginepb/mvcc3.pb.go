@@ -6,8 +6,8 @@ package enginepb
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
-	github_com_cockroachdb_cockroach_pkg_util_uuid "sqlfmt/cockroach/pkg/util/uuid"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	github_com_cockroachdb_cockroach_pkg_util_uuid "github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

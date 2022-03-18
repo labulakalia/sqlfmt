@@ -13,11 +13,11 @@ package sslocal
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/sql/sessionphase"
-	"sqlfmt/cockroach/pkg/sql/sqlstats"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessionphase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // StatsCollector is used to collect statement and transaction statistics

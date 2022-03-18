@@ -16,10 +16,10 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 )
 
 var enclosingError = pgerror.Newf(pgcode.InvalidTextRepresentation, "array must be enclosed in { and }")

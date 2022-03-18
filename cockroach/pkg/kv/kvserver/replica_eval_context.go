@@ -13,10 +13,10 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/batcheval"
-	"sqlfmt/cockroach/pkg/kv/kvserver/spanset"
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/batcheval"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/spanset"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // todoSpanSet is a placeholder value for callsites that need to pass a properly

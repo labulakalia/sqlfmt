@@ -13,8 +13,8 @@ package geotransform
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geopb"
-	"sqlfmt/cockroach/pkg/geo/geoprojbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
 	"github.com/stretchr/testify/require"
 	"github.com/twpayne/go-geom"
 )

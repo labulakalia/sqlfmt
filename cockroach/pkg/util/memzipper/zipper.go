@@ -14,7 +14,7 @@ import (
 	"archive/zip"
 	"bytes"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // Zipper builds a zip file into an in-memory buffer.

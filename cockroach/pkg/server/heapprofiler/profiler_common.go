@@ -14,8 +14,8 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/envutil"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // resetHighWaterMarkInterval specifies how often the high-water mark value will

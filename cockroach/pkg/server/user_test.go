@@ -17,14 +17,14 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/sql/roleoption"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/roleoption"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/stretchr/testify/require"
 )
 

@@ -22,13 +22,13 @@ import (
 	"unicode/utf8"
 
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/bitarray"
-	"sqlfmt/cockroach/pkg/util/duration"
-	"sqlfmt/cockroach/pkg/util/encoding"
-	"sqlfmt/cockroach/pkg/util/keysutil"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/keysutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	"github.com/cockroachdb/errors"
 )
 

@@ -22,13 +22,13 @@
 package colexecproj
 
 import (
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colconv"
-	"sqlfmt/cockroach/pkg/sql/colexec/colexeccmp"
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
-	"sqlfmt/cockroach/pkg/sql/execinfra"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colconv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexeccmp"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfra"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // {{range .}}

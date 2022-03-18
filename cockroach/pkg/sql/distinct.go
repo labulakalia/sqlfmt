@@ -13,8 +13,8 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 // distinctNode de-duplicates rows returned by a wrapped planNode.

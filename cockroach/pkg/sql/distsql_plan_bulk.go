@@ -14,8 +14,8 @@ import (
 	"context"
 	"math/rand"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
 	"github.com/cockroachdb/errors"
 )
 

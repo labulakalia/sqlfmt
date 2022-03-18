@@ -15,8 +15,8 @@ import (
 	gosql "database/sql"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
 )
 
 var reg = NewRegistry(1 /* numNodes */, MakeClusterConstructor(func(

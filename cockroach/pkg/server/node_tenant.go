@@ -11,9 +11,9 @@
 package server
 
 import (
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/tracing"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

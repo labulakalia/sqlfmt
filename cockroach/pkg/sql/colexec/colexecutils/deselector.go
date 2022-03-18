@@ -13,10 +13,10 @@ package colexecutils
 import (
 	"math"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
-	"sqlfmt/cockroach/pkg/sql/colmem"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colmem"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // deselectorOp consumes the input operator, and if resulting batches have a

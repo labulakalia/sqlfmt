@@ -13,7 +13,7 @@ package txnwait
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 // Metrics contains all the txnqueue related metrics.

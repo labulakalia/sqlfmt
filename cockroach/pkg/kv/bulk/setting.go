@@ -11,9 +11,9 @@
 package bulk
 
 import (
-	"sqlfmt/cockroach/pkg/kv/kvserver"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 )
 
 var (

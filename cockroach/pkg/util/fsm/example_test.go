@@ -16,7 +16,7 @@ import (
 	"fmt"
 	"os"
 
-	. "sqlfmt/cockroach/pkg/util/fsm"
+	. "github.com/labulakalia/sqlfmt/cockroach/pkg/util/fsm"
 )
 
 /// States.

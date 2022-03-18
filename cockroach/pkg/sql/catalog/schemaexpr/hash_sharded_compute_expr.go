@@ -10,7 +10,7 @@
 
 package schemaexpr
 
-import "sqlfmt/cockroach/pkg/sql/sem/tree"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 
 // MakeHashShardComputeExpr creates the serialized computed expression for a hash shard
 // column based on the column names and the number of buckets. The expression will be

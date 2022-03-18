@@ -10,11 +10,11 @@
 package colexecwindow
 
 import (
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colexec/colexecutils"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
-	"sqlfmt/cockroach/pkg/sql/colmem"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colmem"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // TODO(yuzefovich): add benchmarks.

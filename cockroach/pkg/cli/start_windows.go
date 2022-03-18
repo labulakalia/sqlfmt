@@ -13,7 +13,7 @@ package cli
 import (
 	"os"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 )
 
 // drainSignals are the signals that will cause the server to drain and exit.

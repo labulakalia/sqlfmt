@@ -14,8 +14,8 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/props"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props"
 )
 
 func TestTrimProvided(t *testing.T) {

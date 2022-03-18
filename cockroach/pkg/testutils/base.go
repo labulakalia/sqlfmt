@@ -11,8 +11,8 @@
 package testutils
 
 import (
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 )
 
 // NewNodeTestBaseContext creates a base context for testing. This uses

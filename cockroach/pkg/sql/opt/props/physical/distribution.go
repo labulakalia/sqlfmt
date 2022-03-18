@@ -14,10 +14,10 @@ import (
 	"bytes"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/opt/cat"
-	"sqlfmt/cockroach/pkg/sql/opt/constraint"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/cat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/constraint"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // Distribution represents the physical distribution of data for a relational

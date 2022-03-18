@@ -15,7 +15,7 @@ package nstree
 import (
 	"sync"
 
-	"sqlfmt/cockroach/pkg/util/iterutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/iterutil"
 	"github.com/google/btree"
 )
 

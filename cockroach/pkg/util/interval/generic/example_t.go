@@ -10,7 +10,7 @@
 
 package generic
 
-import "sqlfmt/cockroach/pkg/roachpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 
 //go:generate ./gen.sh *example generic
 

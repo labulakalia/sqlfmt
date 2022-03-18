@@ -15,7 +15,7 @@ import (
 	"net"
 	"os"
 
-	addrutil "sqlfmt/cockroach/pkg/util/netutil/addr"
+	addrutil "github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil/addr"
 )
 
 // TestAddr is an address to use for test servers. Listening on port 0

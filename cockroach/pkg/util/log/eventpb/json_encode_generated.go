@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/util/jsonbytes"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/jsonbytes"
 	"github.com/cockroachdb/redact"
 )
 

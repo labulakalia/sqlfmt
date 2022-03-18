@@ -16,14 +16,14 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/lexbase"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
-	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/cockroachdb/errors"
 )
 

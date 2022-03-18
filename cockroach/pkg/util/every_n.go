@@ -13,7 +13,7 @@ package util
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // EveryN provides a way to rate limit spammy events. It tracks how recently a

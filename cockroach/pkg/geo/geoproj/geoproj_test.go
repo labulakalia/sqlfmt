@@ -13,7 +13,7 @@ package geoproj
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geoprojbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

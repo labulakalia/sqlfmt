@@ -13,18 +13,18 @@ package colflow
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	defer leaktest.AfterTest(t)()
 
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/colflow", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colflow", true,
 		[]string{
-			"sqlfmt/cockroach/pkg/sql/distsql",
-			"sqlfmt/cockroach/pkg/sql/rowflow",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/distsql",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowflow",
 		}, nil,
 	)
 }

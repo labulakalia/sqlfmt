@@ -13,7 +13,7 @@ package optbuilder
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 func TestUnionType(t *testing.T) {

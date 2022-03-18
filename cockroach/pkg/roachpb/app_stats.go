@@ -13,7 +13,7 @@ package roachpb
 import (
 	"math"
 
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 // StmtFingerprintID is the type of a Statement's fingerprint ID.

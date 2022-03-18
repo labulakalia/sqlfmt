@@ -13,8 +13,8 @@ package catconstants
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 )
 
 // StaticSchemaIDMapVirtualPublicSchema is a map of statically known schema IDs

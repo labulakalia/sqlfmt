@@ -13,17 +13,17 @@ package rowexec
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/execinfra"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/sql/rowenc"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/encoding"
-	"sqlfmt/cockroach/pkg/util/mon"
-	"sqlfmt/cockroach/pkg/util/optional"
-	"sqlfmt/cockroach/pkg/util/stringarena"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfra"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/optional"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stringarena"
 	"github.com/cockroachdb/errors"
 )
 

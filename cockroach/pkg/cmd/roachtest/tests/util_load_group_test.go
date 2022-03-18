@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
 	"github.com/stretchr/testify/require"
 )
 

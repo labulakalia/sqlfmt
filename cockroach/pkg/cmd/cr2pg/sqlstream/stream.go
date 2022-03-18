@@ -15,10 +15,10 @@ import (
 	"bufio"
 	"io"
 
-	"sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
 	// Include this because the parser assumes builtin functions exist.
-	_ "sqlfmt/cockroach/pkg/sql/sem/builtins"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/builtins"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/cockroachdb/errors"
 )
 

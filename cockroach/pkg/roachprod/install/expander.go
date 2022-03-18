@@ -16,7 +16,7 @@ import (
 	"regexp"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 	"github.com/cockroachdb/errors"
 )
 

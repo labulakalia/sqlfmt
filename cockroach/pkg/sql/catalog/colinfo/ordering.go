@@ -13,8 +13,8 @@ package colinfo
 import (
 	"bytes"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 )
 
 // ColumnOrderInfo describes a column (as an index) and a desired order

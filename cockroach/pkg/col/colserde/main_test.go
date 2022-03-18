@@ -15,13 +15,13 @@ import (
 	"os"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/col/coldataext"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/sql/colmem"
-	"sqlfmt/cockroach/pkg/sql/execinfra"
-	"sqlfmt/cockroach/pkg/util/mon"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldataext"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colmem"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfra"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 var (

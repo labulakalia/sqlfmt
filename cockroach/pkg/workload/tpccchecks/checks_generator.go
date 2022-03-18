@@ -16,10 +16,10 @@ import (
 	"fmt"
 	"math/rand"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/workload"
-	"sqlfmt/cockroach/pkg/workload/histogram"
-	"sqlfmt/cockroach/pkg/workload/tpcc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/histogram"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/tpcc"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/pflag"
 )

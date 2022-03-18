@@ -17,11 +17,11 @@ package impl
 
 import (
 	// Import all the cloud provider packages to register them.
-	_ "sqlfmt/cockroach/pkg/cloud/amazon"
-	_ "sqlfmt/cockroach/pkg/cloud/azure"
-	_ "sqlfmt/cockroach/pkg/cloud/gcp"
-	_ "sqlfmt/cockroach/pkg/cloud/httpsink"
-	_ "sqlfmt/cockroach/pkg/cloud/nodelocal"
-	_ "sqlfmt/cockroach/pkg/cloud/nullsink"
-	_ "sqlfmt/cockroach/pkg/cloud/userfile"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/amazon"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/azure"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/gcp"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/httpsink"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/nodelocal"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/nullsink"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/userfile"
 )

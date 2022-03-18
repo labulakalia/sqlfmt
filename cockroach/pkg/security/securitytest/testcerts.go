@@ -14,7 +14,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 )
 
 // CreateTestCerts populates the test certificates in the given directory.

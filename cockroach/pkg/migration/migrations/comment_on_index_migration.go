@@ -13,13 +13,13 @@ package migrations
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/jobs"
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/migration"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/migration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
 )
 
 // ensureCommentsHaveNonDroppedIndexes cleans up any comments associated with

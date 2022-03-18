@@ -10,7 +10,7 @@
 
 package tests
 
-import "sqlfmt/cockroach/pkg/cmd/roachtest/registry"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/registry"
 
 // RegisterTests registers all tests to the Registry. This powers `roachtest run`.
 func RegisterTests(r registry.Registry) {

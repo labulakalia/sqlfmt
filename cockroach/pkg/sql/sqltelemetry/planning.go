@@ -13,7 +13,7 @@ package sqltelemetry
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 )
 
 // CteUseCounter is to be incremented every time a CTE (WITH ...)

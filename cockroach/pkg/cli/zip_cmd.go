@@ -11,7 +11,7 @@
 package cli
 
 import (
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
 	"github.com/spf13/cobra"
 )
 

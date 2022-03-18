@@ -20,9 +20,9 @@ import (
 	"os/signal"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/sdnotify"
-	"sqlfmt/cockroach/pkg/util/sysutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/sdnotify"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/sysutil"
 	"golang.org/x/sys/unix"
 )
 

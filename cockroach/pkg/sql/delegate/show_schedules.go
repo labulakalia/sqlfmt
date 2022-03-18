@@ -14,9 +14,9 @@ import (
 	"fmt"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/jobs"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sqltelemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 )
 
 // commandColumn converts executor execution arguments into jsonb representation.

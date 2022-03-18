@@ -15,10 +15,10 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/screl"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/screl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

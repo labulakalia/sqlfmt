@@ -15,8 +15,8 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 // TestDummyCreateCACertAndKey is a placeholder for actual testing functions

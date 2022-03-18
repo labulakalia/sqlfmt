@@ -15,11 +15,11 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/ts/tspb"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func tsd(name, source string, dps ...tspb.TimeSeriesDatapoint) tspb.TimeSeriesData {

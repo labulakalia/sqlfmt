@@ -13,7 +13,7 @@ package protectedts
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 )
 
 // Records and their spans are stored in memory on every host so it's best

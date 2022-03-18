@@ -19,8 +19,8 @@ import (
 	"log"
 	"os"
 
-	"sqlfmt/cockroach/pkg/cmd/cr2pg/sqlstream"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cr2pg/sqlstream"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/cockroachdb/errors"
 	"golang.org/x/sync/errgroup"
 )

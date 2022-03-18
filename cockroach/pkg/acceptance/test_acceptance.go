@@ -24,13 +24,13 @@ import (
 	"os/signal"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/acceptance/cluster"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/security/securitytest"
-	"sqlfmt/cockroach/pkg/server"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/testutils/testcluster"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/acceptance/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security/securitytest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/testcluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 func MainTest(m *testing.M) {

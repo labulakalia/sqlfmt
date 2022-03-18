@@ -15,8 +15,8 @@ import (
 	"fmt"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachprod/install"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/install"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 	"github.com/cockroachdb/errors"
 )
 

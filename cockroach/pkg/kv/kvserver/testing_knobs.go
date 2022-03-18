@@ -14,16 +14,16 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/kv/kvserver/kvserverbase"
-	"sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
-	"sqlfmt/cockroach/pkg/kv/kvserver/tenantrate"
-	"sqlfmt/cockroach/pkg/kv/kvserver/txnwait"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/spanconfig"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/tenantrate"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/txnwait"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/spanconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // StoreTestingKnobs is a part of the context used to control parts of

@@ -13,9 +13,9 @@ package log
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/util/log/eventpb"
-	"sqlfmt/cockroach/pkg/util/log/severity"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/eventpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // StructuredEvent emits a structured event to the debug log.

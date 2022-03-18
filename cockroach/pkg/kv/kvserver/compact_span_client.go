@@ -13,9 +13,9 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/rpc"
-	"sqlfmt/cockroach/pkg/rpc/nodedialer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc/nodedialer"
 	"github.com/cockroachdb/errors"
 )
 

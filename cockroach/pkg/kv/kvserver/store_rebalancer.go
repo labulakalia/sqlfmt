@@ -16,14 +16,14 @@ import (
 	"math/rand"
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/util/contextutil"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/metric"
-	"sqlfmt/cockroach/pkg/util/stop"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/contextutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"go.etcd.io/etcd/raft/v3"
 )
 

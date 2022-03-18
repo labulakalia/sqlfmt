@@ -13,12 +13,12 @@ package memo_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/sem/builtins"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	tu "sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/builtins"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	tu "github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 )
 
 func TestTyping(t *testing.T) {

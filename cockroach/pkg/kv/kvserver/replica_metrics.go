@@ -14,12 +14,12 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/kv/kvserver/concurrency"
-	"sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
-	"sqlfmt/cockroach/pkg/kv/kvserver/liveness"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"go.etcd.io/etcd/raft/v3"
 )
 

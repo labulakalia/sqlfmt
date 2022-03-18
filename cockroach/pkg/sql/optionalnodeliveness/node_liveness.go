@@ -13,9 +13,9 @@ package optionalnodeliveness
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/errorutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil"
 )
 
 // Interface is the interface used in Container.

@@ -13,10 +13,10 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/apply"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/quotapool"
-	"sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/apply"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/quotapool"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"go.etcd.io/etcd/raft/v3/raftpb"
 )
 

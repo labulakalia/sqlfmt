@@ -11,8 +11,8 @@ package sqlproxyccl
 import (
 	"net"
 
-	"sqlfmt/cockroach/pkg/ccl/sqlproxyccl/interceptor"
-	"sqlfmt/cockroach/pkg/ccl/sqlproxyccl/throttler"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/sqlproxyccl/interceptor"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/sqlproxyccl/throttler"
 	pgproto3 "github.com/jackc/pgproto3/v2"
 )
 

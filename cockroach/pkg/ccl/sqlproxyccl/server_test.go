@@ -15,8 +15,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 	"github.com/stretchr/testify/require"
 )
 

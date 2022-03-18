@@ -13,7 +13,7 @@
 
 package tree
 
-import "sqlfmt/cockroach/pkg/util/timeutil"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 
 var (
 	timeCtx = NewParseTimeContext(timeutil.Now())

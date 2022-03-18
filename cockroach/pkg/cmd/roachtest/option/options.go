@@ -11,8 +11,8 @@
 package option
 
 import (
-	"sqlfmt/cockroach/pkg/roachprod"
-	"sqlfmt/cockroach/pkg/roachprod/install"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/install"
 )
 
 // StartOpts is a type that combines the start options needed by roachprod and roachtest.

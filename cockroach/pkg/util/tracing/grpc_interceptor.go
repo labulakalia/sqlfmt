@@ -17,7 +17,7 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	"google.golang.org/grpc"

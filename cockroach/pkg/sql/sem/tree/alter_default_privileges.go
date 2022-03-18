@@ -11,7 +11,7 @@
 package tree
 
 import (
-	"sqlfmt/cockroach/pkg/sql/privilege"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
 	"github.com/cockroachdb/errors"
 )
 

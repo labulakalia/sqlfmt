@@ -6,7 +6,7 @@ package catpb
 import (
 	bytes "bytes"
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_sql_sem_catid "sqlfmt/cockroach/pkg/sql/sem/catid"
+	github_com_cockroachdb_cockroach_pkg_sql_sem_catid "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/catid"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

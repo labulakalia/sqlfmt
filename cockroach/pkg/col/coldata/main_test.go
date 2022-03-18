@@ -14,7 +14,7 @@ import (
 	"os"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 func TestMain(m *testing.M) {

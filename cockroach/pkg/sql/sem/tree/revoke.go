@@ -19,7 +19,7 @@
 
 package tree
 
-import "sqlfmt/cockroach/pkg/sql/privilege"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
 
 // Revoke represents a REVOKE statement.
 // PrivilegeList and TargetList are defined in grant.go

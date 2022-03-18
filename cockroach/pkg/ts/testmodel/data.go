@@ -14,7 +14,7 @@ import (
 	"math"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
 )
 
 // dp is a shorthand function for constructing a TimeSeriesDatapoint, used for

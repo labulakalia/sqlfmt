@@ -15,8 +15,8 @@ import (
 	"testing"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // TestHashingDoesNotAllocate ensures that our use of the noescape hack to make

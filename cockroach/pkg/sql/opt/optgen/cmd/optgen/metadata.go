@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
 )
 
 // metadata generates and stores the mapping from Optgen language expressions to

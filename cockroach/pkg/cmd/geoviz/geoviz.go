@@ -18,8 +18,8 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/geo"
-	"sqlfmt/cockroach/pkg/geo/geoindex"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoindex"
 	"github.com/golang/geo/s2"
 )
 

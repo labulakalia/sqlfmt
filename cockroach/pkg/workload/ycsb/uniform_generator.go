@@ -11,7 +11,7 @@
 package ycsb
 
 import (
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"golang.org/x/exp/rand"
 )
 

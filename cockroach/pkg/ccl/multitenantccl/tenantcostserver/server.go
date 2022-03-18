@@ -11,14 +11,14 @@ package tenantcostserver
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/multitenant"
-	"sqlfmt/cockroach/pkg/server"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/sql"
-	"sqlfmt/cockroach/pkg/util/metric"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 type instance struct {

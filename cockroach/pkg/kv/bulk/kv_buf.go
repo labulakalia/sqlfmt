@@ -13,7 +13,7 @@ package bulk
 import (
 	"bytes"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/cockroachdb/errors"
 )
 

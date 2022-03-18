@@ -13,7 +13,7 @@ package install
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/cockroachdb/datadriven"
 	"github.com/stretchr/testify/require"
 )

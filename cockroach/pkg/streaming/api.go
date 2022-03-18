@@ -11,10 +11,10 @@
 package streaming
 
 import (
-	"sqlfmt/cockroach/pkg/ccl/streamingccl/streampb"
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/streamingccl/streampb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/cockroachdb/errors"
 )
 

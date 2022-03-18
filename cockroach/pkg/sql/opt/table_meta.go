@@ -11,10 +11,10 @@
 package opt
 
 import (
-	"sqlfmt/cockroach/pkg/sql/opt/cat"
-	"sqlfmt/cockroach/pkg/sql/opt/partition"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/cat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/partition"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/buildutil"
 	"github.com/cockroachdb/errors"
 )
 

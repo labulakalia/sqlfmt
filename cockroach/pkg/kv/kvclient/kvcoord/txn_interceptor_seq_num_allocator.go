@@ -13,9 +13,9 @@ package kvcoord
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	"github.com/cockroachdb/errors"
 )
 

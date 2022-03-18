@@ -13,9 +13,9 @@ import (
 	"net"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/ccl/sqlproxyccl/interceptor"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/sqlproxyccl/interceptor"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/jackc/pgproto3/v2"
 	"github.com/stretchr/testify/require"
 )

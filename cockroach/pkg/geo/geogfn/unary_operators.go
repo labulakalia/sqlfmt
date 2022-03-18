@@ -13,10 +13,10 @@ package geogfn
 import (
 	"math"
 
-	"sqlfmt/cockroach/pkg/geo"
-	"sqlfmt/cockroach/pkg/geo/geographiclib"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geographiclib"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/golang/geo/s1"
 	"github.com/golang/geo/s2"
 	"github.com/twpayne/go-geom"

@@ -20,8 +20,8 @@ import (
 	"sync/atomic"
 
 	"github.com/biogo/store/llrb"
-	"sqlfmt/cockroach/pkg/util/interval"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/interval"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // EvictionPolicy is the cache eviction policy enum.

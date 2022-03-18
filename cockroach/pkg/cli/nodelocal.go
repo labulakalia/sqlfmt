@@ -19,10 +19,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

@@ -13,7 +13,7 @@ package pgerror
 import (
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/cockroachdb/errors"
 )
 

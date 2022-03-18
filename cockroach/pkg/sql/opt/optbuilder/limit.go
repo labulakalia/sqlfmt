@@ -11,8 +11,8 @@
 package optbuilder
 
 import (
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // buildLimit adds Limit and Offset operators according to the Limit clause.

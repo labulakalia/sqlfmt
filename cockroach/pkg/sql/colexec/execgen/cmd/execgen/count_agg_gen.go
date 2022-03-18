@@ -15,7 +15,7 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 const countAggTmpl = "pkg/sql/colexec/colexecagg/count_agg_tmpl.go"

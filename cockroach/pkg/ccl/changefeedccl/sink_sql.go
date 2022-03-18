@@ -16,13 +16,13 @@ import (
 	"hash/fnv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/kvevent"
-	"sqlfmt/cockroach/pkg/jobs/jobspb"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/sem/builtins"
-	"sqlfmt/cockroach/pkg/util/bufalloc"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/kvevent"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/builtins"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bufalloc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/cockroachdb/errors"
 )
 

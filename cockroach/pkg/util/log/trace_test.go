@@ -16,7 +16,7 @@ import (
 	"regexp"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"golang.org/x/net/trace"
 )
 

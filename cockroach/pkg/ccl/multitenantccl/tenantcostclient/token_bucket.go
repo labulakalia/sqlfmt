@@ -11,7 +11,7 @@ package tenantcostclient
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
 )
 
 // tokenBucket implements a token bucket. It is a more specialized form of

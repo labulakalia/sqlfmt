@@ -11,7 +11,7 @@ package sqlproxyccl
 import (
 	"net"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/cockroachdb/errors"
 	"github.com/jackc/pgproto3/v2"
 )

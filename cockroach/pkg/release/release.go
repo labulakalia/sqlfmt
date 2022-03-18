@@ -29,7 +29,7 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/service/s3"
-	bazelutil "sqlfmt/cockroach/pkg/build/util"
+	bazelutil "github.com/labulakalia/sqlfmt/cockroach/pkg/build/util"
 	"github.com/cockroachdb/errors"
 )
 

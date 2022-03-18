@@ -11,7 +11,7 @@
 package storage
 
 import (
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"go.etcd.io/etcd/raft/v3/raftpb"
 )
 

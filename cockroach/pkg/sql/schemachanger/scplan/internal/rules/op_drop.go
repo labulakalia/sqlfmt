@@ -11,9 +11,9 @@
 package rules
 
 import (
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/screl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/screl"
 )
 
 // When dropping a table or a view, skip all removal ops for column elements

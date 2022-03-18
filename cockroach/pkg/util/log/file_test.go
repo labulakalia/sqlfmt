@@ -17,8 +17,8 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/log/logpb"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // TestLogFilenameParsing ensures that logName and parseLogFilename work as

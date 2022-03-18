@@ -23,7 +23,7 @@ import (
 	"sort"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 )
 
 var (

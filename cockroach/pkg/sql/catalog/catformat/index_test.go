@@ -15,12 +15,12 @@ import (
 	"strconv"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/catpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 func TestIndexForDisplay(t *testing.T) {

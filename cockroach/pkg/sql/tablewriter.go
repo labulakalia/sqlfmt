@@ -14,17 +14,17 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/mutations"
-	"sqlfmt/cockroach/pkg/sql/row"
-	"sqlfmt/cockroach/pkg/sql/rowcontainer"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
-	"sqlfmt/cockroach/pkg/util/admission"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/mutations"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/row"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowcontainer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/admission"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // expressionCarrier handles visiting sub-expressions.

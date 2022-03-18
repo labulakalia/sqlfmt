@@ -11,9 +11,9 @@ package cdctest
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/jobs"
-	"sqlfmt/cockroach/pkg/jobs/jobspb"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
 )
 
 // TestFeedFactory is an interface to create changefeeds.

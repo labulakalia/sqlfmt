@@ -12,7 +12,7 @@
 
 package execinfra
 
-import "sqlfmt/cockroach/pkg/sql/execinfrapb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
 
 // Version identifies the distsql protocol version.
 //

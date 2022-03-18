@@ -15,7 +15,7 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
 )
 
 // TestModelDBQuery is a high-level verification that the test model query

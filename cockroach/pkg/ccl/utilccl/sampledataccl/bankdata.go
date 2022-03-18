@@ -16,10 +16,10 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/workload"
-	"sqlfmt/cockroach/pkg/workload/workloadsql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/workloadsql"
 )
 
 // ToBackup creates an enterprise backup in `<externalIODir>/<path>`.

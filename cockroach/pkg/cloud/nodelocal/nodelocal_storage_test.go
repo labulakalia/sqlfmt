@@ -13,11 +13,11 @@ package nodelocal
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cloud/cloudtestutils"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/cloudtestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestPutLocal(t *testing.T) {

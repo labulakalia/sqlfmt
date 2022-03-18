@@ -17,8 +17,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/protoutil"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
 	"github.com/cockroachdb/logtags"
 	"github.com/petermattis/goid"
 	"go.opentelemetry.io/otel/attribute"

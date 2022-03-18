@@ -19,8 +19,8 @@ import (
 	"os"
 	"path/filepath"
 
-	crdblog "sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	crdblog "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // The flags used by the internal loggers.

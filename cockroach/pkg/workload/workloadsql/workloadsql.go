@@ -19,12 +19,12 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/lexbase"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
-	"sqlfmt/cockroach/pkg/util/errorutil"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/version"
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 	"github.com/cockroachdb/errors"
 	"golang.org/x/time/rate"
 )

@@ -15,9 +15,9 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/spec"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/test"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/spec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/test"
 )
 
 // TestSpec is a spec for a roachtest.

@@ -11,8 +11,8 @@
 package transform
 
 import (
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
 )
 
 // IsAggregateVisitor checks if walked expressions contain aggregate functions.

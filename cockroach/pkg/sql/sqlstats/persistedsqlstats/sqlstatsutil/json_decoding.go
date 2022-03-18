@@ -11,8 +11,8 @@
 package sqlstatsutil
 
 import (
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/json"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 	"github.com/cockroachdb/errors"
 )
 

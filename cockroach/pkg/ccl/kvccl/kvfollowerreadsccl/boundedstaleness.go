@@ -11,13 +11,13 @@ package kvfollowerreadsccl
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/ccl/utilccl"
-	"sqlfmt/cockroach/pkg/sql"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/sql/sem/builtins"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/duration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/utilccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/builtins"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/cockroachdb/errors"
 )
 

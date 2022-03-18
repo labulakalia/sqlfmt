@@ -10,7 +10,7 @@
 
 package colexecjoin
 
-import "sqlfmt/cockroach/pkg/util"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 
 // circularGroupsBuffer is a struct designed to store the groups' slices for a
 // given column. It starts out small and will grow dynamically if necessary

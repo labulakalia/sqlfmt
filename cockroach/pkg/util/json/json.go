@@ -23,14 +23,14 @@ import (
 	"unsafe"
 
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/geo"
-	"sqlfmt/cockroach/pkg/geo/geopb"
-	"sqlfmt/cockroach/pkg/keysbase"
-	"sqlfmt/cockroach/pkg/sql/inverted"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/util/encoding"
-	uniq "sqlfmt/cockroach/pkg/util/unique"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keysbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
+	uniq "github.com/labulakalia/sqlfmt/cockroach/pkg/util/unique"
 	"github.com/cockroachdb/errors"
 )
 

@@ -14,10 +14,10 @@ import (
 	"encoding/binary"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 )
 
 func BenchmarkScanDecodeKeyValue(b *testing.B) {

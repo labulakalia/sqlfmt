@@ -12,8 +12,8 @@ import (
 	"bytes"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/ioctx"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ioctx"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/stretchr/testify/require"
 )
 

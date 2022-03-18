@@ -15,9 +15,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/spf13/cobra"
 )
 

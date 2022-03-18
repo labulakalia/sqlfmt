@@ -15,8 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"gopkg.in/yaml.v2"
 )
 

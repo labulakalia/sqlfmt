@@ -10,7 +10,7 @@
 
 package sqltelemetry
 
-import "sqlfmt/cockroach/pkg/server/telemetry"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 
 // CreateExtensionCounter returns a counter to increment for creating extensions.
 func CreateExtensionCounter(ext string) telemetry.Counter {

@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
 	"github.com/prometheus/client_golang/prometheus"
 	dto "github.com/prometheus/client_model/go"
 	"github.com/stretchr/testify/require"

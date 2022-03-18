@@ -13,9 +13,9 @@ package tpcc
 import (
 	"context"
 
-	"sqlfmt/cockroach-go/v2/crdb/crdbpgx"
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach-go/v2/crdb/crdbpgx"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 	"github.com/jackc/pgx/v4"
 	"golang.org/x/exp/rand"
 )

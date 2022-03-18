@@ -13,8 +13,8 @@ package addr_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/netutil/addr"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil/addr"
 )
 
 func TestSplitHostPort(t *testing.T) {

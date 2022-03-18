@@ -13,9 +13,9 @@ package forbiddenmethod_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/lint/passes/forbiddenmethod"
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/lint/passes/forbiddenmethod"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

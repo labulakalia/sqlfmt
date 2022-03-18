@@ -20,8 +20,8 @@ import (
 	"strings"
 	_ "unsafe" // required by go:linkname
 
-	"sqlfmt/cockroach/pkg/util/envutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // globalSeed contains a pseudo random seed that should only be used in tests.

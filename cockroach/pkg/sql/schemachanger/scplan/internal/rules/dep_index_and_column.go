@@ -11,11 +11,11 @@
 package rules
 
 import (
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/screl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/screl"
 )
 
 // This registeredDepRule ensures that a new primary index becomes public right after the

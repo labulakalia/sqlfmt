@@ -10,7 +10,7 @@
 
 package clisqlclient
 
-import "sqlfmt/cockroach/pkg/cli/clicfg"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clicfg"
 
 // Context represents configuration for establishing SQL
 // connections to servers.

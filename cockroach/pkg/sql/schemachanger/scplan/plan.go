@@ -13,16 +13,16 @@ package scplan
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/jobs/jobspb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scop"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/opgen"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/rules"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraphviz"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scstage"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/opgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/rules"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraphviz"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scstage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 )
 

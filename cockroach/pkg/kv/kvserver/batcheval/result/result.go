@@ -14,10 +14,10 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
-	"sqlfmt/cockroach/pkg/kv/kvserver/stateloader"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/stateloader"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 	"github.com/kr/pretty"
 )

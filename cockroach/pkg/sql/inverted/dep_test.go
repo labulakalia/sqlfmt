@@ -13,14 +13,14 @@ package inverted
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/inverted", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted", true,
 		[]string{
-			"sqlfmt/cockroach/pkg/roachpb",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb",
 		}, nil,
 	)
 }

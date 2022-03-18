@@ -14,12 +14,12 @@ import (
 	"net/url"
 	"testing"
 
-	"sqlfmt/cockroach-go/v2/crdb"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql/tests"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach-go/v2/crdb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/tests"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/stretchr/testify/require"
 )
 

@@ -14,16 +14,16 @@ import (
 	"context"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/config"
-	"sqlfmt/cockroach/pkg/config/zonepb"
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed"
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedcache"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/stop"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config/zonepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedcache"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // Cache caches a set of KVs in a set of spans using a rangefeed. The

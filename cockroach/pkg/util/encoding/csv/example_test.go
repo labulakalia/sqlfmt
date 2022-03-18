@@ -21,8 +21,8 @@ import (
 	"os"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/encoding/csv"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding/csv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func ExampleReader() {

@@ -11,9 +11,9 @@
 package sql
 
 import (
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/uint128"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uint128"
 )
 
 // ClusterWideID represents an identifier that is guaranteed to be unique across

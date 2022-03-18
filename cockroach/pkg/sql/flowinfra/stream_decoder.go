@@ -13,9 +13,9 @@ package flowinfra
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
-	"sqlfmt/cockroach/pkg/sql/rowenc"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/cockroachdb/errors"
 )
 

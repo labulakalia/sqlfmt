@@ -13,7 +13,7 @@ package sql
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 // BaseMemoryMetrics contains a max histogram and a current count of the

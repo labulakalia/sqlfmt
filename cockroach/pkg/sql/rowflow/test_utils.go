@@ -14,9 +14,9 @@ import (
 	"context"
 	"sync"
 
-	"sqlfmt/cockroach/pkg/sql/execinfra"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfra"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // MakeTestRouter creates a router to be used by tests.

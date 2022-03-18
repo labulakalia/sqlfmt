@@ -13,10 +13,10 @@ package colexecutils
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
-	"sqlfmt/cockroach/pkg/util/cancelchecker"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/cancelchecker"
 )
 
 // CancelChecker is a colexecop.Operator that checks whether query cancellation

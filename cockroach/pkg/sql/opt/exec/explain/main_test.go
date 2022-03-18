@@ -14,8 +14,8 @@ import (
 	"os"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/server"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
 )
 
 func TestMain(m *testing.M) {

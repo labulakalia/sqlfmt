@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/server/dumpstore"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/dumpstore"
 	"github.com/stretchr/testify/assert"
 )
 

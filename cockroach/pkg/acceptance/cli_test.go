@@ -17,11 +17,11 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/acceptance/cluster"
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/acceptance/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 var cmdBase = []string{

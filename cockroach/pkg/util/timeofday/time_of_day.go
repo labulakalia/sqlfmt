@@ -16,8 +16,8 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/duration"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // TimeOfDay represents a time of day (no date), stored as microseconds since

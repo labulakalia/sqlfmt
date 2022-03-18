@@ -16,11 +16,11 @@ package rules
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/screl"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/screl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // ApplyDepRules adds dependency edges to the graph according to the

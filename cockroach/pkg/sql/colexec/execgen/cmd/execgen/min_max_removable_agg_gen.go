@@ -15,7 +15,7 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
 )
 
 const minMaxRemovableAggTmpl = "pkg/sql/colexec/colexecwindow/min_max_removable_agg_tmpl.go"

@@ -16,8 +16,8 @@ import (
 	"regexp"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/docs"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/cockroachdb/errors"
 )
 

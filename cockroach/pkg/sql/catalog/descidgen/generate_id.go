@@ -13,9 +13,9 @@ package descidgen
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 )
 
 // GenerateUniqueDescID returns the next available Descriptor ID and increments

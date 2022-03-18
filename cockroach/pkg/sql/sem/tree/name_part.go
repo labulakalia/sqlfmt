@@ -11,10 +11,10 @@
 package tree
 
 import (
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql/lexbase"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 )
 
 // A Name is an SQL identifier.

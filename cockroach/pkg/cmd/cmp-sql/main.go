@@ -35,7 +35,7 @@ import (
 	"strings"
 
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/jackc/pgtype"
 	"github.com/jackc/pgx/v4"
 )

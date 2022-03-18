@@ -19,7 +19,7 @@ import (
 	"testing"
 	"testing/iotest"
 
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/cockroachdb/datadriven"
 )
 

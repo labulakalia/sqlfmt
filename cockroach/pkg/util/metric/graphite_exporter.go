@@ -16,7 +16,7 @@ import (
 	"os"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 	"github.com/prometheus/client_golang/prometheus/graphite"
 )

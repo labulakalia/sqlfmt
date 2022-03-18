@@ -6,8 +6,8 @@ package serverpb
 import (
 	context "context"
 	fmt "fmt"
-	clusterversion "sqlfmt/cockroach/pkg/clusterversion"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
+	clusterversion "github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

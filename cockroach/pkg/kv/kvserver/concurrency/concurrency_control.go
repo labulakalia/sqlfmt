@@ -17,14 +17,14 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
-	"sqlfmt/cockroach/pkg/kv/kvserver/concurrency/poison"
-	"sqlfmt/cockroach/pkg/kv/kvserver/spanset"
-	"sqlfmt/cockroach/pkg/kv/kvserver/txnwait"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/poison"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/spanset"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/txnwait"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 // Manager is a structure that sequences incoming requests and provides

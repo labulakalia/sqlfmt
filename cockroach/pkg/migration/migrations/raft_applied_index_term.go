@@ -15,13 +15,13 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/jobs"
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/migration"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/migration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // defaultPageSize controls how many ranges are paged in by default when

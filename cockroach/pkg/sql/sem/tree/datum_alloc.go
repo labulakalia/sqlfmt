@@ -11,8 +11,8 @@
 package tree
 
 import (
-	"sqlfmt/cockroach/pkg/geo/geopb"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 // DatumAlloc provides batch allocation of datum pointers, amortizing the cost

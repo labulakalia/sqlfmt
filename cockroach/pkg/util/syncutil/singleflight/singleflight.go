@@ -21,7 +21,7 @@ package singleflight
 import (
 	"sync"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // call is an in-flight or completed singleflight.Do call

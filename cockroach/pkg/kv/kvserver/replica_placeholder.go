@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/google/btree"
 )
 

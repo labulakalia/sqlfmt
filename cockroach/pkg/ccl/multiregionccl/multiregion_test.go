@@ -11,13 +11,13 @@ package multiregionccl_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 	// Blank import ccl so that we have all CCL features enabled.
-	_ "sqlfmt/cockroach/pkg/ccl"
-	"sqlfmt/cockroach/pkg/ccl/multiregionccl/multiregionccltestutils"
-	"sqlfmt/cockroach/pkg/ccl/utilccl"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/multiregionccl/multiregionccltestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/utilccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/stretchr/testify/require"
 )
 

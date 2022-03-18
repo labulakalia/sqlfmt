@@ -11,15 +11,15 @@
 package valueside
 
 import (
-	"sqlfmt/cockroach/pkg/geo"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/lex"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/ipaddr"
-	"sqlfmt/cockroach/pkg/util/json"
-	"sqlfmt/cockroach/pkg/util/timeutil/pgdate"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ipaddr"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	"github.com/cockroachdb/errors"
 	"github.com/lib/pq/oid"
 )

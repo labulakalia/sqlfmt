@@ -17,10 +17,10 @@ import (
 	"sort"
 	"time"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/ts/tspb"
-	"sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 	"github.com/cockroachdb/errors"
 )
 

@@ -14,13 +14,13 @@ import (
 	"context"
 	"encoding/json"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
-	"sqlfmt/cockroach/pkg/kv/kvserver/loqrecovery/loqrecoverypb"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/util/protoutil"
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/loqrecovery/loqrecoverypb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	"github.com/cockroachdb/errors"
 )
 

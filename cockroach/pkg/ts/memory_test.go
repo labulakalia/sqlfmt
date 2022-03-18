@@ -15,8 +15,8 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestGetMaxTimespan(t *testing.T) {

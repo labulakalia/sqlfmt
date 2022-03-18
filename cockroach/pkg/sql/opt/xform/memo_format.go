@@ -15,10 +15,10 @@ import (
 	"fmt"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/opt/props/physical"
-	"sqlfmt/cockroach/pkg/util/treeprinter"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props/physical"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/treeprinter"
 	"github.com/cockroachdb/errors"
 )
 

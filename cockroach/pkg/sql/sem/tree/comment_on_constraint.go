@@ -10,7 +10,7 @@
 
 package tree
 
-import "sqlfmt/cockroach/pkg/sql/lexbase"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 
 //CommentOnConstraint represents a COMMENT ON CONSTRAINT statement
 type CommentOnConstraint struct {

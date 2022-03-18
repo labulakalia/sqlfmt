@@ -12,7 +12,7 @@ package json
 
 import (
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 	"github.com/cockroachdb/errors"
 )
 

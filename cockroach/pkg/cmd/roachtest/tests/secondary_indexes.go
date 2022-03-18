@@ -13,9 +13,9 @@ package tests
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/registry"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/test"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/registry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/test"
 	"github.com/stretchr/testify/require"
 )
 

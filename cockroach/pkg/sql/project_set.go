@@ -13,8 +13,8 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/colinfo"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // projectSetNode zips through a list of generators for every row of

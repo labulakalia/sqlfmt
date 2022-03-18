@@ -23,12 +23,12 @@ import (
 	"os"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cmd/cmp-protocol/pgconnect"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
-	"sqlfmt/cockroach/pkg/sql/randgen"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cmp-protocol/pgconnect"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/randgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/cockroachdb/errors"
 )
 

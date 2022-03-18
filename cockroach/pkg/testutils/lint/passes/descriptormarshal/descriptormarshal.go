@@ -10,7 +10,7 @@
 
 package descriptormarshal
 
-import "sqlfmt/cockroach/pkg/testutils/lint/passes/forbiddenmethod"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/lint/passes/forbiddenmethod"
 
 // Analyzer checks for correct unmarshaling of descpb descriptors by
 // disallowing calls to (descpb.Descriptor).GetTable() et al.

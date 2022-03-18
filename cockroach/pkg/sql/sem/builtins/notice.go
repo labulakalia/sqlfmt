@@ -13,8 +13,8 @@ package builtins
 import (
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgnotice"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgnotice"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/cockroachdb/errors"
 )
 

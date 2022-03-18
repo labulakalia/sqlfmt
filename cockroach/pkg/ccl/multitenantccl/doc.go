@@ -10,6 +10,6 @@ package multitenantccl
 
 import (
 	// Imports for the CCL init hooks.
-	_ "sqlfmt/cockroach/pkg/ccl/multitenantccl/tenantcostclient"
-	_ "sqlfmt/cockroach/pkg/ccl/multitenantccl/tenantcostserver"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/multitenantccl/tenantcostclient"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/multitenantccl/tenantcostserver"
 )

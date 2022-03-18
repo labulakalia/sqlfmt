@@ -11,9 +11,9 @@
 package scbuild
 
 import (
-	"sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scbuild/internal/scbuildstmt"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scbuild/internal/scbuildstmt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/cockroachdb/errors"
 )
 

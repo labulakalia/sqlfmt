@@ -11,8 +11,8 @@
 package tree
 
 import (
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treewindow"
-	"sqlfmt/cockroach/pkg/util/ring"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treewindow"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ring"
 )
 
 // PeerGroupChecker can check if a pair of row indices within a partition are

@@ -15,7 +15,7 @@ import (
 	"math"
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // Load-based splitting.

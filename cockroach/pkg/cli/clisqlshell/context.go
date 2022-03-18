@@ -14,8 +14,8 @@ import (
 	"os"
 	"time"
 
-	democlusterapi "sqlfmt/cockroach/pkg/cli/democluster/api"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	democlusterapi "github.com/labulakalia/sqlfmt/cockroach/pkg/cli/democluster/api"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // Context represents the external configuration of the interactive

@@ -17,9 +17,9 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 	"github.com/gorilla/mux"
 )
 

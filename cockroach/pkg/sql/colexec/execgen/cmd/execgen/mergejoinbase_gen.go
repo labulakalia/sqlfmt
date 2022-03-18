@@ -15,7 +15,7 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
 )
 
 const mergeJoinBaseTmpl = "pkg/sql/colexec/colexecjoin/mergejoinbase_tmpl.go"

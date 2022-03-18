@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/lex"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
 )
 
 func TestByteArrayDecoding(t *testing.T) {

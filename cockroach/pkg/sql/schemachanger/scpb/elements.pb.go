@@ -5,10 +5,10 @@ package scpb
 
 import (
 	fmt "fmt"
-	catpb "sqlfmt/cockroach/pkg/sql/catalog/catpb"
-	github_com_cockroachdb_cockroach_pkg_sql_catalog_catpb "sqlfmt/cockroach/pkg/sql/catalog/catpb"
-	github_com_cockroachdb_cockroach_pkg_sql_sem_catid "sqlfmt/cockroach/pkg/sql/sem/catid"
-	types "sqlfmt/cockroach/pkg/sql/types"
+	catpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catpb"
+	github_com_cockroachdb_cockroach_pkg_sql_catalog_catpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catpb"
+	github_com_cockroachdb_cockroach_pkg_sql_sem_catid "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/catid"
+	types "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

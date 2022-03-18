@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 // TestNewStoreEncryptionSpec verifies that the --enterprise-encryption arguments are correctly parsed

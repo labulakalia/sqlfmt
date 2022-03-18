@@ -14,10 +14,10 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/opt/testutils/opttester"
-	"sqlfmt/cockroach/pkg/sql/opt/testutils/testcat"
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/testutils/opttester"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/testutils/testcat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/cockroachdb/datadriven"
 )
 

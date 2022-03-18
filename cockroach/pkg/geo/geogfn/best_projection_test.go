@@ -13,7 +13,7 @@ package geogfn
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geoprojbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
 	"github.com/golang/geo/s2"
 	"github.com/stretchr/testify/require"
 )

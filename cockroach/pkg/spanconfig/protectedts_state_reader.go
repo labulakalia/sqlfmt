@@ -13,9 +13,9 @@ package spanconfig
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptpb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 )
 
 // ProtectedTimestampStateReader provides a target specific view of the

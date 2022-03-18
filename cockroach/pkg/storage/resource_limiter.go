@@ -13,7 +13,7 @@ package storage
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // ResourceLimiterOptions is defining limits for resource limiter to restrict number

@@ -13,8 +13,8 @@ package spanconfigkvaccessor
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/spanconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/spanconfig"
 	"github.com/cockroachdb/errors"
 )
 

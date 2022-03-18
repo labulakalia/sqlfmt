@@ -14,10 +14,10 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	"github.com/cockroachdb/redact"
 	gogoproto "github.com/gogo/protobuf/proto"
 	"github.com/golang/protobuf/proto" // nolint deprecated, but required for Protobuf v1 reflection

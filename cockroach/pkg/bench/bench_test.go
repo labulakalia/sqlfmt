@@ -22,15 +22,15 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/testutils/testcluster"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/randutil"
-	"sqlfmt/cockroach/pkg/util/stop"
-	"sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/testcluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
 )
@@ -391,7 +391,7 @@ func BenchmarkSQL(b *testing.B) {
 			runBenchmarkUpsert,
 		} {
 			fnName := runtime.FuncForPC(reflect.ValueOf(runFn).Pointer()).Name()
-			fnName = strings.TrimPrefix(fnName, "sqlfmt/cockroach/pkg/bench.runBenchmark")
+			fnName = strings.TrimPrefix(fnName, "github.com/labulakalia/sqlfmt/cockroach/pkg/bench.runBenchmark")
 			b.Run(fnName, func(b *testing.B) {
 				for _, count := range []int{1, 10, 100, 1000} {
 					b.Run(fmt.Sprintf("count=%d", count), func(b *testing.B) {

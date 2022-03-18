@@ -23,7 +23,7 @@ package colexechash
 import (
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 const (

@@ -14,12 +14,12 @@ import (
 	"context"
 	"io"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/blobs/blobspb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/rpc"
-	"sqlfmt/cockroach/pkg/rpc/nodedialer"
-	"sqlfmt/cockroach/pkg/util/ioctx"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/blobs/blobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc/nodedialer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ioctx"
 	"github.com/cockroachdb/errors"
 	"google.golang.org/grpc/metadata"
 )

@@ -16,7 +16,7 @@ import (
 	"math"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 func TestEncodeFloatOrdered(t *testing.T) {

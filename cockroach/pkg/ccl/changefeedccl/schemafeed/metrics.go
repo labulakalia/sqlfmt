@@ -11,7 +11,7 @@ package schemafeed
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 var metaChangefeedTableMetadataNanos = metric.Metadata{

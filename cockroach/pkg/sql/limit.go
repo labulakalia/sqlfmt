@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"math"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // limitNode represents a node that limits the number of rows

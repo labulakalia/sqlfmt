@@ -13,7 +13,7 @@ package rangefeedbuffer
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // RangeFeedValueEventToKV is a function to type assert an Event into a

@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	_ "sqlfmt/cockroach/pkg/util/log" // for flags
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log" // for flags
 	"github.com/kr/pretty"
 	prometheusgo "github.com/prometheus/client_model/go"
 )

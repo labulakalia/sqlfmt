@@ -2,7 +2,7 @@
 
 package severity
 
-import "sqlfmt/cockroach/pkg/util/log/logpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 
 // UNKNOWN is populated into decoded log entries when the
 // severity could not be determined.

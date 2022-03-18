@@ -14,14 +14,14 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/util/bufalloc"
-	"sqlfmt/cockroach/pkg/workload"
-	"sqlfmt/cockroach/pkg/workload/bank"
-	"sqlfmt/cockroach/pkg/workload/tpcc"
-	"sqlfmt/cockroach/pkg/workload/tpch"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bufalloc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/bank"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/tpcc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/tpch"
 )
 
 func columnByteSize(col coldata.Vec) int64 {

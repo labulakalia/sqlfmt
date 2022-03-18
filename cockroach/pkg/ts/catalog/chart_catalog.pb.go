@@ -5,7 +5,7 @@ package catalog
 
 import (
 	fmt "fmt"
-	tspb "sqlfmt/cockroach/pkg/ts/tspb"
+	tspb "github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	github_com_gogo_protobuf_proto "github.com/gogo/protobuf/proto"
 	proto "github.com/gogo/protobuf/proto"

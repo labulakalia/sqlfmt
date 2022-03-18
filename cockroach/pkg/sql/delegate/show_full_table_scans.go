@@ -11,8 +11,8 @@
 package delegate
 
 import (
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sqltelemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 )
 
 func (d *delegator) delegateShowFullTableScans() (tree.Statement, error) {

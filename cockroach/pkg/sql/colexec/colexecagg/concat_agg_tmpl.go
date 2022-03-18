@@ -24,9 +24,9 @@ package colexecagg
 import (
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colexec/execgen"
-	"sqlfmt/cockroach/pkg/sql/colmem"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/execgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colmem"
 )
 
 func newConcat_AGGKINDAggAlloc(allocator *colmem.Allocator, allocSize int64) aggregateFuncAlloc {

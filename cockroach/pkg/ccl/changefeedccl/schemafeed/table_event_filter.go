@@ -11,8 +11,8 @@ package schemafeed
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/changefeedbase"
-	"sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/changefeedbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
 	"github.com/cockroachdb/errors"
 )
 

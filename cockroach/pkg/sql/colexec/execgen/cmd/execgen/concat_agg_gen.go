@@ -14,7 +14,7 @@ import (
 	"io"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 const concatAggTmpl = "pkg/sql/colexec/colexecagg/concat_agg_tmpl.go"

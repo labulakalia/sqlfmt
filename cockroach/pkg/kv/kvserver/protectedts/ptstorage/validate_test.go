@@ -15,11 +15,11 @@ import (
 	"strconv"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts"
-	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptpb"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/protectedts"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	"github.com/stretchr/testify/require"
 )
 

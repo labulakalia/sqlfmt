@@ -11,13 +11,13 @@
 package optbuilder
 
 import (
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/opt/props/physical"
-	"sqlfmt/cockroach/pkg/sql/sem/builtins"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sqlerrors"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props/physical"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/builtins"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlerrors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 // buildCreateTable constructs a CreateTable operator based on the CREATE TABLE

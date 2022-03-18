@@ -14,8 +14,8 @@ import (
 	"bytes"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/props"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props"
 )
 
 // Required properties are interesting characteristics of an expression that

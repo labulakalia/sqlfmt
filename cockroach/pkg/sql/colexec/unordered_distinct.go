@@ -13,12 +13,12 @@ package colexec
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colexec/colexecbase"
-	"sqlfmt/cockroach/pkg/sql/colexec/colexechash"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
-	"sqlfmt/cockroach/pkg/sql/colmem"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexechash"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colmem"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // NewUnorderedDistinct creates an unordered distinct on the given distinct

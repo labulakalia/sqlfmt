@@ -15,11 +15,11 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/col/typeconv"
-	"sqlfmt/cockroach/pkg/sql/colexec/execgen"
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/typeconv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/execgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 var comparisonOpInfix = map[treecmp.ComparisonOperatorSymbol]string{

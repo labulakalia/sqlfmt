@@ -10,7 +10,7 @@
 
 package colexeccmp
 
-import "sqlfmt/cockroach/pkg/sql/sem/tree"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 
 // ComparisonExprAdapter is a utility interface that is implemented by several
 // structs that behave as an adapter from tree.ComparisonExpr to a vectorized

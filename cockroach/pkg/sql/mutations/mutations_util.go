@@ -13,7 +13,7 @@ package mutations
 import (
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 const productionMaxBatchSize = 10000

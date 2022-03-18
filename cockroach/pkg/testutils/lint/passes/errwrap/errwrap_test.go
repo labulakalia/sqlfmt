@@ -13,10 +13,10 @@ package errwrap_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/lint/passes/errwrap"
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/lint/passes/errwrap"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

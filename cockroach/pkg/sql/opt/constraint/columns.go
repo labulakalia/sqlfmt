@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
 )
 
 // Columns identifies the columns which correspond to the values in a Key (and

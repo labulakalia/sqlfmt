@@ -10,7 +10,7 @@
 
 package scop
 
-import "sqlfmt/cockroach/pkg/sql/catalog/descpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 
 //go:generate go run ./generate_visitor.go scop Backfill backfill.go backfill_visitor_generated.go
 

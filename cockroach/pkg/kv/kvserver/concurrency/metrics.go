@@ -11,8 +11,8 @@
 package concurrency
 
 import (
-	"sqlfmt/cockroach/pkg/kv/kvserver/spanlatch"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/spanlatch"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // LatchMetrics holds information about the state of a latchManager.

@@ -15,8 +15,8 @@ import (
 	"regexp"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/maruel/panicparse/v2/stack"
 	"github.com/stretchr/testify/assert"
 )

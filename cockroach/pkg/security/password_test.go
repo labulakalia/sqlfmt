@@ -15,8 +15,8 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/crypto/bcrypt"
 )

@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 )
 
 // The functions in this file are used by fieldExtract.Extract().

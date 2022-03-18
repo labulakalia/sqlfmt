@@ -14,8 +14,8 @@ import (
 	"context"
 	"net/url"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"github.com/cockroachdb/errors"
 )
 

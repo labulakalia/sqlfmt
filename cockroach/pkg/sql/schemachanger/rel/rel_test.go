@@ -15,11 +15,11 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel/internal/comparetest"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel/internal/cyclegraphtest"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel/internal/entitynodetest"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel/reltest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel/internal/comparetest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel/internal/cyclegraphtest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel/internal/entitynodetest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel/reltest"
 	"github.com/stretchr/testify/require"
 )
 

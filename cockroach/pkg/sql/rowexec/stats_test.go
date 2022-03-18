@@ -13,10 +13,10 @@ package rowexec
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/randgen"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/testutils/distsqlutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/randgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/distsqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 // TestInputStatCollector verifies that an inputStatCollector correctly collects

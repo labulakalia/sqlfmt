@@ -19,7 +19,7 @@ import (
 	"strings"
 	"sync"
 
-	"sqlfmt/cockroach/pkg/roachprod/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/config"
 	"github.com/cockroachdb/errors"
 )
 

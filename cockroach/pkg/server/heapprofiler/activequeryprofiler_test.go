@@ -15,9 +15,9 @@ import (
 	"errors"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/server/dumpstore"
-	"sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/dumpstore"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"github.com/stretchr/testify/require"
 )
 

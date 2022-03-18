@@ -14,11 +14,11 @@ import (
 	"context"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scexec/scmutationexec"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scop"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scexec/scmutationexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

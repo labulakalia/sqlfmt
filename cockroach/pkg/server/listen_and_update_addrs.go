@@ -14,7 +14,7 @@ import (
 	"context"
 	"net"
 
-	"sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 	"github.com/cockroachdb/errors"
 )
 

@@ -10,7 +10,7 @@
 
 package testcat
 
-import "sqlfmt/cockroach/pkg/sql/sem/tree"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 
 // CreateSequence creates a test sequence from a parsed DDL statement and adds it
 // the catalog. This is intended for testing, and is not a complete (and

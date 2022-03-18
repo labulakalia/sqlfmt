@@ -12,10 +12,10 @@ import (
 	"testing"
 
 	// Blank import partitionccl to install CreatePartitioning hook.
-	_ "sqlfmt/cockroach/pkg/ccl/partitionccl"
-	"sqlfmt/cockroach/pkg/sql/sqltestutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/partitionccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func TestShowCreateTable(t *testing.T) {

@@ -15,7 +15,7 @@ import (
 	"reflect"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/encoding/encodingtype"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding/encodingtype"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

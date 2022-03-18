@@ -14,12 +14,12 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/config/zonepb"
-	"sqlfmt/cockroach/pkg/gossip/simulation"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config/zonepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/gossip/simulation"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 )
 
 // The tests in this package have fairly small cluster sizes for the sake of

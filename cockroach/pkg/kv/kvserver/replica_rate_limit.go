@@ -13,8 +13,8 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // maybeRateLimitBatch may block the batch waiting to be rate-limited. Note that

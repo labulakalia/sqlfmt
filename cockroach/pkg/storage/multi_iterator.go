@@ -13,7 +13,7 @@ package storage
 import (
 	"bytes"
 
-	"sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 )
 
 const invalidIdxSentinel = -1

@@ -20,13 +20,13 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/util/bufalloc"
-	"sqlfmt/cockroach/pkg/util/httputil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/workload"
-	"sqlfmt/cockroach/pkg/workload/bank"
-	"sqlfmt/cockroach/pkg/workload/tpcc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bufalloc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/bank"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/tpcc"
 	"github.com/stretchr/testify/require"
 )
 

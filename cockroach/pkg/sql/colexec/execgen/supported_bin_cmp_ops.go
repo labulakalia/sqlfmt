@@ -11,8 +11,8 @@
 package execgen
 
 import (
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treebin"
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treebin"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
 )
 
 // BinaryOpName is a mapping from all binary operators that are supported by

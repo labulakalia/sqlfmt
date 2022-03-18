@@ -20,7 +20,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/lib/pq/oid"
 )
 

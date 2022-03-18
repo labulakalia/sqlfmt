@@ -16,11 +16,11 @@ import (
 	"runtime"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/gossip"
-	"sqlfmt/cockroach/pkg/kv/kvserver/apply"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/protoutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/gossip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/apply"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 func funcName(f interface{}) string {

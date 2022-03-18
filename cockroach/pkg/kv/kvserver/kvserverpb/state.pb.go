@@ -5,10 +5,10 @@ package kvserverpb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_kv_kvserver_closedts_ctpb "sqlfmt/cockroach/pkg/kv/kvserver/closedts/ctpb"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
-	enginepb "sqlfmt/cockroach/pkg/storage/enginepb"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	github_com_cockroachdb_cockroach_pkg_kv_kvserver_closedts_ctpb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/closedts/ctpb"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

@@ -14,11 +14,11 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cli/clierror"
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/cli/exit"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

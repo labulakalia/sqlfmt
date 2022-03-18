@@ -17,7 +17,7 @@ import (
 	"strconv"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	"github.com/cockroachdb/errors"
 	"github.com/golang/geo/s2"
 	"github.com/stretchr/testify/assert"

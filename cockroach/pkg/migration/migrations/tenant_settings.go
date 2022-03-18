@@ -13,10 +13,10 @@ package migrations
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/jobs"
-	"sqlfmt/cockroach/pkg/migration"
-	"sqlfmt/cockroach/pkg/sql/catalog/systemschema"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/migration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/systemschema"
 )
 
 // tenantSettingsTableMigration creates the system.tenant_settings table (for the

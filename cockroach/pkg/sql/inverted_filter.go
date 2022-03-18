@@ -13,10 +13,10 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/colinfo"
-	"sqlfmt/cockroach/pkg/sql/inverted"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 type invertedFilterNode struct {

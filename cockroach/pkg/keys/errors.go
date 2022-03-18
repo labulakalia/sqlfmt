@@ -13,7 +13,7 @@ package keys
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // InvalidRangeMetaKeyError indicates that a Range Metadata key is somehow

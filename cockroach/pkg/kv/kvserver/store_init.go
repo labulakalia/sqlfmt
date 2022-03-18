@@ -13,15 +13,15 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
-	"sqlfmt/cockroach/pkg/kv/kvserver/rditer"
-	"sqlfmt/cockroach/pkg/kv/kvserver/stateloader"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/rditer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/stateloader"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 )
 

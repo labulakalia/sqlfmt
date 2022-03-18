@@ -13,7 +13,7 @@ package scpb
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/cockroachdb/errors"
 )
 

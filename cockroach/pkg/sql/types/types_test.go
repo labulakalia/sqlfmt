@@ -16,9 +16,9 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geopb"
-	"sqlfmt/cockroach/pkg/sql/oidext"
-	"sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/oidext"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/lib/pq/oid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

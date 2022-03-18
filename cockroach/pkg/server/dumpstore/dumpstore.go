@@ -17,9 +17,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // DumpStore represents a store for dump files.

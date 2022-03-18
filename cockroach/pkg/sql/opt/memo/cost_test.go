@@ -13,7 +13,7 @@ package memo_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
 )
 
 func TestCostLess(t *testing.T) {

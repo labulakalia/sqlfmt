@@ -16,10 +16,10 @@ import (
 	"regexp"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/caller"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/caller"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/stretchr/testify/require"
 )
 

@@ -13,7 +13,7 @@
 
 package kvcoord
 
-import "sqlfmt/cockroach/pkg/rpc/nodedialer"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/rpc/nodedialer"
 
 // GRPCTransportFactory is the default TransportFactory, using GRPC.
 func GRPCTransportFactory(

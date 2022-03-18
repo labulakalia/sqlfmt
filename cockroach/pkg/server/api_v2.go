@@ -42,12 +42,12 @@ import (
 	"net/http"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/server/telemetry"
-	"sqlfmt/cockroach/pkg/sql/roleoption"
-	"sqlfmt/cockroach/pkg/util/httputil"
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/roleoption"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 	"github.com/gorilla/mux"
 )
 

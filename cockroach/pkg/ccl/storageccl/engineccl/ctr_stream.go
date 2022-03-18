@@ -16,8 +16,8 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/ccl/storageccl/engineccl/enginepbccl"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/storageccl/engineccl/enginepbccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 )
 
 // FileCipherStreamCreator wraps the KeyManager interface and provides functions to create a

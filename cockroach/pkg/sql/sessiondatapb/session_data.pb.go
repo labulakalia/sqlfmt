@@ -5,10 +5,10 @@ package sessiondatapb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_security "sqlfmt/cockroach/pkg/security"
-	lex "sqlfmt/cockroach/pkg/sql/lex"
-	duration "sqlfmt/cockroach/pkg/util/duration"
-	pgdate "sqlfmt/cockroach/pkg/util/timeutil/pgdate"
+	github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	lex "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
+	duration "github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
+	pgdate "github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	_ "github.com/gogo/protobuf/types"

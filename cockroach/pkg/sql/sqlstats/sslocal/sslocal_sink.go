@@ -13,7 +13,7 @@ package sslocal
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/sqlstats/ssmemstorage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats/ssmemstorage"
 )
 
 // Sink provides clients with interfaces to send statistics data into the sink.

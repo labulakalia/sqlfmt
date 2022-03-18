@@ -11,8 +11,8 @@
 package sqlsmith
 
 import (
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // colRef refers to a named result column. If it is from a table, def is

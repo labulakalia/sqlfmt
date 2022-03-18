@@ -10,7 +10,7 @@
 
 package cat
 
-import "sqlfmt/cockroach/pkg/sql/sem/tree"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 
 // Family is an interface to a table column family, exposing only the
 // information needed by the query optimizer.

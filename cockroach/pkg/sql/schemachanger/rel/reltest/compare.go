@@ -15,7 +15,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel"
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
 )

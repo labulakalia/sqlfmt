@@ -13,10 +13,10 @@ package screl
 import (
 	"reflect"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/catpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/sem/catid"
-	types "sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/catid"
+	types "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/cockroachdb/errors"
 )
 

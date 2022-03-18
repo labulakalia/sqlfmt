@@ -17,8 +17,8 @@ import (
 	"testing/iotest"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/errors"
 	"github.com/jackc/pgproto3/v2"
 	"github.com/stretchr/testify/require"

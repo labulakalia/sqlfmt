@@ -15,10 +15,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/quotapool"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/quotapool"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // limiter is used to rate-limit KV requests according to a local token bucket.

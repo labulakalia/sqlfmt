@@ -17,11 +17,11 @@ import (
 	"sync"
 
 	"github.com/cockroachdb/cmux"
-	"sqlfmt/cockroach/pkg/rpc"
-	"sqlfmt/cockroach/pkg/sql/pgwire"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/netutil"
-	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 )
 
 // startListenRPCAndSQL starts the RPC and SQL listeners.

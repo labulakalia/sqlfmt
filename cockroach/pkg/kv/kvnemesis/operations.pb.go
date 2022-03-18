@@ -5,9 +5,9 @@ package kvnemesis
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_roachpb "sqlfmt/cockroach/pkg/roachpb"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	github_com_cockroachdb_cockroach_pkg_roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	errorspb "github.com/cockroachdb/errors/errorspb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"

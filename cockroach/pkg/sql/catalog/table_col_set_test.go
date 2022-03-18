@@ -13,8 +13,8 @@ package catalog
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 func BenchmarkTableColSet(b *testing.B) {

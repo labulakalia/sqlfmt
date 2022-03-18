@@ -13,8 +13,8 @@ package spanconfig
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 )
 
 // TestingKnobs provide fine-grained control over the various span config

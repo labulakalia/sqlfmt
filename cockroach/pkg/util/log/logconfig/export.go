@@ -17,7 +17,7 @@ import (
 	"io"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 )
 
 // Export exports the configuration in the PlantUML synax.

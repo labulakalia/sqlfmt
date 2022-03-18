@@ -10,7 +10,7 @@
 
 package sqltelemetry
 
-import "sqlfmt/cockroach/pkg/server/telemetry"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 
 // FollowerReadDisabledCCLCounter is to be increment every time follower reads
 // are requested but unavailable due to not having the CCL build.

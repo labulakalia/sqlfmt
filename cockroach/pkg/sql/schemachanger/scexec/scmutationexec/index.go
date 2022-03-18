@@ -13,10 +13,10 @@ package scmutationexec
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scop"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
 	"github.com/cockroachdb/errors"
 )
 

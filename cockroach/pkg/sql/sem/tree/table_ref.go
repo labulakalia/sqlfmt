@@ -10,7 +10,7 @@
 
 package tree
 
-import "sqlfmt/cockroach/pkg/sql/sem/catid"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/catid"
 
 // ID is a custom type for {Database,Table}Descriptor IDs.
 type ID = catid.ColumnID

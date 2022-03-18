@@ -11,8 +11,8 @@
 package opt
 
 import (
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 // ColumnID uniquely identifies the usage of a column within the scope of a

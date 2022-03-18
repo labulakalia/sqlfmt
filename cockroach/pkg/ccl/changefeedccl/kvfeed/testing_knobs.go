@@ -9,8 +9,8 @@
 package kvfeed
 
 import (
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // TestingKnobs are the testing knobs for kvfeed.

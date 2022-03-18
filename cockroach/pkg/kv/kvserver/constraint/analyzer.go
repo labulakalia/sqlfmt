@@ -13,7 +13,7 @@ package constraint
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // AnalyzedConstraints represents the result or AnalyzeConstraints(). It

@@ -16,7 +16,7 @@ import (
 	"regexp"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

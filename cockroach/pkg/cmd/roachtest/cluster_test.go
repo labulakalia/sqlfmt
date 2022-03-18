@@ -14,11 +14,11 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/option"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/spec"
-	test2 "sqlfmt/cockroach/pkg/cmd/roachtest/test"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/spec"
+	test2 "github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/test"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 	"github.com/stretchr/testify/assert"
 )
 

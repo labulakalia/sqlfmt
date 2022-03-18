@@ -16,11 +16,11 @@ import (
 	"strconv"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo"
-	"sqlfmt/cockroach/pkg/geo/geoprojbase"
-	"sqlfmt/cockroach/pkg/geo/geos"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geos"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/datadriven"
 	"github.com/stretchr/testify/require"
 )

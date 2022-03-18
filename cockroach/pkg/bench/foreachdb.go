@@ -21,11 +21,11 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/testutils/testcluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/testcluster"
 	_ "github.com/go-sql-driver/mysql" // registers the MySQL driver to gosql
 	_ "github.com/lib/pq"              // registers the pg driver to gosql
 )
@@ -138,7 +138,7 @@ func ForEachDB(b *testing.B, fn BenchmarkFn) {
 		benchmarkMySQL,
 	} {
 		dbName := runtime.FuncForPC(reflect.ValueOf(dbFn).Pointer()).Name()
-		dbName = strings.TrimPrefix(dbName, "sqlfmt/cockroach/pkg/bench.benchmark")
+		dbName = strings.TrimPrefix(dbName, "github.com/labulakalia/sqlfmt/cockroach/pkg/bench.benchmark")
 		b.Run(dbName, func(b *testing.B) {
 			dbFn(b, fn)
 		})

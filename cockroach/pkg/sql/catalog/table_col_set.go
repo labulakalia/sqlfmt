@@ -11,8 +11,8 @@
 package catalog
 
 import (
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 // TableColSet efficiently stores an unordered set of column ids.

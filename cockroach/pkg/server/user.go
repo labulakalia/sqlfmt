@@ -13,8 +13,8 @@ package server
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/sql/roleoption"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/roleoption"
 )
 
 // UserSQLRoles return a list of the logged in SQL user roles.

@@ -14,13 +14,13 @@ import (
 	"net"
 	"net/url"
 
-	"sqlfmt/cockroach/pkg/ccl/streamingccl"
-	"sqlfmt/cockroach/pkg/ccl/streamingccl/streampb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/streaming"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/protoutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/streamingccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/streamingccl/streampb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/streaming"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 )
 

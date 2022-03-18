@@ -18,12 +18,12 @@ import (
 	"path"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachprod/cloud"
-	"sqlfmt/cockroach/pkg/roachprod/config"
-	"sqlfmt/cockroach/pkg/roachprod/vm"
-	"sqlfmt/cockroach/pkg/roachprod/vm/local"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/cloud"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm/local"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/errors/oserror"
 )

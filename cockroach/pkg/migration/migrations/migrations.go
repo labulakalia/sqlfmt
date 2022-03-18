@@ -17,8 +17,8 @@ package migrations
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/migration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/migration"
 	"github.com/cockroachdb/errors"
 )
 

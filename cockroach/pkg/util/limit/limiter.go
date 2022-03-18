@@ -14,8 +14,8 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/util/quotapool"
-	"sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/quotapool"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/cockroachdb/errors"
 	"github.com/gogo/protobuf/types"
 )

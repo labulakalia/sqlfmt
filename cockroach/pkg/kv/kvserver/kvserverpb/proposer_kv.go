@@ -13,7 +13,7 @@ package kvserverpb
 import (
 	"math"
 
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 )
 
 var maxRaftCommandFooterSize = (&RaftCommandFooter{

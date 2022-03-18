@@ -14,9 +14,9 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/featureflag"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/featureflag"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // featureSchemaChangeEnabled is the cluster setting used to enable and disable

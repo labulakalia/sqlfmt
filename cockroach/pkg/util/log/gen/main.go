@@ -18,7 +18,7 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/gostdlib/go/format"
 )
@@ -186,7 +186,7 @@ var templates = map[string]string{
 
 package severity
 
-import "sqlfmt/cockroach/pkg/util/log/logpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 {{range .Severities}}
 
 {{ .RawComment -}}
@@ -198,7 +198,7 @@ const {{.NAME}} = logpb.Severity_{{.NAME}}
 
 package channel
 
-import "sqlfmt/cockroach/pkg/util/log/logpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 
 {{range .Channels}}
 
@@ -214,8 +214,8 @@ package log
 import (
   "context"
 
-  "sqlfmt/cockroach/pkg/util/log/channel"
-  "sqlfmt/cockroach/pkg/util/log/severity"
+  "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
+  "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 )
 
 // ChannelLogger is a helper interface to ease the run-time selection

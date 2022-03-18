@@ -22,7 +22,7 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/cockroachdb/errors"
 	"github.com/olekukonko/tablewriter"
 )

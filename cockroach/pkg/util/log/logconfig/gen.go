@@ -24,7 +24,7 @@ import (
 	"text/template"
 	"unicode"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	"github.com/cockroachdb/errors"
 )
 

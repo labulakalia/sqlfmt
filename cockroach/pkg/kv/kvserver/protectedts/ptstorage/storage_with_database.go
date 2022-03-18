@@ -13,11 +13,11 @@ package ptstorage
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts"
-	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/protectedts"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 // WithDatabase wraps s such that any calls made with a nil *Txn will be wrapped

@@ -16,7 +16,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/cockroachdb/errors"
 	"github.com/kr/pretty"
 )

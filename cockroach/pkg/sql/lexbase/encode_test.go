@@ -17,8 +17,8 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"sqlfmt/cockroach/pkg/sql/lexbase"
-	"sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
 )
 
 func TestEncodeRestrictedSQLIdent(t *testing.T) {

@@ -13,8 +13,8 @@ package tests
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/test"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/test"
 )
 
 // runDecommissionSelf decommissions n2 through n2. This is an acceptance test.

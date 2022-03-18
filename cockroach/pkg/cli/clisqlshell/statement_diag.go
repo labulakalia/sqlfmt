@@ -17,7 +17,7 @@ import (
 	"strconv"
 	"text/tabwriter"
 
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
 	"github.com/cockroachdb/errors"
 )
 

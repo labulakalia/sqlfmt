@@ -13,9 +13,9 @@ package tests
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/option"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/test"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/test"
 )
 
 const goPath = `/mnt/data1/go`

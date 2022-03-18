@@ -13,7 +13,7 @@ package kvserver
 import (
 	"sync"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/apply"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/apply"
 )
 
 // replica_application_*.go files provide concrete implementations of

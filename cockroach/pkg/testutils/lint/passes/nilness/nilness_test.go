@@ -20,9 +20,9 @@ package nilness_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/lint/passes/nilness"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/lint/passes/nilness"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

@@ -15,10 +15,10 @@ import (
 	gojson "encoding/json"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/stats"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/stats"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/cockroachdb/errors"
 )
 

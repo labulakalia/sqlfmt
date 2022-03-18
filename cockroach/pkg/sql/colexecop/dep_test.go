@@ -13,21 +13,21 @@ package colexecop
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	defer leaktest.AfterTest(t)()
 
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/colexecop", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop", true,
 		[]string{
-			"sqlfmt/cockroach/pkg/sql/colcontainer",
-			"sqlfmt/cockroach/pkg/sql/colexec",
-			"sqlfmt/cockroach/pkg/sql/colflow",
-			"sqlfmt/cockroach/pkg/sql/rowexec",
-			"sqlfmt/cockroach/pkg/sql/rowflow",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colcontainer",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colflow",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowexec",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowflow",
 		}, nil,
 	)
 }

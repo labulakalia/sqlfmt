@@ -16,15 +16,15 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"sqlfmt/cockroach/pkg/cloud"
-	"sqlfmt/cockroach/pkg/cloud/amazon"
-	"sqlfmt/cockroach/pkg/cloud/azure"
-	"sqlfmt/cockroach/pkg/sql/catalog/lease"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/testutils/testcluster"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cloud"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/amazon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/azure"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/lease"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/testcluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // InitManualReplication calls tc.ToggleReplicateQueues(false).

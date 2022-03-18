@@ -10,7 +10,7 @@
 
 package clusterversion
 
-import "sqlfmt/cockroach/pkg/roachpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 
 // Key is a unique identifier for a version of CockroachDB.
 type Key int

@@ -14,9 +14,9 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/stretchr/testify/require"
 )
 

@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"io"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
 )
 
 // generateOps generates the Operator type and enumeration for the Optgen

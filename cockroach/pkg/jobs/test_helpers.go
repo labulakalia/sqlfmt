@@ -13,9 +13,9 @@ package jobs
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/server/tracedumper"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/tracedumper"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // TestingNudgeAdoptionQueue is used by tests to tell the registry that there is

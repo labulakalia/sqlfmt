@@ -16,7 +16,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 )
 

@@ -15,7 +15,7 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 type storeIDSet map[roachpb.StoreID]struct{}

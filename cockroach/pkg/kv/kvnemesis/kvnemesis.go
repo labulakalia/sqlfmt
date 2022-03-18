@@ -17,9 +17,9 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // RunNemesis generates and applies a series of Operations to exercise the KV

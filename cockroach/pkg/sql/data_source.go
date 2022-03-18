@@ -10,7 +10,7 @@
 
 package sql
 
-import "sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
 
 // planDataSource contains the data source information for data
 // produced by a planNode.

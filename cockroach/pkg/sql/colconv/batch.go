@@ -13,7 +13,7 @@ package colconv
 import (
 	"strings"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
 )
 
 func init() {

@@ -13,7 +13,7 @@ package protoutil
 import (
 	"reflect"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 	"github.com/gogo/protobuf/proto"
 )

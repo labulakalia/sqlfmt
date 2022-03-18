@@ -13,12 +13,12 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/colflow"
-	"sqlfmt/cockroach/pkg/sql/execinfra"
-	"sqlfmt/cockroach/pkg/sql/physicalplan"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
-	"sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colflow"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfra"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/physicalplan"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 	"github.com/cockroachdb/errors"
 )
 

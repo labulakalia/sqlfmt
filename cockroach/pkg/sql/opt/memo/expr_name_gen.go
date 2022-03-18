@@ -14,8 +14,8 @@ import (
 	"fmt"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/props/physical"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props/physical"
 )
 
 // ExprNameGenerator is used to generate a unique name for each relational

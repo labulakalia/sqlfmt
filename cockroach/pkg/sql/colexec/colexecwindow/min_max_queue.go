@@ -11,7 +11,7 @@
 package colexecwindow
 
 import (
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
 	"github.com/cockroachdb/errors"
 )
 

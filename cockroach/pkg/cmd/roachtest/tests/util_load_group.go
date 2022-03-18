@@ -10,7 +10,7 @@
 
 package tests
 
-import "sqlfmt/cockroach/pkg/cmd/roachtest/option"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
 
 type loadGroup struct {
 	roachNodes option.NodeListOption

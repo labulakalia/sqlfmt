@@ -16,14 +16,14 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/spanconfig/spanconfigkvaccessor"
-	"sqlfmt/cockroach/pkg/spanconfig/spanconfigtestutils"
-	"sqlfmt/cockroach/pkg/sql/sqlutil"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/testutils/testcluster"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/spanconfig/spanconfigkvaccessor"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/spanconfig/spanconfigtestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/testcluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/datadriven"
 )
 

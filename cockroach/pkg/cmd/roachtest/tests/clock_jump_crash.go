@@ -15,12 +15,12 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/option"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/registry"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/spec"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/test"
-	"sqlfmt/cockroach/pkg/roachprod/install"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/registry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/spec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/test"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/install"
 )
 
 func runClockJump(ctx context.Context, t test.Test, c cluster.Cluster, tc clockJumpTestCase) {

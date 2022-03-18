@@ -14,7 +14,7 @@ import (
 	"context"
 	"net/http"
 
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

@@ -16,13 +16,13 @@ import (
 	"io/fs"
 	"math"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
-	"sqlfmt/cockroach/pkg/util/log/channel"
-	"sqlfmt/cockroach/pkg/util/log/logconfig"
-	"sqlfmt/cockroach/pkg/util/log/logflags"
-	"sqlfmt/cockroach/pkg/util/log/logpb"
-	"sqlfmt/cockroach/pkg/util/log/severity"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logflags"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 )
 

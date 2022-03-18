@@ -13,14 +13,14 @@ package descmetadata
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/sql/catalog/descs"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
-	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
-	"sqlfmt/cockroach/pkg/sql/sessioninit"
-	"sqlfmt/cockroach/pkg/sql/sqlutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessioninit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlutil"
 )
 
 // MetadataUpdaterFactory used to construct a commenter.DescriptorMetadataUpdater, which

@@ -14,7 +14,7 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 )
 
 type errorCodeSet map[pgcode.Code]bool

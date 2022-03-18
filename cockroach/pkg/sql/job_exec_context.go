@@ -11,13 +11,13 @@
 package sql
 
 import (
-	"sqlfmt/cockroach/pkg/migration"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/spanconfig"
-	"sqlfmt/cockroach/pkg/sql/catalog/lease"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
-	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/migration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/spanconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/lease"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 )
 
 // plannerJobExecContext is a wrapper to implement JobExecContext with a planner

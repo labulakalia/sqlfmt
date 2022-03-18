@@ -34,12 +34,12 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/geo/geoproj"
-	"sqlfmt/cockroach/pkg/geo/geoprojbase"
-	"sqlfmt/cockroach/pkg/geo/geoprojbase/embeddedproj"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
-	"sqlfmt/cockroach/pkg/util/httputil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoproj"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase/embeddedproj"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 var (

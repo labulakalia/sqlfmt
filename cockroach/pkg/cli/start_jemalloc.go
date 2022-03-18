@@ -53,7 +53,7 @@ import (
 	"fmt"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/server/heapprofiler"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/heapprofiler"
 )
 
 func init() {

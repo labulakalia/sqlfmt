@@ -19,7 +19,7 @@ import (
 	"os"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/stretchr/testify/assert"
 )
 

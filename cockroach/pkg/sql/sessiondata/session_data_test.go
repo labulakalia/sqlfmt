@@ -13,7 +13,7 @@ package sessiondata
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/stretchr/testify/require"
 )
 

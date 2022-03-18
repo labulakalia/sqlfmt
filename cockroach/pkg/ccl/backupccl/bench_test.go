@@ -12,8 +12,8 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/ccl/utilccl/sampledataccl"
-	"sqlfmt/cockroach/pkg/workload/bank"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/utilccl/sampledataccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/bank"
 )
 
 func BenchmarkDatabaseBackup(b *testing.B) {

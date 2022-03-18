@@ -16,10 +16,10 @@ import (
 	"strings"
 
 	// Needed for roachpb.Span.String().
-	_ "sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/interval"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/interval"
 )
 
 // frontierEntry represents a timestamped span. It is used as the nodes in both

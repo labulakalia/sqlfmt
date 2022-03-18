@@ -13,10 +13,10 @@ package tests
 import (
 	"bytes"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv/kvserver/kvserverbase"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/cockroachdb/errors"
 )
 

@@ -11,8 +11,8 @@
 package sessiondata
 
 import (
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 )
 
 // InternalExecutorOverride is used by the InternalExecutor interface

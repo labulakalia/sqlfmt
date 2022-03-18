@@ -16,12 +16,12 @@ import (
 	"math/rand"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/internal/sqlsmith"
-	"sqlfmt/cockroach/pkg/sql/randgen"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/workload"
-	"sqlfmt/cockroach/pkg/workload/histogram"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/sqlsmith"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/randgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/histogram"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/pflag"
 )

@@ -18,10 +18,10 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/grpcutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/netutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/grpcutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil"
 	"github.com/cockroachdb/errors"
 )
 

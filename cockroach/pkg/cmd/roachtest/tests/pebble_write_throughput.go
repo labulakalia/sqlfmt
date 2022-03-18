@@ -17,10 +17,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/registry"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/spec"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/test"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/registry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/spec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/test"
 )
 
 func registerPebbleWriteThroughput(r registry.Registry) {

@@ -13,7 +13,7 @@ package kvcoord
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // asSortedSlice returns the set data in sorted order.

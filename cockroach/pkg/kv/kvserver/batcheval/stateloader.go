@@ -10,7 +10,7 @@
 
 package batcheval
 
-import "sqlfmt/cockroach/pkg/kv/kvserver/stateloader"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/stateloader"
 
 // MakeStateLoader creates a StateLoader for the EvalContext.
 func MakeStateLoader(rec EvalContext) stateloader.StateLoader {

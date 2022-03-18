@@ -17,9 +17,9 @@ import (
 	"strings"
 	"unicode"
 
-	"sqlfmt/cockroach/pkg/sql/lexbase"
-	"sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 func (d *delegator) delegateShowCompletions(n *tree.ShowCompletions) (tree.Statement, error) {

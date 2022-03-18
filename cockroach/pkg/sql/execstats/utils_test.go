@@ -11,8 +11,8 @@
 package execstats
 
 import (
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
 )
 
 // AddComponentStats modifies TraceAnalyzer internal state to add stats for the

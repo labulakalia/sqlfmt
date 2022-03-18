@@ -25,14 +25,14 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/changefeedbase"
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/kvevent"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/httputil"
-	"sqlfmt/cockroach/pkg/util/retry"
-	"sqlfmt/cockroach/pkg/util/system"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/changefeedbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/kvevent"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/retry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/system"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 )
 

@@ -19,7 +19,7 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/sql/randgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/randgen"
 	"github.com/cockroachdb/errors"
 	"github.com/jackc/pgx/v4"
 	"github.com/lib/pq"

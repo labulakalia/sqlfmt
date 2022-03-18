@@ -9,8 +9,8 @@
 package sqlproxyccl
 
 import (
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 	"github.com/cockroachdb/errors"
 )
 

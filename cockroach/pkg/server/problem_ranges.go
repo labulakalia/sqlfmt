@@ -14,9 +14,9 @@ import (
 	"context"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/liveness"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

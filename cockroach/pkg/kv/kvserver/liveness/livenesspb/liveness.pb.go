@@ -5,8 +5,8 @@ package livenesspb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_roachpb "sqlfmt/cockroach/pkg/roachpb"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	github_com_cockroachdb_cockroach_pkg_roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

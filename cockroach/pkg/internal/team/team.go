@@ -18,7 +18,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"sqlfmt/cockroach/pkg/internal/reporoot"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/reporoot"
 	"github.com/cockroachdb/errors"
 	"gopkg.in/yaml.v2"
 )

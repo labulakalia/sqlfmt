@@ -5,10 +5,10 @@ package kvserverpb
 
 import (
 	fmt "fmt"
-	livenesspb "sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
-	github_com_cockroachdb_cockroach_pkg_util_hlc "sqlfmt/cockroach/pkg/util/hlc"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	livenesspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	github_com_cockroachdb_cockroach_pkg_util_hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

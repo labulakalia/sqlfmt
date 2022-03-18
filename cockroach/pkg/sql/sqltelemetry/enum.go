@@ -13,7 +13,7 @@ package sqltelemetry
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 )
 
 // EnumTelemetryType represents a type of ENUM related operation to record

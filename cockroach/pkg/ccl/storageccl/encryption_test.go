@@ -15,9 +15,9 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/humanizeutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/humanizeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/stretchr/testify/require"
 )
 

@@ -17,8 +17,8 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/metric"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 	"github.com/google/btree"
 	io_prometheus_client "github.com/prometheus/client_model/go"

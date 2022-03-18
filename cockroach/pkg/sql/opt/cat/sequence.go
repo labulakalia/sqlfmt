@@ -10,7 +10,7 @@
 
 package cat
 
-import "sqlfmt/cockroach/pkg/util/treeprinter"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/treeprinter"
 
 // Sequence is an interface to a database sequence.
 type Sequence interface {

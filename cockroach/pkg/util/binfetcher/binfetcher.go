@@ -23,8 +23,8 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/httputil"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/errors/oserror"
 )

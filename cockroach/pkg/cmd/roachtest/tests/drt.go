@@ -15,8 +15,8 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/prometheus"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/prometheus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 	"github.com/cockroachdb/errors"
 	"github.com/prometheus/common/model"
 )

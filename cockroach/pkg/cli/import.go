@@ -16,10 +16,10 @@ import (
 	"net/url"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/server/pgurl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/pgurl"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

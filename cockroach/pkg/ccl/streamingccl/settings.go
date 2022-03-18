@@ -11,7 +11,7 @@ package streamingccl
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 )
 
 // StreamReplicationStreamLivenessTrackFrequency controls frequency to check

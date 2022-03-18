@@ -13,18 +13,18 @@ package colexecjoin_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/colexec/colexecjoin", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecjoin", true,
 		[]string{
-			"sqlfmt/cockroach/pkg/sql/colexec",
-			"sqlfmt/cockroach/pkg/sql/colexec/colexecagg",
-			"sqlfmt/cockroach/pkg/sql/colexec/colexecproj",
-			"sqlfmt/cockroach/pkg/sql/colexec/colexecsel",
-			"sqlfmt/cockroach/pkg/sql/colexec/colexecwindow",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecagg",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecproj",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecsel",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecwindow",
 		}, nil,
 	)
 }

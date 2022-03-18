@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 )

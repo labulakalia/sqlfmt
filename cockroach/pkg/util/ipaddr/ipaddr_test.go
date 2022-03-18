@@ -16,7 +16,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/uint128"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uint128"
 )
 
 func TestIPAddrParseInet(t *testing.T) {

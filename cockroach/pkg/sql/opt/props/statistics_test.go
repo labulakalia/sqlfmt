@@ -15,7 +15,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
 )
 
 func TestColumnStatisticsSort(t *testing.T) {

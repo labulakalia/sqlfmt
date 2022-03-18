@@ -11,8 +11,8 @@
 package migration
 
 import (
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 )
 
 // TestingKnobs are knobs to inject behavior into the migration manager which

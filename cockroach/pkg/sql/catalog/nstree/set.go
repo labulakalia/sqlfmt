@@ -11,7 +11,7 @@
 package nstree
 
 import (
-	"sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
 	"github.com/google/btree"
 )
 

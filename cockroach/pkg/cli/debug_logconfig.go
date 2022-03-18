@@ -14,7 +14,7 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/util/log/logconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v2"

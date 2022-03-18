@@ -15,10 +15,10 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cli"
-	"sqlfmt/cockroach/pkg/cli/clisqlexec"
-	"sqlfmt/cockroach/pkg/sql/lexbase"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 func Example_sql_column_labels() {

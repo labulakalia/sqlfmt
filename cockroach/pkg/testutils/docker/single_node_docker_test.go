@@ -29,8 +29,8 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/contextutil"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/contextutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"

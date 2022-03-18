@@ -30,7 +30,7 @@ var Analyzer = &analysis.Analyzer{
 	Run:      run,
 }
 
-const noCopyType = "sqlfmt/cockroach/pkg/util.NoCopy"
+const noCopyType = "github.com/labulakalia/sqlfmt/cockroach/pkg/util.NoCopy"
 
 // nocopy ensures that the util.NoCopy type is not misused. Specifically, it
 // ensures that the type is always embedded without a name as the first field in

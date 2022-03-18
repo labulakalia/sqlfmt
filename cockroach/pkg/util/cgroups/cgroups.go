@@ -23,8 +23,8 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/system"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/system"
 	"github.com/cockroachdb/errors"
 )
 

@@ -17,10 +17,10 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/build"
-	"sqlfmt/cockroach/pkg/util/log/channel"
-	"sqlfmt/cockroach/pkg/util/log/eventpb"
-	"sqlfmt/cockroach/pkg/util/log/severity"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/eventpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/cockroachdb/datadriven"
 	"github.com/cockroachdb/logtags"
 )

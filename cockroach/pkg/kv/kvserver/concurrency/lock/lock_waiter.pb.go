@@ -5,7 +5,7 @@ package lock
 
 import (
 	fmt "fmt"
-	enginepb "sqlfmt/cockroach/pkg/storage/enginepb"
+	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	_ "github.com/gogo/protobuf/types"

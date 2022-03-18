@@ -15,8 +15,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/stretchr/testify/require"
 )
 

@@ -10,6 +10,6 @@
 
 package privilege_test
 
-import _ "sqlfmt/cockroach/pkg/util/log"
+import _ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 
 //go:generate ../../util/leaktest/add-leaktest.sh *_test.go

@@ -16,8 +16,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/bench"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/bench"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
 )
 
 // maxTransfer is the maximum amount to transfer in one transaction.

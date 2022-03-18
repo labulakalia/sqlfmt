@@ -13,10 +13,10 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/spanset"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/spanset"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // SplitByLoadEnabled wraps "kv.range_split.by_load_enabled".

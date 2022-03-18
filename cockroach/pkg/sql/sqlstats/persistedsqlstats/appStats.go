@@ -13,9 +13,9 @@ package persistedsqlstats
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/sqlstats"
-	"sqlfmt/cockroach/pkg/sql/sqlstats/ssmemstorage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats/ssmemstorage"
 	"github.com/cockroachdb/errors"
 )
 

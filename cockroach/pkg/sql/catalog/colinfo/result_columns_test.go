@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 func TestResultColumnsTypesEqual(t *testing.T) {

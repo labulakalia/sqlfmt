@@ -13,8 +13,8 @@ package poison
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/cockroachdb/errors"
 )
 

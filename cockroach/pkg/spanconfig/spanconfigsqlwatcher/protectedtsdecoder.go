@@ -11,12 +11,12 @@
 package spanconfigsqlwatcher
 
 import (
-	"sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptpb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/systemschema"
-	"sqlfmt/cockroach/pkg/sql/rowenc/valueside"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/protectedts/ptpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/systemschema"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc/valueside"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/cockroachdb/errors"
 )
 

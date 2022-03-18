@@ -10,6 +10,6 @@ package kvccl
 
 import (
 	// ccl init hooks.
-	_ "sqlfmt/cockroach/pkg/ccl/kvccl/kvfollowerreadsccl"
-	_ "sqlfmt/cockroach/pkg/ccl/kvccl/kvtenantccl"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/kvccl/kvfollowerreadsccl"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/kvccl/kvtenantccl"
 )

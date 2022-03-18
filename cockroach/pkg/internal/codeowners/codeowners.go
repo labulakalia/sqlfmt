@@ -17,8 +17,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/internal/reporoot"
-	"sqlfmt/cockroach/pkg/internal/team"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/reporoot"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/team"
 	"github.com/cockroachdb/errors"
 	"github.com/zabawaba99/go-gitignore"
 )

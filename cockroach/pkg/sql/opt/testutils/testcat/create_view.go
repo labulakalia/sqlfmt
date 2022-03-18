@@ -10,7 +10,7 @@
 
 package testcat
 
-import "sqlfmt/cockroach/pkg/sql/sem/tree"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 
 // CreateView creates a test view from a parsed DDL statement and adds it to the
 // catalog.

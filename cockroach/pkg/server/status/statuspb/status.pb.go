@@ -6,9 +6,9 @@ package statuspb
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	build "sqlfmt/cockroach/pkg/build"
-	github_com_cockroachdb_cockroach_pkg_roachpb "sqlfmt/cockroach/pkg/roachpb"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
+	build "github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	github_com_cockroachdb_cockroach_pkg_roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"

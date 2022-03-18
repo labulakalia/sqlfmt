@@ -13,7 +13,7 @@ package enginepb
 import (
 	"encoding/binary"
 
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/cockroachdb/errors"
 )
 

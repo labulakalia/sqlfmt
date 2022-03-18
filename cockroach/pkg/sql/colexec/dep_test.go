@@ -13,9 +13,9 @@ package colexec
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
@@ -23,11 +23,11 @@ func TestNoLinkForbidden(t *testing.T) {
 	defer log.Scope(t).Close(t)
 
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/colexec", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec", true,
 		[]string{
-			"sqlfmt/cockroach/pkg/sql/colflow",
-			"sqlfmt/cockroach/pkg/sql/rowexec",
-			"sqlfmt/cockroach/pkg/sql/rowflow",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colflow",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowexec",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowflow",
 		}, nil,
 	)
 }

@@ -13,17 +13,17 @@ package main
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/colexec/execgen/cmd/execgen", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/execgen/cmd/execgen", true,
 		[]string{
-			"sqlfmt/cockroach/pkg/roachpb",
-			"sqlfmt/cockroach/pkg/sql/catalog",
-			"sqlfmt/cockroach/pkg/sql/execinfrapb",
-			"sqlfmt/cockroach/pkg/sql/tree",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/tree",
 		}, nil,
 	)
 }

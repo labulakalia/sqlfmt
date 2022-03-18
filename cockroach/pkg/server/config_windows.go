@@ -10,7 +10,7 @@
 
 package server
 
-import "sqlfmt/cockroach/pkg/storage"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
 
 func setOpenFileLimitInner(physicalStoreCount int) (uint64, error) {
 	return storage.RecommendedMaxOpenFiles, nil

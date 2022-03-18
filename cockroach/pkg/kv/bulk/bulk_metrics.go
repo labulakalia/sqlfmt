@@ -13,7 +13,7 @@ package bulk
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 // Metrics contains pointers to the metrics for

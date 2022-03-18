@@ -13,7 +13,7 @@ package idxusage
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
 )
 
 // Controller implements the index usage stats subsystem control plane. This exposes

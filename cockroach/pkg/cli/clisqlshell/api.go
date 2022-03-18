@@ -13,7 +13,7 @@ package clisqlshell
 import (
 	"os"
 
-	"sqlfmt/cockroach/pkg/server/pgurl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/pgurl"
 )
 
 // Shell represents an interactive shell

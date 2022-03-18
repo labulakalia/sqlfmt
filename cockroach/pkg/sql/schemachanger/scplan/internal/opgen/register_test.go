@@ -15,7 +15,7 @@ import (
 	"sort"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
 )
 
 func TestOpGen(t *testing.T) {

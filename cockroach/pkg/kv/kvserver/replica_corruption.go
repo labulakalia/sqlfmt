@@ -14,10 +14,10 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage/fs"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/fs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // setCorruptRaftMuLocked is a stand-in for proper handling of failing replicas.

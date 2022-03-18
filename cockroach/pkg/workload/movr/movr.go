@@ -19,9 +19,9 @@ import (
 	"sync"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/uuid"
-	"sqlfmt/cockroach/pkg/workload"
-	"sqlfmt/cockroach/pkg/workload/faker"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/faker"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/pflag"
 	"golang.org/x/exp/rand"

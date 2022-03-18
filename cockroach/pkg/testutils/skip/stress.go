@@ -10,7 +10,7 @@
 
 package skip
 
-import "sqlfmt/cockroach/pkg/util/envutil"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 
 var stress = envutil.EnvOrDefaultBool("COCKROACH_NIGHTLY_STRESS", false)
 

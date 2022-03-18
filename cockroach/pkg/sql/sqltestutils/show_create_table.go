@@ -15,9 +15,9 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/tests"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/tests"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
 	"github.com/stretchr/testify/require"
 )
 

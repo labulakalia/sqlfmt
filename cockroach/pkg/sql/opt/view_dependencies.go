@@ -13,8 +13,8 @@ package opt
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/sql/opt/cat"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/cat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 // ViewDeps contains information about the dependencies of a view.

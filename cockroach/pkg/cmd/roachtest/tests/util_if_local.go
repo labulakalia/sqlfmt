@@ -10,7 +10,7 @@
 
 package tests
 
-import "sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
 
 func ifLocal(c cluster.Cluster, trueVal, falseVal string) string {
 	if c.IsLocal() {

@@ -15,10 +15,10 @@ import (
 	"encoding/binary"
 	"io"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 // writeBuffer is a wrapper around bytes.Buffer that provides a convenient interface

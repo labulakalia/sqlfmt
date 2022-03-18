@@ -13,7 +13,7 @@ package cli
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 )
 
 // demoTelemetry corresponds to different sources of telemetry we are recording from cockroach demo.

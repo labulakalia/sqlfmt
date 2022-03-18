@@ -13,23 +13,23 @@ package colexecargs
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	// Prohibit introducing any new dependencies into this package since it
 	// should be very lightweight.
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/colexec/colexecargs", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecargs", true,
 		nil /* forbiddenPkgs */, nil, /* forbiddenPrefixes */
 		// allowlist:
-		"sqlfmt/cockroach/pkg/col/coldata",
-		"sqlfmt/cockroach/pkg/sql/colcontainer",
-		"sqlfmt/cockroach/pkg/sql/colexecop",
-		"sqlfmt/cockroach/pkg/sql/execinfra",
-		"sqlfmt/cockroach/pkg/sql/execinfrapb",
-		"sqlfmt/cockroach/pkg/sql/types",
-		"sqlfmt/cockroach/pkg/util/mon",
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata",
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colcontainer",
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop",
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfra",
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb",
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types",
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon",
 		"github.com/marusama/semaphore",
 	)
 }

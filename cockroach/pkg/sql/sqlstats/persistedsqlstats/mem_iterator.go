@@ -13,9 +13,9 @@ package persistedsqlstats
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/sqlstats"
-	"sqlfmt/cockroach/pkg/sql/sqlstats/sslocal"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats/sslocal"
 )
 
 // memStmtStatsIterator wraps a sslocal.StmtStatsIterator. Since in-memory

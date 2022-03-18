@@ -15,7 +15,7 @@ import (
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2019-07-01/compute"
-	"sqlfmt/cockroach/pkg/roachprod/vm"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm"
 	"github.com/spf13/pflag"
 )
 

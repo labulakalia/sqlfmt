@@ -14,10 +14,10 @@ import (
 	"fmt"
 	"os"
 
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/cli/clisqlshell"
-	"sqlfmt/cockroach/pkg/server/pgurl"
-	"sqlfmt/cockroach/pkg/sql/catalog/catconstants"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlshell"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/pgurl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catconstants"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

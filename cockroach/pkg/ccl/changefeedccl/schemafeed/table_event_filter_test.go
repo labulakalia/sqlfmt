@@ -13,10 +13,10 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/schemafeed/schematestutils"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/schemafeed/schematestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/tabledesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/gogo/protobuf/proto"
 	"github.com/stretchr/testify/require"
 )

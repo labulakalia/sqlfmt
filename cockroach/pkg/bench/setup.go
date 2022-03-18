@@ -18,7 +18,7 @@ import (
 	"net/url"
 	"os/exec"
 
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
 )
 
 const schema = `

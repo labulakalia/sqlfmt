@@ -5,8 +5,8 @@ package loqrecoverypb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_roachpb "sqlfmt/cockroach/pkg/roachpb"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
+	github_com_cockroachdb_cockroach_pkg_roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

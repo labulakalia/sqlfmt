@@ -5,15 +5,15 @@ package memo
 import (
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/sql/inverted"
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/cat"
-	"sqlfmt/cockroach/pkg/sql/opt/constraint"
-	"sqlfmt/cockroach/pkg/sql/opt/invertedexpr"
-	"sqlfmt/cockroach/pkg/sql/opt/props"
-	"sqlfmt/cockroach/pkg/sql/opt/props/physical"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/cat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/constraint"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/invertedexpr"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props/physical"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/cockroachdb/errors"
 )
 

@@ -14,14 +14,14 @@ import (
 	"context"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/rpc"
-	"sqlfmt/cockroach/pkg/rpc/nodedialer"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/tracing"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingpb"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingservicepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc/nodedialer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingservicepb"
 )
 
 // NodeLiveness is the subset of the interface satisfied by CRDB's node liveness

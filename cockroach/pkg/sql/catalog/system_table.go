@@ -13,7 +13,7 @@ package catalog
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 )
 
 // SystemTableIDResolver is a convenience interface used to resolve the table ID

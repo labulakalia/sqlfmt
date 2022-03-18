@@ -16,8 +16,8 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/jsonbytes"
-	"sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/jsonbytes"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/redact"
 )
 

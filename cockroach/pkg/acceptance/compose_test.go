@@ -18,8 +18,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/acceptance/cluster"
-	"sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/acceptance/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
 )
 
 const composeDir = "compose"

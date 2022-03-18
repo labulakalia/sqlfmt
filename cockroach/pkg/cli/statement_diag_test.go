@@ -16,7 +16,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func Example_statement_diag() {

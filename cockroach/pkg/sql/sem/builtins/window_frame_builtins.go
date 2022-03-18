@@ -16,9 +16,9 @@ import (
 	"strings"
 
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/duration"
-	"sqlfmt/cockroach/pkg/util/ring"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ring"
 	"github.com/cockroachdb/errors"
 )
 

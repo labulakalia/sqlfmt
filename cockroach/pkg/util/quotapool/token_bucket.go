@@ -13,7 +13,7 @@ package quotapool
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // Tokens are abstract units (usually units of work).

@@ -13,7 +13,7 @@
 package debug
 
 import (
-	"sqlfmt/cockroach/pkg/workload/cli"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/cli"
 	"github.com/spf13/cobra"
 )
 

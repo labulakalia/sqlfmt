@@ -13,10 +13,10 @@ package concurrency
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/concurrency/poison"
-	"sqlfmt/cockroach/pkg/kv/kvserver/spanlatch"
-	"sqlfmt/cockroach/pkg/kv/kvserver/spanset"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/poison"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/spanlatch"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/spanset"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // latchManagerImpl implements the latchManager interface.

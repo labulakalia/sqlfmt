@@ -15,11 +15,11 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql/catalog/catconstants"
-	"sqlfmt/cockroach/pkg/sql/privilege"
-	"sqlfmt/cockroach/pkg/sql/sem/catid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catconstants"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/catid"
 	"github.com/cockroachdb/errors"
 )
 

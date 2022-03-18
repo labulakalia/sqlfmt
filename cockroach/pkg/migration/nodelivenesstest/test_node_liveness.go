@@ -15,8 +15,8 @@ package nodelivenesstest
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/liveness/livenesspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // NodeLiveness is a testing-only implementation of the NodeLiveness. It

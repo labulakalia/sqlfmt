@@ -20,9 +20,9 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/server/dumpstore"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/dumpstore"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/cockroachdb/errors"
 	"github.com/stretchr/testify/assert"
 )

@@ -13,11 +13,11 @@ package rpc
 import (
 	"net/url"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/server/pgurl"
-	"sqlfmt/cockroach/pkg/sql/catalog/catalogkeys"
-	"sqlfmt/cockroach/pkg/util/netutil/addr"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/pgurl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catalogkeys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil/addr"
 	"github.com/cockroachdb/errors"
 )
 

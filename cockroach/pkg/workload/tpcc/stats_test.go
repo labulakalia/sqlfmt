@@ -15,7 +15,7 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 )
 
 func TestTPCCStats(t *testing.T) {

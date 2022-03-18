@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"io"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
 )
 
 // ruleNamesGen generates an enumeration containing the names of all the rules.

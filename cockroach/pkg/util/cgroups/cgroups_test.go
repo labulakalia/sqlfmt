@@ -16,7 +16,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/stretchr/testify/require"
 )
 

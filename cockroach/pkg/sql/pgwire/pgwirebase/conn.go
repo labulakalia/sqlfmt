@@ -13,7 +13,7 @@ package pgwirebase
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
 )
 
 // Conn exposes some functionality of a pgwire network connection to be

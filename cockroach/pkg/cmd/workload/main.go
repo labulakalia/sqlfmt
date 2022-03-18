@@ -13,9 +13,9 @@ package main
 import (
 	"os"
 
-	_ "sqlfmt/cockroach/pkg/ccl/workloadccl/allccl" // init hooks
-	_ "sqlfmt/cockroach/pkg/ccl/workloadccl/cliccl" // init hooks
-	workloadcli "sqlfmt/cockroach/pkg/workload/cli"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/workloadccl/allccl" // init hooks
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/workloadccl/cliccl" // init hooks
+	workloadcli "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/cli"
 )
 
 func main() {

@@ -18,11 +18,11 @@ import (
 	"os"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/cli/clicfg"
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
-	"sqlfmt/cockroach/pkg/cli/clisqlexec"
-	"sqlfmt/cockroach/pkg/cli/clisqlshell"
-	"sqlfmt/cockroach/pkg/server/pgurl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clicfg"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlshell"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/pgurl"
 	"github.com/cockroachdb/errors"
 	isatty "github.com/mattn/go-isatty"
 )

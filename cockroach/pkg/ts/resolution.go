@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
 )
 
 // Resolution is used to enumerate the different resolution values supported by

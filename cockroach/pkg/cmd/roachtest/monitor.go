@@ -17,11 +17,11 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/option"
-	"sqlfmt/cockroach/pkg/roachprod"
-	"sqlfmt/cockroach/pkg/roachprod/install"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/install"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 	"github.com/cockroachdb/errors"
 	"golang.org/x/sync/errgroup"
 )

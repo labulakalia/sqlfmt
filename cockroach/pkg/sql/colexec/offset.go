@@ -11,8 +11,8 @@
 package colexec
 
 import (
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
 )
 
 // offsetOp is an operator that implements offset, returning everything

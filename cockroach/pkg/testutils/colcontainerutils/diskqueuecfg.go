@@ -14,10 +14,10 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/colcontainer"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/storage/fs"
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colcontainer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/fs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 )
 
 const inMemDirName = "testing"

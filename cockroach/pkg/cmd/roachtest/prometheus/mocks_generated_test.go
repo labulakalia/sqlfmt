@@ -9,8 +9,8 @@ import (
 	fs "io/fs"
 	reflect "reflect"
 
-	option "sqlfmt/cockroach/pkg/cmd/roachtest/option"
-	logger "sqlfmt/cockroach/pkg/roachprod/logger"
+	option "github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	logger "github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 	gomock "github.com/golang/mock/gomock"
 )
 

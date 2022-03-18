@@ -22,7 +22,7 @@ import (
 	"regexp"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/gostdlib/go/format"
 )

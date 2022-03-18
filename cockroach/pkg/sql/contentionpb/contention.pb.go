@@ -5,10 +5,10 @@ package contentionpb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_roachpb "sqlfmt/cockroach/pkg/roachpb"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
-	github_com_cockroachdb_cockroach_pkg_sql_catalog_descpb "sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	github_com_cockroachdb_cockroach_pkg_util_uuid "sqlfmt/cockroach/pkg/util/uuid"
+	github_com_cockroachdb_cockroach_pkg_roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	github_com_cockroachdb_cockroach_pkg_sql_catalog_descpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	github_com_cockroachdb_cockroach_pkg_util_uuid "github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	_ "github.com/gogo/protobuf/types"

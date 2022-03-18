@@ -13,7 +13,7 @@ package tenantrate
 import (
 	"runtime"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/cockroachdb/errors"
 )
 

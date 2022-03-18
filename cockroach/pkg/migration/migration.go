@@ -24,7 +24,7 @@ package migration
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 )
 
 // Migration defines a program to be executed once every node in the cluster is

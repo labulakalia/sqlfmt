@@ -13,7 +13,7 @@ package timeutil
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // StopWatch is a utility stop watch that can be safely started and stopped

@@ -23,8 +23,8 @@ package service
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/util/tracing"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingservicepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingservicepb"
 )
 
 // Service implements the gRPC TraceServer that exchanges inflight span

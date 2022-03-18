@@ -14,8 +14,8 @@ import (
 	"fmt"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
-	"sqlfmt/cockroach/pkg/util/json"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 )
 
 // JSONs is a representation of columnar JSON data. It's simply a wrapper around

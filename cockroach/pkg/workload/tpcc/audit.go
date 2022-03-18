@@ -15,7 +15,7 @@ import (
 	"math"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 const (

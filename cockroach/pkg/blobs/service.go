@@ -29,8 +29,8 @@ import (
 	"context"
 	"io"
 
-	"sqlfmt/cockroach/pkg/blobs/blobspb"
-	"sqlfmt/cockroach/pkg/util/ioctx"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/blobs/blobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ioctx"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/errors/oserror"
 	"google.golang.org/grpc/codes"

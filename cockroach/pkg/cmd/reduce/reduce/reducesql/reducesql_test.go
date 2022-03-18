@@ -17,12 +17,12 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/cmd/reduce/reduce"
-	"sqlfmt/cockroach/pkg/cmd/reduce/reduce/reducesql"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/server"
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/reduce/reduce"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/reduce/reduce/reducesql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/jackc/pgx/v4"
 )
 

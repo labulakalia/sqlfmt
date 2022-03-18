@@ -5,7 +5,7 @@ package stats
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_sql_catalog_descpb "sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	github_com_cockroachdb_cockroach_pkg_sql_catalog_descpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	_ "github.com/gogo/protobuf/types"

@@ -17,8 +17,8 @@ import (
 	"text/tabwriter"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/envutil"
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 )
 
 // TimeFormat is the reference format for build.Time. Make sure it stays in sync

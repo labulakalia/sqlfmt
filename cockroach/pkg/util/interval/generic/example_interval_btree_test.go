@@ -20,9 +20,9 @@ import (
 	"testing"
 
 	// Load pkg/keys so that roachpb.Span.String() could be executed correctly.
-	_ "sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/stretchr/testify/require"
 )
 

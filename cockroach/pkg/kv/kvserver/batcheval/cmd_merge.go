@@ -13,9 +13,9 @@ package batcheval
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/batcheval/result"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/batcheval/result"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
 )
 
 func init() {

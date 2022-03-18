@@ -10,7 +10,7 @@
 
 package jobs
 
-import "sqlfmt/cockroach/pkg/jobs/jobspb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
 
 // ResetConstructors resets the registered Resumer constructors.
 func ResetConstructors() func() {

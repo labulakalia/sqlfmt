@@ -14,7 +14,7 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/cockroachdb/logtags"
 	"github.com/stretchr/testify/require"
 )

@@ -15,8 +15,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/keysbase"
-	"sqlfmt/cockroach/pkg/util/treeprinter"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keysbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/treeprinter"
 	"github.com/cockroachdb/errors"
 )
 

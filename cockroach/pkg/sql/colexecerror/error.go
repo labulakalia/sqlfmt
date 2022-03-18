@@ -16,8 +16,8 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/cockroachdb/errors"
 	"github.com/gogo/protobuf/proto"
 )
@@ -99,11 +99,11 @@ func CatchVectorizedRuntimeError(operation func()) (retErr error) {
 // Multiple actual packages can have the same prefix as a single constant string
 // defined below, but all of such packages are allowed to be caught from.
 const (
-	colPackagesPrefix      = "sqlfmt/cockroach/pkg/col"
-	execinfraPackagePrefix = "sqlfmt/cockroach/pkg/sql/execinfra"
-	sqlColPackagesPrefix   = "sqlfmt/cockroach/pkg/sql/col"
-	sqlRowPackagesPrefix   = "sqlfmt/cockroach/pkg/sql/row"
-	sqlSemPackagesPrefix   = "sqlfmt/cockroach/pkg/sql/sem"
+	colPackagesPrefix      = "github.com/labulakalia/sqlfmt/cockroach/pkg/col"
+	execinfraPackagePrefix = "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfra"
+	sqlColPackagesPrefix   = "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/col"
+	sqlRowPackagesPrefix   = "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/row"
+	sqlSemPackagesPrefix   = "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem"
 )
 
 // shouldCatchPanic checks whether the panic that was emitted from
@@ -116,13 +116,13 @@ const (
 //
 // panicEmittedFrom must be trimmed to not have any white spaces in the prefix.
 func shouldCatchPanic(panicEmittedFrom string) bool {
-	const panicFromTheCatcherItselfPrefix = "sqlfmt/cockroach/pkg/sql/colexecerror.CatchVectorizedRuntimeError"
+	const panicFromTheCatcherItselfPrefix = "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror.CatchVectorizedRuntimeError"
 	if strings.HasPrefix(panicEmittedFrom, panicFromTheCatcherItselfPrefix) {
 		// This panic came from the catcher itself, so we will propagate it
 		// unchanged by the higher-level catchers.
 		return false
 	}
-	const nonCatchablePanicPrefix = "sqlfmt/cockroach/pkg/sql/colexecerror.NonCatchablePanic"
+	const nonCatchablePanicPrefix = "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror.NonCatchablePanic"
 	if strings.HasPrefix(panicEmittedFrom, nonCatchablePanicPrefix) {
 		// This panic came from NonCatchablePanic() method and should not be
 		// caught.

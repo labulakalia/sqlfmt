@@ -13,8 +13,8 @@ package spanconfig
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 )
 
 // TestRecordSystemTargetValidation checks that a Record with SystemTarget is

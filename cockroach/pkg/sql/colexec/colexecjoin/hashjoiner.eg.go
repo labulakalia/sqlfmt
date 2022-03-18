@@ -9,7 +9,7 @@
 
 package colexecjoin
 
-import "sqlfmt/cockroach/pkg/col/coldata"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
 
 const _ = "template_collectProbeOuter"
 

@@ -14,7 +14,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // CapacityLimiter is used to specify the capacity of the buffer. This allows

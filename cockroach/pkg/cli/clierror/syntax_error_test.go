@@ -16,12 +16,12 @@ import (
 	"net/url"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cli"
-	"sqlfmt/cockroach/pkg/cli/clierror"
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 // This test checks that IsSQLSyntaxError works. It could stop working if e.g.

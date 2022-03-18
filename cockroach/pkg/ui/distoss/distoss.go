@@ -20,8 +20,8 @@ import (
 	"bytes"
 	_ "embed"
 
-	"sqlfmt/cockroach/pkg/ui"
-	"sqlfmt/cockroach/pkg/util/targz"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ui"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/targz"
 )
 
 //go:embed assets.tar.gz

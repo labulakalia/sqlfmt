@@ -15,7 +15,7 @@ import (
 	"io"
 	"time"
 
-	"sqlfmt/cockroach/pkg/workload/histogram"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/histogram"
 )
 
 // outputFormat is the interface used to output results incrementally

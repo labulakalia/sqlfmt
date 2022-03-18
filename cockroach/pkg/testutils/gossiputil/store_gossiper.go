@@ -14,9 +14,9 @@ import (
 	"sync"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/gossip"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/gossip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // StoreGossiper allows tests to push storeDescriptors into gossip and

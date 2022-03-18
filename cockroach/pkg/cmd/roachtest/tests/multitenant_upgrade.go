@@ -19,14 +19,14 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/option"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/registry"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/test"
-	"sqlfmt/cockroach/pkg/roachprod/install"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/util/retry"
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/registry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/test"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/install"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/retry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 	"github.com/stretchr/testify/require"
 )
 

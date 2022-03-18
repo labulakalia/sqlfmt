@@ -10,7 +10,7 @@
 
 package tree
 
-import "sqlfmt/cockroach/pkg/sql/lexbase"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 
 // CommentOnIndex represents a COMMENT ON INDEX statement.
 type CommentOnIndex struct {

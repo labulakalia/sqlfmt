@@ -15,12 +15,12 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachprod/vm"
-	"sqlfmt/cockroach/pkg/roachprod/vm/aws"
-	"sqlfmt/cockroach/pkg/roachprod/vm/azure"
-	"sqlfmt/cockroach/pkg/roachprod/vm/gce"
-	"sqlfmt/cockroach/pkg/util/randutil"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm/aws"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm/azure"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm/gce"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 )
 

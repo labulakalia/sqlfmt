@@ -13,7 +13,7 @@ package collector
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // nodesFromNodeLiveness returns the IDs for all nodes that are currently part

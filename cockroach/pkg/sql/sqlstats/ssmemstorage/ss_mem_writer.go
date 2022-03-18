@@ -15,10 +15,10 @@ import (
 	"time"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/execstats"
-	"sqlfmt/cockroach/pkg/sql/sqlstats"
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execstats"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 	"github.com/cockroachdb/errors"
 )
 

@@ -10,7 +10,7 @@
 
 package idxusage
 
-import "sqlfmt/cockroach/pkg/settings"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 
 // Enable determines whether to collect per-index usage statistics.
 var Enable = settings.RegisterBoolSetting(

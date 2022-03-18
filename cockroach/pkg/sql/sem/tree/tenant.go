@@ -13,7 +13,7 @@ package tree
 import (
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // TenantID represents a tenant ID that can be pretty-printed.

@@ -11,7 +11,7 @@
 package tree
 
 import (
-	"sqlfmt/cockroach/pkg/sql/sqltelemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/lib/pq/oid"
 )
 

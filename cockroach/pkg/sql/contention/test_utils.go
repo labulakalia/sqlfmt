@@ -13,10 +13,10 @@ package contention
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/sql/contentionpb"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/contentionpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 type fakeStatusServer struct {

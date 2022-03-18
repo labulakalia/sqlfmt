@@ -22,7 +22,7 @@ package tree
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 )
 
 // ShowVar represents a SHOW statement.

@@ -13,12 +13,12 @@ package clisqlshell
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cli/clicfg"
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
-	"sqlfmt/cockroach/pkg/cli/clisqlexec"
-	"sqlfmt/cockroach/pkg/sql/scanner"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clicfg"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/scanner"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/stretchr/testify/assert"
 )
 

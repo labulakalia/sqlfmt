@@ -11,7 +11,7 @@ package kvevent
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 var (

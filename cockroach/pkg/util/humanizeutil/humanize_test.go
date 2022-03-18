@@ -14,8 +14,8 @@ import (
 	"math"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/humanizeutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/humanizeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 // TestHumanizeBytes verifies both IBytes and ParseBytes.

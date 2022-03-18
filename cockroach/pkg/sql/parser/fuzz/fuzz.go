@@ -19,9 +19,9 @@
 package fuzz
 
 import (
-	"sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
 	// See above comment about why this is imported.
-	_ "sqlfmt/cockroach/pkg/sql/sem/builtins"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/builtins"
 )
 
 func FuzzParse(data []byte) int {

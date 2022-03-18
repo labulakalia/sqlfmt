@@ -14,9 +14,9 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/log/channel"
-	"sqlfmt/cockroach/pkg/util/log/logconfig"
-	"sqlfmt/cockroach/pkg/util/log/severity"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/stretchr/testify/require"
 )
 

@@ -10,7 +10,7 @@
 
 package scrun
 
-import "sqlfmt/cockroach/pkg/sql/schemachanger/scplan"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan"
 
 // TestingKnobs are testing knobs which affect the running of declarative
 // schema changes.

@@ -13,8 +13,8 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/stateloader"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/stateloader"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // Implementation of the replicaForTruncator interface.

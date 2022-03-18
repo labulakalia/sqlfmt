@@ -13,14 +13,14 @@ package catalog
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	defer leaktest.AfterTest(t)()
 
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/catalog", true, []string{"c-deps"}, nil,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog", true, []string{"c-deps"}, nil,
 	)
 }

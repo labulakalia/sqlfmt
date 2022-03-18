@@ -11,9 +11,9 @@ package changefeedccl
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/kvfeed"
-	"sqlfmt/cockroach/pkg/jobs/jobspb"
-	"sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/kvfeed"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 )
 
 // TestingKnobs are the testing knobs for changefeed.

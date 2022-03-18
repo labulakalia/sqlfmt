@@ -13,7 +13,7 @@ package main
 import (
 	"io"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
 )
 
 // explorerGen generates code for the explorer, which searches for logically
@@ -34,9 +34,9 @@ func (g *explorerGen) generate(compiled *lang.CompiledExpr, w io.Writer) {
 	g.w.writeIndent("package xform\n\n")
 
 	g.w.nestIndent("import (\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/opt\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/opt/memo\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/sem/tree\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree\"\n")
 	g.w.unnest(")\n\n")
 
 	g.genDispatcher()

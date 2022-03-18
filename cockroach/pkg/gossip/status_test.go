@@ -13,7 +13,7 @@ package gossip
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestGossipStatus(t *testing.T) {

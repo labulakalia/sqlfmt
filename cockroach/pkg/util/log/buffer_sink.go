@@ -15,7 +15,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 )
 
 // bufferSink wraps a child logSink to add buffering and asynchronous behavior.

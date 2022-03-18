@@ -17,8 +17,8 @@ import (
 	"strconv"
 	"text/tabwriter"
 
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

@@ -14,14 +14,14 @@ import (
 	"sync"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/colexec"
-	"sqlfmt/cockroach/pkg/sql/colexec/colexecargs"
-	"sqlfmt/cockroach/pkg/sql/colexec/colexecbase"
-	"sqlfmt/cockroach/pkg/sql/colexec/colexectestutils"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecargs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexectestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/stretchr/testify/require"
 )
 

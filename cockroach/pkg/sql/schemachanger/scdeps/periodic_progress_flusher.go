@@ -14,10 +14,10 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/sql/backfill"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/backfill"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"golang.org/x/sync/errgroup"
 )
 

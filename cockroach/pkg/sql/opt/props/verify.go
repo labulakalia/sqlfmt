@@ -11,7 +11,7 @@
 package props
 
 import (
-	"sqlfmt/cockroach/pkg/util/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/buildutil"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

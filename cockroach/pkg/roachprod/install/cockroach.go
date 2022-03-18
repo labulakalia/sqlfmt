@@ -23,10 +23,10 @@ import (
 	"text/template"
 
 	"github.com/alessio/shellescape"
-	"sqlfmt/cockroach/pkg/roachprod/config"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
-	"sqlfmt/cockroach/pkg/roachprod/ssh"
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/ssh"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 	"github.com/cockroachdb/errors"
 )
 

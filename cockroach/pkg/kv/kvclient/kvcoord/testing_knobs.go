@@ -10,7 +10,7 @@
 
 package kvcoord
 
-import "sqlfmt/cockroach/pkg/base"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 
 // ClientTestingKnobs contains testing options that dictate the behavior
 // of the key-value client.

@@ -14,7 +14,7 @@ import (
 	"encoding/gob"
 	"io"
 
-	"sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
 )
 
 // DumpRawTo is a helper that gob-encodes all messages received from the

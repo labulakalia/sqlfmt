@@ -13,4 +13,4 @@ package pgerror
 // --vmodule flag and friends. As of 03/2017, no test in this package needs
 // logging, but we want the test binary to accept the flags for uniformity
 // with the other tests.
-import _ "sqlfmt/cockroach/pkg/util/log"
+import _ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"

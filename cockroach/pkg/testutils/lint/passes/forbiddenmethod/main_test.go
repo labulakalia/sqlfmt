@@ -10,7 +10,7 @@
 
 package forbiddenmethod_test
 
-import "sqlfmt/cockroach/pkg/build/bazel"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
 
 func init() {
 	if bazel.BuiltWithBazel() {

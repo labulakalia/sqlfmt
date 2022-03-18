@@ -16,7 +16,7 @@ import (
 	"sync"
 
 	"github.com/cockroachdb/cmux"
-	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 	"github.com/cockroachdb/errors"
 )
 

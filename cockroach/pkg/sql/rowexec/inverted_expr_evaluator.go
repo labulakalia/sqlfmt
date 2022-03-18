@@ -14,8 +14,8 @@ import (
 	"bytes"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/inverted"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted"
 	"github.com/cockroachdb/errors"
 )
 

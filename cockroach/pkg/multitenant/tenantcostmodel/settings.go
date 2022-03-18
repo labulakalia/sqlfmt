@@ -13,7 +13,7 @@ package tenantcostmodel
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 )
 
 // Settings for the cost model parameters. These determine the values for a

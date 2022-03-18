@@ -11,8 +11,8 @@
 package kvcoord
 
 import (
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/cockroachdb/errors"
 )
 

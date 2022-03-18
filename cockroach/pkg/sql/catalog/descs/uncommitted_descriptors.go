@@ -11,15 +11,15 @@
 package descs
 
 import (
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/sql/catalog"
-	"sqlfmt/cockroach/pkg/sql/catalog/dbdesc"
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/lease"
-	"sqlfmt/cockroach/pkg/sql/catalog/nstree"
-	"sqlfmt/cockroach/pkg/sql/catalog/systemschema"
-	"sqlfmt/cockroach/pkg/sql/catalog/typedesc"
-	"sqlfmt/cockroach/pkg/util/iterutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/dbdesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/lease"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/nstree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/systemschema"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/typedesc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/iterutil"
 	"github.com/cockroachdb/errors"
 )
 

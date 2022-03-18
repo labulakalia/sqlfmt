@@ -13,7 +13,7 @@ import (
 	"reflect"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/jobs/joberror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/joberror"
 	"github.com/cockroachdb/errors"
 )
 

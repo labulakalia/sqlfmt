@@ -15,12 +15,12 @@ import (
 	"time"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
-	"sqlfmt/cockroach/pkg/sql/querycache"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/querycache"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 )
 
 // PreparedStatementOrigin is an enum representing the source of where

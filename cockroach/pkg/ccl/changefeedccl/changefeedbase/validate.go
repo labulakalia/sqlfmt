@@ -9,8 +9,8 @@
 package changefeedbase
 
 import (
-	"sqlfmt/cockroach/pkg/jobs/jobspb"
-	"sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
 	"github.com/cockroachdb/errors"
 )
 

@@ -13,8 +13,8 @@ package main
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/col/typeconv"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/typeconv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // nativeCastInfos contains supported "from -> to" mappings where both types are

@@ -11,7 +11,7 @@
 package settings
 
 import (
-	"sqlfmt/cockroach/pkg/util/humanizeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/humanizeutil"
 	"github.com/cockroachdb/errors"
 )
 

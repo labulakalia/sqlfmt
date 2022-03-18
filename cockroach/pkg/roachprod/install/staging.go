@@ -17,8 +17,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachprod/logger"
-	"sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
 	"github.com/cockroachdb/errors"
 )
 

@@ -13,8 +13,8 @@ package validate
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/sql/catalog"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
 )
 
 const InvalidSchemaChangerStatePrefix = invalidSchemaChangerStatePrefix + ":"

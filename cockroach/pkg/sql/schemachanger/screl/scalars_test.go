@@ -14,10 +14,10 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/sem/catid"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/catid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/stretchr/testify/require"
 )
 

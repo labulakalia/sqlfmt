@@ -14,8 +14,8 @@ import (
 	"context"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 // ClusterIDContainer is used to share a single Cluster ID instance between

@@ -19,8 +19,8 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/util/timeutil/pgdate"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
 	_ "github.com/lib/pq"
 )
 

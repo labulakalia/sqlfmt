@@ -11,9 +11,9 @@
 package colexec
 
 import (
-	"sqlfmt/cockroach/pkg/sql/colexec/colexectestutils"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexectestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 type sortTestCase struct {

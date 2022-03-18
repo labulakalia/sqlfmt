@@ -16,8 +16,8 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cmd/internal/issues"
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/internal/issues"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -42,7 +42,7 @@ func TestListFailures(t *testing.T) {
 		{
 			pkgEnv:   "",
 			fileName: "implicit-pkg.json",
-			expPkg:   "sqlfmt/cockroach/pkg/util/stop",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop",
 			expIssues: []issue{{
 				testName:   "TestStopperWithCancelConcurrent",
 				title:      "util/stop: TestStopperWithCancelConcurrent failed",
@@ -53,9 +53,9 @@ func TestListFailures(t *testing.T) {
 			formatter: defaultFormatter,
 		},
 		{
-			pkgEnv:   "sqlfmt/cockroach/pkg/kv/kvserver",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver",
 			fileName: "stress-failure.json",
-			expPkg:   "sqlfmt/cockroach/pkg/kv/kvserver",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver",
 			expIssues: []issue{{
 				testName:   "TestReplicateQueueRebalance",
 				title:      "kv/kvserver: TestReplicateQueueRebalance failed",
@@ -66,9 +66,9 @@ func TestListFailures(t *testing.T) {
 			formatter: defaultFormatter,
 		},
 		{
-			pkgEnv:   "sqlfmt/cockroach/pkg/kv/kvserver",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver",
 			fileName: "stress-fatal.json",
-			expPkg:   "sqlfmt/cockroach/pkg/kv/kvserver",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver",
 			expIssues: []issue{{
 				testName:   "TestGossipHandlesReplacedNode",
 				title:      "kv/kvserver: TestGossipHandlesReplacedNode failed",
@@ -79,9 +79,9 @@ func TestListFailures(t *testing.T) {
 			formatter: defaultFormatter,
 		},
 		{
-			pkgEnv:   "sqlfmt/cockroach/pkg/storage",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/storage",
 			fileName: "stress-unknown.json",
-			expPkg:   "sqlfmt/cockroach/pkg/storage",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/storage",
 			expIssues: []issue{{
 				testName: "(unknown)",
 				title:    "storage: package failed",
@@ -90,9 +90,9 @@ func TestListFailures(t *testing.T) {
 			formatter: defaultFormatter,
 		},
 		{
-			pkgEnv:   "sqlfmt/cockroach/pkg/util/json",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/util/json",
 			fileName: "stress-subtests.json",
-			expPkg:   "sqlfmt/cockroach/pkg/util/json",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/util/json",
 			expIssues: []issue{{
 				testName: "TestPretty",
 				title:    "util/json: TestPretty failed",
@@ -107,9 +107,9 @@ func TestListFailures(t *testing.T) {
 			// A test run where there's a timeout, and the timed out test was the
 			// longest running test, so the issue assumes it's the culprit.
 			// To spice things up, the test run has another test failure too.
-			pkgEnv:   "sqlfmt/cockroach/pkg/kv/kvclient/kvcoord",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/kvcoord",
 			fileName: "timeout-culprit-found.json",
-			expPkg:   "sqlfmt/cockroach/pkg/kv/kvclient/kvcoord",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/kvcoord",
 			expIssues: []issue{
 				{
 					testName:   "TestTxnCoordSenderPipelining",
@@ -138,9 +138,9 @@ TestAnchorKey - 1.01s
 			// A test run where there's a timeout, but the test that happened to be
 			// running when the timeout hit has not been running for very long, and so
 			// the issue just names the package.
-			pkgEnv:   "sqlfmt/cockroach/pkg/kv",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			fileName: "timeout-culprit-not-found.json",
-			expPkg:   "sqlfmt/cockroach/pkg/kv",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			expIssues: []issue{
 				{
 					testName: "(unknown)",
@@ -158,9 +158,9 @@ TestXXA - 1.00s
 		{
 			// Like the above, except this time the output comes from a stress run,
 			// not from the test binary directly.
-			pkgEnv:   "sqlfmt/cockroach/pkg/kv",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			fileName: "stress-timeout-culprit-not-found.json",
-			expPkg:   "sqlfmt/cockroach/pkg/kv",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			expIssues: []issue{
 				{
 					testName: "(unknown)",
@@ -179,9 +179,9 @@ TestXXA - 1.00s
 		{
 			// A stress timeout where the test running when the timeout is hit is the
 			// longest.
-			pkgEnv:   "sqlfmt/cockroach/pkg/kv",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			fileName: "stress-timeout-culprit-found.json",
-			expPkg:   "sqlfmt/cockroach/pkg/kv",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			expIssues: []issue{
 				{
 					testName: "TestXXX/sub2",
@@ -199,9 +199,9 @@ TestXXA - 1.00s
 		},
 		{
 			// A panic in a test.
-			pkgEnv:   "sqlfmt/cockroach/pkg/kv",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			fileName: "stress-panic.json",
-			expPkg:   "sqlfmt/cockroach/pkg/kv",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			expIssues: []issue{
 				{
 					testName: "TestXXX",
@@ -213,9 +213,9 @@ TestXXA - 1.00s
 		},
 		{
 			// A panic outside of a test (in this case, in a package init function).
-			pkgEnv:   "sqlfmt/cockroach/pkg/kv",
+			pkgEnv:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			fileName: "stress-init-panic.json",
-			expPkg:   "sqlfmt/cockroach/pkg/kv",
+			expPkg:   "github.com/labulakalia/sqlfmt/cockroach/pkg/kv",
 			expIssues: []issue{
 				{
 					testName: "(unknown)",

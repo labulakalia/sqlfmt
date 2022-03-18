@@ -8,7 +8,7 @@
 
 package cliflagsccl
 
-import "sqlfmt/cockroach/pkg/cli/cliflags"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cli/cliflags"
 
 // Attrs and others store the static information for CLI flags.
 var (

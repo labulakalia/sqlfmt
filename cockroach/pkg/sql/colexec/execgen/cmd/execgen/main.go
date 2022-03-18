@@ -20,8 +20,8 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"sqlfmt/cockroach/pkg/sql/colexec/execgen"
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/execgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/gostdlib/x/tools/imports"
 )

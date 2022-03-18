@@ -26,7 +26,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/cockroachdb/errors"
 )
 

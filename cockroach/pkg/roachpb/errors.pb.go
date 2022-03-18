@@ -20,9 +20,9 @@ package roachpb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_util_hlc "sqlfmt/cockroach/pkg/util/hlc"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
-	github_com_cockroachdb_cockroach_pkg_util_uuid "sqlfmt/cockroach/pkg/util/uuid"
+	github_com_cockroachdb_cockroach_pkg_util_hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	github_com_cockroachdb_cockroach_pkg_util_uuid "github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	errorspb "github.com/cockroachdb/errors/errorspb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"

@@ -13,9 +13,9 @@
 package sql_test
 
 import (
-	"sqlfmt/cockroach/pkg/sql"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 	"github.com/cockroachdb/errors"
 )
 

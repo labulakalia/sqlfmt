@@ -13,7 +13,7 @@ package tree
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/sql/sessiondata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

@@ -13,8 +13,8 @@ package workloadimpl_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/workload/workloadimpl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/workloadimpl"
 	"golang.org/x/exp/rand"
 )
 

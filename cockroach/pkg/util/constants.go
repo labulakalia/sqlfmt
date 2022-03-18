@@ -15,9 +15,9 @@ import (
 	"math/rand"
 	"os"
 
-	"sqlfmt/cockroach/pkg/util/buildutil"
-	"sqlfmt/cockroach/pkg/util/randutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // IsMetamorphicBuild returns whether this build is metamorphic. By build being

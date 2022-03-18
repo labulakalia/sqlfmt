@@ -10,7 +10,7 @@
 
 package txnidcache
 
-import "sqlfmt/cockroach/pkg/util/metric"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 
 // Metrics is a struct that include all metrics related to txn id cache.
 type Metrics struct {

@@ -13,7 +13,7 @@ package keys
 import (
 	"math"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // For a high-level overview of the keyspace layout, see the package comment in

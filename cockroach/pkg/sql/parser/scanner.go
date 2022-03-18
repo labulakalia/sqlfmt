@@ -11,8 +11,8 @@
 package parser
 
 import (
-	"sqlfmt/cockroach/pkg/sql/lexbase"
-	"sqlfmt/cockroach/pkg/sql/scanner"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/scanner"
 )
 
 func makeScanner(str string) scanner.Scanner {

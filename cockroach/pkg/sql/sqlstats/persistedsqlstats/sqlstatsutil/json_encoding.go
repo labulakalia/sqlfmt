@@ -14,9 +14,9 @@ import (
 	"encoding/hex"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/encoding"
-	"sqlfmt/cockroach/pkg/util/json"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 )
 
 // ExplainTreePlanNodeToJSON builds a formatted JSON object from the explain tree nodes.

@@ -13,16 +13,16 @@ package spanconfigkvsubscriber
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed"
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedcache"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/spanconfig"
-	"sqlfmt/cockroach/pkg/spanconfig/spanconfigstore"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/stop"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedcache"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/spanconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/spanconfig/spanconfigstore"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // KVSubscriber is used to subscribe to global span configuration changes. It's

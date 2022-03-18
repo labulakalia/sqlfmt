@@ -2,7 +2,7 @@
 
 package eventpb
 
-import "sqlfmt/cockroach/pkg/util/log/logpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 
 // LoggingChannel implements the EventPayload interface.
 func (m *CertsReload) LoggingChannel() logpb.Channel { return logpb.Channel_OPS }

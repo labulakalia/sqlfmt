@@ -12,10 +12,10 @@ import (
 	"os"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build"
-	"sqlfmt/cockroach/pkg/ccl/utilccl"
-	"sqlfmt/cockroach/pkg/server"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/utilccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
 )
 
 func TestMain(m *testing.M) {

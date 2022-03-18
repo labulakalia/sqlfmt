@@ -10,7 +10,7 @@
 
 package txnidcache
 
-import "sqlfmt/cockroach/pkg/settings"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 
 // MaxSize limits the maximum byte size can be used by the TxnIDCache.
 var MaxSize = settings.RegisterByteSizeSetting(

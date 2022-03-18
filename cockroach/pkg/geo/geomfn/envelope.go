@@ -10,7 +10,7 @@
 
 package geomfn
 
-import "sqlfmt/cockroach/pkg/geo"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 
 // Envelope forms an envelope (compliant with the OGC spec) of the given Geometry.
 // It uses the bounding box to return a Polygon, but can return a Point or

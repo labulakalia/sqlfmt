@@ -13,8 +13,8 @@ package sslocal
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // Controller implements the SQL Stats subsystem control plane. This exposes

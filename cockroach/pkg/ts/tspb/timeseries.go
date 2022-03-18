@@ -13,7 +13,7 @@ package tspb
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // ToInternal places the datapoints in a TimeSeriesData message into one or

@@ -15,22 +15,22 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	_ "sqlfmt/cockroach/pkg/ccl/changefeedccl"     // Ensure changefeed init hooks run.
-	_ "sqlfmt/cockroach/pkg/ccl/kvccl/kvtenantccl" // Ensure we can start tenant.
-	"sqlfmt/cockroach/pkg/ccl/streamingccl"
-	"sqlfmt/cockroach/pkg/ccl/streamingccl/streamingtest"
-	"sqlfmt/cockroach/pkg/ccl/streamingccl/streampb"
-	"sqlfmt/cockroach/pkg/jobs"
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/catalog/desctestutils"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/protoutil"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl"     // Ensure changefeed init hooks run.
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/kvccl/kvtenantccl" // Ensure we can start tenant.
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/streamingccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/streamingccl/streamingtest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/streamingccl/streampb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/desctestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/jackc/pgx/v4"
 	"github.com/stretchr/testify/require"
 )

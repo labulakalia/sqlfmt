@@ -10,7 +10,7 @@
 
 package protectedts
 
-import "sqlfmt/cockroach/pkg/base"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 
 // TestingKnobs provide fine-grained control over the various span config
 // components for testing.

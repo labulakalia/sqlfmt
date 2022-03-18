@@ -16,7 +16,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	"github.com/cockroachdb/datadriven"
 	"github.com/golang/geo/s2"
 )

@@ -24,8 +24,8 @@ package colexec
 import (
 	"container/heap"
 
-	"sqlfmt/cockroach/pkg/sql/colexecerror"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
 	"github.com/cockroachdb/errors"
 )
 

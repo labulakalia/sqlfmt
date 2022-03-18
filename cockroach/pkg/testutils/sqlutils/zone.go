@@ -15,9 +15,9 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/config/zonepb"
-	"sqlfmt/cockroach/pkg/sql/lexbase"
-	"sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config/zonepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 )
 
 // ZoneRow represents a row returned by SHOW ZONE CONFIGURATION.

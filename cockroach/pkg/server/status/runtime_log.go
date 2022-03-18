@@ -15,8 +15,8 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/log/eventpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/eventpb"
 	"github.com/cockroachdb/redact"
 	humanize "github.com/dustin/go-humanize"
 )

@@ -18,7 +18,7 @@ import (
 	"testing"
 
 	"github.com/cockroachdb/cmux"
-	"sqlfmt/cockroach/pkg/util/contextutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/contextutil"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 )

@@ -14,11 +14,11 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/util/uuid"
-	"sqlfmt/cockroach/pkg/workload"
-	"sqlfmt/cockroach/pkg/workload/faker"
-	"sqlfmt/cockroach/pkg/workload/histogram"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/faker"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/histogram"
 	"golang.org/x/exp/rand"
 )
 

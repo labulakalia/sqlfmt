@@ -17,7 +17,7 @@ import (
 	"sort"
 	"unicode"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
 )
 
 // opsGen generates the enumeration of all operator types.

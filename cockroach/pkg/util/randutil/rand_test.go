@@ -13,8 +13,8 @@ package randutil_test
 import (
 	"testing"
 
-	_ "sqlfmt/cockroach/pkg/util/log" // for flags
-	"sqlfmt/cockroach/pkg/util/randutil"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log" // for flags
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 func TestPseudoRand(t *testing.T) {

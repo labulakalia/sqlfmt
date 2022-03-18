@@ -13,7 +13,7 @@ package aggmetric
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 	"github.com/HdrHistogram/hdrhistogram-go"
 	io_prometheus_client "github.com/prometheus/client_model/go"
 )

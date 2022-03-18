@@ -13,15 +13,15 @@ package norm_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/opt/norm"
-	"sqlfmt/cockroach/pkg/sql/opt/testutils"
-	"sqlfmt/cockroach/pkg/sql/opt/testutils/testcat"
-	"sqlfmt/cockroach/pkg/sql/opt/xform"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/norm"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/testutils/testcat"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/xform"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // TestSimplifyFilters tests factory.SimplifyFilters. It's hard to fully test

@@ -16,9 +16,9 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/option"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/prometheus"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/prometheus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 	gomock "github.com/golang/mock/gomock"
 	"github.com/prometheus/common/model"
 	"github.com/stretchr/testify/require"

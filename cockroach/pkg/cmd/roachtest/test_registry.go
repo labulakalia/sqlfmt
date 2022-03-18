@@ -20,10 +20,10 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/registry"
-	"sqlfmt/cockroach/pkg/cmd/roachtest/spec"
-	"sqlfmt/cockroach/pkg/internal/team"
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/registry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/spec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/team"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 	"github.com/cockroachdb/errors"
 )
 

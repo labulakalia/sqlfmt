@@ -15,7 +15,7 @@ import (
 	"path"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 const (

@@ -26,8 +26,8 @@ import (
 	"strings"
 
 	"cloud.google.com/go/storage"
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/google/skylark/syntax"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/api/googleapi"
@@ -192,7 +192,7 @@ func listAllModules(tmpdir string) (map[string]listedModule, error) {
 			jsonBuilder.Reset()
 			// The output will include the `cockroach` module, but we
 			// can just throw it away.
-			if mod.Path == "sqlfmt/cockroach" {
+			if mod.Path == "github.com/labulakalia/sqlfmt/cockroach" {
 				continue
 			}
 			ret[mod.Path] = mod

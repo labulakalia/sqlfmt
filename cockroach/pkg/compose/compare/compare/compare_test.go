@@ -24,11 +24,11 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/cmpconn"
-	"sqlfmt/cockroach/pkg/internal/sqlsmith"
-	"sqlfmt/cockroach/pkg/sql/randgen"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cmpconn"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/sqlsmith"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/randgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/jackc/pgx/v4"
 )
 

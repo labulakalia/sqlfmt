@@ -15,7 +15,7 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree/treewindow"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treewindow"
 )
 
 const windowFramerTmpl = "pkg/sql/colexec/colexecwindow/window_framer_tmpl.go"

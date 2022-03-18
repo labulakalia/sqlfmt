@@ -13,8 +13,8 @@
 package main
 
 import (
-	"sqlfmt/cockroach/pkg/cli"
-	_ "sqlfmt/cockroach/pkg/ui/distoss" // web UI init hooks
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ui/distoss" // web UI init hooks
 )
 
 func main() {

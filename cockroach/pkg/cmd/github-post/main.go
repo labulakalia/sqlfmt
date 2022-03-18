@@ -33,9 +33,9 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/internal/issues"
-	"sqlfmt/cockroach/pkg/internal/codeowners"
-	"sqlfmt/cockroach/pkg/internal/team"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/internal/issues"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/codeowners"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/team"
 	"github.com/cockroachdb/errors"
 )
 
@@ -491,7 +491,7 @@ func getFileLine(
 	// commits in cockroachdb/cockroach for commits authored by the address.
 	subtests := strings.Split(testName, "/")
 	testName = subtests[0]
-	packageName = strings.TrimPrefix(packageName, "sqlfmt/cockroach/")
+	packageName = strings.TrimPrefix(packageName, "github.com/labulakalia/sqlfmt/cockroach/")
 	cmd := exec.Command(`/bin/bash`, `-c`,
 		fmt.Sprintf(`cd "$(git rev-parse --show-toplevel)" && git grep -n 'func %s(' '%s/*_test.go'`,
 			testName, packageName))

@@ -35,8 +35,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cmd/generate-metadata-tables/rdbms"
-	"sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/generate-metadata-tables/rdbms"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
 )
 
 var testdataDir = filepath.Join("pkg", "sql", "testdata")

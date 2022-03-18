@@ -14,7 +14,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 	"github.com/stretchr/testify/require"
 )
 

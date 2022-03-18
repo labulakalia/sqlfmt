@@ -18,7 +18,7 @@ import (
 	"testing"
 
 	"github.com/biogo/store/llrb"
-	_ "sqlfmt/cockroach/pkg/util/log" // for flags
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log" // for flags
 )
 
 type testKey string

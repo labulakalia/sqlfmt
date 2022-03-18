@@ -15,8 +15,8 @@ import (
 	"strconv"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geopb"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/stretchr/testify/require"
 	"github.com/twpayne/go-geom"
 )

@@ -35,8 +35,8 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
-	_ "sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
 )

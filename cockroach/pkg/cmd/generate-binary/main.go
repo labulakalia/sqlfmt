@@ -34,8 +34,8 @@ import (
 	"sort"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/cmd/cmp-protocol/pgconnect"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cmp-protocol/pgconnect"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
 )
 
 var (

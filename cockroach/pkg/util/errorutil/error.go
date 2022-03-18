@@ -14,8 +14,8 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/util/log/logcrash"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logcrash"
 	"github.com/cockroachdb/errors"
 )
 

@@ -18,8 +18,8 @@
 package main
 
 import (
-	_ "sqlfmt/cockroach/pkg/ccl" // ccl init hooks
-	"sqlfmt/cockroach/pkg/cli"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl" // ccl init hooks
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli"
 )
 
 func main() {

@@ -15,7 +15,7 @@ import (
 	"net/http"
 	"net/http/pprof"
 
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 	"github.com/spf13/cobra"
 )
 

@@ -13,7 +13,7 @@ package sqltelemetry
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 )
 
 // BuiltinCounter creates a telemetry counter for a built-in function.

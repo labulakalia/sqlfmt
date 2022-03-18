@@ -31,12 +31,12 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"sqlfmt/cockroach/pkg/cmd/cmpconn"
-	"sqlfmt/cockroach/pkg/internal/sqlsmith"
-	"sqlfmt/cockroach/pkg/sql/randgen"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cmpconn"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/sqlsmith"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/randgen"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/lib/pq/oid"
 )
 

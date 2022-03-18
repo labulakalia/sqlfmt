@@ -14,7 +14,7 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/shirou/gopsutil/v3/net"
 )
 

@@ -20,7 +20,7 @@ import (
 	"path/filepath"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
 	"github.com/cockroachdb/errors"
 )
 

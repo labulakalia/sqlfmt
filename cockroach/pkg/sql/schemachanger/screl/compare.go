@@ -11,8 +11,8 @@
 package screl
 
 import (
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
 )
 
 // equalityAttrs are used to sort elements.

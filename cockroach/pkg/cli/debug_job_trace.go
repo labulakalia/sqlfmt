@@ -18,9 +18,9 @@ import (
 	"os"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
-	tracezipper "sqlfmt/cockroach/pkg/util/tracing/zipper"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
+	tracezipper "github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/zipper"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

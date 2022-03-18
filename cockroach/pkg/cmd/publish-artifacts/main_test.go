@@ -16,7 +16,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/service/s3"
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/stretchr/testify/require"
 )
 

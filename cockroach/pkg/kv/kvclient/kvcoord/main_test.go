@@ -14,14 +14,14 @@ import (
 	"os"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/security/securitytest"
-	"sqlfmt/cockroach/pkg/server"
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security/securitytest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 //go:generate ../../../util/leaktest/add-leaktest.sh *_test.go
@@ -35,12 +35,12 @@ func TestForbiddenDeps(t *testing.T) {
 	defer log.Scope(t).Close(t)
 	// Verify kv does not depend on storage (or any of its subpackages).
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/kv", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/kv", true,
 		// TODO(tschottdorf): should really disallow ./storage/... but at the
 		// time of writing there's a (legit) dependency on `enginepb`.
 		[]string{
-			"sqlfmt/cockroach/pkg/storage",
-			"sqlfmt/cockroach/pkg/storage/engine",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/storage",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/engine",
 		},
 		[]string{})
 }

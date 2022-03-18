@@ -21,24 +21,24 @@ import (
 	"os/signal"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/build"
-	"sqlfmt/cockroach/pkg/cli/clierror"
-	"sqlfmt/cockroach/pkg/cli/exit"
-	_ "sqlfmt/cockroach/pkg/cloud/impl" // register cloud storage providers
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/log/logcrash"
-	"sqlfmt/cockroach/pkg/util/log/severity"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/impl" // register cloud storage providers
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logcrash"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	// intentionally not all the workloads in pkg/ccl/workloadccl/allccl
-	_ "sqlfmt/cockroach/pkg/workload/bank"       // registers workloads
-	_ "sqlfmt/cockroach/pkg/workload/bulkingest" // registers workloads
-	workloadcli "sqlfmt/cockroach/pkg/workload/cli"
-	_ "sqlfmt/cockroach/pkg/workload/examples" // registers workloads
-	_ "sqlfmt/cockroach/pkg/workload/kv"       // registers workloads
-	_ "sqlfmt/cockroach/pkg/workload/movr"     // registers workloads
-	_ "sqlfmt/cockroach/pkg/workload/tpcc"     // registers workloads
-	_ "sqlfmt/cockroach/pkg/workload/tpch"     // registers workloads
-	_ "sqlfmt/cockroach/pkg/workload/ycsb"     // registers workloads
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/bank"       // registers workloads
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/bulkingest" // registers workloads
+	workloadcli "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/cli"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/examples" // registers workloads
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/kv"       // registers workloads
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/movr"     // registers workloads
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/tpcc"     // registers workloads
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/tpch"     // registers workloads
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/ycsb"     // registers workloads
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

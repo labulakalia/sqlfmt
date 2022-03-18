@@ -14,8 +14,8 @@ import (
 	"math"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/sql/opt/partition"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/partition"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // compare compares the key prefix in prefixInfo with the span prefix. The key

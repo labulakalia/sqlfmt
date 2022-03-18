@@ -14,7 +14,7 @@ import (
 	"hash/adler32"
 	"io"
 
-	"sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/ttycolor"
 )

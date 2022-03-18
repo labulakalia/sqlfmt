@@ -11,7 +11,7 @@
 package types
 
 import (
-	"sqlfmt/cockroach/pkg/sql/oidext"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/oidext"
 	"github.com/cockroachdb/errors"
 	"github.com/lib/pq/oid"
 )

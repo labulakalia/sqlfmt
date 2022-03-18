@@ -13,7 +13,7 @@ package config
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // SystemConfigMask is a mask that can be applied to a set of system config

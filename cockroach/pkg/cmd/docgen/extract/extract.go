@@ -24,9 +24,9 @@ import (
 	"time"
 	"unicode"
 
-	"sqlfmt/cockroach/pkg/internal/rsg/yacc"
-	"sqlfmt/cockroach/pkg/util/httputil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/rsg/yacc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 const (

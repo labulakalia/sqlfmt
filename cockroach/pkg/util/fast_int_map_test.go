@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/stretchr/testify/require"
 )
 

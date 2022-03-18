@@ -10,7 +10,7 @@
 
 package tree
 
-import "sqlfmt/cockroach/pkg/sql/lexbase"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 
 // CommentOnColumn represents an COMMENT ON COLUMN statement.
 type CommentOnColumn struct {

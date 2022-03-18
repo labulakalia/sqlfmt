@@ -11,8 +11,8 @@
 package result
 
 import (
-	"sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // FromAcquiredLocks creates a Result communicating that the locks were

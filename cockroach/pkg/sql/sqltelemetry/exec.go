@@ -13,7 +13,7 @@ package sqltelemetry
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 )
 
 // DistSQLExecCounter is to be incremented whenever a query is distributed

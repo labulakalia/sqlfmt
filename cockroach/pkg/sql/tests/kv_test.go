@@ -21,10 +21,10 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	kv2 "sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	kv2 "github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 )
 
@@ -293,14 +293,14 @@ func BenchmarkKV(b *testing.B) {
 		kvInterface.Scan,
 	} {
 		opName := runtime.FuncForPC(reflect.ValueOf(opFn).Pointer()).Name()
-		opName = strings.TrimPrefix(opName, "sqlfmt/cockroach/pkg/sql/tests_test.kvInterface.")
+		opName = strings.TrimPrefix(opName, "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/tests_test.kvInterface.")
 		b.Run(opName, func(b *testing.B) {
 			for _, kvFn := range []func(*testing.B) kvInterface{
 				newKVNative,
 				newKVSQL,
 			} {
 				kvTyp := runtime.FuncForPC(reflect.ValueOf(kvFn).Pointer()).Name()
-				kvTyp = strings.TrimPrefix(kvTyp, "sqlfmt/cockroach/pkg/sql/tests_test.newKV")
+				kvTyp = strings.TrimPrefix(kvTyp, "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/tests_test.newKV")
 				b.Run(kvTyp, func(b *testing.B) {
 					for _, rows := range []int{1, 10, 100, 1000, 10000} {
 						b.Run(fmt.Sprintf("rows=%d", rows), func(b *testing.B) {

@@ -20,7 +20,7 @@ import (
 	"sort"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"golang.org/x/sync/errgroup"
 )
 

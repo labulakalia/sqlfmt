@@ -17,8 +17,8 @@ import (
 	"sort"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/spf13/cobra"
 )
 

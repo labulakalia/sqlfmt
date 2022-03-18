@@ -13,10 +13,10 @@ package kvcoord
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangecache"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/retry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangecache"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/retry"
 	"github.com/cockroachdb/errors"
 )
 

@@ -13,7 +13,7 @@ package log
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/cockroachdb/logtags"
 	"golang.org/x/net/trace"
 )

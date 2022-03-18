@@ -14,7 +14,7 @@ import (
 	"context"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/util/mon"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 )
 
 // Arena provides arena allocation of a string from a []byte, reducing

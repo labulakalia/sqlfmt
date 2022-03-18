@@ -13,11 +13,11 @@ package tpcc
 import (
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/bufalloc"
-	"sqlfmt/cockroach/pkg/util/uuid"
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bufalloc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 	"golang.org/x/exp/rand"
 )
 

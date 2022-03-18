@@ -15,12 +15,12 @@ import (
 	"path/filepath"
 	"testing"
 
-	_ "sqlfmt/cockroach/pkg/keys" // to init roachpb.PrettyPrintRange
-	"sqlfmt/cockroach/pkg/kv/kvserver/concurrency/poison"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/testutils/echotest"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/keys" // to init roachpb.PrettyPrintRange
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/poison"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/echotest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 	"github.com/stretchr/testify/require"

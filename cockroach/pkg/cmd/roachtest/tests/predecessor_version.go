@@ -13,7 +13,7 @@ package tests
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 	"github.com/cockroachdb/errors"
 )
 

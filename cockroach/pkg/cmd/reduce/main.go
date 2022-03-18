@@ -25,8 +25,8 @@ import (
 	"runtime"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cmd/reduce/reduce"
-	"sqlfmt/cockroach/pkg/cmd/reduce/reduce/reducesql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/reduce/reduce"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/reduce/reduce/reducesql"
 	"github.com/cockroachdb/errors"
 )
 

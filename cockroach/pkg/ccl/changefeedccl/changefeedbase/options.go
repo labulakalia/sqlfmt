@@ -8,7 +8,7 @@
 
 package changefeedbase
 
-import "sqlfmt/cockroach/pkg/sql"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
 
 // EnvelopeType configures the information in the changefeed events for a row.
 type EnvelopeType string

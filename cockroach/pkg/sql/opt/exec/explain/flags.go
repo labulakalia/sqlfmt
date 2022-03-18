@@ -10,7 +10,7 @@
 
 package explain
 
-import "sqlfmt/cockroach/pkg/sql/sem/tree"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 
 // Flags are modifiers for EXPLAIN (PLAN).
 type Flags struct {

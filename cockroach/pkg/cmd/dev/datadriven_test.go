@@ -19,9 +19,9 @@ import (
 	"testing"
 
 	"github.com/alessio/shellescape"
-	"sqlfmt/cockroach/pkg/cmd/dev/io/exec"
-	"sqlfmt/cockroach/pkg/cmd/dev/io/os"
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/dev/io/exec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/dev/io/os"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/cockroachdb/datadriven"
 	"github.com/google/shlex"
 	"github.com/stretchr/testify/require"

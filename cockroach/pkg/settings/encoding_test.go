@@ -13,7 +13,7 @@ package settings
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/redact"
 	"github.com/stretchr/testify/require"
 )

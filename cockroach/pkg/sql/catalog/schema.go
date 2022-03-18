@@ -10,7 +10,7 @@
 
 package catalog
 
-import "sqlfmt/cockroach/pkg/sql/catalog/descpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 
 // SchemaDescriptor encapsulates the basic
 type SchemaDescriptor interface {

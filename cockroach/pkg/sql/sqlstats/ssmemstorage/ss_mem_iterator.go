@@ -13,8 +13,8 @@ package ssmemstorage
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/sqlstats"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats"
 )
 
 type baseIterator struct {

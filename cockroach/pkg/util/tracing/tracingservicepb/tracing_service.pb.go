@@ -6,8 +6,8 @@ package tracingservicepb
 import (
 	context "context"
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_util_tracing_tracingpb "sqlfmt/cockroach/pkg/util/tracing/tracingpb"
-	tracingpb "sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	github_com_cockroachdb_cockroach_pkg_util_tracing_tracingpb "github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	tracingpb "github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"

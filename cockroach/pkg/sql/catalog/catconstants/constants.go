@@ -13,7 +13,7 @@ package catconstants
 import (
 	"math"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 )
 
 // ReportableAppNamePrefix indicates that the application name can be

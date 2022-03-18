@@ -20,7 +20,7 @@ package sort
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/util/cancelchecker"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/cancelchecker"
 )
 
 // The next few sorting functions are largely unmodified

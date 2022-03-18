@@ -17,8 +17,8 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/acceptance/cluster"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/acceptance/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func TestDebugRemote(t *testing.T) {

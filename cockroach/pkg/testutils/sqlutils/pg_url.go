@@ -19,9 +19,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/security/securitytest"
-	"sqlfmt/cockroach/pkg/util/fileutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security/securitytest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/fileutil"
 )
 
 // PGUrl is like PGUrlE, but uses t.Fatal to handle errors.

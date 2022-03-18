@@ -9,8 +9,8 @@
 package backupccl
 
 import (
-	descpb "sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	"sqlfmt/cockroach/pkg/sql/protoreflect"
+	descpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/protoreflect"
 )
 
 // GetTenants retrieves the tenant information from the manifest. It should be

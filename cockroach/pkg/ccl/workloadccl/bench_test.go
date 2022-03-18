@@ -12,14 +12,14 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	_ "sqlfmt/cockroach/pkg/ccl"
-	"sqlfmt/cockroach/pkg/ccl/workloadccl"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/testutils/sqlutils"
-	"sqlfmt/cockroach/pkg/workload"
-	"sqlfmt/cockroach/pkg/workload/tpcc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/workloadccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/sqlutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/tpcc"
 	"github.com/stretchr/testify/require"
 )
 

@@ -16,7 +16,7 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 // TODO(dan): Write a simple version of the algorithm that uses the fact that

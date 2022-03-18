@@ -13,9 +13,9 @@ package cli
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/build"
-	"sqlfmt/cockroach/pkg/cli/exit"
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

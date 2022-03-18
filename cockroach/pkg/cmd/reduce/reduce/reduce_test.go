@@ -17,7 +17,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cmd/reduce/reduce"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/reduce/reduce"
 )
 
 func TestReduceGo(t *testing.T) {

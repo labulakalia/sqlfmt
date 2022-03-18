@@ -10,7 +10,7 @@
 
 package batcheval
 
-import "sqlfmt/cockroach/pkg/storage/enginepb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 
 // splitStatsHelper codifies and explains the stats computations related to a
 // split. The quantities known during a split (i.e. while the split trigger

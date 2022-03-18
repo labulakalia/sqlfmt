@@ -11,9 +11,9 @@
 package rules
 
 import (
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/screl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scplan/internal/scgraph"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/screl"
 )
 
 // This batch of rules ensures that descriptor elements, that is to say elements

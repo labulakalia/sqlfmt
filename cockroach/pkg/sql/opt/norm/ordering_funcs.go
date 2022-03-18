@@ -11,8 +11,8 @@
 package norm
 
 import (
-	"sqlfmt/cockroach/pkg/sql/opt/memo"
-	"sqlfmt/cockroach/pkg/sql/opt/props"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props"
 )
 
 // CanSimplifyLimitOffsetOrdering returns true if the ordering required by the

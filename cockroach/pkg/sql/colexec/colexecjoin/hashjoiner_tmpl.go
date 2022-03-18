@@ -13,7 +13,7 @@
 
 package colexecjoin
 
-import "sqlfmt/cockroach/pkg/col/coldata"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
 
 // execgen:template<useSel>
 func collectProbeOuter(

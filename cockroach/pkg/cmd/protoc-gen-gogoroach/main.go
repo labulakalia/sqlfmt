@@ -29,13 +29,13 @@ func fixImports(s string) string {
 	var builder strings.Builder
 	for _, line := range lines {
 		if strings.Contains(line, "import _ ") ||
-			strings.Contains(line, "import fmt \"sqlfmt/cockroach/pkg/fmt\"") ||
-			strings.Contains(line, "import math \"sqlfmt/cockroach/pkg/math\"") {
+			strings.Contains(line, "import fmt \"github.com/labulakalia/sqlfmt/cockroach/pkg/fmt\"") ||
+			strings.Contains(line, "import math \"github.com/labulakalia/sqlfmt/cockroach/pkg/math\"") {
 			continue
 		}
 
-		line = strings.ReplaceAll(line, "sqlfmt/cockroach/pkg/etcd", "go.etcd.io/etcd")
-		line = strings.ReplaceAll(line, "sqlfmt/cockroach/pkg/errorspb", "github.com/cockroachdb/errors/errorspb")
+		line = strings.ReplaceAll(line, "github.com/labulakalia/sqlfmt/cockroach/pkg/etcd", "go.etcd.io/etcd")
+		line = strings.ReplaceAll(line, "github.com/labulakalia/sqlfmt/cockroach/pkg/errorspb", "github.com/cockroachdb/errors/errorspb")
 		line = strings.ReplaceAll(line, "golang.org/x/net/context", "context")
 		if builtinRegex.MatchString(line) {
 			line = builtinRegex.ReplaceAllString(line, "$1")

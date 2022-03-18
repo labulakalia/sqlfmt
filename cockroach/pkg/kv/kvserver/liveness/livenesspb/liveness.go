@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

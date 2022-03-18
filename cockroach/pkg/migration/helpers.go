@@ -13,8 +13,8 @@ package migration
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/clusterversion"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // FenceVersionFor constructs the appropriate "fence version" for the given

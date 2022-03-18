@@ -13,8 +13,8 @@ package tree
 import (
 	"regexp"
 
-	"sqlfmt/cockroach/pkg/util/cache"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/cache"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // RegexpCacheKey allows cache keys to take the form of different types,

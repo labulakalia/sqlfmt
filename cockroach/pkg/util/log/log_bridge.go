@@ -19,8 +19,8 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/log/channel"
-	"sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/redact"
 )
 

@@ -23,7 +23,7 @@ import (
 	"strings"
 
 	"github.com/alessio/shellescape"
-	bazelutil "sqlfmt/cockroach/pkg/build/util"
+	bazelutil "github.com/labulakalia/sqlfmt/cockroach/pkg/build/util"
 	"github.com/spf13/cobra"
 )
 

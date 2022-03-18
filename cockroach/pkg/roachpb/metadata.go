@@ -17,9 +17,9 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/humanizeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/humanizeutil"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

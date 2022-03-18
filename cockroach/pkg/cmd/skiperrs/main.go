@@ -20,7 +20,7 @@ import (
 	"log"
 	"os"
 
-	"sqlfmt/cockroach/pkg/cmd/cr2pg/sqlstream"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cr2pg/sqlstream"
 	"github.com/lib/pq"
 )
 

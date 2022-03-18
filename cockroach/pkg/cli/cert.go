@@ -16,9 +16,9 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/cli/clisqlexec"
-	"sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

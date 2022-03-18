@@ -15,9 +15,9 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeofday"
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/util/timeutil/pgdate"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeofday"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

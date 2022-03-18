@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cmd/dev/io/exec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/dev/io/exec"
 	"github.com/spf13/cobra"
 )
 

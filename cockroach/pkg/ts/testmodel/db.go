@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
 )
 
 // ModelDB is a purely in-memory model of CockroachDB's time series database,

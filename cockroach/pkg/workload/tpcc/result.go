@@ -13,7 +13,7 @@ package tpcc
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/workload/histogram"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/histogram"
 	"github.com/cockroachdb/errors"
 	"github.com/HdrHistogram/hdrhistogram-go"
 )

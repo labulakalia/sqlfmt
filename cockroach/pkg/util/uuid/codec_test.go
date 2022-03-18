@@ -25,7 +25,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 )
 
 // codecTestData holds []byte data for a UUID we commonly use for testing.

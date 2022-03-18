@@ -13,10 +13,10 @@ package schemachanger_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/sctest"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/sctest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func TestSchemaChangerSideEffects(t *testing.T) {

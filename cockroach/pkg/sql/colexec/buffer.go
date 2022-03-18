@@ -11,8 +11,8 @@
 package colexec
 
 import (
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/colexecop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecop"
 )
 
 // bufferOp is an operator that buffers a single batch at a time from an input,

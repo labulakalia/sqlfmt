@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	gomock "github.com/golang/mock/gomock"
 	grpc "google.golang.org/grpc"
 	metadata "google.golang.org/grpc/metadata"

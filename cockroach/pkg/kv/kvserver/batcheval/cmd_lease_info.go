@@ -14,11 +14,11 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/kv/kvserver/batcheval/result"
-	"sqlfmt/cockroach/pkg/kv/kvserver/spanset"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/batcheval/result"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/spanset"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
 )
 
 func init() {

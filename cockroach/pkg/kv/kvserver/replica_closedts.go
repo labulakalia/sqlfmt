@@ -13,14 +13,14 @@ package kvserver
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/closedts"
-	"sqlfmt/cockroach/pkg/kv/kvserver/closedts/ctpb"
-	"sqlfmt/cockroach/pkg/kv/kvserver/closedts/sidetransport"
-	"sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/closedts"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/closedts/ctpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/closedts/sidetransport"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // BumpSideTransportClosed advances the range's closed timestamp if it can. If

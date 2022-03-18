@@ -13,10 +13,10 @@ package multitenant
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
-	"sqlfmt/cockroach/pkg/sql/sqlliveness"
-	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant/tenantcostmodel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlliveness"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 )
 
 // TenantSideCostController is an interface through which tenant code reports

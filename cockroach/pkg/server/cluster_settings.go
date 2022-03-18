@@ -10,7 +10,7 @@
 
 package server
 
-import "sqlfmt/cockroach/pkg/settings"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 
 // SQLStatsResponseMax controls the maximum number of statements and transactions returned by the
 // CombinedStatements endpoint.

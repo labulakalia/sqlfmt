@@ -9,9 +9,9 @@
 package cliccl
 
 import (
-	"sqlfmt/cockroach/pkg/ccl/baseccl"
-	"sqlfmt/cockroach/pkg/ccl/cliccl/cliflagsccl"
-	"sqlfmt/cockroach/pkg/cli"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/baseccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/cliccl/cliflagsccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli"
 	"github.com/spf13/cobra"
 )
 

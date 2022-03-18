@@ -10,7 +10,7 @@
 
 package keys
 
-import "sqlfmt/cockroach/pkg/roachpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 
 var (
 	// EverythingSpan is a span that covers everything.

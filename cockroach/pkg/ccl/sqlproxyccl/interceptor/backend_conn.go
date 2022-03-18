@@ -12,7 +12,7 @@ import (
 	"io"
 	"net"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
 	"github.com/jackc/pgproto3/v2"
 )
 

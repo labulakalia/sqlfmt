@@ -14,7 +14,7 @@ import (
 	"crypto/sha256"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 )
 
 // StatementDiagnosticsCollectedCounter is to be incremented whenever a query is

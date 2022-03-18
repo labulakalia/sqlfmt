@@ -13,8 +13,8 @@ package rpc
 import (
 	"bytes"
 
-	"sqlfmt/cockroach/pkg/keys"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // ConnectionClass is the identifier of a group of RPC client sessions that are

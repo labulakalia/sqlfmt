@@ -17,8 +17,8 @@ import (
 	"os"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/cli/cliflags"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/cliflags"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 )
 

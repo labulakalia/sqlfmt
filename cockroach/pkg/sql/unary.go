@@ -13,7 +13,7 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // unaryNode is a planNode with no columns and a single row with empty results

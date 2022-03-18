@@ -5,8 +5,8 @@ package catpb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_security "sqlfmt/cockroach/pkg/security"
-	github_com_cockroachdb_cockroach_pkg_sql_sem_tree "sqlfmt/cockroach/pkg/sql/sem/tree"
+	github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	github_com_cockroachdb_cockroach_pkg_sql_sem_tree "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"

@@ -5,8 +5,8 @@ package execinfrapb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_base "sqlfmt/cockroach/pkg/base"
-	optional "sqlfmt/cockroach/pkg/util/optional"
+	github_com_cockroachdb_cockroach_pkg_base "github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	optional "github.com/labulakalia/sqlfmt/cockroach/pkg/util/optional"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

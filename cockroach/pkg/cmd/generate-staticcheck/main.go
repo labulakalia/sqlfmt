@@ -36,7 +36,7 @@ const (
 package {{ .Package }}
 
 import (
-	util "sqlfmt/cockroach/pkg/testutils/lint/passes/staticcheck"
+	util "github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/lint/passes/staticcheck"
 	"golang.org/x/tools/go/analysis"
 	"honnef.co/go/tools/{{ .CheckType }}"
 )

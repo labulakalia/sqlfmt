@@ -17,7 +17,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/cockroachdb/errors"
 )
 

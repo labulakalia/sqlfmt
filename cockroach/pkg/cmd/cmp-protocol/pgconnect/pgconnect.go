@@ -16,8 +16,8 @@ import (
 	"net"
 	"reflect"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
 	"github.com/cockroachdb/errors"
 	"github.com/jackc/pgproto3/v2"
 )

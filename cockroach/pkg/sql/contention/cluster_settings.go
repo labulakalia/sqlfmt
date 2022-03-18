@@ -13,7 +13,7 @@ package contention
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 )
 
 // TxnIDResolutionInterval is the cluster setting that controls how often the

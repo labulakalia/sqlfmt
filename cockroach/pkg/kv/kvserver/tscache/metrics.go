@@ -10,7 +10,7 @@
 
 package tscache
 
-import "sqlfmt/cockroach/pkg/util/metric"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 
 // Metrics holds all metrics relating to a Cache.
 type Metrics struct {

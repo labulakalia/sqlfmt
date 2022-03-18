@@ -15,14 +15,14 @@ import (
 	"flag"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	_ "sqlfmt/cockroach/pkg/cloud/impl" // register cloud storage providers
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/pgtest"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/cloud/impl" // register cloud storage providers
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/pgtest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 var (

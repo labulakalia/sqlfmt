@@ -15,7 +15,7 @@ import (
 	"database/sql/driver"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/scanner"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/scanner"
 	"github.com/cockroachdb/errors"
 )
 

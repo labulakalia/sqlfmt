@@ -12,12 +12,12 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/ccl/baseccl"
-	"sqlfmt/cockroach/pkg/ccl/storageccl/engineccl/enginepbccl"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/protoutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/baseccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/storageccl/engineccl/enginepbccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/pebble/vfs"
 )
 

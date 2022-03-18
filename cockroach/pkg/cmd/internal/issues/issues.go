@@ -19,7 +19,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 	"github.com/cockroachdb/errors"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
@@ -27,7 +27,7 @@ import (
 
 const (
 	// CockroachPkgPrefix is the crdb package prefix.
-	CockroachPkgPrefix = "sqlfmt/cockroach/pkg/"
+	CockroachPkgPrefix = "github.com/labulakalia/sqlfmt/cockroach/pkg/"
 	// Based on the following observed API response the maximum here is 1<<16-1.
 	// We shouldn't usually get near that limit but if we do, better to post a
 	// clipped issue.

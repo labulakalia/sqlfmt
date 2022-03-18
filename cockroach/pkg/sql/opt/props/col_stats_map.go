@@ -11,7 +11,7 @@
 package props
 
 import (
-	"sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
 	"github.com/cockroachdb/errors"
 )
 

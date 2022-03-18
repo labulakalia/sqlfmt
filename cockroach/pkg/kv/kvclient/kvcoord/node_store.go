@@ -10,7 +10,7 @@
 
 package kvcoord
 
-import "sqlfmt/cockroach/pkg/roachpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 
 // NodeDescStore stores a collection of NodeDescriptors.
 //

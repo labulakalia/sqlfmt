@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"math"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 	"golang.org/x/exp/rand"
 )

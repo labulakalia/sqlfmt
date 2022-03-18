@@ -19,7 +19,7 @@
 
 package tree
 
-import "sqlfmt/cockroach/pkg/sql/privilege"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
 
 // Grant represents a GRANT statement.
 type Grant struct {

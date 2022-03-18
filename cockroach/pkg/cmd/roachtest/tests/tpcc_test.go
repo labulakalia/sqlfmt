@@ -13,8 +13,8 @@ package tests
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/spec"
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/spec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 	"github.com/stretchr/testify/require"
 )
 

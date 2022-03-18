@@ -21,8 +21,8 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/humanizeutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/humanizeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/redact"
 )
 

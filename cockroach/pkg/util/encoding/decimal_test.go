@@ -18,7 +18,7 @@ import (
 	"testing"
 
 	"github.com/cockroachdb/apd/v3"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 func TestDecimalMandE(t *testing.T) {

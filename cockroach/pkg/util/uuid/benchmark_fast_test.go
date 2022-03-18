@@ -13,7 +13,7 @@ package uuid_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 func BenchmarkFastMakeV4(b *testing.B) {

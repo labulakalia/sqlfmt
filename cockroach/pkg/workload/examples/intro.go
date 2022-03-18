@@ -13,7 +13,7 @@ package examples
 import (
 	"encoding/hex"
 
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 )
 
 type intro struct{}

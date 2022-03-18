@@ -10,7 +10,7 @@
 
 package heapprofiler
 
-import "sqlfmt/cockroach/pkg/settings"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 
 // ActiveQueryDumpsEnabled wraps "diagnostics.active_query_dumps.enabled"
 //

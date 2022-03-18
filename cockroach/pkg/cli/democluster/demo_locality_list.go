@@ -13,7 +13,7 @@ package democluster
 import (
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // DemoLocalityList represents a list of localities for the cockroach

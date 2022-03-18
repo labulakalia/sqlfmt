@@ -13,7 +13,7 @@ package persistedsqlstats
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/cockroachdb/errors"
 	"github.com/robfig/cron/v3"
 )

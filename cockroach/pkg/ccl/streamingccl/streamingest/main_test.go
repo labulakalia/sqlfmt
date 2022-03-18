@@ -12,14 +12,14 @@ import (
 	"os"
 	"testing"
 
-	_ "sqlfmt/cockroach/pkg/ccl/storageccl"
-	"sqlfmt/cockroach/pkg/ccl/utilccl"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/security/securitytest"
-	"sqlfmt/cockroach/pkg/server"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/testutils/testcluster"
-	"sqlfmt/cockroach/pkg/util/randutil"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/storageccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/utilccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security/securitytest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/testcluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 func TestMain(m *testing.M) {

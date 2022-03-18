@@ -14,8 +14,8 @@ import (
 	"context"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/util/buildutil"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
 )
 

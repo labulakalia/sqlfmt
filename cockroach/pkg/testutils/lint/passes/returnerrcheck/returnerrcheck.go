@@ -19,7 +19,7 @@ import (
 	"go/token"
 	"go/types"
 
-	"sqlfmt/cockroach/pkg/testutils/lint/passes/passesutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/lint/passes/passesutil"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/astutil"

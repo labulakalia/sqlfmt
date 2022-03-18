@@ -13,8 +13,8 @@ package systemconfigwatcher
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/server/systemconfigwatcher/systemconfigwatchertest"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/systemconfigwatcher/systemconfigwatchertest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestCache(t *testing.T) {

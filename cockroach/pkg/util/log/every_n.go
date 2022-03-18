@@ -13,8 +13,8 @@ package log
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // EveryN provides a way to rate limit spammy log messages. It tracks how

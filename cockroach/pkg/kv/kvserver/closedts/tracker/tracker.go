@@ -13,7 +13,7 @@ package tracker
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 )
 
 // Tracker tracks the lower bound of a set of timestamps (called the tracked

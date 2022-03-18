@@ -10,7 +10,7 @@
 
 package clisqlexec_test
 
-import "sqlfmt/cockroach/pkg/cli"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cli"
 
 func Example_sql_format() {
 	c := cli.NewCLITest(cli.TestCLIParams{})

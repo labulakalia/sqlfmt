@@ -11,8 +11,8 @@
 package test
 
 import (
-	"sqlfmt/cockroach/pkg/roachprod/logger"
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 )
 
 // Test is the interface through which roachtests interact with the

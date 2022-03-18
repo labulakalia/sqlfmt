@@ -15,7 +15,7 @@ import (
 	"net/http/pprof"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 )
 
 // CPUProfileOptions contains options for generating a CPU profile.

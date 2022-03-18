@@ -13,7 +13,7 @@ package pretty_test
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/util/pretty"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/pretty"
 )
 
 // Example_align demonstrates alignment.

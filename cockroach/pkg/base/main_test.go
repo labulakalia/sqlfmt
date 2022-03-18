@@ -11,9 +11,9 @@
 package base_test
 
 import (
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/security/securitytest"
-	_ "sqlfmt/cockroach/pkg/util/log" // for flags
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security/securitytest"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log" // for flags
 )
 
 func init() {

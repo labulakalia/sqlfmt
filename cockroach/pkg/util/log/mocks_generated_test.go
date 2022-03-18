@@ -7,7 +7,7 @@ package log
 import (
 	reflect "reflect"
 
-	exit "sqlfmt/cockroach/pkg/cli/exit"
+	exit "github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	gomock "github.com/golang/mock/gomock"
 )
 

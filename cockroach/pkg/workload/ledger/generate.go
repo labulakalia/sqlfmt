@@ -17,9 +17,9 @@ import (
 	"math/rand"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/sql/types"
-	"sqlfmt/cockroach/pkg/util/uint128"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uint128"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 const (

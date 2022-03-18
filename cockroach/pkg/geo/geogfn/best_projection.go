@@ -14,8 +14,8 @@ import (
 	"fmt"
 	"math"
 
-	"sqlfmt/cockroach/pkg/geo/geopb"
-	"sqlfmt/cockroach/pkg/geo/geoprojbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
 	"github.com/golang/geo/s1"
 	"github.com/golang/geo/s2"
 )

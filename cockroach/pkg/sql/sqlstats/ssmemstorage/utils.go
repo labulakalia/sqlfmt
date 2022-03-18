@@ -13,7 +13,7 @@ package ssmemstorage
 import (
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 type stmtList []stmtKey

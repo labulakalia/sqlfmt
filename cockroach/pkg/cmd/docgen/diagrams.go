@@ -25,8 +25,8 @@ import (
 	"sync"
 	"time"
 
-	"sqlfmt/cockroach/pkg/cmd/docgen/extract"
-	"sqlfmt/cockroach/pkg/util/envutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/docgen/extract"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/cobra"
 )

@@ -13,7 +13,7 @@ package a
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func foo(t *testing.T) {

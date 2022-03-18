@@ -9,4 +9,4 @@
 // licenses/APL.txt.
 package roachpb
 
-import _ "sqlfmt/cockroach/pkg/util/log" // for flags
+import _ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log" // for flags

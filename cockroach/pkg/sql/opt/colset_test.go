@@ -13,7 +13,7 @@ package opt
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
 func BenchmarkColSet(b *testing.B) {

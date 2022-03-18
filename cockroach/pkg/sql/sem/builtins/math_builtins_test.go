@@ -13,7 +13,7 @@ package builtins
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestFloatWidthBucket(t *testing.T) {

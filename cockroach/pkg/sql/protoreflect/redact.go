@@ -15,8 +15,8 @@ import (
 	"reflect"
 	"strings"
 
-	jsonb "sqlfmt/cockroach/pkg/util/json"
-	"sqlfmt/cockroach/pkg/util/protoutil"
+	jsonb "github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/cockroachdb/errors"
 	"github.com/gogo/protobuf/jsonpb"
 	"github.com/gogo/protobuf/proto"

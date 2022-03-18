@@ -9,12 +9,12 @@ package execinfrapb
 
 import (
 	fmt "fmt"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
-	descpb "sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	github_com_cockroachdb_cockroach_pkg_sql_catalog_descpb "sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	inverted "sqlfmt/cockroach/pkg/sql/inverted"
-	types "sqlfmt/cockroach/pkg/sql/types"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	descpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	github_com_cockroachdb_cockroach_pkg_sql_catalog_descpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	inverted "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted"
+	types "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

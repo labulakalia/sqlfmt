@@ -11,8 +11,8 @@ package streamingccl
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/ccl/streamingccl/streampb"
-	"sqlfmt/cockroach/pkg/streaming"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/streamingccl/streampb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/streaming"
 )
 
 // StreamStatusErr is an error that encapsulate a replication stream's inactive status.

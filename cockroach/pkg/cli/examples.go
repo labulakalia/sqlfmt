@@ -15,10 +15,10 @@ import (
 	"os"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/workload"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload"
 	// Register the relevant examples
-	_ "sqlfmt/cockroach/pkg/workload/examples"
-	"sqlfmt/cockroach/pkg/workload/workloadsql"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/examples"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/workloadsql"
 	"github.com/spf13/cobra"
 )
 

@@ -13,7 +13,7 @@ package geo
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	"github.com/stretchr/testify/require"
 )
 

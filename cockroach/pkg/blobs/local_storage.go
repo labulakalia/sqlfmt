@@ -18,9 +18,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/blobs/blobspb"
-	"sqlfmt/cockroach/pkg/util/fileutil"
-	"sqlfmt/cockroach/pkg/util/ioctx"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/blobs/blobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/fileutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ioctx"
 	"github.com/cockroachdb/errors"
 )
 

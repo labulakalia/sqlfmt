@@ -13,7 +13,7 @@ package cat
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // Table is an interface to a database table, exposing only the information

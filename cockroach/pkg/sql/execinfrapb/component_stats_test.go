@@ -16,7 +16,7 @@ import (
 	"testing"
 	time "time"
 
-	"sqlfmt/cockroach/pkg/util/optional"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/optional"
 )
 
 func TestComponentStatsMakeDeterminstic(t *testing.T) {

@@ -13,7 +13,7 @@ package scmutationexec
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scop"
 )
 
 // NewMutationVisitor creates a new scop.MutationVisitor.

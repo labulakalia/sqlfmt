@@ -14,8 +14,8 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/kv"
-	"sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 )
 
 // Below are exported to enable testing from kvprober_test.

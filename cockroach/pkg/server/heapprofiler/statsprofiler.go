@@ -16,10 +16,10 @@ import (
 	"fmt"
 	"os"
 
-	"sqlfmt/cockroach/pkg/server/dumpstore"
-	"sqlfmt/cockroach/pkg/server/status"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/dumpstore"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/status"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 )
 

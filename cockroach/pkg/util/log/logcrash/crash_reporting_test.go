@@ -19,8 +19,8 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 	"github.com/pmezard/go-difflib/difflib"

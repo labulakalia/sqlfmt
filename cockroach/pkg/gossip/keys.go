@@ -15,8 +15,8 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/cockroachdb/errors"
 )
 

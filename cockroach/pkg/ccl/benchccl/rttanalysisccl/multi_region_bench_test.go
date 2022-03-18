@@ -12,9 +12,9 @@ import (
 	gosql "database/sql"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/bench/rttanalysis"
-	"sqlfmt/cockroach/pkg/ccl/multiregionccl/multiregionccltestutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/bench/rttanalysis"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/multiregionccl/multiregionccltestutils"
 )
 
 const numNodes = 4

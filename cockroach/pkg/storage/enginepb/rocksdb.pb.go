@@ -6,7 +6,7 @@ package enginepb
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"

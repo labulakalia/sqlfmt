@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/errors/errorspb"
 	"github.com/gogo/protobuf/proto"

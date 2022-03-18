@@ -14,8 +14,8 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log/logconfig"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
 	"github.com/cockroachdb/datadriven"
 	"github.com/pmezard/go-difflib/difflib"
 )

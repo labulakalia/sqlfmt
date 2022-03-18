@@ -13,8 +13,8 @@ package sqlutils
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // VerifyStatementPrettyRoundtrip verifies that the SQL statements in s

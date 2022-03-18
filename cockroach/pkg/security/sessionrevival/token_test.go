@@ -15,9 +15,9 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	pbtypes "github.com/gogo/protobuf/types"
 	"github.com/stretchr/testify/require"
 )

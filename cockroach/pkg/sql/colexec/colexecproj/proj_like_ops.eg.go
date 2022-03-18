@@ -14,7 +14,7 @@ import (
 	"bytes"
 	"regexp"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
 )
 
 type projPrefixBytesBytesConstOp struct {

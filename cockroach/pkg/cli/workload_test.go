@@ -14,9 +14,9 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	// register some workloads for TestWorkload
-	_ "sqlfmt/cockroach/pkg/workload/examples"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/workload/examples"
 )
 
 func TestWorkload(t *testing.T) {

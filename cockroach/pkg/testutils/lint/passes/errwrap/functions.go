@@ -29,15 +29,15 @@ var ErrorFnFormatStringIndex = map[string]int{
 	"github.com/cockroachdb/errors.HandledWithMessage":         -1,
 	"github.com/cockroachdb/errors.HandledInDomainWithMessage": -1,
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror.New": -1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror.New": -1,
 
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented.New":                -1,
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithIssue":       -1,
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithIssueDetail": -1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented.New":                -1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithIssue":       -1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithIssueDetail": -1,
 
-	"sqlfmt/cockroach/pkg/sql/pgwire.newAdminShutdownErr": -1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire.newAdminShutdownErr": -1,
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror.Wrap": -1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror.Wrap": -1,
 
 	"(*sqlfmt/cockroach/pkg/parser/lexer).Error": -1,
 
@@ -57,38 +57,38 @@ var ErrorFnFormatStringIndex = map[string]int{
 	"github.com/cockroachdb/errors.NewAssertionErrorWithWrappedErrf": 1,
 	"github.com/cockroachdb/errors.WithSafeDetails":                  1,
 
-	"sqlfmt/cockroach/pkg/roachpb.NewErrorf": 0,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb.NewErrorf": 0,
 
-	"sqlfmt/cockroach/pkg/sql/importer.makeRowErr": 3,
-	"sqlfmt/cockroach/pkg/sql/importer.wrapRowErr": 4,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/importer.makeRowErr": 3,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/importer.wrapRowErr": 4,
 
-	"sqlfmt/cockroach/pkg/sql/sqlerrors.NewSyntaxErrorf":          0,
-	"sqlfmt/cockroach/pkg/sql/sqlerrors.NewDependentObjectErrorf": 0,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlerrors.NewSyntaxErrorf":          0,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlerrors.NewDependentObjectErrorf": 0,
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree.decorateTypeCheckError": 1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree.decorateTypeCheckError": 1,
 
-	"sqlfmt/cockroach/pkg/sql/opt/optbuilder.unimplementedWithIssueDetailf": 2,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optbuilder.unimplementedWithIssueDetailf": 2,
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror.Newf":                1,
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror.NewWithDepthf":       2,
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror.DangerousStatementf": 0,
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror.Wrapf":               2,
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror.WrapWithDepthf":      3,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror.Newf":                1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror.NewWithDepthf":       2,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror.DangerousStatementf": 0,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror.Wrapf":               2,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror.WrapWithDepthf":      3,
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgnotice.Newf":                                   0,
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgnotice.NewWithSeverityf":                       1,
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase.NewProtocolViolationErrorf":           0,
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase.NewInvalidBinaryRepresentationErrorf": 0,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgnotice.Newf":                                   0,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgnotice.NewWithSeverityf":                       1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase.NewProtocolViolationErrorf":           0,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgwirebase.NewInvalidBinaryRepresentationErrorf": 0,
 
-	"sqlfmt/cockroach/pkg/util/errorutil.UnexpectedWithIssueErrorf": 1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil.UnexpectedWithIssueErrorf": 1,
 
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented.Newf":                  1,
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithDepthf":         2,
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithIssuef":         1,
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithIssueDetailf":   2,
-	"sqlfmt/cockroach/pkg/util/errorutil/unimplemented.unimplementedInternal": 3,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented.Newf":                  1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithDepthf":         2,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithIssuef":         1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented.NewWithIssueDetailf":   2,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented.unimplementedInternal": 3,
 
-	"sqlfmt/cockroach/pkg/util/timeutil/pgdate.inputErrorf": 0,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate.inputErrorf": 0,
 
-	"sqlfmt/cockroach/pkg/ccl/sqlproxyccl.newErrorf": 1,
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/sqlproxyccl.newErrorf": 1,
 }

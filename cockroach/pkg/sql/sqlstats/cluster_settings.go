@@ -13,7 +13,7 @@ package sqlstats
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 )
 
 // StmtStatsEnable determines whether to collect per-statement statistics.

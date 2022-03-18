@@ -15,7 +15,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 	"github.com/cockroachdb/errors"
 )
 

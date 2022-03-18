@@ -10,7 +10,7 @@
 
 package screl
 
-import "sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
 
 // Node represents a target element with a given current status.
 type Node struct {

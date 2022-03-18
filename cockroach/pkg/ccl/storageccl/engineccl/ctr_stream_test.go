@@ -15,9 +15,9 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/ccl/storageccl/engineccl/enginepbccl"
-	"sqlfmt/cockroach/pkg/storage/enginepb"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/storageccl/engineccl/enginepbccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/kr/pretty"
 	"github.com/stretchr/testify/require"
 )

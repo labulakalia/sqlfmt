@@ -23,10 +23,10 @@ import (
 	"math"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/geo/geographiclib"
-	"sqlfmt/cockroach/pkg/geo/geoprojbase"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geographiclib"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 )
 
 // maxArrayLen is the maximum safe length for this architecture.

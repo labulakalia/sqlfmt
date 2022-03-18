@@ -16,11 +16,11 @@ import (
 	"regexp"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cmd/reduce/reduce"
-	"sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/reduce/reduce"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
 	// Import builtins.
-	_ "sqlfmt/cockroach/pkg/sql/sem/builtins"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/builtins"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // SQLPasses is a collection of reduce.Pass interfaces that reduce SQL

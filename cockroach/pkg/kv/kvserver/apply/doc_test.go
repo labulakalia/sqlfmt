@@ -14,7 +14,7 @@ import (
 	"context"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/apply"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/apply"
 )
 
 func ExampleTask() {

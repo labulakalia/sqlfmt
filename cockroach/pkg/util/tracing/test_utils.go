@@ -16,7 +16,7 @@ import (
 	"sort"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
 	"github.com/cockroachdb/errors"
 	"github.com/pmezard/go-difflib/difflib"
 )

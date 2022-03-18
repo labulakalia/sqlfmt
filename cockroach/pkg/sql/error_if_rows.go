@@ -13,8 +13,8 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/opt/exec"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/exec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // errorIfRowsNode wraps another planNode and returns an error if the wrapped

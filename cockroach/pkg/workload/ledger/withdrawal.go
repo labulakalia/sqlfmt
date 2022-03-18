@@ -15,7 +15,7 @@ import (
 	gosql "database/sql"
 	"math/rand"
 
-	"sqlfmt/cockroach-go/v2/crdb"
+	"github.com/labulakalia/sqlfmt/cockroach-go/v2/crdb"
 )
 
 type withdrawal struct{}

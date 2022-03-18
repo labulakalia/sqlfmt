@@ -14,7 +14,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 type testingB interface {

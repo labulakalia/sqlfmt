@@ -15,7 +15,7 @@ import (
 	"io"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // likeTemplate depends either on the selConstOp template from selection_ops_gen
@@ -44,7 +44,7 @@ import (
 	"context"
 	"regexp"
 
-	"sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
 )
 
 {{range .}}

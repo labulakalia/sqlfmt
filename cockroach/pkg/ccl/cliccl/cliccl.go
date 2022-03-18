@@ -8,4 +8,4 @@
 
 package cliccl
 
-import _ "sqlfmt/cockroach/pkg/ccl/workloadccl/cliccl" // init hooks
+import _ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/workloadccl/cliccl" // init hooks

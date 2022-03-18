@@ -10,7 +10,7 @@
 
 package pgwirecancel
 
-import "sqlfmt/cockroach/pkg/util/quotapool"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/quotapool"
 
 // CancelSemaphore is a semaphore that limits the number of concurrent
 // calls to the pgwire query cancellation endpoint. This is needed to avoid the

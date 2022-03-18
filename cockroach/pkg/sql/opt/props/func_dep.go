@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

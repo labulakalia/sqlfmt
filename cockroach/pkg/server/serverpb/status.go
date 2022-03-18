@@ -13,7 +13,7 @@ package serverpb
 import (
 	context "context"
 
-	"sqlfmt/cockroach/pkg/util/errorutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil"
 )
 
 // SQLStatusServer is a smaller version of the serverpb.StatusInterface which

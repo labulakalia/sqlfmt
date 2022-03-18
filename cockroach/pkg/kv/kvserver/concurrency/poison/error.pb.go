@@ -5,8 +5,8 @@ package poison
 
 import (
 	fmt "fmt"
-	roachpb "sqlfmt/cockroach/pkg/roachpb"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	roachpb "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

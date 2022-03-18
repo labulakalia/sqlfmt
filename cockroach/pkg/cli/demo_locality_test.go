@@ -14,9 +14,9 @@
 package cli
 
 import (
-	"sqlfmt/cockroach/pkg/cli/democluster"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/democluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func Example_demo_locality() {

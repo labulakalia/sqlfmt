@@ -16,7 +16,7 @@ import (
 	"runtime"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/quotapool"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/quotapool"
 	"golang.org/x/sync/errgroup"
 )
 

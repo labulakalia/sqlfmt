@@ -14,8 +14,8 @@ import (
 	"bytes"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/config/zonepb"
-	"sqlfmt/cockroach/pkg/util/treeprinter"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config/zonepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/treeprinter"
 )
 
 // Zone is an interface to zone configuration information used by the optimizer.

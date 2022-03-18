@@ -14,7 +14,7 @@ import (
 	"math"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // AutoStatsName is copied from stats.AutoStatsName to avoid pulling

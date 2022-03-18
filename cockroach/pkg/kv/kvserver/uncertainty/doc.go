@@ -20,7 +20,7 @@
 // uncertainty related restarts.
 package uncertainty
 
-import "sqlfmt/cockroach/pkg/roachpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 
 // D1 ————————————————————————————————————————————————
 //

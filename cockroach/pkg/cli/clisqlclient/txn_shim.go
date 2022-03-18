@@ -13,7 +13,7 @@ package clisqlclient
 import (
 	"context"
 
-	"sqlfmt/cockroach-go/v2/crdb"
+	"github.com/labulakalia/sqlfmt/cockroach-go/v2/crdb"
 )
 
 // sqlTxnShim implements the crdb.Tx interface.

@@ -13,7 +13,7 @@ package screl
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
 	"github.com/stretchr/testify/require"
 )
 

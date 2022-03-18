@@ -16,8 +16,8 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/col/typeconv"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/typeconv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 const spanEncoderTmpl = "pkg/sql/colexec/colexecspan/span_encoder_tmpl.go"

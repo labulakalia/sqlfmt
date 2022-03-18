@@ -14,8 +14,8 @@ import (
 	"regexp"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/ts/tspb"
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ts/tspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 	"github.com/cockroachdb/errors"
 	prometheusgo "github.com/prometheus/client_model/go"
 )

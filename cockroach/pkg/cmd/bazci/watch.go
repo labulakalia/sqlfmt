@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	bazelutil "sqlfmt/cockroach/pkg/build/util"
+	bazelutil "github.com/labulakalia/sqlfmt/cockroach/pkg/build/util"
 	"github.com/cockroachdb/errors"
 )
 

@@ -13,7 +13,7 @@ package docs
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/build"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 )
 
 // URLBase is the root URL for the version of the docs associated with this

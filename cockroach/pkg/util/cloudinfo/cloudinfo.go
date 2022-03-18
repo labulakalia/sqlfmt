@@ -18,7 +18,7 @@ import (
 	"regexp"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
 )
 
 const (

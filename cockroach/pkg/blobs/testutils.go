@@ -13,7 +13,7 @@ package blobs
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // TestBlobServiceClient can be used as a mock BlobClient

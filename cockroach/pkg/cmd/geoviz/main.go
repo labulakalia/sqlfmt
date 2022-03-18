@@ -22,7 +22,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/geo/geos"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geos"
 )
 
 var (
@@ -40,7 +40,7 @@ type indexTemplate struct {
 
 // handleIndex serves the HTML page that contains the map.
 func handleIndex(w http.ResponseWriter, r *http.Request) {
-	pkg, err := build.Import("sqlfmt/cockroach", "", build.FindOnly)
+	pkg, err := build.Import("github.com/labulakalia/sqlfmt/cockroach", "", build.FindOnly)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

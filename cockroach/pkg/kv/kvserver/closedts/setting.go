@@ -13,7 +13,7 @@ package closedts
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 )
 
 // TargetDuration is the follower reads closed timestamp update target duration.

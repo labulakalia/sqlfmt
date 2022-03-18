@@ -14,7 +14,7 @@ import (
 	"bytes"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestIntToEnglish(t *testing.T) {

@@ -17,12 +17,12 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachprod/cloud"
-	"sqlfmt/cockroach/pkg/roachprod/config"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
-	"sqlfmt/cockroach/pkg/roachprod/vm"
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/cloud"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 	"github.com/spf13/pflag"
 )

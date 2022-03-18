@@ -10,7 +10,7 @@
 
 package rpc
 
-import "sqlfmt/cockroach/pkg/util/metric"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 
 // We want to have a way to track the number of connection
 // but we also want to have a way to know that connection health.

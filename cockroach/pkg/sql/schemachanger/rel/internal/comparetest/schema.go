@@ -13,7 +13,7 @@ package comparetest
 import (
 	"reflect"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel"
 )
 
 type entity struct {

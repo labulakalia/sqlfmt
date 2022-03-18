@@ -17,7 +17,7 @@ import (
 	"strconv"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/rel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/rel"
 	"github.com/stretchr/testify/require"
 )
 

@@ -11,8 +11,8 @@
 package scbuild
 
 import (
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scbuild/internal/scbuildstmt"
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scbuild/internal/scbuildstmt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scpb"
 )
 
 var _ scbuildstmt.EventLogState = (*eventLogState)(nil)

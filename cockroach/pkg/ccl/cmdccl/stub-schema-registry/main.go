@@ -13,7 +13,7 @@ import (
 	"os"
 	"os/signal"
 
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/cdctest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/cdctest"
 )
 
 func main() {

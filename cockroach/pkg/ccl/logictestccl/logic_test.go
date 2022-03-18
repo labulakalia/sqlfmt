@@ -12,11 +12,11 @@ import (
 	"path/filepath"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
-	_ "sqlfmt/cockroach/pkg/ccl"
-	"sqlfmt/cockroach/pkg/sql/logictest"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/ccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/logictest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 const logictestGlob = "logic_test/[^.]*"

@@ -9,10 +9,10 @@
 package streamingest
 
 import (
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/cdctest"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/cdctest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // streamClientValidatorWrapper wraps a Validator and exposes additional methods

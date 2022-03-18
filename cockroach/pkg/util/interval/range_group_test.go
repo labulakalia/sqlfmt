@@ -16,7 +16,7 @@ import (
 	"reflect"
 	"testing"
 
-	_ "sqlfmt/cockroach/pkg/util/log" // for flags
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log" // for flags
 	"github.com/cockroachdb/errors"
 )
 

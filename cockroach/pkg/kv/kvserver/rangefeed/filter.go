@@ -11,8 +11,8 @@
 package rangefeed
 
 import (
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/interval"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/interval"
 )
 
 // Filter informs the producer of logical operations of the information that a

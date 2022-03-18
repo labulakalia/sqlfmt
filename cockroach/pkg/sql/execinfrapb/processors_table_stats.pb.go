@@ -10,9 +10,9 @@ package execinfrapb
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_jobs_jobspb "sqlfmt/cockroach/pkg/jobs/jobspb"
-	descpb "sqlfmt/cockroach/pkg/sql/catalog/descpb"
-	github_com_cockroachdb_cockroach_pkg_sql_catalog_descpb "sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	github_com_cockroachdb_cockroach_pkg_jobs_jobspb "github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	descpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	github_com_cockroachdb_cockroach_pkg_sql_catalog_descpb "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

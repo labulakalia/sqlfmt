@@ -15,11 +15,11 @@ package instancestorage
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/sql/sqlinstance"
-	"sqlfmt/cockroach/pkg/sql/sqlliveness"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlinstance"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlliveness"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // FakeStorage implements the instanceprovider.storage interface.

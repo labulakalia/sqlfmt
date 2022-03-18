@@ -10,7 +10,7 @@
 
 package descmarshaltest
 
-import "sqlfmt/cockroach/pkg/sql/catalog/descpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 
 func F() {
 	var d descpb.Descriptor

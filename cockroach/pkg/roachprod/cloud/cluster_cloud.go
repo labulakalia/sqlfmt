@@ -18,9 +18,9 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/roachprod/config"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
-	"sqlfmt/cockroach/pkg/roachprod/vm"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/vm"
 	"github.com/cockroachdb/errors"
 	"golang.org/x/sync/errgroup"
 )

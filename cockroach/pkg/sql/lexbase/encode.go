@@ -23,7 +23,7 @@ import (
 	"bytes"
 	"unicode/utf8"
 
-	"sqlfmt/cockroach/pkg/util/stringencoding"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stringencoding"
 )
 
 // EncodeFlags influence the formatting of strings and identifiers.

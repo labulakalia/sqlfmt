@@ -14,7 +14,7 @@ import (
 	"reflect"
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/util/iterutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/iterutil"
 	"github.com/cockroachdb/errors"
 )
 

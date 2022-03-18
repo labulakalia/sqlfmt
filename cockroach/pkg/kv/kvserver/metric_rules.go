@@ -14,8 +14,8 @@ import (
 	"context"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 	"github.com/gogo/protobuf/proto"
 )
 

@@ -15,7 +15,7 @@ import (
 	"log"
 	"os/exec"
 
-	"sqlfmt/cockroach/pkg/cmd/urlcheck/lib/urlcheck"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/urlcheck/lib/urlcheck"
 )
 
 func main() {

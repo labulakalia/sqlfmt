@@ -14,7 +14,7 @@ import (
 	"math"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt/props"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props"
 )
 
 func TestCardinality(t *testing.T) {

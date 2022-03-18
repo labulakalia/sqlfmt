@@ -11,9 +11,9 @@ package partitionccl
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/ccl/testutilsccl"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/testutilsccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func TestAlterPrimaryKeyCorrectZoneConfigBeforeBackfill(t *testing.T) {

@@ -13,12 +13,12 @@ package rangefeedcache
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed"
-	"sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/hlc"
-	"sqlfmt/cockroach/pkg/util/stop"
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed/rangefeedbuffer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/redact"
 )
 

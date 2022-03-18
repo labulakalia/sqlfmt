@@ -17,14 +17,14 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/cli"
-	"sqlfmt/cockroach/pkg/cli/clicfg"
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
-	"sqlfmt/cockroach/pkg/cli/clisqlexec"
-	"sqlfmt/cockroach/pkg/cli/clisqlshell"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clicfg"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlexec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlshell"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func Example_sql() {

@@ -13,7 +13,7 @@ package main
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
 )
 
 type validator struct {

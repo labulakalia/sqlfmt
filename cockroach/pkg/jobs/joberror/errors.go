@@ -13,10 +13,10 @@ package joberror
 import (
 	"strings"
 
-	"sqlfmt/cockroach/pkg/kv/kvclient/kvcoord"
-	"sqlfmt/cockroach/pkg/sql/flowinfra"
-	"sqlfmt/cockroach/pkg/util/circuit"
-	"sqlfmt/cockroach/pkg/util/grpcutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/kvcoord"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/flowinfra"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/circuit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/grpcutil"
 	"github.com/cockroachdb/errors"
 )
 

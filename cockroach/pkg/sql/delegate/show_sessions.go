@@ -11,8 +11,8 @@
 package delegate
 
 import (
-	"sqlfmt/cockroach/pkg/sql/catalog/catconstants"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catconstants"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 func (d *delegator) delegateShowSessions(n *tree.ShowSessions) (tree.Statement, error) {

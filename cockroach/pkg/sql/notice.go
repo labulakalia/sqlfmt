@@ -13,10 +13,10 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgnotice"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgnotice"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 // NoticesEnabled is the cluster setting that allows users

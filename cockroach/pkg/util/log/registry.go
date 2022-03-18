@@ -10,7 +10,7 @@
 
 package log
 
-import "sqlfmt/cockroach/pkg/util/syncutil"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 
 type loggerRegistry struct {
 	mu struct {

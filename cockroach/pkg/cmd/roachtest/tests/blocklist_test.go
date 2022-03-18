@@ -19,7 +19,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
 )

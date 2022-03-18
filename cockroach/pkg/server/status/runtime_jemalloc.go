@@ -80,7 +80,7 @@ import (
 	"reflect"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/dustin/go-humanize"
 )
 

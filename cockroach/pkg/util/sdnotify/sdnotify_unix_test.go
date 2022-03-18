@@ -16,7 +16,7 @@ package sdnotify
 import (
 	"testing"
 
-	_ "sqlfmt/cockroach/pkg/util/log" // for flags
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log" // for flags
 )
 
 func TestSDNotify(t *testing.T) {

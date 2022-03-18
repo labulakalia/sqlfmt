@@ -13,7 +13,7 @@
 
 package util
 
-import "sqlfmt/cockroach/pkg/util/envutil"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 
 // disableMetamorphicTesting can be used to disable metamorphic tests. If it
 // is set to true then metamorphic testing will not be enabled.

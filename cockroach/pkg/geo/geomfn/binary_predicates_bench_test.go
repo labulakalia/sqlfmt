@@ -13,7 +13,7 @@ package geomfn
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 )
 
 var (

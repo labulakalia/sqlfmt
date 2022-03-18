@@ -13,8 +13,8 @@ package txnidcache
 import (
 	"sync"
 
-	"sqlfmt/cockroach/pkg/sql/contention/contentionutils"
-	"sqlfmt/cockroach/pkg/sql/contentionpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/contention/contentionutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/contentionpb"
 )
 
 // blockSize is chosen as 168 since each ResolvedTxnID is 24 byte.

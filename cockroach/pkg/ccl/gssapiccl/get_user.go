@@ -19,7 +19,7 @@ package gssapiccl
 import (
 	"unsafe"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire"
 	"github.com/cockroachdb/errors"
 )
 

@@ -14,10 +14,10 @@ import (
 	"context"
 	gosql "database/sql"
 
-	democlusterapi "sqlfmt/cockroach/pkg/cli/democluster/api"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/server"
-	"sqlfmt/cockroach/pkg/util/uuid"
+	democlusterapi "github.com/labulakalia/sqlfmt/cockroach/pkg/cli/democluster/api"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 )
 
 // DemoCluster represents a demo cluster.

@@ -13,9 +13,9 @@ package scbuildstmt
 import (
 	"reflect"
 
-	"sqlfmt/cockroach/pkg/sql/schemachanger/scerrors"
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scerrors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/cockroachdb/errors"
 )
 

@@ -14,8 +14,8 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
-	"sqlfmt/cockroach/pkg/workload/workloadimpl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/workloadimpl"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/exp/rand"
 )

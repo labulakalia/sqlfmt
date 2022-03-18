@@ -13,7 +13,7 @@ package jobs
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/util/metric"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 )
 
 // ExecutorMetrics describes metrics related to scheduled

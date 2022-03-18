@@ -25,7 +25,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 	"github.com/lib/pq"
 	"github.com/lib/pq/auth/kerberos"

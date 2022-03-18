@@ -11,8 +11,8 @@
 package jobs
 
 import (
-	"sqlfmt/cockroach/pkg/sql/catalog/colinfo"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // BulkJobExecutionResultHeader is the header for various job commands

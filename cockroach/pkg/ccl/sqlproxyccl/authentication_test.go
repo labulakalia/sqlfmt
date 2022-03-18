@@ -12,8 +12,8 @@ import (
 	"net"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/ccl/sqlproxyccl/throttler"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/sqlproxyccl/throttler"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/cockroachdb/errors"
 	"github.com/jackc/pgproto3/v2"
 	"github.com/stretchr/testify/require"

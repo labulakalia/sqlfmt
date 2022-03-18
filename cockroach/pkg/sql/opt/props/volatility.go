@@ -10,7 +10,7 @@
 
 package props
 
-import "sqlfmt/cockroach/pkg/sql/sem/tree"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 
 // VolatilitySet tracks the set of operator volatilities contained inside an
 // expression. See tree.Volatility for more info on volatility values.

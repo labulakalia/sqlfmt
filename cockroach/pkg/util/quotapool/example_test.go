@@ -14,7 +14,7 @@ import (
 	"context"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
 )
 
 // An example use case for AcquireFunc is a pool of workers attempting to

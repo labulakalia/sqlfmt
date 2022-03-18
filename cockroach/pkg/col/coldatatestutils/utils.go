@@ -11,8 +11,8 @@
 package coldatatestutils
 
 import (
-	"sqlfmt/cockroach/pkg/col/coldata"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // CopyBatch copies the original batch and returns that copy. However, note that

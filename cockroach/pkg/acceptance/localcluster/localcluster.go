@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/acceptance/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/acceptance/cluster"
 	"github.com/cockroachdb/errors"
 )
 

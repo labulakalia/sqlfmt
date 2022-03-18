@@ -80,7 +80,7 @@ func TestOutputsOfGenrule(t *testing.T) {
 
 func TestMergeXml(t *testing.T) {
 	const xml1 = `<testsuites>
-	<testsuite errors="0" failures="1" skipped="0" tests="17" time="0.029" name="sqlfmt/cockroach/pkg/cmd/dev">
+	<testsuite errors="0" failures="1" skipped="0" tests="17" time="0.029" name="github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/dev">
 		<testcase classname="dev" name="TestDataDriven" time="0.010"></testcase>
 		<testcase classname="dev" name="TestDataDriven/bench.txt" time="0.000"></testcase>
 		<testcase classname="dev" name="TestDataDriven/build.txt" time="0.000"></testcase>
@@ -103,7 +103,7 @@ func TestMergeXml(t *testing.T) {
 	</testsuite>
 </testsuites>`
 	const xml2 = `<testsuites>
-	<testsuite errors="0" failures="1" skipped="0" tests="17" time="0.029" name="sqlfmt/cockroach/pkg/cmd/dev">
+	<testsuite errors="0" failures="1" skipped="0" tests="17" time="0.029" name="github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/dev">
 		<testcase classname="dev" name="TestDataDriven" time="0.010"></testcase>
 		<testcase classname="dev" name="TestDataDriven/bench.txt" time="0.000"></testcase>
 		<testcase classname="dev" name="TestDataDriven/build.txt" time="0.000"></testcase>
@@ -126,7 +126,7 @@ func TestMergeXml(t *testing.T) {
 	</testsuite>
 </testsuites>`
 	const expected = `<testsuites>
-	<testsuite errors="0" failures="1" skipped="0" tests="17" time="0.029" name="sqlfmt/cockroach/pkg/cmd/dev">
+	<testsuite errors="0" failures="1" skipped="0" tests="17" time="0.029" name="github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/dev">
 		<testcase name="TestDataDriven" time="0.010"></testcase>
 		<testcase name="TestDataDriven/bench.txt" time="0.000"></testcase>
 		<testcase name="TestDataDriven/build.txt" time="0.000"></testcase>

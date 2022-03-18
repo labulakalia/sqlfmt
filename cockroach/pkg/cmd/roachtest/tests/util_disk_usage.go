@@ -15,9 +15,9 @@ import (
 	"strconv"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
-	"sqlfmt/cockroach/pkg/roachprod/install"
-	"sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/install"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 )
 
 // getDiskUsageInBytes does what's on the tin. nodeIdx starts at one.

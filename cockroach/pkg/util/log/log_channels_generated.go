@@ -5,8 +5,8 @@ package log
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/util/log/channel"
-	"sqlfmt/cockroach/pkg/util/log/severity"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 )
 
 // ChannelLogger is a helper interface to ease the run-time selection

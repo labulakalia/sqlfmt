@@ -17,7 +17,7 @@ import (
 	"strings"
 
 	circuit "github.com/cockroachdb/circuitbreaker"
-	"sqlfmt/cockroach/pkg/util/netutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil"
 	"github.com/cockroachdb/errors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

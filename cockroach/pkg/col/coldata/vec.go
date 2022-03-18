@@ -13,8 +13,8 @@ package coldata
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/col/typeconv"
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/typeconv"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 // Column is an interface that represents a raw array of a Go native type.

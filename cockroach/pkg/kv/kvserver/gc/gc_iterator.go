@@ -11,10 +11,10 @@
 package gc
 
 import (
-	"sqlfmt/cockroach/pkg/kv/kvserver/rditer"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/storage"
-	"sqlfmt/cockroach/pkg/util/bufalloc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/rditer"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bufalloc"
 )
 
 // gcIterator wraps an rditer.ReplicaMVCCDataIterator which it reverse iterates for

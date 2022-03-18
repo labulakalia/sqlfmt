@@ -14,7 +14,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // EmptyKey has zero values. If it's a start key, then it sorts before all

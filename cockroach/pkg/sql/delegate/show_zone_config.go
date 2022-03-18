@@ -10,7 +10,7 @@
 
 package delegate
 
-import "sqlfmt/cockroach/pkg/sql/sem/tree"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 
 // ShowZoneConfig only delegates if it selecting ALL configurations.
 func (d *delegator) delegateShowZoneConfig(n *tree.ShowZoneConfig) (tree.Statement, error) {

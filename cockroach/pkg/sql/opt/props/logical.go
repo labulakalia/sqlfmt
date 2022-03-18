@@ -11,8 +11,8 @@
 package props
 
 import (
-	"sqlfmt/cockroach/pkg/sql/opt"
-	"sqlfmt/cockroach/pkg/sql/opt/constraint"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/constraint"
 )
 
 // AvailableRuleProps is a bit set that indicates when lazily-populated Rule

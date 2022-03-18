@@ -10,7 +10,7 @@
 
 package json
 
-import "sqlfmt/cockroach/pkg/util/encoding"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 
 const nullTag = 0x00000000
 const stringTag = 0x10000000

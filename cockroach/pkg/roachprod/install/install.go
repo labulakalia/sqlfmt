@@ -16,7 +16,7 @@ import (
 	"fmt"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 )
 
 var installCmds = map[string]string{

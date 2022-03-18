@@ -17,7 +17,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/cockroachdb/datadriven"
 	"github.com/jackc/pgproto3/v2"
 	"github.com/stretchr/testify/require"

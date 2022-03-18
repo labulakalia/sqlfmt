@@ -17,9 +17,9 @@ import (
 	_ "embed" // required for go:embed
 	"sync"
 
-	"sqlfmt/cockroach/pkg/geo/geographiclib"
-	"sqlfmt/cockroach/pkg/geo/geopb"
-	"sqlfmt/cockroach/pkg/geo/geoprojbase/embeddedproj"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geographiclib"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase/embeddedproj"
 	"github.com/cockroachdb/errors"
 )
 

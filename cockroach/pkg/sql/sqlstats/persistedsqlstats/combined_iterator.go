@@ -14,8 +14,8 @@ import (
 	"context"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/sql/sqlutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlutil"
 	"github.com/cockroachdb/errors"
 )
 

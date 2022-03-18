@@ -14,8 +14,8 @@ import (
 	"context"
 	"io"
 
-	"sqlfmt/cockroach/pkg/blobs/blobspb"
-	"sqlfmt/cockroach/pkg/util/ioctx"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/blobs/blobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ioctx"
 )
 
 // Within the blob service, streaming is used in two functions:

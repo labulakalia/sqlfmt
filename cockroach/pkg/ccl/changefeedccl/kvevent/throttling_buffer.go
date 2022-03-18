@@ -11,7 +11,7 @@ package kvevent
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/cdcutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/cdcutils"
 )
 
 type throttlingBuffer struct {

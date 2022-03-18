@@ -10,7 +10,7 @@
 
 package uncertainty
 
-import "sqlfmt/cockroach/pkg/util/hlc"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 
 // Interval represents a transaction's uncertainty interval.
 //

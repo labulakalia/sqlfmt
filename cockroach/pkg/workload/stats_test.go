@@ -14,7 +14,7 @@ import (
 	"math"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestDistinctCount(t *testing.T) {

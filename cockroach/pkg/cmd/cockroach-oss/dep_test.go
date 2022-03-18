@@ -13,20 +13,20 @@ package main
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	defer leaktest.AfterTest(t)()
 	// Verify that the cockroach floss binary doesn't depend on certain packages.
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/cmd/cockroach-oss",
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cockroach-oss",
 		true,
 		nil,
 		[]string{
-			"sqlfmt/cockroach/pkg/ccl",
-			"sqlfmt/cockroach/pkg/ui/distccl",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/ui/distccl",
 		},
 	)
 }

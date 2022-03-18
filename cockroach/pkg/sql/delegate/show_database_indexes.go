@@ -13,7 +13,7 @@ package delegate
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 func (d *delegator) delegateShowDatabaseIndexes(

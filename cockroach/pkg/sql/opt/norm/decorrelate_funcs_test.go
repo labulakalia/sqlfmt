@@ -13,7 +13,7 @@ package norm_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/sql/opt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
 )

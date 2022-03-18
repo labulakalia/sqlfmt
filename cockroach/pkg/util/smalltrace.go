@@ -17,7 +17,7 @@ import (
 )
 
 var prefix = func() string {
-	result := "sqlfmt/cockroach/pkg/"
+	result := "github.com/labulakalia/sqlfmt/cockroach/pkg/"
 	if runtime.Compiler == "gccgo" {
 		result = strings.Replace(result, ".", "_", -1)
 		result = strings.Replace(result, "/", "_", -1)

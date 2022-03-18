@@ -15,7 +15,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"sqlfmt/cockroach/pkg/util/httputil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/httputil"
 	"github.com/cockroachdb/errors"
 )
 

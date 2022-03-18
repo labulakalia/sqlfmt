@@ -10,7 +10,7 @@
 
 package registry
 
-import "sqlfmt/cockroach/pkg/cmd/roachtest/spec"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/spec"
 
 // Registry is the interface again which tests are registered with the roachtest
 // test runner.

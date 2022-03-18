@@ -10,7 +10,7 @@
 
 package main
 
-import "sqlfmt/cockroach/pkg/sql/types"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 
 // CanAbbreviate returns true if the canonical type family supports abbreviation
 // to a uint64 that can be used for comparison fast paths.

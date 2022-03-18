@@ -13,9 +13,9 @@ package sql
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
@@ -23,6 +23,6 @@ func TestNoLinkForbidden(t *testing.T) {
 	defer log.Scope(t).Close(t)
 
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql", true, []string{"sqlfmt/cockroach/pkg/storage", "c-deps"}, nil,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql", true, []string{"github.com/labulakalia/sqlfmt/cockroach/pkg/storage", "c-deps"}, nil,
 	)
 }

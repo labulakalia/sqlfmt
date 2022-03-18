@@ -15,7 +15,7 @@ import (
 	"math"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
 )
 
 // GenerateViewBasedGraphSchemaParams input parameters for

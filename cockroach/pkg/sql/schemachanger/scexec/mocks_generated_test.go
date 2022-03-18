@@ -8,11 +8,11 @@ import (
 	context "context"
 	reflect "reflect"
 
-	security "sqlfmt/cockroach/pkg/security"
-	catalog "sqlfmt/cockroach/pkg/sql/catalog"
-	scexec "sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
-	scmutationexec "sqlfmt/cockroach/pkg/sql/schemachanger/scexec/scmutationexec"
-	catid "sqlfmt/cockroach/pkg/sql/sem/catid"
+	security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	catalog "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
+	scexec "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scexec"
+	scmutationexec "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/schemachanger/scexec/scmutationexec"
+	catid "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/catid"
 	gomock "github.com/golang/mock/gomock"
 )
 

@@ -10,7 +10,7 @@
 
 package norm
 
-import "sqlfmt/cockroach/pkg/sql/opt/memo"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/memo"
 
 // listSorter is a helper struct that implements the sort.Slice "less"
 // comparison function.

@@ -18,7 +18,7 @@ import (
 	"context"
 	"regexp"
 
-	"sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
 )
 
 // ConnectFns will be used to determine which kind of database will be used

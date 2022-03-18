@@ -11,8 +11,8 @@
 package colexecwindow_test
 
 import (
-	"sqlfmt/cockroach/pkg/sql/colexec/colbuilder"
-	"sqlfmt/cockroach/pkg/sql/colexec/colexecargs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colbuilder"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecargs"
 )
 
 func init() {

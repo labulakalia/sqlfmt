@@ -18,12 +18,12 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/settings/cluster"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/serverutils"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log/logcrash"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/serverutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logcrash"
 	"github.com/cockroachdb/redact"
 	sentry "github.com/getsentry/sentry-go"
 	"github.com/kr/pretty"
@@ -263,7 +263,7 @@ func TestInternalErrorReporting(t *testing.T) {
 			"github.com/cockroachdb/errors/errutil/*errutil.withPrefix (*::)\n"+
 			"github.com/cockroachdb/errors/withstack/*withstack.withStack (*::)\n"+
 			"github.com/cockroachdb/errors/telemetrykeys/*telemetrykeys.withTelemetry (*::)\n"+
-			"sqlfmt/cockroach/pkg/sql/colexecerror/*colexecerror.notInternalError (*::)\n",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexecerror/*colexecerror.notInternalError (*::)\n",
 			extra)
 	}
 

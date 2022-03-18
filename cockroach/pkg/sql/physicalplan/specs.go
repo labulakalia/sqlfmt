@@ -13,8 +13,8 @@ package physicalplan
 import (
 	"sync"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
 )
 
 var flowSpecPool = sync.Pool{

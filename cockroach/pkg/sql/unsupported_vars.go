@@ -10,7 +10,7 @@
 
 package sql
 
-import "sqlfmt/cockroach/pkg/settings"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 
 // DummyVars contains a list of dummy vars we do not support that
 // PostgreSQL does, but are required as an easy fix to make certain

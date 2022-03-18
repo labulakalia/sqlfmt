@@ -5,7 +5,7 @@ package leasemanager
 
 import (
 	fmt "fmt"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

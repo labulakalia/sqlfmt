@@ -13,16 +13,16 @@ package colexecutils
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/sql/colexec/colexecutils", true, nil,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/colexecutils", true, nil,
 		[]string{
 			// We prohibit importing any subpackages that live within colexec
 			// folder.
-			"sqlfmt/cockroach/pkg/sql/colexec/*",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/colexec/*",
 		},
 	)
 }

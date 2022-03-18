@@ -13,7 +13,7 @@ package kvserver
 import (
 	"container/heap"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 const (

@@ -13,7 +13,7 @@ package fileutil
 import (
 	"os"
 
-	"sqlfmt/cockroach/pkg/util/sysutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/sysutil"
 	"github.com/cockroachdb/errors"
 )
 

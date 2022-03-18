@@ -15,7 +15,7 @@ import (
 	"io"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
 )
 
 type execPlanGistGen struct {
@@ -30,15 +30,15 @@ func (g *execPlanGistGen) generate(compiled *lang.CompiledExpr, w io.Writer) {
 	g.w.write("package explain\n\n")
 
 	g.w.nestIndent("import (\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/catalog/colinfo\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/catalog/descpb\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/opt\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/opt/cat\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/opt/constraint\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/opt/exec\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/sem/tree\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/types\"\n")
-	g.w.writeIndent("\"sqlfmt/cockroach/pkg/sql/inverted\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/cat\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/constraint\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/exec\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types\"\n")
+	g.w.writeIndent("\"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/inverted\"\n")
 	g.w.writeIndent("\"github.com/cockroachdb/errors\"\n")
 	g.w.unnest(")\n")
 

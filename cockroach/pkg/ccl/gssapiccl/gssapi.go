@@ -20,13 +20,13 @@ import (
 	"crypto/tls"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/ccl/utilccl"
-	"sqlfmt/cockroach/pkg/security"
-	"sqlfmt/cockroach/pkg/settings"
-	"sqlfmt/cockroach/pkg/sql"
-	"sqlfmt/cockroach/pkg/sql/pgwire"
-	"sqlfmt/cockroach/pkg/sql/pgwire/hba"
-	"sqlfmt/cockroach/pkg/sql/pgwire/identmap"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/utilccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/hba"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/identmap"
 	"github.com/cockroachdb/errors"
 )
 

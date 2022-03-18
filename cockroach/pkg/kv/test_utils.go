@@ -13,9 +13,9 @@ package kv
 import (
 	"strings"
 
-	"sqlfmt/cockroach/pkg/kv/kvbase"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvbase"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 )
 
 // OnlyFollowerReads looks through all the RPCs and asserts that every single

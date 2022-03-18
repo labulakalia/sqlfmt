@@ -16,7 +16,7 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
 const substringTmpl = "pkg/sql/colexec/substring_tmpl.go"

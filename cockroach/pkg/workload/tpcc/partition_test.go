@@ -15,7 +15,7 @@ import (
 	"reflect"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 )
 
 func partitionerTestName(total, active, parts int) string {

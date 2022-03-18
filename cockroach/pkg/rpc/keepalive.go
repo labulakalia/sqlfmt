@@ -13,7 +13,7 @@ package rpc
 import (
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 	"google.golang.org/grpc/keepalive"
 )
 

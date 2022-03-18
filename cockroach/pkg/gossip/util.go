@@ -14,8 +14,8 @@ import (
 	"bytes"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/config"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // SystemConfigDeltaFilter keeps track of SystemConfig values so that unmodified

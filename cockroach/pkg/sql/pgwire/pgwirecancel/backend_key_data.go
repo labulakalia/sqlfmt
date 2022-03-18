@@ -13,7 +13,7 @@ package pgwirecancel
 import (
 	"math/rand"
 
-	"sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 )
 
 // BackendKeyData is a 64-bit identifier used by the pgwire protocol to cancel

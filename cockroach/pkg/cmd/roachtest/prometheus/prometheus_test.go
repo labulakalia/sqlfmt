@@ -15,8 +15,8 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cmd/roachtest/option"
-	logger "sqlfmt/cockroach/pkg/roachprod/logger"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/roachtest/option"
+	logger "github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/logger"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 )

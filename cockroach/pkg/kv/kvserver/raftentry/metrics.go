@@ -10,7 +10,7 @@
 
 package raftentry
 
-import "sqlfmt/cockroach/pkg/util/metric"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 
 var (
 	metaEntryCacheSize = metric.Metadata{

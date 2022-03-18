@@ -11,7 +11,7 @@
 package geomfn
 
 import (
-	"sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 	"github.com/cockroachdb/errors"
 )
 

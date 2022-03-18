@@ -11,7 +11,7 @@
 package security
 
 import (
-	"sqlfmt/cockroach/pkg/util/sysutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/sysutil"
 	"github.com/cockroachdb/errors"
 )
 

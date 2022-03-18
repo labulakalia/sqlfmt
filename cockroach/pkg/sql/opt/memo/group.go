@@ -11,8 +11,8 @@
 package memo
 
 import (
-	"sqlfmt/cockroach/pkg/sql/opt/props"
-	"sqlfmt/cockroach/pkg/sql/opt/props/physical"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/props/physical"
 )
 
 // exprGroup represents a group of relational query plans that are logically

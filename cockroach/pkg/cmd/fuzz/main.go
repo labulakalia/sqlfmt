@@ -125,7 +125,7 @@ func fuzz(patterns []string, tests string, timeout time.Duration) (int, error) {
 			log("%s: executing go-fuzz-build...", pkg)
 			cmd := exec.Command("go-fuzz-build",
 				// These packages break go-fuzz for some reason, so skip them.
-				"-preserve", "sqlfmt/cockroach/pkg/sql/stats,sqlfmt/cockroach/pkg/server/serverpb",
+				"-preserve", "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/stats,sqlfmt/cockroach/pkg/server/serverpb",
 			)
 			cmd.Dir = dir
 			out, err := cmd.CombinedOutput()

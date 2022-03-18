@@ -11,8 +11,8 @@
 package explain
 
 import (
-	"sqlfmt/cockroach/pkg/sql/catalog/colinfo"
-	"sqlfmt/cockroach/pkg/sql/opt/exec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/exec"
 )
 
 // Factory implements exec.ExplainFactory. It wraps another factory and forwards

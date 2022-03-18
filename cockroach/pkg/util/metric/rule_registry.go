@@ -10,7 +10,7 @@
 
 package metric
 
-import "sqlfmt/cockroach/pkg/util/syncutil"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 
 // RuleRegistry is a list of all rules (AlertingRule and AggregationRule).
 //

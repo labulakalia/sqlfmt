@@ -18,9 +18,9 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/internal/reporoot"
-	"sqlfmt/cockroach/pkg/internal/team"
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/reporoot"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/team"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/stretchr/testify/require"
 )
 

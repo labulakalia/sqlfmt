@@ -16,7 +16,7 @@ import (
 	"fmt"
 	"math/rand"
 
-	"sqlfmt/cockroach/pkg/util/uint128"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uint128"
 	"github.com/cockroachdb/errors"
 )
 

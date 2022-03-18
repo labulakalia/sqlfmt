@@ -10,7 +10,7 @@
 
 package install
 
-import "sqlfmt/cockroach/pkg/roachprod/config"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/config"
 
 // ClusterSettings contains various knobs that affect operations on a cluster.
 type ClusterSettings struct {

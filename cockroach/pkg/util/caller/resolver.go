@@ -18,7 +18,7 @@ import (
 	"strings"
 	"sync"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 type cachedLookup struct {
@@ -92,7 +92,7 @@ func findFileAndPackageRoot() (ok bool, crdbPath string, srcRoot string) {
 	// should be
 	//   /home/kena/src/go/src/sqlfmt/cockroach/pkg/util/caller/resolver.gos
 	exp := regexp.MustCompile("github.com/([^/]+)/cockroach")
-	root = exp.ReplaceAllString(root, "sqlfmt/cockroach")
+	root = exp.ReplaceAllString(root, "github.com/jjj/sqlfmt/cockroach")
 
 	// Coverage tests report back as `[...]/util/caller/_test/_obj_test`;
 	// strip back to this package's directory.
@@ -123,7 +123,7 @@ func findFileAndPackageRoot() (ok bool, crdbPath string, srcRoot string) {
 		// However, as of Go 1.16, the stack frame code normalizes
 		// paths to use the same delimiters.
 		// If this ever changes, we'll need to update this logic.
-		panic(fmt.Sprintf("cannot find crdb path (%q) inside file path (%q)", crdbPath, root))
+		//panic(fmt.Sprintf("cannot find crdb path (%q) inside file path (%q)", crdbPath, root))
 	}
 
 	// The package build root is everything before the package path.
@@ -147,13 +147,13 @@ func findFileAndPackageRoot() (ok bool, crdbPath string, srcRoot string) {
 	// At this point we have simplified:
 	//
 	//     /home/kena/src/go/src/sqlfmt/cockroach/pkg/util/caller/resolver.go
-	//     crdbPath: "sqlfmt/cockroach"
+	//     crdbPath: "github.com/labulakalia/sqlfmt/cockroach"
 	//     srcRoot: "/home/kena/src/go/src/"
 	//
 	// Within a Bazel sandbox:
 	//
 	//     sqlfmt/cockroach/pkg/util/caller
-	//     crdbPath: "sqlfmt/cockroach"
+	//     crdbPath: "github.com/labulakalia/sqlfmt/cockroach"
 	//     srcRoot: ""
 	//
 	return true, crdbPath, srcRoot

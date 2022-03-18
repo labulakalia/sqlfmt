@@ -18,7 +18,7 @@ import "golang.org/x/tools/go/analysis"
 var descriptorMarshalOptions = Options{
 	PassName: "descriptormarshal",
 	Doc:      `check for correct unmarshaling of descpb descriptors`,
-	Package:  "sqlfmt/cockroach/pkg/sql/catalog/descpb",
+	Package:  "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb",
 	Type:     "Descriptor",
 	Method:   "^Get(Table|Database|Type|Schema)$",
 	Hint:     "see descpb.FromDescriptorWithMVCCTimestamp()",

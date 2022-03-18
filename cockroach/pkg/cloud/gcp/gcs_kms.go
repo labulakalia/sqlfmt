@@ -18,7 +18,7 @@ import (
 	"strings"
 
 	kms "cloud.google.com/go/kms/apiv1"
-	"sqlfmt/cockroach/pkg/cloud"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cloud"
 	"github.com/cockroachdb/errors"
 	"google.golang.org/api/option"
 	kmspb "google.golang.org/genproto/googleapis/cloud/kms/v1"

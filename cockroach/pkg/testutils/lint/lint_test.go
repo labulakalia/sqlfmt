@@ -26,12 +26,12 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/internal/codeowners"
-	"sqlfmt/cockroach/pkg/sql/sem/builtins"
-	"sqlfmt/cockroach/pkg/testutils"
-	_ "sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/internal/codeowners"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/builtins"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/cockroachdb/errors"
 	"github.com/ghemawat/stream"
 	"github.com/jordanlewis/gcassert"
@@ -39,7 +39,7 @@ import (
 	"golang.org/x/tools/go/packages"
 )
 
-const cockroachDB = "sqlfmt/cockroach"
+const cockroachDB = "github.com/labulakalia/sqlfmt/cockroach"
 
 func dirCmd(
 	dir string, name string, args ...string,
@@ -1424,7 +1424,7 @@ func TestLint(t *testing.T) {
 			"log":                                         "util/log",
 			"github.com/golang/protobuf/proto":            "github.com/gogo/protobuf/proto",
 			"github.com/satori/go.uuid":                   "util/uuid",
-			"golang.org/x/sync/singleflight":              "sqlfmt/cockroach/pkg/util/syncutil/singleflight",
+			"golang.org/x/sync/singleflight":              "github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil/singleflight",
 			"syscall":                                     "sysutil",
 			"errors":                                      "github.com/cockroachdb/errors",
 			"oserror":                                     "github.com/cockroachdb/errors/oserror",
@@ -1539,18 +1539,18 @@ func TestLint(t *testing.T) {
 		// forbiddenImportPkg
 		forbiddenImports := map[string]struct{}{
 			"github.com/cockroachdb/pebble":                     {},
-			"sqlfmt/cockroach/pkg/cli":          {},
-			"sqlfmt/cockroach/pkg/kv/kvserver":  {},
-			"sqlfmt/cockroach/pkg/roachpb":      {},
-			"sqlfmt/cockroach/pkg/server":       {},
-			"sqlfmt/cockroach/pkg/sql":          {},
-			"sqlfmt/cockroach/pkg/sql/catalog":  {},
-			"sqlfmt/cockroach/pkg/sql/parser":   {},
-			"sqlfmt/cockroach/pkg/sql/sem/tree": {},
-			"sqlfmt/cockroach/pkg/storage":      {},
-			"sqlfmt/cockroach/pkg/util/log":     {},
-			"sqlfmt/cockroach/pkg/util/stop":    {},
-			"sqlfmt/cockroach/pkg/util/tracing": {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/cli":          {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver":  {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb":      {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/server":       {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql":          {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog":  {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser":   {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree": {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/storage":      {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log":     {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop":    {},
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing": {},
 		}
 
 		if err := stream.ForEach(

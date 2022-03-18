@@ -14,8 +14,8 @@ import (
 	"context"
 	"path/filepath"
 
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/elastic/gosigar"
 )
 

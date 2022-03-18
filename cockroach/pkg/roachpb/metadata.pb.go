@@ -6,8 +6,8 @@ package roachpb
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	util "sqlfmt/cockroach/pkg/util"
-	hlc "sqlfmt/cockroach/pkg/util/hlc"
+	util "github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

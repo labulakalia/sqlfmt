@@ -16,12 +16,12 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/cockroachdb/errors"
 )
 
 func short(in string) string {
-	return strings.Replace(in, "sqlfmt/cockroach/pkg/", "./pkg/", -1)
+	return strings.Replace(in, "github.com/labulakalia/sqlfmt/cockroach/pkg/", "./pkg/", -1)
 }
 
 // VerifyNoImports verifies that a package doesn't depend (directly or
@@ -71,8 +71,8 @@ func VerifyNoImports(
 				}
 				if forbidden == "c-deps" &&
 					imp == "C" &&
-					strings.HasPrefix(path, "sqlfmt/cockroach/pkg") &&
-					path != "sqlfmt/cockroach/pkg/geo/geoproj" {
+					strings.HasPrefix(path, "github.com/labulakalia/sqlfmt/cockroach/pkg") &&
+					path != "github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoproj" {
 					for _, name := range pkg.CgoFiles {
 						if strings.Contains(name, "zcgo_flags") {
 							return errors.Errorf("%s imports %s (%s), which is forbidden", short(path), short(imp), name)

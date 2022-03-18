@@ -5,8 +5,8 @@ package types
 
 import (
 	fmt "fmt"
-	geopb "sqlfmt/cockroach/pkg/geo/geopb"
-	github_com_cockroachdb_cockroach_pkg_geo_geopb "sqlfmt/cockroach/pkg/geo/geopb"
+	geopb "github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	github_com_cockroachdb_cockroach_pkg_geo_geopb "github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_lib_pq_oid "github.com/lib/pq/oid"

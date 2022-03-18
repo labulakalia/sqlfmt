@@ -22,8 +22,8 @@ import (
 	"sync"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
-	"sqlfmt/cockroach/pkg/util/timeutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // TODO(ajwerner): provide option to limit the maximum queue size.

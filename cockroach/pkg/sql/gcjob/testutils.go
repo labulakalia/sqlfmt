@@ -13,8 +13,8 @@ package gcjob
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/jobs/jobspb"
-	"sqlfmt/cockroach/pkg/sql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql"
 )
 
 // TestingGCTenant is a wrapper around the internal function that gc-s a tenant

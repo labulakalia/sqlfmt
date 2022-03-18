@@ -13,8 +13,8 @@ package reports
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/config"
-	"sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/config"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // computeConstraintConformanceReport iterates through all the ranges and

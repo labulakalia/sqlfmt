@@ -18,7 +18,7 @@ import (
 	"strings"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/randutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 )
 
 func TestParseFormatBinary(t *testing.T) {

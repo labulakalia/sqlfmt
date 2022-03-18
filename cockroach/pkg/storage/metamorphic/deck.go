@@ -13,7 +13,7 @@ package metamorphic
 import (
 	"math/rand"
 
-	"sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
 // deck is a random number generator that generates numbers in the range

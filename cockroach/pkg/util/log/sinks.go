@@ -10,7 +10,7 @@
 
 package log
 
-import "sqlfmt/cockroach/pkg/cli/exit"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 
 //go:generate mockgen -package=log -destination=mocks_generated_test.go --mock_names=TestingLogSink=MockLogSink . TestingLogSink
 

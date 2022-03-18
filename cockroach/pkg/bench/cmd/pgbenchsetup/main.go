@@ -17,7 +17,7 @@ import (
 	"net/url"
 	"os"
 
-	"sqlfmt/cockroach/pkg/bench"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/bench"
 	_ "github.com/lib/pq"
 )
 

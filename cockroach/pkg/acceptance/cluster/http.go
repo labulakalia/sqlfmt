@@ -14,7 +14,7 @@ import (
 	"crypto/tls"
 	"net/http"
 
-	"sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 )
 
 // HTTPClient is an http.Client configured for querying a cluster. We need to

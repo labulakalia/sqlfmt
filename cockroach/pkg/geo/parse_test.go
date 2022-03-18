@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	"github.com/pierrre/geohash"
 	"github.com/stretchr/testify/require"
 )

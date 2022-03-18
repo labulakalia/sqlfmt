@@ -10,7 +10,7 @@
 
 package a
 
-import "sqlfmt/cockroach/pkg/util/timeutil"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 
 func init() {
 	timer := timeutil.NewTimer()

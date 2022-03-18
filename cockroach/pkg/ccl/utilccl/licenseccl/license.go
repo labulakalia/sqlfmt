@@ -12,7 +12,7 @@ import (
 	"encoding/base64"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/protoutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/cockroachdb/errors"
 )
 

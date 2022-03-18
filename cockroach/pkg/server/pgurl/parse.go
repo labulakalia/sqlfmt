@@ -14,7 +14,7 @@ import (
 	"net/url"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/util/netutil/addr"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil/addr"
 	"github.com/cockroachdb/errors"
 )
 

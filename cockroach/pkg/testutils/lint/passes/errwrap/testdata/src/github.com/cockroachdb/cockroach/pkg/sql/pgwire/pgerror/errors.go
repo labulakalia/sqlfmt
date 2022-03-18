@@ -13,7 +13,7 @@ package pgerror
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 )
 
 func NewWithDepthf(depth int, code pgcode.Code, format string, args ...interface{}) error {

@@ -17,7 +17,7 @@ import (
 	"context"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestJemalloc(t *testing.T) {

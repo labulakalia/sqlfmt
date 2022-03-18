@@ -15,13 +15,13 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/ccl/changefeedccl/cdctest"
-	"sqlfmt/cockroach/pkg/ccl/utilccl"
-	"sqlfmt/cockroach/pkg/util/ctxgroup"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
-	"sqlfmt/cockroach/pkg/workload/bank"
-	"sqlfmt/cockroach/pkg/workload/workloadsql"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/changefeedccl/cdctest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/utilccl"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ctxgroup"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/bank"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/workload/workloadsql"
 	"github.com/stretchr/testify/require"
 )
 

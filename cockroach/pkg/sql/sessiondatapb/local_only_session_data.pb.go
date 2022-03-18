@@ -6,7 +6,7 @@ package sessiondatapb
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_security "sqlfmt/cockroach/pkg/security"
+	github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"

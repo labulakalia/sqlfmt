@@ -20,9 +20,9 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/server/debug"
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/debug"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

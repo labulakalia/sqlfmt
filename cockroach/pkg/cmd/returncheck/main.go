@@ -18,7 +18,7 @@ import (
 )
 
 func main() {
-	targetPkg := "sqlfmt/cockroach/pkg/roachpb"
+	targetPkg := "github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	targetTypeName := "Error"
 	if err := returncheck.Run(gotool.ImportPaths(os.Args[1:]), targetPkg, targetTypeName); err != nil {
 		os.Exit(1)

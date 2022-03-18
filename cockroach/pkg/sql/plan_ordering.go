@@ -10,7 +10,7 @@
 
 package sql
 
-import "sqlfmt/cockroach/pkg/sql/catalog/colinfo"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
 
 // ReqOrdering is the ordering that must be preserved by an operator when it is
 // distributed. It is used to configure DistSQL with the orderings it needs to

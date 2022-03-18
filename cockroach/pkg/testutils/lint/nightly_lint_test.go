@@ -19,9 +19,9 @@ import (
 	"os/exec"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/cmd/urlcheck/lib/urlcheck"
-	sqlparser "sqlfmt/cockroach/pkg/sql/parser"
-	"sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/urlcheck/lib/urlcheck"
+	sqlparser "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/parser"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 )
 
 func TestNightlyLint(t *testing.T) {

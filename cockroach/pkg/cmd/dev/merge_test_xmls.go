@@ -15,7 +15,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	bazelutil "sqlfmt/cockroach/pkg/build/util"
+	bazelutil "github.com/labulakalia/sqlfmt/cockroach/pkg/build/util"
 	"github.com/spf13/cobra"
 )
 

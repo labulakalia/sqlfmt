@@ -14,9 +14,9 @@ import (
 	"context"
 	"sort"
 
-	"sqlfmt/cockroach/pkg/kv/kvserver/loqrecovery/loqrecoverypb"
-	"sqlfmt/cockroach/pkg/roachpb"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/loqrecovery/loqrecoverypb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
 )
 

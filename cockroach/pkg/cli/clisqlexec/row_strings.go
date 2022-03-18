@@ -14,7 +14,7 @@ import (
 	"database/sql/driver"
 	"io"
 
-	"sqlfmt/cockroach/pkg/cli/clisqlclient"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clisqlclient"
 )
 
 func getAllRowStrings(

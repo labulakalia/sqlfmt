@@ -23,8 +23,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"sqlfmt/cockroach/pkg/release"
-	"sqlfmt/cockroach/pkg/util/version"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/release"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/version"
 	"github.com/kr/pretty"
 )
 

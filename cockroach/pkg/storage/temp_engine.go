@@ -13,10 +13,10 @@ package storage
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/kv/kvserver/diskmap"
-	"sqlfmt/cockroach/pkg/storage/fs"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/diskmap"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/fs"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/pebble"
 )
 

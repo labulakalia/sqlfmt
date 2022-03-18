@@ -24,8 +24,8 @@ import (
 	"strings"
 	"text/template"
 
-	"sqlfmt/cockroach/pkg/cli/exit"
-	"sqlfmt/cockroach/pkg/util/log/logpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/gostdlib/go/format"
 )
@@ -485,7 +485,7 @@ import (
   "regexp"
 
   "github.com/cockroachdb/redact"
-  "sqlfmt/cockroach/pkg/util/jsonbytes"
+  "github.com/labulakalia/sqlfmt/cockroach/pkg/util/jsonbytes"
 )
 
 {{range .AllRegexps}}
@@ -605,7 +605,7 @@ func (m *{{.GoType}}) AppendJSONFields(printComma bool, b redact.RedactableBytes
 
 package eventpb
 
-import "sqlfmt/cockroach/pkg/util/log/logpb"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 
 {{range .Events}}
 // LoggingChannel implements the EventPayload interface.

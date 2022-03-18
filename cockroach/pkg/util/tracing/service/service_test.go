@@ -16,10 +16,10 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/tracing"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingpb"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingservicepb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingservicepb"
 	"github.com/stretchr/testify/require"
 )
 

@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/duration"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 )
 
 func TestString(t *testing.T) {

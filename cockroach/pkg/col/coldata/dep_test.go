@@ -13,18 +13,18 @@ package coldata
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 )
 
 func TestNoLinkForbidden(t *testing.T) {
 	defer leaktest.AfterTest(t)()
 
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/col/coldata", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata", true,
 		[]string{
-			"sqlfmt/cockroach/pkg/sql/catalog",
-			"sqlfmt/cockroach/pkg/sql/sem/tree",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog",
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree",
 		}, nil,
 	)
 }

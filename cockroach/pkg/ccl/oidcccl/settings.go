@@ -15,7 +15,7 @@ import (
 	"regexp"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/settings"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/cockroachdb/errors"
 	"github.com/coreos/go-oidc"
 )

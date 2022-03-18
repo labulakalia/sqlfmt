@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"io"
 
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/logtags"
 )
 

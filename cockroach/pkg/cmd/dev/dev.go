@@ -15,8 +15,8 @@ import (
 	"log"
 	stdos "os"
 
-	"sqlfmt/cockroach/pkg/cmd/dev/io/exec"
-	"sqlfmt/cockroach/pkg/cmd/dev/io/os"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/dev/io/exec"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/dev/io/os"
 	"github.com/spf13/cobra"
 )
 

@@ -24,7 +24,7 @@ import (
 	"strings"
 	"time"
 
-	"sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
 	"github.com/cockroachdb/errors"
 	"github.com/google/pprof/driver"
 	"github.com/google/pprof/profile"

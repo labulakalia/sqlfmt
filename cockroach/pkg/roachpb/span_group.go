@@ -10,7 +10,7 @@
 
 package roachpb
 
-import "sqlfmt/cockroach/pkg/util/interval"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/interval"
 
 // A SpanGroup is a specialization of interval.RangeGroup which deals
 // with key spans. The zero-value of a SpanGroup can be used immediately.

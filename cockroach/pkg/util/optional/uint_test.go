@@ -13,7 +13,7 @@ package optional_test
 import (
 	"testing"
 
-	"sqlfmt/cockroach/pkg/util/optional"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/optional"
 	"github.com/stretchr/testify/require"
 )
 

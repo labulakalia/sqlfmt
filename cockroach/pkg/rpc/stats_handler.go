@@ -14,7 +14,7 @@ import (
 	"context"
 	"sync/atomic"
 
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"golang.org/x/sync/syncmap"
 	"google.golang.org/grpc/stats"
 )

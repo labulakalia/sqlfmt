@@ -13,7 +13,7 @@ package cat
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/catalog/descpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 )
 
 // Schema is an interface to a database schema, which is a namespace that

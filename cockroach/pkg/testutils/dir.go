@@ -15,8 +15,8 @@ import (
 	"os"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/util/fileutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/fileutil"
 )
 
 // TempDir creates a directory and a function to clean it up at the end of the

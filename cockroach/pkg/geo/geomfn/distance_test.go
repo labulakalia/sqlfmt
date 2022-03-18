@@ -15,8 +15,8 @@ import (
 	"math"
 	"testing"
 
-	"sqlfmt/cockroach/pkg/geo"
-	"sqlfmt/cockroach/pkg/geo/geos"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geos"
 	"github.com/stretchr/testify/require"
 )
 

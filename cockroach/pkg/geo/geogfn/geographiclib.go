@@ -11,7 +11,7 @@
 package geogfn
 
 import (
-	"sqlfmt/cockroach/pkg/geo/geographiclib"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geographiclib"
 	"github.com/golang/geo/s2"
 )
 

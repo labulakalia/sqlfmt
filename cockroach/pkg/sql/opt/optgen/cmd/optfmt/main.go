@@ -20,8 +20,8 @@ import (
 	"os"
 	"strings"
 
-	"sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
-	"sqlfmt/cockroach/pkg/util/pretty"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/opt/optgen/lang"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/pretty"
 	"github.com/pmezard/go-difflib/difflib"
 )
 

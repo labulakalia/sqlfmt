@@ -10,7 +10,7 @@
 
 package grpcclientconnclose
 
-import "sqlfmt/cockroach/pkg/testutils/lint/passes/forbiddenmethod"
+import "github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/lint/passes/forbiddenmethod"
 
 // Analyzer checks for calls to (*grpc.ClientConn).Close. We mostly pull these
 // objects from *rpc.Context, which manages their lifecycle.

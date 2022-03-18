@@ -23,8 +23,8 @@ import (
 
 	"github.com/alessio/shellescape"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"sqlfmt/cockroach/pkg/release"
-	"sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/release"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/cockroachdb/errors"
 	"github.com/stretchr/testify/require"
 )

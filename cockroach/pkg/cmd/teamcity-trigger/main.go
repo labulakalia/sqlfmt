@@ -24,8 +24,8 @@ import (
 	"time"
 
 	"github.com/abourget/teamcity"
-	"sqlfmt/cockroach/pkg/build/bazel"
-	"sqlfmt/cockroach/pkg/cmd/cmdutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cmdutil"
 	"github.com/kisielk/gotool"
 )
 
@@ -56,7 +56,7 @@ func getBaseImportPath() string {
 	if bazel.BuiltWithBazel() {
 		return "./"
 	}
-	return "sqlfmt/cockroach/pkg/"
+	return "github.com/labulakalia/sqlfmt/cockroach/pkg/"
 }
 
 func runTC(queueBuild func(string, map[string]string)) {

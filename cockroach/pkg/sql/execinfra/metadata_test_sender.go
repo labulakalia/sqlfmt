@@ -13,8 +13,8 @@ package execinfra
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/execinfrapb"
-	"sqlfmt/cockroach/pkg/sql/rowenc"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/execinfrapb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/rowenc"
 )
 
 // MetadataTestSender intersperses a metadata record after every row.

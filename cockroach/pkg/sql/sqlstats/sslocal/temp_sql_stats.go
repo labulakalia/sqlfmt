@@ -13,8 +13,8 @@ package sslocal
 import (
 	"sort"
 
-	"sqlfmt/cockroach/pkg/server/serverpb"
-	"sqlfmt/cockroach/pkg/sql/sqlstats/ssmemstorage"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/serverpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlstats/ssmemstorage"
 )
 
 type stmtResponseList []serverpb.StatementsResponse_CollectedStatementStatistics

@@ -14,8 +14,8 @@ import (
 	"sort"
 	"time"
 
-	"sqlfmt/cockroach/pkg/util/tracing"
-	"sqlfmt/cockroach/pkg/util/tracing/tracingpb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
 )
 
 // This file has helpers for the RPCs done by the #/debug/tracez page, which

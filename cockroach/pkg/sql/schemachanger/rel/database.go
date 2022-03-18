@@ -13,7 +13,7 @@ package rel
 import (
 	"reflect"
 
-	"sqlfmt/cockroach/pkg/util/iterutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/iterutil"
 	"github.com/cockroachdb/errors"
 	"github.com/google/btree"
 )

@@ -24,16 +24,16 @@ import (
 	"testing"
 	"time"
 
-	"sqlfmt/cockroach/pkg/base"
-	"sqlfmt/cockroach/pkg/cli/cliflags"
-	"sqlfmt/cockroach/pkg/security/securitytest"
-	"sqlfmt/cockroach/pkg/server/status"
-	"sqlfmt/cockroach/pkg/testutils"
-	"sqlfmt/cockroach/pkg/testutils/buildutil"
-	"sqlfmt/cockroach/pkg/testutils/skip"
-	"sqlfmt/cockroach/pkg/util"
-	"sqlfmt/cockroach/pkg/util/leaktest"
-	"sqlfmt/cockroach/pkg/util/log"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/cliflags"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/security/securitytest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/status"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/buildutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -60,20 +60,20 @@ func TestNoLinkForbidden(t *testing.T) {
 
 	// Verify that the cockroach binary doesn't depend on certain packages.
 	buildutil.VerifyNoImports(t,
-		"sqlfmt/cockroach/pkg/cmd/cockroach", true,
+		"github.com/labulakalia/sqlfmt/cockroach/pkg/cmd/cockroach", true,
 		[]string{
 			"testing",  // defines flags
 			"go/build", // probably not something we want in the main binary
-			"sqlfmt/cockroach/pkg/security/securitytest", // contains certificates
-			"sqlfmt/cockroach/pkg/sql/randgen",           // meant for testing code only
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/security/securitytest", // contains certificates
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/randgen",           // meant for testing code only
 		},
 		[]string{
-			"sqlfmt/cockroach/pkg/testutils", // meant for testing code only
+			"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils", // meant for testing code only
 		},
 		// The errors library uses go/build to determine
 		// the list of source directories (used to strip the source prefix
 		// in stack trace reports).
-		"sqlfmt/cockroach/vendor/github.com/cockroachdb/errors/withstack",
+		"github.com/labulakalia/sqlfmt/cockroach/vendor/github.com/cockroachdb/errors/withstack",
 	)
 }
 

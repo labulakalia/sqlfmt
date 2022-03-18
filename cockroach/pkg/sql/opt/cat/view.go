@@ -13,8 +13,8 @@ package cat
 import (
 	"bytes"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	"sqlfmt/cockroach/pkg/util/treeprinter"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/treeprinter"
 )
 
 // View is an interface to a database view, exposing only the information needed

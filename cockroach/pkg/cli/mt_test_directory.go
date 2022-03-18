@@ -15,9 +15,9 @@ import (
 	"fmt"
 	"net"
 
-	"sqlfmt/cockroach/pkg/ccl/sqlproxyccl/tenantdirsvr"
-	"sqlfmt/cockroach/pkg/cli/clierrorplus"
-	"sqlfmt/cockroach/pkg/util/stop"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/ccl/sqlproxyccl/tenantdirsvr"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/clierrorplus"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 	"github.com/spf13/cobra"
 )
 

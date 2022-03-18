@@ -13,8 +13,8 @@ package descpb
 import (
 	"fmt"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
-	types "sqlfmt/cockroach/pkg/sql/types"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
+	types "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/cockroachdb/errors"
 )
 

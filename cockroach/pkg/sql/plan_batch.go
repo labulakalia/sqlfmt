@@ -13,7 +13,7 @@ package sql
 import (
 	"context"
 
-	"sqlfmt/cockroach/pkg/sql/sem/tree"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 )
 
 // batchedPlanNode is an interface that complements planNode to
