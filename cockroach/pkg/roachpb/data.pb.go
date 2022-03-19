@@ -7,7 +7,7 @@ import (
 	bytes "bytes"
 	fmt "fmt"
 	lock "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
-	rspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/readsummary/rspb"
+	//rspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/readsummary/rspb"
 	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	github_com_cockroachdb_cockroach_pkg_storage_enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	github_com_cockroachdb_cockroach_pkg_util_hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
@@ -535,7 +535,7 @@ type MergeTrigger struct {
 	// applied on the LHS's leaseholder through Raft log application while
 	// ensuring correctness in the case where the merge is applied on the LHS's
 	// leaseholder through a Raft snapshot.
-	RightReadSummary *rspb.ReadSummary `protobuf:"bytes,7,opt,name=right_read_summary,json=rightReadSummary,proto3" json:"right_read_summary,omitempty"`
+	//RightReadSummary *rspb.ReadSummary `protobuf:"bytes,7,opt,name=right_read_summary,json=rightReadSummary,proto3" json:"right_read_summary,omitempty"`
 }
 
 func (m *MergeTrigger) Reset()         { *m = MergeTrigger{} }
@@ -1939,9 +1939,9 @@ func (this *MergeTrigger) Equal(that interface{}) bool {
 	if !this.RightClosedTimestamp.Equal(&that1.RightClosedTimestamp) {
 		return false
 	}
-	if !this.RightReadSummary.Equal(that1.RightReadSummary) {
-		return false
-	}
+	//if !this.RightReadSummary.Equal(that1.RightReadSummary) {
+	//	return false
+	//}
 	return true
 }
 func (this *AbortSpanEntry) Equal(that interface{}) bool {
@@ -2221,18 +2221,18 @@ func (m *MergeTrigger) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.RightReadSummary != nil {
-		{
-			size, err := m.RightReadSummary.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintData(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x3a
-	}
+	//if m.RightReadSummary != nil {
+	//	{
+	//		size, err := m.RightReadSummary.MarshalToSizedBuffer(dAtA[:i])
+	//		if err != nil {
+	//			return 0, err
+	//		}
+	//		i -= size
+	//		i = encodeVarintData(dAtA, i, uint64(size))
+	//	}
+	//	i--
+	//	dAtA[i] = 0x3a
+	//}
 	{
 		size, err := m.RightClosedTimestamp.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -3872,10 +3872,10 @@ func (m *MergeTrigger) Size() (n int) {
 	n += 1 + l + sovData(uint64(l))
 	l = m.RightClosedTimestamp.Size()
 	n += 1 + l + sovData(uint64(l))
-	if m.RightReadSummary != nil {
-		l = m.RightReadSummary.Size()
-		n += 1 + l + sovData(uint64(l))
-	}
+	//if m.RightReadSummary != nil {
+	//	l = m.RightReadSummary.Size()
+	//	n += 1 + l + sovData(uint64(l))
+	//}
 	return n
 }
 
@@ -5156,12 +5156,12 @@ func (m *MergeTrigger) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.RightReadSummary == nil {
-				m.RightReadSummary = &rspb.ReadSummary{}
-			}
-			if err := m.RightReadSummary.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if m.RightReadSummary == nil {
+				//m.RightReadSummary = &rspb.ReadSummary{}
+			//}
+			//if err := m.RightReadSummary.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

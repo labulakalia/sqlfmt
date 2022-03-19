@@ -8,7 +8,7 @@ import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
 	lock "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
-	rspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/readsummary/rspb"
+	//rspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/readsummary/rspb"
 	settings "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	github_com_cockroachdb_cockroach_pkg_storage_enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
@@ -5015,7 +5015,7 @@ type SubsumeResponse struct {
 	//    high.
 	// 2. it can transfer information about reads with synthetic timestamps, which
 	//    are not otherwise captured by the FreezeStart clock timestamp.
-	ReadSummary *rspb.ReadSummary `protobuf:"bytes,7,opt,name=read_summary,json=readSummary,proto3" json:"read_summary,omitempty"`
+	//ReadSummary *rspb.ReadSummary `protobuf:"bytes,7,opt,name=read_summary,json=readSummary,proto3" json:"read_summary,omitempty"`
 }
 
 func (m *SubsumeResponse) Reset()         { *m = SubsumeResponse{} }
@@ -14839,18 +14839,18 @@ func (m *SubsumeResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.ReadSummary != nil {
-		{
-			size, err := m.ReadSummary.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintApi(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x3a
-	}
+	//if m.ReadSummary != nil {
+	//	{
+	//		size, err := m.ReadSummary.MarshalToSizedBuffer(dAtA[:i])
+	//		if err != nil {
+	//			return 0, err
+	//		}
+	//		i -= size
+	//		i = encodeVarintApi(dAtA, i, uint64(size))
+	//	}
+	//	i--
+	//	dAtA[i] = 0x3a
+	//}
 	{
 		size, err := m.ClosedTimestamp.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -20996,10 +20996,10 @@ func (m *SubsumeResponse) Size() (n int) {
 	n += 1 + l + sovApi(uint64(l))
 	l = m.ClosedTimestamp.Size()
 	n += 1 + l + sovApi(uint64(l))
-	if m.ReadSummary != nil {
-		l = m.ReadSummary.Size()
-		n += 1 + l + sovApi(uint64(l))
-	}
+	//if m.ReadSummary != nil {
+	//	l = m.ReadSummary.Size()
+	//	n += 1 + l + sovApi(uint64(l))
+	//}
 	return n
 }
 
@@ -37309,12 +37309,12 @@ func (m *SubsumeResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.ReadSummary == nil {
-				m.ReadSummary = &rspb.ReadSummary{}
-			}
-			if err := m.ReadSummary.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if m.ReadSummary == nil {
+			//	//m.ReadSummary = &rspb.ReadSummary{}
+			//}
+			//if err := m.ReadSummary.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
