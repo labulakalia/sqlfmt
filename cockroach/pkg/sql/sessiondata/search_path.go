@@ -14,17 +14,10 @@ import (
 	"bytes"
 	"strings"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catconstants"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 )
 
-// DefaultSearchPath is the search path used by virgin sessions.
-var DefaultSearchPath = MakeSearchPath(
-	[]string{catconstants.UserSchemaName, catconstants.PublicSchemaName},
-)
 
 // SearchPath represents a list of namespaces to search builtins in.
 // The names must be normalized (as per Name.Normalize) already.
@@ -40,11 +33,7 @@ type SearchPath struct {
 // EmptySearchPath is a SearchPath with no schema names in it.
 var EmptySearchPath = SearchPath{}
 
-// DefaultSearchPathForUser returns the default search path with the user
-// specific schema name set so that it can be expanded during resolution.
-func DefaultSearchPathForUser(username security.SQLUsername) SearchPath {
-	return DefaultSearchPath.WithUserSchemaName(username.Normalized())
-}
+
 
 // MakeSearchPath returns a new immutable SearchPath struct. The paths slice
 // must not be modified after hand-off to MakeSearchPath.
@@ -52,16 +41,7 @@ func MakeSearchPath(paths []string) SearchPath {
 	containsPgCatalog := false
 	containsPgExtension := false
 	containsPgTempSchema := false
-	for _, e := range paths {
-		switch e {
-		case catconstants.PgCatalogName:
-			containsPgCatalog = true
-		case catconstants.PgTempSchemaName:
-			containsPgTempSchema = true
-		case catconstants.PgExtensionSchemaName:
-			containsPgExtension = true
-		}
-	}
+
 	return SearchPath{
 		paths:                paths,
 		containsPgCatalog:    containsPgCatalog,
@@ -108,15 +88,6 @@ func (s SearchPath) UpdatePaths(paths []string) SearchPath {
 // for the pg_temp alias (only if a temporary schema exists). It acts as a pass
 // through for all other schema names.
 func (s SearchPath) MaybeResolveTemporarySchema(schemaName string) (string, error) {
-	// Only allow access to the session specific temporary schema.
-	if strings.HasPrefix(schemaName, catconstants.PgTempSchemaName) && schemaName != catconstants.PgTempSchemaName && schemaName != s.tempSchemaName {
-		return schemaName, pgerror.New(pgcode.FeatureNotSupported, "cannot access temporary tables of other sessions")
-	}
-	// If the schemaName is pg_temp and the tempSchemaName has been set, pg_temp
-	// is an alias the session specific temp schema.
-	if schemaName == catconstants.PgTempSchemaName && s.tempSchemaName != "" {
-		return s.tempSchemaName, nil
-	}
 	return schemaName, nil
 }
 
@@ -253,39 +224,13 @@ func (iter *SearchPathIter) Next() (path string, ok bool) {
 		iter.implicitPgTempSchema = false
 		return iter.tempSchemaName, true
 	}
-	if iter.implicitPgCatalog {
-		iter.implicitPgCatalog = false
-		return catconstants.PgCatalogName, true
-	}
 
 	if iter.i < len(iter.paths) {
 		iter.i++
 		// If pg_temp is explicitly present in the paths, it must be resolved to the
 		// session specific temp schema (if one exists). tempSchemaName is set in the
 		// iterator iff the session has created a temporary schema.
-		if iter.paths[iter.i-1] == catconstants.PgTempSchemaName {
-			// If the session specific temporary schema has not been created we can
-			// preempt the resolution failure and iterate to the next entry.
-			if iter.tempSchemaName == "" {
-				return iter.Next()
-			}
-			return iter.tempSchemaName, true
-		}
-		if iter.paths[iter.i-1] == catconstants.UserSchemaName {
-			// In case the user schema name is unset, we simply iterate to the next
-			// entry.
-			if iter.userSchemaName == "" {
-				return iter.Next()
-			}
-			return iter.userSchemaName, true
-		}
 		// pg_extension should be read before delving into the schema.
-		if iter.paths[iter.i-1] == catconstants.PublicSchemaName && iter.implicitPgExtension {
-			iter.implicitPgExtension = false
-			// Go back one so `public` can be found again next.
-			iter.i--
-			return catconstants.PgExtensionSchemaName, true
-		}
 		return iter.paths[iter.i-1], true
 	}
 	return "", false

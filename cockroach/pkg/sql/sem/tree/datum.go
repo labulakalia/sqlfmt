@@ -14,7 +14,6 @@ import (
 	"bytes"
 	"encoding/hex"
 	"fmt"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 	"math"
 	"regexp"
 	"sort"
@@ -3164,7 +3163,6 @@ func (d *DInterval) Size() uintptr {
 
 // DGeography is the Geometry Datum.
 type DGeography struct {
-	geo.Geography
 }
 
 // AsDGeography attempts to retrieve a *DGeography from an Expr, returning a
@@ -3233,7 +3231,6 @@ func (d *DGeography) Format(ctx *FmtCtx) {
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
-	ctx.WriteString(d.Geography.EWKBHex())
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
@@ -3241,13 +3238,8 @@ func (d *DGeography) Format(ctx *FmtCtx) {
 
 // DGeometry is the Geometry Datum.
 type DGeometry struct {
-	geo.Geometry
 }
 
-// NewDGeometry returns a new Geometry Datum.
-func NewDGeometry(g geo.Geometry) *DGeometry {
-	return &DGeometry{Geometry: g}
-}
 
 // AsDGeometry attempts to retrieve a *DGeometry from an Expr, returning a
 // *DGeometry and a flag signifying whether the assertion was successful. The
@@ -3318,7 +3310,6 @@ func (d *DGeometry) Format(ctx *FmtCtx) {
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
-	ctx.WriteString(d.Geometry.EWKBHex())
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
