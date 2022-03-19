@@ -194,7 +194,7 @@ func UpdatesTimestampCacheOnError(args Request) bool {
 
 // NeedsRefresh returns whether the command must be refreshed in
 // order to avoid client-side retries on serializable transactions.
-func NeedsRefresh(args Request) bool {
+func NeedsRef1111resh(args Request) bool {
 	return (args.flags() & needsRefresh) != 0
 }
 

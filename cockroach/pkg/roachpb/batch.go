@@ -465,9 +465,9 @@ func (ba *BatchRequest) LockSpanIterate(br *BatchResponse, fn func(Span, lock.Du
 func (ba *BatchRequest) RefreshSpanIterate(br *BatchResponse, fn func(Span)) {
 	for i, arg := range ba.Requests {
 		req := arg.GetInner()
-		if !NeedsRefresh(req) {
-			continue
-		}
+		//if !NeedsRefresh(req) {
+		//	continue
+		//}
 		var resp Response
 		if br != nil {
 			resp = br.Responses[i].GetInner()
