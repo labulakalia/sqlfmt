@@ -24,13 +24,13 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgnotice"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/roleoption"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treebin"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
@@ -2723,7 +2723,7 @@ type EvalDatabase interface {
 
 	// HasAnyPrivilege returns whether the current user has privilege to access
 	// the given object.
-	HasAnyPrivilege(ctx context.Context, specifier HasPrivilegeSpecifier, user security.SQLUsername, privs []privilege.Privilege) (HasAnyPrivilegeResult, error)
+	//HasAnyPrivilege(ctx context.Context, specifier HasPrivilegeSpecifier, user security.SQLUsername, privs []privilege.Privilege) (HasAnyPrivilegeResult, error)
 }
 
 // HasPrivilegeSpecifier specifies an object to lookup privilege for.
@@ -2840,15 +2840,15 @@ type EvalPlanner interface {
 	// (false, nil) means that the user has NO admin role
 	// (false, err) means that there was an error running the query on
 	// the `system.users` table
-	UserHasAdminRole(ctx context.Context, user security.SQLUsername) (bool, error)
+	//UserHasAdminRole(ctx context.Context, user security.SQLUsername) (bool, error)
 
 	// MemberOfWithAdminOption is used to collect a list of roles (direct and
 	// indirect) that the member is part of. See the comment on the planner
 	// implementation in authorization.go
-	MemberOfWithAdminOption(
-		ctx context.Context,
-		member security.SQLUsername,
-	) (map[security.SQLUsername]bool, error)
+	//MemberOfWithAdminOption(
+	//	ctx context.Context,
+	//	member security.SQLUsername,
+	//) (map[security.SQLUsername]bool, error)
 
 	// ExternalReadFile reads the content from an external file URI.
 	ExternalReadFile(ctx context.Context, uri string) ([]byte, error)

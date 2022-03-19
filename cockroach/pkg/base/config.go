@@ -16,7 +16,6 @@ import (
 	"time"
 
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
@@ -26,7 +25,7 @@ import (
 // Base config defaults.
 const (
 	defaultInsecure = false
-	defaultUser     = security.RootUser
+	//defaultUser     = security.RootUser
 	httpScheme      = "http"
 	httpsScheme     = "https"
 
@@ -169,7 +168,7 @@ type Config struct {
 
 	// User running this process. It could be the user under which
 	// the server is running or the user passed in client calls.
-	User security.SQLUsername
+	//User security.SQLUsername
 
 	// Addr is the address the server is listening on.
 	Addr string
@@ -255,7 +254,7 @@ func (*Config) HistogramWindowInterval() time.Duration {
 // This is also used in tests to reset global objects.
 func (cfg *Config) InitDefaults() {
 	cfg.Insecure = defaultInsecure
-	cfg.User = security.MakeSQLUsernameFromPreNormalizedString(defaultUser)
+	//cfg.User = security.MakeSQLUsernameFromPreNormalizedString(defaultUser)
 	cfg.Addr = defaultAddr
 	cfg.AdvertiseAddr = cfg.Addr
 	cfg.HTTPAddr = defaultHTTPAddr

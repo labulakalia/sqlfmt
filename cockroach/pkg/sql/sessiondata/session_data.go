@@ -14,7 +14,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
@@ -115,7 +115,7 @@ func UnmarshalNonLocal(proto sessiondatapb.SessionData) (*SessionData, error) {
 			proto.SearchPath,
 		).WithTemporarySchemaName(
 			proto.TemporarySchemaName,
-		).WithUserSchemaName(proto.UserProto.Decode().Normalized()),
+		),
 		SequenceState: seqState,
 		Location:      location,
 	}, nil
@@ -149,12 +149,12 @@ func (s *SessionData) GetDateStyle() pgdate.DateStyle {
 // The SessionUser is the username that originally logged into the session.
 // If a user applies SET ROLE, the SessionUser remains the same whilst the
 // User() changes.
-func (s *SessionData) SessionUser() security.SQLUsername {
-	if s.SessionUserProto == "" {
-		return s.User()
-	}
-	return s.SessionUserProto.Decode()
-}
+//func (s *SessionData) SessionUser() security.SQLUsername {
+//	if s.SessionUserProto == "" {
+//		return s.User()
+//	}
+//	return s.SessionUserProto.Decode()
+//}
 
 // LocalUnmigratableSessionData contains session parameters that cannot
 // be propagated to remote nodes and cannot be migrated to another

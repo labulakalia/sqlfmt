@@ -11,14 +11,14 @@
 package sessiondata
 
 import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 )
 
 // InternalExecutorOverride is used by the InternalExecutor interface
 // to allow control over some of the session data.
 type InternalExecutorOverride struct {
 	// User represents the user that the query will run under.
-	User security.SQLUsername
+	//User security.SQLUsername
 	// Database represents the default database for the query.
 	Database string
 	// ApplicationName represents the application that the query runs under.
@@ -41,5 +41,5 @@ var NoSessionDataOverride = InternalExecutorOverride{}
 
 // NodeUserSessionDataOverride is an InternalExecutorOverride which overrides
 // the users to the NodeUser.
-var NodeUserSessionDataOverride = InternalExecutorOverride{
-	User: security.MakeSQLUsernameFromPreNormalizedString(security.NodeUser)}
+//var NodeUserSessionDataOverride = InternalExecutorOverride{
+//	User: security.MakeSQLUsernameFromPreNormalizedString(security.NodeUser)}

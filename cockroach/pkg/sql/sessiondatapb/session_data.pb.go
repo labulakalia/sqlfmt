@@ -5,7 +5,7 @@ package sessiondatapb
 
 import (
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	lex "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
 	duration "github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	pgdate "github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
@@ -79,7 +79,7 @@ type SessionData struct {
 	// session. This can be used for logging and per-application statistics.
 	ApplicationName string `protobuf:"bytes,2,opt,name=application_name,json=applicationName,proto3" json:"application_name,omitempty"`
 	// User is the name of the user logged into the session.
-	UserProto github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto `protobuf:"bytes,3,opt,name=user_proto,json=userProto,proto3,casttype=sqlfmt/cockroach/pkg/security.SQLUsernameProto" json:"user_proto,omitempty"`
+	//UserProto github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto `protobuf:"bytes,3,opt,name=user_proto,json=userProto,proto3,casttype=sqlfmt/cockroach/pkg/security.SQLUsernameProto" json:"user_proto,omitempty"`
 	// DataConversion gives access to the data conversion configuration.
 	DataConversionConfig DataConversionConfig `protobuf:"bytes,4,opt,name=data_conversion_config,json=dataConversionConfig,proto3" json:"data_conversion_config"`
 	// VectorizeMode indicates which kinds of queries to use vectorized execution
@@ -531,13 +531,13 @@ func (m *SessionData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	}
 	i--
 	dAtA[i] = 0x22
-	if len(m.UserProto) > 0 {
-		i -= len(m.UserProto)
-		copy(dAtA[i:], m.UserProto)
-		i = encodeVarintSessionData(dAtA, i, uint64(len(m.UserProto)))
-		i--
-		dAtA[i] = 0x1a
-	}
+	//if len(m.UserProto) > 0 {
+	//	i -= len(m.UserProto)
+	//	copy(dAtA[i:], m.UserProto)
+	//	i = encodeVarintSessionData(dAtA, i, uint64(len(m.UserProto)))
+	//	i--
+	//	dAtA[i] = 0x1a
+	//}
 	if len(m.ApplicationName) > 0 {
 		i -= len(m.ApplicationName)
 		copy(dAtA[i:], m.ApplicationName)
@@ -703,10 +703,10 @@ func (m *SessionData) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovSessionData(uint64(l))
 	}
-	l = len(m.UserProto)
-	if l > 0 {
-		n += 1 + l + sovSessionData(uint64(l))
-	}
+	//l = len(m.UserProto)
+	//if l > 0 {
+	//	n += 1 + l + sovSessionData(uint64(l))
+	//}
 	l = m.DataConversionConfig.Size()
 	n += 1 + l + sovSessionData(uint64(l))
 	if m.VectorizeMode != 0 {
@@ -942,7 +942,7 @@ func (m *SessionData) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.UserProto = github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto(dAtA[iNdEx:postIndex])
+			//m.UserProto = github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {

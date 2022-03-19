@@ -6,7 +6,7 @@ package sessiondatapb
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"
@@ -173,7 +173,7 @@ type LocalOnlySessionData struct {
 	// established the connection before SET ROLE was first performed.
 	// This is only populated when SET ROLE is used, otherwise the session_user
 	// is the same as the UserProto in SessionData.
-	SessionUserProto github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto `protobuf:"bytes,46,opt,name=session_user_proto,json=sessionUserProto,proto3,casttype=sqlfmt/cockroach/pkg/security.SQLUsernameProto" json:"session_user_proto,omitempty"`
+	//SessionUserProto github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto `protobuf:"bytes,46,opt,name=session_user_proto,json=sessionUserProto,proto3,casttype=sqlfmt/cockroach/pkg/security.SQLUsernameProto" json:"session_user_proto,omitempty"`
 	// TxnRowsWrittenLog is the threshold for the number of rows written by a SQL
 	// transaction which - once exceeded - will trigger a logging event to SQL_PERF
 	// (or SQL_INTERNAL_PERF for internal transactions); 0 means disabled.
@@ -715,15 +715,15 @@ func (m *LocalOnlySessionData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0xf8
 	}
-	if len(m.SessionUserProto) > 0 {
-		i -= len(m.SessionUserProto)
-		copy(dAtA[i:], m.SessionUserProto)
-		i = encodeVarintLocalOnlySessionData(dAtA, i, uint64(len(m.SessionUserProto)))
-		i--
-		dAtA[i] = 0x2
-		i--
-		dAtA[i] = 0xf2
-	}
+	//if len(m.SessionUserProto) > 0 {
+	//	i -= len(m.SessionUserProto)
+	//	copy(dAtA[i:], m.SessionUserProto)
+	//	i = encodeVarintLocalOnlySessionData(dAtA, i, uint64(len(m.SessionUserProto)))
+	//	i--
+	//	dAtA[i] = 0x2
+	//	i--
+	//	dAtA[i] = 0xf2
+	//}
 	if m.PlacementEnabled {
 		i--
 		if m.PlacementEnabled {
@@ -1337,10 +1337,10 @@ func (m *LocalOnlySessionData) Size() (n int) {
 	if m.PlacementEnabled {
 		n += 3
 	}
-	l = len(m.SessionUserProto)
-	if l > 0 {
-		n += 2 + l + sovLocalOnlySessionData(uint64(l))
-	}
+	//l = len(m.SessionUserProto)
+	//if l > 0 {
+	//	n += 2 + l + sovLocalOnlySessionData(uint64(l))
+	//}
 	if m.TxnRowsWrittenLog != 0 {
 		n += 2 + sovLocalOnlySessionData(uint64(m.TxnRowsWrittenLog))
 	}
@@ -2422,7 +2422,7 @@ func (m *LocalOnlySessionData) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.SessionUserProto = github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto(dAtA[iNdEx:postIndex])
+			//m.SessionUserProto = github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 47:
 			if wireType != 0 {

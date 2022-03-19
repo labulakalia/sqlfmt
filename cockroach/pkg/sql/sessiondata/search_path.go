@@ -14,7 +14,7 @@ import (
 	"bytes"
 	"strings"
 
-	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//_ "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 )
 

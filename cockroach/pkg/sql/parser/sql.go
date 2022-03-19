@@ -13,7 +13,6 @@ import (
 	"strings"
 
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/scanner"
@@ -212,15 +211,7 @@ func (u *sqlSymUnion) roleSpec() tree.RoleSpec {
 func (u *sqlSymUnion) roleSpecList() tree.RoleSpecList {
 	return u.val.(tree.RoleSpecList)
 }
-func (u *sqlSymUnion) user() security.SQLUsername {
-	return u.val.(security.SQLUsername)
-}
-func (u *sqlSymUnion) userPtr() *security.SQLUsername {
-	return u.val.(*security.SQLUsername)
-}
-func (u *sqlSymUnion) users() []security.SQLUsername {
-	return u.val.([]security.SQLUsername)
-}
+
 func (u *sqlSymUnion) newTableIndexName() *tree.TableIndexName {
 	tn := u.val.(tree.TableIndexName)
 	return &tn
