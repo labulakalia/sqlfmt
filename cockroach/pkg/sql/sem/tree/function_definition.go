@@ -11,7 +11,6 @@
 package tree
 
 import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/lib/pq/oid"
 )
 
@@ -163,7 +162,6 @@ func NewFunctionDefinition(
 			props.AmbiguousReturnType = true
 		}
 		// Produce separate telemetry for each overload.
-		def[i].counter = sqltelemetry.BuiltinCounter(name, def[i].Signature(false))
 
 		overloads[i] = &def[i]
 	}

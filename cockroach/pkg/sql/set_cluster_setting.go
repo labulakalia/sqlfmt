@@ -22,7 +22,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
@@ -33,7 +32,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/roleoption"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessioninit"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/stats"
@@ -118,13 +116,8 @@ func (p *planner) SetClusterSetting(
 		return nil, errors.Errorf("cluster setting '%s' is currently overridden by the operator", name)
 	}
 
-	value, err := p.getAndValidateTypedClusterSetting(ctx, name, n.Value, setting)
-	if err != nil {
-		return nil, err
-	}
-
 	csNode := setClusterSettingNode{
-		name: name, st: st, setting: setting, value: value,
+		name: name, st: st, setting: setting,
 	}
 	return &csNode, nil
 }
@@ -227,26 +220,9 @@ func (n *setClusterSettingNode) startExec(params runParams) error {
 	// TODO(justin): implement a more general mechanism for tracking these.
 	switch n.name {
 	case stats.AutoStatsClusterSettingName:
-		switch expectedEncodedValue {
-		case "true":
-			telemetry.Inc(sqltelemetry.TurnAutoStatsOnUseCounter)
-		case "false":
-			telemetry.Inc(sqltelemetry.TurnAutoStatsOffUseCounter)
-		}
+
 	case ConnAuditingClusterSettingName:
-		switch expectedEncodedValue {
-		case "true":
-			telemetry.Inc(sqltelemetry.TurnConnAuditingOnUseCounter)
-		case "false":
-			telemetry.Inc(sqltelemetry.TurnConnAuditingOffUseCounter)
-		}
 	case AuthAuditingClusterSettingName:
-		switch expectedEncodedValue {
-		case "true":
-			telemetry.Inc(sqltelemetry.TurnAuthAuditingOnUseCounter)
-		case "false":
-			telemetry.Inc(sqltelemetry.TurnAuthAuditingOffUseCounter)
-		}
 	case ReorderJoinsLimitClusterSettingName:
 		val, err := strconv.ParseInt(expectedEncodedValue, 10, 64)
 		if err != nil {
@@ -254,19 +230,7 @@ func (n *setClusterSettingNode) startExec(params runParams) error {
 		}
 		sqltelemetry.ReportJoinReorderLimit(int(val))
 	case VectorizeClusterSettingName:
-		val, err := strconv.Atoi(expectedEncodedValue)
-		if err != nil {
-			break
-		}
-		validatedExecMode, isValid := sessiondatapb.VectorizeExecModeFromString(sessiondatapb.VectorizeExecMode(val).String())
-		if !isValid {
-			break
-		}
-		telemetry.Inc(sqltelemetry.VecModeCounter(validatedExecMode.String()))
 	case colexec.HashAggregationDiskSpillingEnabledSettingName:
-		if expectedEncodedValue == "false" {
-			telemetry.Inc(sqltelemetry.HashAggregationDiskSpillingDisabled)
-		}
 	}
 
 	return waitForSettingUpdate(params.ctx, params.extendedEvalCtx.ExecCfg,

@@ -16,12 +16,10 @@ import (
 
 	"github.com/cockroachdb/apd/v3"
 	"github.com/cockroachdb/errors"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/oidext"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
@@ -1864,47 +1862,4 @@ func PopulateDatumWithJSON(ctx *EvalContext, j json.JSON, desiredType *types.T) 
 		s = j.String()
 	}
 	return PerformCast(ctx, NewDString(s), desiredType)
-}
-
-// castCounterType represents a cast from one family to another.
-type castCounterType struct {
-	from, to types.Family
-}
-
-// castCounterMap is a map of cast counter types to their corresponding
-// telemetry counters.
-var castCounters map[castCounterType]telemetry.Counter
-
-// Initialize castCounters.
-func init() {
-	castCounters = make(map[castCounterType]telemetry.Counter)
-	for fromID := range types.Family_name {
-		for toID := range types.Family_name {
-			from := types.Family(fromID)
-			to := types.Family(toID)
-			var c telemetry.Counter
-			switch {
-			case from == types.ArrayFamily && to == types.ArrayFamily:
-				c = sqltelemetry.ArrayCastCounter
-			case from == types.TupleFamily && to == types.TupleFamily:
-				c = sqltelemetry.TupleCastCounter
-			case from == types.EnumFamily && to == types.EnumFamily:
-				c = sqltelemetry.EnumCastCounter
-			default:
-				c = sqltelemetry.CastOpCounter(from.Name(), to.Name())
-			}
-			castCounters[castCounterType{from, to}] = c
-		}
-	}
-}
-
-// GetCastCounter returns the telemetry counter for the cast from one family to
-// another family.
-func GetCastCounter(from, to types.Family) telemetry.Counter {
-	if c, ok := castCounters[castCounterType{from, to}]; ok {
-		return c
-	}
-	panic(errors.AssertionFailedf(
-		"no cast counter found for cast from %s to %s", from.Name(), to.Name(),
-	))
 }

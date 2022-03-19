@@ -18,7 +18,6 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/contextutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/cockroachdb/errors"
@@ -41,7 +40,6 @@ func makeOCSPVerifier(settings TLSSettings) func([][]byte, [][]*x509.Certificate
 		return contextutil.RunWithTimeout(context.Background(), "OCSP verification", settings.ocspTimeout(),
 			func(ctx context.Context) error {
 				// Per-conn telemetry counter.
-				telemetry.Inc(ocspChecksCounter)
 
 				errG, gCtx := errgroup.WithContext(ctx)
 				for _, chain := range verifiedChains {
@@ -68,12 +66,10 @@ func makeOCSPVerifier(settings TLSSettings) func([][]byte, [][]*x509.Certificate
 // undergoing OCSP validations. This counter exists so that the value
 // of ocspCheckWithOCSPServerInCertCounter can be interpreted as a
 // percentage.
-var ocspChecksCounter = telemetry.GetCounterOnce("server.ocsp.conn-verifications")
 
 // ocspCheckWithOCSPServerInCert counts the number of certificate
 // verifications performed with a populated OCSPServer field in one of
 // the certs in the validation chain.
-var ocspCheckWithOCSPServerInCertCounter = telemetry.GetCounterOnce("server.ocsp.cert-verifications")
 
 func verifyOCSP(ctx context.Context, settings TLSSettings, cert, issuer *x509.Certificate) error {
 	if len(cert.OCSPServer) == 0 {
@@ -82,7 +78,6 @@ func verifyOCSP(ctx context.Context, settings TLSSettings, cert, issuer *x509.Ce
 
 	// Per-cert telemetry counter. We only count requests when there is
 	// an OCSP server to check in the first place.
-	telemetry.Inc(ocspCheckWithOCSPServerInCertCounter)
 
 	var errs []error
 	for _, url := range cert.OCSPServer {

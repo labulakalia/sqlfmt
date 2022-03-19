@@ -27,7 +27,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
@@ -40,7 +39,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlliveness"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/arith"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
@@ -100,7 +98,6 @@ type UnaryOp struct {
 
 	// counter, if non-nil, should be incremented every time the
 	// operator is type checked.
-	counter telemetry.Counter
 }
 
 func (op *UnaryOp) params() TypeList {
@@ -303,7 +300,6 @@ type BinOp struct {
 
 	// counter, if non-nil, should be incremented every time the
 	// operator is type checked.
-	counter telemetry.Counter
 }
 
 func (op *BinOp) params() TypeList {
@@ -1747,7 +1743,6 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
 				rval := MustBeDInt(right)
 				if rval < 0 || rval >= 64 {
-					telemetry.Inc(sqltelemetry.LargeLShiftArgumentCounter)
 					return nil, ErrShiftArgOutOfRange
 				}
 				return NewDInt(MustBeDInt(left) << uint(rval)), nil
@@ -1788,7 +1783,6 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
 				rval := MustBeDInt(right)
 				if rval < 0 || rval >= 64 {
-					telemetry.Inc(sqltelemetry.LargeRShiftArgumentCounter)
 					return nil, ErrShiftArgOutOfRange
 				}
 				return NewDInt(MustBeDInt(left) >> uint(rval)), nil
@@ -2028,7 +2022,6 @@ type CmpOp struct {
 
 	// counter, if non-nil, should be incremented every time the
 	// operator is type checked.
-	counter telemetry.Counter
 
 	// If NullableArgs is false, the operator returns NULL
 	// whenever either argument is NULL.
@@ -2630,11 +2623,6 @@ var CmpOps = cmpOpFixups(map[treecmp.ComparisonOperatorSymbol]cmpOpOverload{
 				Volatility: VolatilityImmutable,
 			},
 		},
-		makeBox2DComparisonOperators(
-			func(lhs, rhs *geo.CartesianBoundingBox) bool {
-				return lhs.Intersects(rhs)
-			},
-		)...,
 	),
 })
 

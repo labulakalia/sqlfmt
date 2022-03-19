@@ -44,7 +44,6 @@ func (n *createExtensionNode) unimplementedExtensionError(issue int) error {
 func (n *createExtensionNode) startExec(params runParams) error {
 	switch n.CreateExtension.Name {
 	case "postgis":
-		telemetry.Inc(sqltelemetry.CreateExtensionCounter(n.CreateExtension.Name))
 		return nil
 	case "postgis_raster",
 		"postgis_topology",

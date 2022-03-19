@@ -15,7 +15,6 @@ import (
 
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/cockroachdb/errors"
 )
 
@@ -158,10 +157,6 @@ func (rol List) GetSQLStmts(op string) (map[string]func() (bool, string, error),
 	}
 
 	for _, ro := range rol {
-		sqltelemetry.IncIAMOptionCounter(
-			op,
-			strings.ToLower(ro.Option.String()),
-		)
 		// Skip PASSWORD and DEFAULTSETTINGS options.
 		// Since PASSWORD still resides in system.users, we handle setting PASSWORD
 		// outside of this set stmt.

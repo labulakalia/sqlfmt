@@ -623,19 +623,6 @@ If problems persist, please see %s.`
 				return nil
 			}
 
-			// Attempt to start the server.
-			if err := s.PreStart(ctx); err != nil {
-				if le := (*server.ListenError)(nil); errors.As(err, &le) {
-					const errorPrefix = "consider changing the port via --%s"
-					if le.Addr == serverCfg.Addr {
-						err = errors.Wrapf(err, errorPrefix, cliflags.ListenAddr.Name)
-					} else if le.Addr == serverCfg.HTTPAddr {
-						err = errors.Wrapf(err, errorPrefix, cliflags.ListenHTTPAddr.Name)
-					}
-				}
-
-				return errors.Wrap(err, "cockroach server exited with error")
-			}
 			// Server started, notify the shutdown monitor running concurrently.
 			serverStatusMu.Lock()
 			serverStatusMu.started = true
@@ -1098,17 +1085,6 @@ func maybeWarnMemorySizes(ctx context.Context) {
 			fmt.Fprintf(&buf, "  If you have a dedicated server a reasonable setting is 25%% of physical memory.")
 		}
 		log.Ops.Warningf(ctx, "%s", buf.String())
-	}
-
-	// Check that the total suggested "max" memory is well below the available memory.
-	if maxMemory, err := status.GetTotalMemory(ctx); err == nil {
-		requestedMem := serverCfg.CacheSize + serverCfg.MemoryPoolSize + serverCfg.TimeSeriesServerConfig.QueryMemoryMax
-		maxRecommendedMem := int64(.75 * float64(maxMemory))
-		if requestedMem > maxRecommendedMem {
-			log.Ops.Shoutf(ctx, severity.WARNING,
-				"the sum of --max-sql-memory (%s), --cache (%s), and --max-tsdb-memory (%s) is larger than 75%% of total RAM (%s).\nThis server is running at increased risk of memory-related failures.",
-				sqlSizeValue, cacheSizeValue, tsdbSizeValue, humanizeutil.IBytes(maxRecommendedMem))
-		}
 	}
 }
 

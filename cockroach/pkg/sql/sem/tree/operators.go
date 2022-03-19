@@ -10,13 +10,6 @@
 
 package tree
 
-import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treebin"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
-	"github.com/cockroachdb/errors"
-)
-
 // This file implements the generation of unique names for every
 // operator overload.
 //
@@ -48,39 +41,3 @@ import (
 //    to simplify/accelerate the serialization of scalar expressions
 //    in distsql.
 //
-
-func init() {
-	// Label the unary operators.
-	for op, overloads := range UnaryOps {
-		if int(op) >= len(unaryOpName) || unaryOpName[op] == "" {
-			panic(errors.AssertionFailedf("missing name for operator %q", op.String()))
-		}
-		opName := unaryOpName[op]
-		for _, impl := range overloads {
-			o := impl.(*UnaryOp)
-			o.counter = sqltelemetry.UnaryOpCounter(opName, o.Typ.String())
-		}
-	}
-
-	// Label the comparison operators.
-	for op, overloads := range CmpOps {
-		opName := treecmp.ComparisonOpName(op)
-		for _, impl := range overloads {
-			o := impl.(*CmpOp)
-			lname := o.LeftType.String()
-			rname := o.RightType.String()
-			o.counter = sqltelemetry.CmpOpCounter(opName, lname, rname)
-		}
-	}
-
-	// Label the binary operators.
-	for op, overloads := range BinOps {
-		opName := treebin.BinaryOpName(op)
-		for _, impl := range overloads {
-			o := impl.(*BinOp)
-			lname := o.LeftType.String()
-			rname := o.RightType.String()
-			o.counter = sqltelemetry.BinOpCounter(opName, lname, rname)
-		}
-	}
-}

@@ -19,10 +19,8 @@ import (
 	"time"
 
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
@@ -146,7 +144,6 @@ func isAlterCmdValidWithoutPrimaryKey(cmd tree.AlterTableCmd) bool {
 func (n *alterTableNode) ReadingOwnWrites() {}
 
 func (n *alterTableNode) startExec(params runParams) error {
-	telemetry.Inc(sqltelemetry.SchemaChangeAlterCounter("table"))
 
 	// Commands can either change the descriptor directly (for
 	// alterations that don't require a backfill) or add a mutation to
@@ -162,7 +159,6 @@ func (n *alterTableNode) startExec(params runParams) error {
 	}
 
 	for i, cmd := range n.n.Cmds {
-		telemetry.Inc(cmd.TelemetryCounter())
 
 		if !n.tableDesc.HasPrimaryKey() && !isAlterCmdValidWithoutPrimaryKey(cmd) {
 			return errors.Newf("table %q does not have a primary key, cannot perform%s", n.tableDesc.Name, tree.AsString(cmd))
@@ -715,10 +711,6 @@ func (n *alterTableNode) startExec(params runParams) error {
 			}
 
 		case *tree.AlterTableSetStorageParams:
-			var ttlBefore *catpb.RowLevelTTL
-			if ttl := n.tableDesc.GetRowLevelTTL(); ttl != nil {
-				ttlBefore = protoutil.Clone(ttl).(*catpb.RowLevelTTL)
-			}
 			if err := paramparse.SetStorageParameters(
 				params.ctx,
 				params.p.SemaCtx(),
@@ -730,21 +722,8 @@ func (n *alterTableNode) startExec(params runParams) error {
 			}
 			descriptorChanged = true
 
-			if err := handleTTLStorageParamChange(
-				params,
-				tn,
-				n.tableDesc,
-				ttlBefore,
-				n.tableDesc.GetRowLevelTTL(),
-			); err != nil {
-				return err
-			}
 
 		case *tree.AlterTableResetStorageParams:
-			var ttlBefore *catpb.RowLevelTTL
-			if ttl := n.tableDesc.GetRowLevelTTL(); ttl != nil {
-				ttlBefore = protoutil.Clone(ttl).(*catpb.RowLevelTTL)
-			}
 			if err := paramparse.ResetStorageParameters(
 				params.ctx,
 				params.EvalContext(),
@@ -754,16 +733,6 @@ func (n *alterTableNode) startExec(params runParams) error {
 				return err
 			}
 			descriptorChanged = true
-
-			if err := handleTTLStorageParamChange(
-				params,
-				tn,
-				n.tableDesc,
-				ttlBefore,
-				n.tableDesc.GetRowLevelTTL(),
-			); err != nil {
-				return err
-			}
 
 		case *tree.AlterTableRenameColumn:
 			descChanged, err := params.p.renameColumn(params.ctx, n.tableDesc, t.Column, t.NewName)
@@ -885,7 +854,6 @@ func (p *planner) setAuditMode(
 		return false, err
 	}
 
-	telemetry.Inc(sqltelemetry.SchemaSetAuditModeCounter(auditMode.TelemetryName()))
 
 	return desc.SetAuditMode(auditMode)
 }
@@ -1798,141 +1766,6 @@ func dropColumnImpl(
 	}
 
 	return droppedViews, validateDescriptor(params.ctx, params.p, tableDesc)
-}
-
-func handleTTLStorageParamChange(
-	params runParams,
-	tn *tree.TableName,
-	tableDesc *tabledesc.Mutable,
-	before, after *catpb.RowLevelTTL,
-) error {
-	switch {
-	case before == nil && after == nil:
-		// Do not have to do anything here.
-	case before != nil && after != nil:
-		// Update cron schedule if required.
-		if before.DeletionCron != after.DeletionCron {
-			env := JobSchedulerEnv(params.ExecCfg())
-			s, err := jobs.LoadScheduledJob(
-				params.ctx,
-				env,
-				after.ScheduleID,
-				params.ExecCfg().InternalExecutor,
-				params.p.txn,
-			)
-			if err != nil {
-				return err
-			}
-			if err := s.SetSchedule(rowLevelTTLSchedule(after)); err != nil {
-				return err
-			}
-			if err := s.Update(params.ctx, params.ExecCfg().InternalExecutor, params.p.txn); err != nil {
-				return err
-			}
-		}
-		// Update default expression on automated column if required.
-		if before.DurationExpr != after.DurationExpr {
-			col, err := tableDesc.FindColumnWithName(colinfo.TTLDefaultExpirationColumnName)
-			if err != nil {
-				return err
-			}
-			intervalExpr, err := parser.ParseExpr(string(after.DurationExpr))
-			if err != nil {
-				return errors.Wrapf(err, "unexpected expression for TTL duration")
-			}
-			newExpr := rowLevelTTLAutomaticColumnExpr(intervalExpr)
-
-			if err := updateNonComputedColExpr(
-				params,
-				tableDesc,
-				col,
-				newExpr,
-				&col.ColumnDesc().DefaultExpr,
-				"TTL DEFAULT",
-			); err != nil {
-				return err
-			}
-
-			if err := updateNonComputedColExpr(
-				params,
-				tableDesc,
-				col,
-				newExpr,
-				&col.ColumnDesc().OnUpdateExpr,
-				"TTL UPDATE",
-			); err != nil {
-				return err
-			}
-		}
-	case before == nil && after != nil:
-		if err := checkTTLEnabledForCluster(params.ctx, params.p.ExecCfg().Settings); err != nil {
-			return err
-		}
-
-		// Adding a TTL requires adding the automatic column and deferring the TTL
-		// addition to after the column is successfully added.
-		tableDesc.RowLevelTTL = nil
-		if _, err := tableDesc.FindColumnWithName(colinfo.TTLDefaultExpirationColumnName); err == nil {
-			return pgerror.Newf(
-				pgcode.InvalidTableDefinition,
-				"cannot add TTL to table with the %s column already defined",
-				colinfo.TTLDefaultExpirationColumnName,
-			)
-		}
-		col, err := rowLevelTTLAutomaticColumnDef(after)
-		if err != nil {
-			return err
-		}
-		addCol := &tree.AlterTableAddColumn{
-			ColumnDef: col,
-		}
-		if err := params.p.addColumnImpl(
-			params,
-			&alterTableNode{
-				tableDesc: tableDesc,
-				n: &tree.AlterTable{
-					Cmds: []tree.AlterTableCmd{addCol},
-				},
-			},
-			tn,
-			tableDesc,
-			addCol,
-		); err != nil {
-			return err
-		}
-		tableDesc.AddModifyRowLevelTTLMutation(
-			&descpb.ModifyRowLevelTTL{RowLevelTTL: after},
-			descpb.DescriptorMutation_ADD,
-		)
-		version := params.ExecCfg().Settings.Version.ActiveVersion(params.ctx)
-		if err := tableDesc.AllocateIDs(params.ctx, version); err != nil {
-			return err
-		}
-	case before != nil && after == nil:
-		telemetry.Inc(sqltelemetry.RowLevelTTLDropped)
-
-		// Keep the TTL from beforehand, but create the DROP COLUMN job and the
-		// associated mutation.
-		tableDesc.RowLevelTTL = before
-
-		droppedViews, err := dropColumnImpl(params, tn, tableDesc, &tree.AlterTableDropColumn{
-			Column: colinfo.TTLDefaultExpirationColumnName,
-		})
-		if err != nil {
-			return err
-		}
-		// This should never happen as we do not CASCADE, but error again just in case.
-		if len(droppedViews) > 0 {
-			return pgerror.Newf(pgcode.InvalidParameterValue, "cannot drop TTL automatic column if it is depended on by a view")
-		}
-
-		tableDesc.AddModifyRowLevelTTLMutation(
-			&descpb.ModifyRowLevelTTL{RowLevelTTL: before},
-			descpb.DescriptorMutation_DROP,
-		)
-	}
-
-	return nil
 }
 
 // tryRemoveFKBackReferences determines whether the provided unique constraint

@@ -19,11 +19,6 @@
 
 package tree
 
-import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
-)
-
 // DropBehavior represents options for dropping schema elements.
 type DropBehavior int
 
@@ -133,14 +128,7 @@ func (node *DropView) Format(ctx *FmtCtx) {
 	}
 }
 
-// TelemetryCounter returns the telemetry counter to increment
-// when this command is used.
-func (node *DropView) TelemetryCounter() telemetry.Counter {
-	return sqltelemetry.SchemaChangeDropCounter(
-		GetTableType(
-			false /* isSequence */, true, /* isView */
-			node.IsMaterialized))
-}
+
 
 // DropSequence represents a DROP SEQUENCE statement.
 type DropSequence struct {
