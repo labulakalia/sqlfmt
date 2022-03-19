@@ -18,7 +18,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/cockroachdb/errors"
+	pbtypes "github.com/gogo/protobuf/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoindex"
@@ -58,8 +59,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/eventpb"
-	"github.com/cockroachdb/errors"
-	pbtypes "github.com/gogo/protobuf/types"
 	"github.com/lib/pq/oid"
 )
 
@@ -120,21 +119,6 @@ func getSchemaForCreateTable(
 	}
 
 	if persistence.IsTemporary() {
-		if !params.SessionData().TempTablesEnabled {
-			return nil, errors.WithTelemetry(
-				pgerror.WithCandidateCode(
-					errors.WithHint(
-						errors.WithIssueLink(
-							errors.Newf("temporary tables are only supported experimentally"),
-							errors.IssueLink{IssueURL: build.MakeIssueURL(46260)},
-						),
-						"You can enable temporary tables by running `SET experimental_enable_temp_tables = 'on'`.",
-					),
-					pgcode.FeatureNotSupported,
-				),
-				"sql.schema.temp_tables_disabled",
-			)
-		}
 
 		// If the table is temporary, get the temporary schema ID.
 		var err error
@@ -150,7 +134,6 @@ func getSchemaForCreateTable(
 			return nil, err
 		}
 		if schema.SchemaKind() == catalog.SchemaUserDefined {
-			sqltelemetry.IncrementUserDefinedSchemaCounter(sqltelemetry.UserDefinedSchemaUsedByObject)
 		}
 	}
 

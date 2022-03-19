@@ -26,6 +26,8 @@ import (
 	"time"
 
 	"github.com/cockroachdb/apd/v3"
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/redact"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/col/coldata"
@@ -43,7 +45,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvclient/rangefeed"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/protectedts"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/migration"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/rpc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
@@ -103,8 +104,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/collector"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/redact"
 )
 
 // ClusterOrganization is the organization name.
@@ -1266,7 +1265,6 @@ type ExecutorConfig struct {
 
 	// TenantUsageServer is used to implement configuration APIs for tenant cost
 	// control.
-	TenantUsageServer multitenant.TenantUsageServer
 
 	// CollectionFactory is used to construct a descs.Collection.
 	CollectionFactory *descs.CollectionFactory
@@ -1276,11 +1274,9 @@ type ExecutorConfig struct {
 
 	// SpanConfigReconciler is used to drive the span config reconciliation job
 	// and related migrations.
-	SpanConfigReconciler spanconfig.Reconciler
 
 	// SpanConfigKVAccessor is used when creating and deleting tenant
 	// records.
-	SpanConfigKVAccessor spanconfig.KVAccessor
 
 	// InternalExecutorFactory is used to create an InternalExecutor binded with
 	// SessionData and other ExtraTxnState.

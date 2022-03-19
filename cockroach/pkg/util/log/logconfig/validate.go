@@ -20,9 +20,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/errors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 )
 
 // Validate checks the configuration and propagates defaults.
@@ -327,12 +326,8 @@ func (c *Config) validateFileSinkConfig(fc *FileSinkConfig, defaultLogDir *strin
 	if !fc.Buffering.IsNone() {
 		// We cannot use unimplemented.WithIssue() here because of a
 		// circular dependency.
-		err := errors.UnimplementedError(
-			errors.IssueLink{IssueURL: build.MakeIssueURL(72452)},
-			`unimplemented: "buffering" not yet supported for file-groups`)
-		err = errors.WithHint(err, `Use "buffered-writes".`)
-		err = errors.WithTelemetry(err, "#72452")
-		return err
+
+		return nil
 	}
 	if fc.Dir != c.FileDefaults.Dir {
 		// A directory was specified explicitly. Normalize it.

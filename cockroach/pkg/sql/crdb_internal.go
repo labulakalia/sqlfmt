@@ -21,8 +21,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/config/zonepb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/gossip"
@@ -74,7 +74,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/collector"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
-	"github.com/cockroachdb/errors"
 )
 
 // CrdbInternalName is the name of the crdb_internal schema.
@@ -177,14 +176,10 @@ CREATE TABLE crdb_internal.node_build_info (
 		execCfg := p.ExecCfg()
 		nodeID, _ := execCfg.NodeID.OptionalNodeID() // zero if not available
 
-		info := build.GetInfo()
 		for k, v := range map[string]string{
 			"Name":         "CockroachDB",
 			"ClusterID":    execCfg.ClusterID().String(),
 			"Organization": execCfg.Organization(),
-			"Build":        info.Short(),
-			"Version":      info.Tag,
-			"Channel":      info.Channel,
 		} {
 			if err := addRow(
 				tree.NewDInt(tree.DInt(nodeID)),

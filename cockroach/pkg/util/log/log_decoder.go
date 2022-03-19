@@ -13,12 +13,11 @@ package log
 import (
 	"bufio"
 	"bytes"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 	"io"
 	"regexp"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/errors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 )
 
 var (
@@ -86,10 +85,7 @@ func NewEntryDecoderWithFormat(
 	default:
 		// The unimplemented.WithIssue function is not used here because it results in circular dependency issues.
 		return nil, errors.WithTelemetry(
-			errors.UnimplementedError(
-				errors.IssueLink{IssueURL: build.MakeIssueURL(66684)},
-				"unable to decode this log file format",
-			),
+			nil,
 			"#66684",
 		)
 	}

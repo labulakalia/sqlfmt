@@ -20,7 +20,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
@@ -44,7 +44,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/humanizeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
-	"github.com/cockroachdb/errors"
 )
 
 const (
@@ -1236,11 +1235,6 @@ var varGen = map[string]sessionVar{
 			return nil
 		},
 	},
-
-	// CockroachDB extension.
-	`crdb_version`: makeReadOnlyVarWithFn(func() string {
-		return build.GetInfo().Short()
-	}),
 
 	// CockroachDB extension
 	`session_id`: {

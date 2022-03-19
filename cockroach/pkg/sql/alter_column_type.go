@@ -14,7 +14,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/colinfo"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
@@ -28,7 +28,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlerrors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
-	"github.com/cockroachdb/errors"
 )
 
 var colInIndexNotSupportedErr = unimplemented.NewWithIssuef(
@@ -178,18 +177,6 @@ func alterColumnTypeGeneral(
 	cmds tree.AlterTableCmds,
 	tn *tree.TableName,
 ) error {
-	if !params.SessionData().AlterColumnTypeGeneralEnabled {
-		return pgerror.WithCandidateCode(
-			errors.WithHint(
-				errors.WithIssueLink(
-					errors.Newf("ALTER COLUMN TYPE from %v to %v is only "+
-						"supported experimentally",
-						col.GetType(), toType),
-					errors.IssueLink{IssueURL: build.MakeIssueURL(49329)}),
-				"you can enable alter column type general support by running "+
-					"`SET enable_experimental_alter_column_type_general = true`"),
-			pgcode.FeatureNotSupported)
-	}
 
 	// Disallow ALTER COLUMN TYPE general for columns that own sequences.
 	if col.NumOwnsSequences() != 0 {

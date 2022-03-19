@@ -27,7 +27,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/errors/oserror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/cloud"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachprod/config"
@@ -43,8 +44,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/errors/oserror"
 	"golang.org/x/sys/unix"
 )
 
@@ -199,12 +198,6 @@ func userClusterNameRegexp(l *logger.Logger) (*regexp.Regexp, error) {
 		}
 	}
 	return regexp.Compile(pattern)
-}
-
-// Version returns version/build information.
-func Version(l *logger.Logger) string {
-	info := build.GetInfo()
-	return info.Long()
 }
 
 // CachedClusters iterates over all roachprod clusters from the local cache, in

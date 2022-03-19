@@ -13,10 +13,9 @@ package unimplemented
 import (
 	"fmt"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/cockroachdb/errors"
 )
 
 // This file re-implements the unimplemented primitives from the
@@ -70,7 +69,7 @@ func unimplementedInternal(
 	// Create the issue link.
 	link := errors.IssueLink{Detail: detail}
 	if issue > 0 {
-		link.IssueURL = build.MakeIssueURL(issue)
+
 	}
 
 	// Instantiate the base error.

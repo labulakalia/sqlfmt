@@ -19,7 +19,6 @@ import (
 
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/batcheval/result"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/rangefeed"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
@@ -1724,7 +1723,7 @@ type tenantStorageMetrics struct {
 }
 
 func newTenantsStorageMetrics() *TenantsStorageMetrics {
-	b := aggmetric.MakeBuilder(multitenant.TenantIDLabel)
+	b := aggmetric.MakeBuilder("")
 	sm := &TenantsStorageMetrics{
 		LiveBytes:      b.Gauge(metaLiveBytes),
 		KeyBytes:       b.Gauge(metaKeyBytes),

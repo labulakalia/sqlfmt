@@ -19,7 +19,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
@@ -30,7 +29,6 @@ import (
 func TestFluentClient(t *testing.T) {
 	// CLI tests are sensitive to the server version, but test binaries don't have
 	// a version injected. Pretend to be a very up-to-date version.
-	defer build.TestingOverrideTag("v999.0.0")()
 
 	defer leaktest.AfterTest(t)()
 	sc := ScopeWithoutShowLogs(t)

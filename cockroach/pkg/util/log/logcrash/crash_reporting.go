@@ -16,14 +16,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
+	"github.com/cockroachdb/errors"
+	sentry "github.com/getsentry/sentry-go"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
-	"github.com/cockroachdb/errors"
-	sentry "github.com/getsentry/sentry-go"
 )
 
 // The call stack here is usually:
@@ -130,9 +129,6 @@ func RecoverAndReportPanic(ctx context.Context, sv *settings.Values) {
 func RecoverAndReportNonfatalPanic(ctx context.Context, sv *settings.Values) {
 	if r := recover(); r != nil {
 		ReportPanic(ctx, sv, r, depthForRecoverAndReportPanic)
-		if !build.IsRelease() || PanicOnAssertions.Get(sv) {
-			panic(r)
-		}
 	}
 }
 
@@ -208,9 +204,7 @@ func PanicAsError(depth int, r interface{}) error {
 // when detecting a non-release build.
 var crashReportURL = func() string {
 	var defaultURL string
-	if build.SeemsOfficial() {
-		defaultURL = "https://ignored@errors.cockroachdb.com/api/sentry/v2/1111"
-	}
+
 	return envutil.EnvOrDefaultString("COCKROACH_CRASH_REPORTS", defaultURL)
 }()
 
@@ -226,13 +220,10 @@ func SetupCrashReporter(ctx context.Context, cmd string) {
 	if cmd == "start" {
 		cmd = "server"
 	}
-	info := build.GetInfo()
 
 	if err := sentry.Init(sentry.ClientOptions{
 		Dsn:         crashReportURL,
 		Environment: crashReportEnv,
-		Release:     info.Tag,
-		Dist:        info.Distribution,
 	}); err != nil {
 		panic(errors.Wrap(err, "failed to setup crash reporting"))
 	}
@@ -241,11 +232,7 @@ func SetupCrashReporter(ctx context.Context, cmd string) {
 
 	sentry.ConfigureScope(func(scope *sentry.Scope) {
 		scope.SetTags(map[string]string{
-			"cmd":          cmd,
-			"platform":     info.Platform,
-			"distribution": info.Distribution,
-			"rev":          info.Revision,
-			"goversion":    info.GoVersion,
+			"cmd": cmd,
 		})
 	})
 }
@@ -372,9 +359,6 @@ func ReportOrPanic(
 	ctx context.Context, sv *settings.Values, format string, reportables ...interface{},
 ) {
 	err := errors.Newf(format, reportables...)
-	if !build.IsRelease() || (sv != nil && PanicOnAssertions.Get(sv)) {
-		panic(err)
-	}
 	log.Warningf(ctx, "%v", err)
 	sendCrashReport(ctx, sv, err, ReportTypeError)
 }

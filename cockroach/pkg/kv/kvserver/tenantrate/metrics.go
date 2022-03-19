@@ -11,7 +11,6 @@
 package tenantrate
 
 import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/multitenant"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/metric/aggmetric"
@@ -69,7 +68,7 @@ var (
 )
 
 func makeMetrics() Metrics {
-	b := aggmetric.MakeBuilder(multitenant.TenantIDLabel)
+	b := aggmetric.MakeBuilder("")
 	return Metrics{
 		Tenants:               metric.NewGauge(metaTenants),
 		CurrentBlocked:        b.Gauge(metaCurrentBlocked),

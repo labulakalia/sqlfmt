@@ -38,8 +38,10 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/errors/oserror"
+	"github.com/kr/pretty"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver"
@@ -71,9 +73,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/errors/oserror"
-	"github.com/kr/pretty"
 	"github.com/lib/pq"
 	"github.com/pmezard/go-difflib/difflib"
 	"github.com/stretchr/testify/require"
@@ -1948,7 +1947,6 @@ func processConfigs(
 
 		blockedConfig, issueNo := getBlocklistIssueNo(configName[1:])
 		if *printBlocklistIssues && issueNo != 0 {
-			t.Logf("will skip %s config in test %s due to issue: %s", blockedConfig, path, build.MakeIssueURL(issueNo))
 		}
 		blocklist[blockedConfig] = issueNo
 	}
