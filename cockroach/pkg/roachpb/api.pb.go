@@ -9,7 +9,7 @@ import (
 	fmt "fmt"
 	//rspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/readsummary/rspb"
 	settings "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
-	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	//enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	//github_com_cockroachdb_cockroach_pkg_storage_enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	github_com_cockroachdb_cockroach_pkg_util_hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
@@ -4963,7 +4963,7 @@ var xxx_messageInfo_SubsumeRequest proto.InternalMessageInfo
 type SubsumeResponse struct {
 	ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3,embedded=header" json:"header"`
 	// MVCCStats are the MVCC statistics for the range.
-	MVCCStats enginepb.MVCCStats `protobuf:"bytes,3,opt,name=mvcc_stats,json=mvccStats,proto3" json:"mvcc_stats"`
+	// MVCCStats enginepb.MVCCStats `protobuf:"bytes,3,opt,name=mvcc_stats,json=mvccStats,proto3" json:"mvcc_stats"`
 	// LeaseAppliedIndex is the lease applied index of the last applied command
 	// at the time that the Subsume request executed. This is NOT intended to be
 	// the lease index of the SubsumeRequest itself. Instead, it is intended to
@@ -8276,7 +8276,7 @@ func (m *ContentionEvent) XXX_Size() int {
 	return m.Size()
 }
 func (m *ContentionEvent) XXX_DiscardUnknown() {
-	// xxx_messageInfo_ContentionEvent.DiscardUnknown(m)
+	//xxx_messageInfo_ContentionEvent.DiscardUnknown(m)
 }
 
 var xxx_messageInfo_ContentionEvent proto.InternalMessageInfo
@@ -8481,7 +8481,7 @@ func init() {
 	proto.RegisterType((*TokenBucketResponse)(nil), "cockroach.roachpb.TokenBucketResponse")
 	proto.RegisterType((*JoinNodeRequest)(nil), "cockroach.roachpb.JoinNodeRequest")
 	proto.RegisterType((*JoinNodeResponse)(nil), "cockroach.roachpb.JoinNodeResponse")
-	// proto.RegisterType((*ContentionEvent)(nil), "cockroach.roachpb.ContentionEvent")
+	//proto.RegisterType((*ContentionEvent)(nil), "cockroach.roachpb.ContentionEvent")
 	proto.RegisterType((*ScanStats)(nil), "cockroach.roachpb.ScanStats")
 }
 
@@ -14790,14 +14790,14 @@ func (m *SubsumeResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x20
 	}
-	{
-		size, err := m.MVCCStats.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.MVCCStats.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintApi(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x1a
 	{
@@ -20869,7 +20869,7 @@ func (m *SubsumeResponse) Size() (n int) {
 	_ = l
 	l = m.ResponseHeader.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.MVCCStats.Size()
+	//l = m.MVCCStats.Size()
 	n += 1 + l + sovApi(uint64(l))
 	if m.LeaseAppliedIndex != 0 {
 		n += 1 + sovApi(uint64(m.LeaseAppliedIndex))
@@ -22930,7 +22930,7 @@ func (m *RequestHeader) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Sequence", wireType)
 			}
-			// m.Sequence = 0
+			//m.Sequence = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowApi
@@ -37016,9 +37016,9 @@ func (m *SubsumeResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.MVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.MVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 4:
 			if wireType != 0 {
@@ -45808,9 +45808,9 @@ func (m *ContentionEvent) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			// if err := m.TxnMeta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-			// 	return err
-			// }
+			//if err := m.TxnMeta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {

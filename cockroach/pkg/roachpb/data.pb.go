@@ -6,8 +6,8 @@ package roachpb
 import (
 	bytes "bytes"
 	fmt "fmt"
-	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
-	github_com_cockroachdb_cockroach_pkg_storage_enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	//enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	//github_com_cockroachdb_cockroach_pkg_storage_enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	github_com_cockroachdb_cockroach_pkg_util_hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	github_com_cockroachdb_cockroach_pkg_util_uuid "github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
@@ -484,7 +484,7 @@ var xxx_messageInfo_SplitTrigger proto.InternalMessageInfo
 type MergeTrigger struct {
 	LeftDesc       RangeDescriptor    `protobuf:"bytes,1,opt,name=left_desc,json=leftDesc,proto3" json:"left_desc"`
 	RightDesc      RangeDescriptor    `protobuf:"bytes,2,opt,name=right_desc,json=rightDesc,proto3" json:"right_desc"`
-	RightMVCCStats enginepb.MVCCStats `protobuf:"bytes,4,opt,name=right_mvcc_stats,json=rightMvccStats,proto3" json:"right_mvcc_stats"`
+	//RightMVCCStats enginepb.MVCCStats `protobuf:"bytes,4,opt,name=right_mvcc_stats,json=rightMvccStats,proto3" json:"right_mvcc_stats"`
 	// FreezeStart is a timestamp that is guaranteed to be greater than the
 	// timestamps at which any requests were serviced by the right-hand side range
 	// before it stopped responding to requests altogether (in anticipation of
@@ -826,7 +826,7 @@ var xxx_messageInfo_ObservedTimestamp proto.InternalMessageInfo
 type Transaction struct {
 	// The transaction metadata. This field includes the subset of information
 	// that is persisted with every write intent.
-	enginepb.TxnMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
+	//enginepb.TxnMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
 	// A free-text identifier for debug purposes.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// The status of the transaction.
@@ -959,7 +959,7 @@ type Transaction struct {
 	// the next range's start seqnum), and sorted in seqnum order. It should be
 	// treated as immutable and all updates should be performed on a copy of the
 	// slice.
-	IgnoredSeqNums []enginepb.IgnoredSeqNumRange `protobuf:"bytes,18,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
+	//IgnoredSeqNums []enginepb.IgnoredSeqNumRange `protobuf:"bytes,18,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
 }
 
 func (m *Transaction) Reset()      { *m = Transaction{} }
@@ -1004,12 +1004,12 @@ var xxx_messageInfo_Transaction proto.InternalMessageInfo
 // AsTransaction methods.
 type TransactionRecord struct {
 	// See comments on Transaction proto.
-	enginepb.TxnMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
+	//enginepb.TxnMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
 	Status           TransactionStatus             `protobuf:"varint,4,opt,name=status,proto3,enum=cockroach.roachpb.TransactionStatus" json:"status,omitempty"`
 	LastHeartbeat    hlc.Timestamp                 `protobuf:"bytes,5,opt,name=last_heartbeat,json=lastHeartbeat,proto3" json:"last_heartbeat"`
 	LockSpans        []Span                        `protobuf:"bytes,11,rep,name=lock_spans,json=lockSpans,proto3" json:"lock_spans"`
 	InFlightWrites   []SequencedWrite              `protobuf:"bytes,17,rep,name=in_flight_writes,json=inFlightWrites,proto3" json:"in_flight_writes"`
-	IgnoredSeqNums   []enginepb.IgnoredSeqNumRange `protobuf:"bytes,18,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
+	//IgnoredSeqNums   []enginepb.IgnoredSeqNumRange `protobuf:"bytes,18,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
 }
 
 func (m *TransactionRecord) Reset()         { *m = TransactionRecord{} }
@@ -1049,7 +1049,7 @@ var xxx_messageInfo_TransactionRecord proto.InternalMessageInfo
 // Note: avoid constructing Intent directly; consider using MakeIntent() instead.
 type Intent struct {
 	Intent_SingleKeySpan `protobuf:"bytes,1,opt,name=single_key_span,json=singleKeySpan,proto3,embedded=single_key_span" json:"single_key_span"`
-	Txn                  enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
+	//Txn                  enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
 }
 
 func (m *Intent) Reset()         { *m = Intent{} }
@@ -1122,7 +1122,7 @@ var xxx_messageInfo_Intent_SingleKeySpan proto.InternalMessageInfo
 // with a specified durability level over a Span of keys.
 type LockAcquisition struct {
 	Span       `protobuf:"bytes,1,opt,name=span,proto3,embedded=span" json:"span"`
-	Txn        enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
+	//Txn        enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
 	//Durability lock.Durability  `protobuf:"varint,3,opt,name=durability,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Durability" json:"durability,omitempty"`
 }
 
@@ -1163,7 +1163,7 @@ var xxx_messageInfo_LockAcquisition proto.InternalMessageInfo
 type LockUpdate struct {
 	Span           `protobuf:"bytes,1,opt,name=span,proto3,embedded=span" json:"span"`
 	Status         TransactionStatus             `protobuf:"varint,3,opt,name=status,proto3,enum=cockroach.roachpb.TransactionStatus" json:"status,omitempty"`
-	IgnoredSeqNums []enginepb.IgnoredSeqNumRange `protobuf:"bytes,4,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
+	//IgnoredSeqNums []enginepb.IgnoredSeqNumRange `protobuf:"bytes,4,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
 }
 
 func (m *LockUpdate) Reset()         { *m = LockUpdate{} }
@@ -1204,7 +1204,7 @@ type LockStateInfo struct {
 	// The key that this lock controls access to.
 	Key Key `protobuf:"bytes,2,opt,name=key,proto3,casttype=Key" json:"key,omitempty"`
 	// The current lock holder, or nil if the lock is not held.
-	LockHolder *enginepb.TxnMeta `protobuf:"bytes,3,opt,name=lock_holder,json=lockHolder,proto3" json:"lock_holder,omitempty"`
+	//LockHolder *enginepb.TxnMeta `protobuf:"bytes,3,opt,name=lock_holder,json=lockHolder,proto3" json:"lock_holder,omitempty"`
 	// The durability that the lock is held at, or Unreplicated if not held.
 	//Durability lock.Durability `protobuf:"varint,4,opt,name=durability,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Durability" json:"durability,omitempty"`
 	// The wall clock duration since this lock was acquired (or zero, if not held).
@@ -1247,7 +1247,7 @@ type SequencedWrite struct {
 	// The key that the write was made at.
 	Key Key `protobuf:"bytes,1,opt,name=key,proto3,casttype=Key" json:"key,omitempty"`
 	// The sequence number of the request that created the write.
-	Sequence github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq `protobuf:"varint,2,opt,name=sequence,proto3,casttype=sqlfmt/cockroach/pkg/storage/enginepb.TxnSeq" json:"sequence,omitempty"`
+	//Sequence github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq `protobuf:"varint,2,opt,name=sequence,proto3,casttype=sqlfmt/cockroach/pkg/storage/enginepb.TxnSeq" json:"sequence,omitempty"`
 }
 
 func (m *SequencedWrite) Reset()         { *m = SequencedWrite{} }
@@ -1360,7 +1360,7 @@ type AbortSpanEntry struct {
 	// it was aborted.
 	Timestamp hlc.Timestamp `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp"`
 	// The priority of the transaction.
-	Priority github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnPriority `protobuf:"varint,3,opt,name=priority,proto3,casttype=sqlfmt/cockroach/pkg/storage/enginepb.TxnPriority" json:"priority,omitempty"`
+	//Priority github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnPriority `protobuf:"varint,3,opt,name=priority,proto3,casttype=sqlfmt/cockroach/pkg/storage/enginepb.TxnPriority" json:"priority,omitempty"`
 }
 
 func (m *AbortSpanEntry) Reset()         { *m = AbortSpanEntry{} }
@@ -1417,7 +1417,7 @@ type LeafTxnInputState struct {
 	// this field becomes the sequence number used for reads,
 	// regardless of the current seqnum generated for writes. This is
 	// updated via the (client.TxnSender).Step() operation.
-	ReadSeqNum github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq `protobuf:"varint,10,opt,name=read_seq_num,json=readSeqNum,proto3,casttype=sqlfmt/cockroach/pkg/storage/enginepb.TxnSeq" json:"read_seq_num,omitempty"`
+	//ReadSeqNum github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq `protobuf:"varint,10,opt,name=read_seq_num,json=readSeqNum,proto3,casttype=sqlfmt/cockroach/pkg/storage/enginepb.TxnSeq" json:"read_seq_num,omitempty"`
 }
 
 func (m *LeafTxnInputState) Reset()         { *m = LeafTxnInputState{} }
@@ -1927,9 +1927,9 @@ func (this *MergeTrigger) Equal(that interface{}) bool {
 	if !this.RightDesc.Equal(&that1.RightDesc) {
 		return false
 	}
-	if !this.RightMVCCStats.Equal(&that1.RightMVCCStats) {
-		return false
-	}
+	//if !this.RightMVCCStats.Equal(&that1.RightMVCCStats) {
+	//	return false
+	//}
 	if !this.FreezeStart.Equal(&that1.FreezeStart) {
 		return false
 	}
@@ -1966,9 +1966,9 @@ func (this *AbortSpanEntry) Equal(that interface{}) bool {
 	if !this.Timestamp.Equal(&that1.Timestamp) {
 		return false
 	}
-	if this.Priority != that1.Priority {
-		return false
-	}
+	//if this.Priority != that1.Priority {
+	//	return false
+	//}
 	return true
 }
 func (this *TenantID) Equal(that interface{}) bool {
@@ -2250,14 +2250,14 @@ func (m *MergeTrigger) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	}
 	i--
 	dAtA[i] = 0x2a
-	{
-		size, err := m.RightMVCCStats.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintData(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.RightMVCCStats.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintData(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x22
 	{
@@ -2565,22 +2565,22 @@ func (m *Transaction) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.IgnoredSeqNums) > 0 {
-		for iNdEx := len(m.IgnoredSeqNums) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.IgnoredSeqNums[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintData(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x1
-			i--
-			dAtA[i] = 0x92
-		}
-	}
+	//if len(m.IgnoredSeqNums) > 0 {
+	//	for iNdEx := len(m.IgnoredSeqNums) - 1; iNdEx >= 0; iNdEx-- {
+	//		{
+	//			size, err := m.IgnoredSeqNums[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+	//			if err != nil {
+	//				return 0, err
+	//			}
+	//			i -= size
+	//			i = encodeVarintData(dAtA, i, uint64(size))
+	//		}
+	//		i--
+	//		dAtA[i] = 0x1
+	//		i--
+	//		dAtA[i] = 0x92
+	//	}
+	//}
 	if len(m.InFlightWrites) > 0 {
 		for iNdEx := len(m.InFlightWrites) - 1; iNdEx >= 0; iNdEx-- {
 			{
@@ -2689,14 +2689,14 @@ func (m *Transaction) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x12
 	}
-	{
-		size, err := m.TxnMeta.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintData(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.TxnMeta.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintData(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
@@ -2722,22 +2722,22 @@ func (m *TransactionRecord) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.IgnoredSeqNums) > 0 {
-		for iNdEx := len(m.IgnoredSeqNums) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.IgnoredSeqNums[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintData(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x1
-			i--
-			dAtA[i] = 0x92
-		}
-	}
+	//if len(m.IgnoredSeqNums) > 0 {
+	//	for iNdEx := len(m.IgnoredSeqNums) - 1; iNdEx >= 0; iNdEx-- {
+	//		{
+	//			size, err := m.IgnoredSeqNums[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+	//			if err != nil {
+	//				return 0, err
+	//			}
+	//			i -= size
+	//			i = encodeVarintData(dAtA, i, uint64(size))
+	//		}
+	//		i--
+	//		dAtA[i] = 0x1
+	//		i--
+	//		dAtA[i] = 0x92
+	//	}
+	//}
 	if len(m.InFlightWrites) > 0 {
 		for iNdEx := len(m.InFlightWrites) - 1; iNdEx >= 0; iNdEx-- {
 			{
@@ -2783,14 +2783,14 @@ func (m *TransactionRecord) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x20
 	}
-	{
-		size, err := m.TxnMeta.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintData(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.TxnMeta.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintData(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
@@ -2816,14 +2816,14 @@ func (m *Intent) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintData(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintData(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x12
 	{
@@ -2894,14 +2894,14 @@ func (m *LockAcquisition) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	//	i--
 	//	dAtA[i] = 0x18
 	//}
-	{
-		size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintData(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintData(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x12
 	{
@@ -2937,20 +2937,20 @@ func (m *LockUpdate) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.IgnoredSeqNums) > 0 {
-		for iNdEx := len(m.IgnoredSeqNums) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.IgnoredSeqNums[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintData(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x22
-		}
-	}
+	//if len(m.IgnoredSeqNums) > 0 {
+	//	for iNdEx := len(m.IgnoredSeqNums) - 1; iNdEx >= 0; iNdEx-- {
+	//		{
+	//			size, err := m.IgnoredSeqNums[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+	//			if err != nil {
+	//				return 0, err
+	//			}
+	//			i -= size
+	//			i = encodeVarintData(dAtA, i, uint64(size))
+	//		}
+	//		i--
+	//		dAtA[i] = 0x22
+	//	}
+	//}
 	if m.Status != 0 {
 		i = encodeVarintData(dAtA, i, uint64(m.Status))
 		i--
@@ -3026,18 +3026,18 @@ func (m *LockStateInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	//	i--
 	//	dAtA[i] = 0x20
 	//}
-	if m.LockHolder != nil {
-		{
-			size, err := m.LockHolder.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintData(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x1a
-	}
+	//if m.LockHolder != nil {
+	//	{
+	//		size, err := m.LockHolder.MarshalToSizedBuffer(dAtA[:i])
+	//		if err != nil {
+	//			return 0, err
+	//		}
+	//		i -= size
+	//		i = encodeVarintData(dAtA, i, uint64(size))
+	//	}
+	//	i--
+	//	dAtA[i] = 0x1a
+	//}
 	if len(m.Key) > 0 {
 		i -= len(m.Key)
 		copy(dAtA[i:], m.Key)
@@ -3073,11 +3073,11 @@ func (m *SequencedWrite) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Sequence != 0 {
-		i = encodeVarintData(dAtA, i, uint64(m.Sequence))
-		i--
-		dAtA[i] = 0x10
-	}
+	//if m.Sequence != 0 {
+	//	//i = encodeVarintData(dAtA, i, uint64(m.Sequence))
+	//	i--
+	//	dAtA[i] = 0x10
+	//}
 	if len(m.Key) > 0 {
 		i -= len(m.Key)
 		copy(dAtA[i:], m.Key)
@@ -3202,11 +3202,11 @@ func (m *AbortSpanEntry) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Priority != 0 {
-		i = encodeVarintData(dAtA, i, uint64(m.Priority))
-		i--
-		dAtA[i] = 0x18
-	}
+	//if m.Priority != 0 {
+	//	i = encodeVarintData(dAtA, i, uint64(m.Priority))
+	//	i--
+	//	dAtA[i] = 0x18
+	//}
 	{
 		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -3247,11 +3247,11 @@ func (m *LeafTxnInputState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.ReadSeqNum != 0 {
-		i = encodeVarintData(dAtA, i, uint64(m.ReadSeqNum))
-		i--
-		dAtA[i] = 0x50
-	}
+	//if m.ReadSeqNum != 0 {
+	//	i = encodeVarintData(dAtA, i, uint64(m.ReadSeqNum))
+	//	i--
+	//	dAtA[i] = 0x50
+	//}
 	if m.SteppingModeEnabled {
 		i--
 		if m.SteppingModeEnabled {
@@ -3556,8 +3556,8 @@ func NewPopulatedObservedTimestamp(r randyData, easy bool) *ObservedTimestamp {
 
 func NewPopulatedTransaction(r randyData, easy bool) *Transaction {
 	this := &Transaction{}
-	v4 := enginepb.NewPopulatedTxnMeta(r, easy)
-	this.TxnMeta = *v4
+	//v4 := enginepb.NewPopulatedTxnMeta(r, easy)
+	//this.TxnMeta = *v4
 	this.Name = string(randStringData(r))
 	this.Status = TransactionStatus([]int32{0, 3, 1, 2}[r.Intn(4)])
 	v5 := hlc.NewPopulatedTimestamp(r, easy)
@@ -3593,12 +3593,12 @@ func NewPopulatedTransaction(r randyData, easy bool) *Transaction {
 		}
 	}
 	if r.Intn(5) != 0 {
-		v14 := r.Intn(5)
-		this.IgnoredSeqNums = make([]enginepb.IgnoredSeqNumRange, v14)
-		for i := 0; i < v14; i++ {
-			v15 := enginepb.NewPopulatedIgnoredSeqNumRange(r, easy)
-			this.IgnoredSeqNums[i] = *v15
-		}
+		//v14 := r.Intn(5)
+		//this.IgnoredSeqNums = make([]enginepb.IgnoredSeqNumRange, v14)
+		//for i := 0; i < v14; i++ {
+		//	v15 := enginepb.NewPopulatedIgnoredSeqNumRange(r, easy)
+		//	this.IgnoredSeqNums[i] = *v15
+		//}
 	}
 	if !easy && r.Intn(10) != 0 {
 	}
@@ -3607,8 +3607,8 @@ func NewPopulatedTransaction(r randyData, easy bool) *Transaction {
 
 func NewPopulatedTransactionRecord(r randyData, easy bool) *TransactionRecord {
 	this := &TransactionRecord{}
-	v16 := enginepb.NewPopulatedTxnMeta(r, easy)
-	this.TxnMeta = *v16
+	//v16 := enginepb.NewPopulatedTxnMeta(r, easy)
+	//this.TxnMeta = *v16
 	this.Status = TransactionStatus([]int32{0, 3, 1, 2}[r.Intn(4)])
 	v17 := hlc.NewPopulatedTimestamp(r, easy)
 	this.LastHeartbeat = *v17
@@ -3629,12 +3629,12 @@ func NewPopulatedTransactionRecord(r randyData, easy bool) *TransactionRecord {
 		}
 	}
 	if r.Intn(5) != 0 {
-		v22 := r.Intn(5)
-		this.IgnoredSeqNums = make([]enginepb.IgnoredSeqNumRange, v22)
-		for i := 0; i < v22; i++ {
-			v23 := enginepb.NewPopulatedIgnoredSeqNumRange(r, easy)
-			this.IgnoredSeqNums[i] = *v23
-		}
+		//v22 := r.Intn(5)
+		//this.IgnoredSeqNums = make([]enginepb.IgnoredSeqNumRange, v22)
+		//for i := 0; i < v22; i++ {
+		//	//v23 := enginepb.NewPopulatedIgnoredSeqNumRange(r, easy)
+		//	//this.IgnoredSeqNums[i] = *v23
+		//}
 	}
 	if !easy && r.Intn(10) != 0 {
 	}
@@ -3648,10 +3648,10 @@ func NewPopulatedSequencedWrite(r randyData, easy bool) *SequencedWrite {
 	for i := 0; i < v24; i++ {
 		this.Key[i] = byte(r.Intn(256))
 	}
-	this.Sequence = github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq(r.Int31())
-	if r.Intn(2) == 0 {
-		this.Sequence *= -1
-	}
+	//this.Sequence = github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq(r.Int31())
+	//if r.Intn(2) == 0 {
+	//	this.Sequence *= -1
+	//}
 	if !easy && r.Intn(10) != 0 {
 	}
 	return this
@@ -3695,10 +3695,10 @@ func NewPopulatedAbortSpanEntry(r randyData, easy bool) *AbortSpanEntry {
 	}
 	v28 := hlc.NewPopulatedTimestamp(r, easy)
 	this.Timestamp = *v28
-	this.Priority = github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnPriority(r.Int31())
-	if r.Intn(2) == 0 {
-		this.Priority *= -1
-	}
+	//this.Priority = github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnPriority(r.Int31())
+	//if r.Intn(2) == 0 {
+	//	this.Priority *= -1
+	//}
 	if !easy && r.Intn(10) != 0 {
 	}
 	return this
@@ -3863,7 +3863,7 @@ func (m *MergeTrigger) Size() (n int) {
 	n += 1 + l + sovData(uint64(l))
 	l = m.RightDesc.Size()
 	n += 1 + l + sovData(uint64(l))
-	l = m.RightMVCCStats.Size()
+	//l = m.RightMVCCStats.Size()
 	n += 1 + l + sovData(uint64(l))
 	l = m.FreezeStart.Size()
 	n += 1 + l + sovData(uint64(l))
@@ -3977,7 +3977,7 @@ func (m *Transaction) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = m.TxnMeta.Size()
+	//l = m.TxnMeta.Size()
 	n += 1 + l + sovData(uint64(l))
 	l = len(m.Name)
 	if l > 0 {
@@ -4016,12 +4016,12 @@ func (m *Transaction) Size() (n int) {
 			n += 2 + l + sovData(uint64(l))
 		}
 	}
-	if len(m.IgnoredSeqNums) > 0 {
-		for _, e := range m.IgnoredSeqNums {
-			l = e.Size()
-			n += 2 + l + sovData(uint64(l))
-		}
-	}
+	//if len(m.IgnoredSeqNums) > 0 {
+	//	for _, e := range m.IgnoredSeqNums {
+	//		l = e.Size()
+	//		n += 2 + l + sovData(uint64(l))
+	//	}
+	//}
 	return n
 }
 
@@ -4031,7 +4031,7 @@ func (m *TransactionRecord) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = m.TxnMeta.Size()
+	//l = m.TxnMeta.Size()
 	n += 1 + l + sovData(uint64(l))
 	if m.Status != 0 {
 		n += 1 + sovData(uint64(m.Status))
@@ -4050,12 +4050,12 @@ func (m *TransactionRecord) Size() (n int) {
 			n += 2 + l + sovData(uint64(l))
 		}
 	}
-	if len(m.IgnoredSeqNums) > 0 {
-		for _, e := range m.IgnoredSeqNums {
-			l = e.Size()
-			n += 2 + l + sovData(uint64(l))
-		}
-	}
+	//if len(m.IgnoredSeqNums) > 0 {
+	//	for _, e := range m.IgnoredSeqNums {
+	//		l = e.Size()
+	//		n += 2 + l + sovData(uint64(l))
+	//	}
+	//}
 	return n
 }
 
@@ -4067,7 +4067,7 @@ func (m *Intent) Size() (n int) {
 	_ = l
 	l = m.Intent_SingleKeySpan.Size()
 	n += 1 + l + sovData(uint64(l))
-	l = m.Txn.Size()
+	//l = m.Txn.Size()
 	n += 1 + l + sovData(uint64(l))
 	return n
 }
@@ -4093,7 +4093,7 @@ func (m *LockAcquisition) Size() (n int) {
 	_ = l
 	l = m.Span.Size()
 	n += 1 + l + sovData(uint64(l))
-	l = m.Txn.Size()
+	//l = m.Txn.Size()
 	n += 1 + l + sovData(uint64(l))
 	//if m.Durability != 0 {
 	//	n += 1 + sovData(uint64(m.Durability))
@@ -4114,12 +4114,12 @@ func (m *LockUpdate) Size() (n int) {
 	if m.Status != 0 {
 		n += 1 + sovData(uint64(m.Status))
 	}
-	if len(m.IgnoredSeqNums) > 0 {
-		for _, e := range m.IgnoredSeqNums {
-			l = e.Size()
-			n += 1 + l + sovData(uint64(l))
-		}
-	}
+	//if len(m.IgnoredSeqNums) > 0 {
+	//	for _, e := range m.IgnoredSeqNums {
+	//		l = e.Size()
+	//		n += 1 + l + sovData(uint64(l))
+	//	}
+	//}
 	return n
 }
 
@@ -4136,10 +4136,10 @@ func (m *LockStateInfo) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovData(uint64(l))
 	}
-	if m.LockHolder != nil {
-		l = m.LockHolder.Size()
-		n += 1 + l + sovData(uint64(l))
-	}
+	//if m.LockHolder != nil {
+	//	l = m.LockHolder.Size()
+	//	n += 1 + l + sovData(uint64(l))
+	//}
 	//if m.Durability != 0 {
 	//	n += 1 + sovData(uint64(m.Durability))
 	//}
@@ -4164,9 +4164,9 @@ func (m *SequencedWrite) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovData(uint64(l))
 	}
-	if m.Sequence != 0 {
-		n += 1 + sovData(uint64(m.Sequence))
-	}
+	//if m.Sequence != 0 {
+	//	n += 1 + sovData(uint64(m.Sequence))
+	//}
 	return n
 }
 
@@ -4216,9 +4216,9 @@ func (m *AbortSpanEntry) Size() (n int) {
 	}
 	l = m.Timestamp.Size()
 	n += 1 + l + sovData(uint64(l))
-	if m.Priority != 0 {
-		n += 1 + sovData(uint64(m.Priority))
-	}
+	//if m.Priority != 0 {
+	//	n += 1 + sovData(uint64(m.Priority))
+	//}
 	return n
 }
 
@@ -4242,9 +4242,9 @@ func (m *LeafTxnInputState) Size() (n int) {
 	if m.SteppingModeEnabled {
 		n += 2
 	}
-	if m.ReadSeqNum != 0 {
-		n += 1 + sovData(uint64(m.ReadSeqNum))
-	}
+	//if m.ReadSeqNum != 0 {
+	//	n += 1 + sovData(uint64(m.ReadSeqNum))
+	//}
 	return n
 }
 
@@ -5054,9 +5054,9 @@ func (m *MergeTrigger) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.RightMVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.RightMVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
@@ -5914,9 +5914,9 @@ func (m *Transaction) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.TxnMeta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.TxnMeta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -6239,10 +6239,10 @@ func (m *Transaction) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
-			if err := m.IgnoredSeqNums[len(m.IgnoredSeqNums)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
+			//if err := m.IgnoredSeqNums[len(m.IgnoredSeqNums)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -6323,9 +6323,9 @@ func (m *TransactionRecord) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.TxnMeta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.TxnMeta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 4:
 			if wireType != 0 {
@@ -6476,10 +6476,10 @@ func (m *TransactionRecord) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
-			if err := m.IgnoredSeqNums[len(m.IgnoredSeqNums)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
+			//if err := m.IgnoredSeqNums[len(m.IgnoredSeqNums)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -6593,9 +6593,9 @@ func (m *Intent) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -6793,9 +6793,9 @@ func (m *LockAcquisition) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 3:
 			if wireType != 0 {
@@ -6980,10 +6980,10 @@ func (m *LockUpdate) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
-			if err := m.IgnoredSeqNums[len(m.IgnoredSeqNums)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
+			//if err := m.IgnoredSeqNums[len(m.IgnoredSeqNums)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -7117,12 +7117,12 @@ func (m *LockStateInfo) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.LockHolder == nil {
-				m.LockHolder = &enginepb.TxnMeta{}
-			}
-			if err := m.LockHolder.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if m.LockHolder == nil {
+			//	m.LockHolder = &enginepb.TxnMeta{}
+			//}
+			//if err := m.LockHolder.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 4:
 			if wireType != 0 {
@@ -7298,7 +7298,7 @@ func (m *SequencedWrite) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Sequence", wireType)
 			}
-			m.Sequence = 0
+			//m.Sequence = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowData
@@ -7308,7 +7308,7 @@ func (m *SequencedWrite) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Sequence |= github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq(b&0x7F) << shift
+				//m.Sequence |= github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -7715,7 +7715,7 @@ func (m *AbortSpanEntry) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Priority", wireType)
 			}
-			m.Priority = 0
+			//m.Priority = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowData
@@ -7725,7 +7725,7 @@ func (m *AbortSpanEntry) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Priority |= github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnPriority(b&0x7F) << shift
+				//m.Priority |= github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnPriority(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -7891,7 +7891,7 @@ func (m *LeafTxnInputState) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ReadSeqNum", wireType)
 			}
-			m.ReadSeqNum = 0
+			//m.ReadSeqNum = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowData
@@ -7901,7 +7901,7 @@ func (m *LeafTxnInputState) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.ReadSeqNum |= github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq(b&0x7F) << shift
+				//m.ReadSeqNum |= github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

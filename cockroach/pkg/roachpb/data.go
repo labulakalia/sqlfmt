@@ -19,7 +19,6 @@ import (
 	"hash"
 	"hash/crc32"
 	"math"
-	"math/rand"
 	"sort"
 	"strconv"
 	"sync"
@@ -29,17 +28,13 @@ import (
 	"github.com/cockroachdb/apd/v3"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/interval"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timetz"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
 	"go.etcd.io/etcd/raft/v3/raftpb"
 )
 
@@ -842,22 +837,22 @@ func MakeTransaction(
 	maxOffsetNs int64,
 	coordinatorNodeID int32,
 ) Transaction {
-	u := uuid.FastMakeV4()
+	//u := uuid.FastMakeV4()
 	// TODO(nvanbenschoten): technically, gul should be a synthetic timestamp.
 	// Make this change in v21.2 when all nodes in a cluster are guaranteed to
 	// be aware of synthetic timestamps by addressing the TODO in Timestamp.Add.
 	gul := now.Add(maxOffsetNs, 0)
 
 	return Transaction{
-		TxnMeta: enginepb.TxnMeta{
-			Key:               baseKey,
-			ID:                u,
-			WriteTimestamp:    now,
-			MinTimestamp:      now,
-			Priority:          MakePriority(userPriority),
-			Sequence:          0, // 1-indexed, incremented before each Request
-			CoordinatorNodeID: coordinatorNodeID,
-		},
+		// TxnMeta: enginepb.TxnMeta{
+		// 	Key:               baseKey,
+		// 	ID:                u,
+		// 	WriteTimestamp:    now,
+		// 	MinTimestamp:      now,
+		// 	Priority:          MakePriority(userPriority),
+		// 	Sequence:          0, // 1-indexed, incremented before each Request
+		// 	CoordinatorNodeID: coordinatorNodeID,
+		// },
 		Name:                   name,
 		LastHeartbeat:          now,
 		ReadTimestamp:          now,
@@ -900,7 +895,7 @@ func (t *Transaction) RequiredFrontier() hlc.Timestamp {
 	// completed yet. Either way, the intent will exist in some form on the
 	// follower, so either way, the transaction will be able to read its own
 	// write.
-	ts.Forward(t.WriteTimestamp)
+	//ts.Forward(t.WriteTimestamp)
 	// Forward to the transaction's global uncertainty limit, because the
 	// transaction may observe committed writes from other transactions up to
 	// this time and consider them to be "uncertain". When a transaction begins,
@@ -918,9 +913,9 @@ func (t Transaction) Clone() *Transaction {
 
 // AssertInitialized crashes if the transaction is not initialized.
 func (t *Transaction) AssertInitialized(ctx context.Context) {
-	if t.ID == (uuid.UUID{}) || t.WriteTimestamp.IsEmpty() {
-		log.Fatalf(ctx, "uninitialized txn: %s", *t)
-	}
+	//if t.ID == (uuid.UUID{}) || t.WriteTimestamp.IsEmpty() {
+	//	log.Fatalf(ctx, "uninitialized txn: %s", *t)
+	//}
 }
 
 // MakePriority generates a random priority value, biased by the specified
@@ -934,121 +929,121 @@ func (t *Transaction) AssertInitialized(ctx context.Context) {
 // If userPriority is less than or equal to MinUserPriority, returns
 // MinTxnPriority; if greater than or equal to MaxUserPriority, returns
 // MaxTxnPriority. If userPriority is 0, returns NormalUserPriority.
-func MakePriority(userPriority UserPriority) enginepb.TxnPriority {
-	// A currently undocumented feature allows an explicit priority to
-	// be set by specifying priority < 1. The explicit priority is
-	// simply -userPriority in this case. This is hacky, but currently
-	// used for unittesting. Perhaps this should be documented and allowed.
-	if userPriority < 0 {
-		if -userPriority > UserPriority(math.MaxInt32) {
-			panic(fmt.Sprintf("cannot set explicit priority to a value less than -%d", math.MaxInt32))
-		}
-		return enginepb.TxnPriority(-userPriority)
-	} else if userPriority == 0 {
-		userPriority = NormalUserPriority
-	} else if userPriority >= MaxUserPriority {
-		return enginepb.MaxTxnPriority
-	} else if userPriority <= MinUserPriority {
-		return enginepb.MinTxnPriority
-	}
-
-	// We generate random values which are biased according to priorities. If v1 is a value
-	// generated for priority p1 and v2 is a value of priority v2, we want the ratio of wins vs
-	// losses to be the same with the ratio of priorities:
-	//
-	//    P[ v1 > v2 ]     p1                                           p1
-	//    ------------  =  --     or, equivalently:    P[ v1 > v2 ] = -------
-	//    P[ v2 < v1 ]     p2                                         p1 + p2
-	//
-	//
-	// For example, priority 10 wins 10 out of 11 times over priority 1, and it wins 100 out of 101
-	// times over priority 0.1.
-	//
-	//
-	// We use the exponential distribution. This distribution has the probability density function
-	//   PDF_lambda(x) = lambda * exp(-lambda * x)
-	// and the cumulative distribution function (i.e. probability that a random value is smaller
-	// than x):
-	//   CDF_lambda(x) = Integral_0^x PDF_lambda(x) dx
-	//                 = 1 - exp(-lambda * x)
-	//
-	// Let's assume we generate x from the exponential distribution with the lambda rate set to
-	// l1 and we generate y from the distribution with the rate set to l2. The probability that x
-	// wins is:
-	//    P[ x > y ] = Integral_0^inf Integral_0^x PDF_l1(x) PDF_l2(y) dy dx
-	//               = Integral_0^inf PDF_l1(x) Integral_0^x PDF_l2(y) dy dx
-	//               = Integral_0^inf PDF_l1(x) CDF_l2(x) dx
-	//               = Integral_0^inf PDF_l1(x) (1 - exp(-l2 * x)) dx
-	//               = 1 - Integral_0^inf l1 * exp(-(l1+l2) * x) dx
-	//               = 1 - l1 / (l1 + l2) * Integral_0^inf PDF_(l1+l2)(x) dx
-	//               = 1 - l1 / (l1 + l2)
-	//               = l2 / (l1 + l2)
-	//
-	// We want this probability to be p1 / (p1 + p2) which we can get by setting
-	//    l1 = 1 / p1
-	//    l2 = 1 / p2
-	// It's easy to verify that (1/p2) / (1/p1 + 1/p2) = p1 / (p2 + p1).
-	//
-	// We can generate an exponentially distributed value using (rand.ExpFloat64() / lambda).
-	// In our case this works out to simply rand.ExpFloat64() * userPriority.
-	val := rand.ExpFloat64() * float64(userPriority)
-
-	// To convert to an integer, we scale things to accommodate a few (5) standard deviations for
-	// the maximum priority. The choice of the value is a trade-off between loss of resolution for
-	// low priorities and overflow (capping the value to MaxInt32) for high priorities.
-	//
-	// For userPriority=MaxUserPriority, the probability of overflow is 0.7%.
-	// For userPriority=(MaxUserPriority/2), the probability of overflow is 0.005%.
-	val = (val / (5 * float64(MaxUserPriority))) * math.MaxInt32
-	if val < float64(enginepb.MinTxnPriority+1) {
-		return enginepb.MinTxnPriority + 1
-	} else if val > float64(enginepb.MaxTxnPriority-1) {
-		return enginepb.MaxTxnPriority - 1
-	}
-	return enginepb.TxnPriority(val)
-}
+//func MakePriority(userPriority UserPriority) enginepb.TxnPriority {
+//	// A currently undocumented feature allows an explicit priority to
+//	// be set by specifying priority < 1. The explicit priority is
+//	// simply -userPriority in this case. This is hacky, but currently
+//	// used for unittesting. Perhaps this should be documented and allowed.
+//	if userPriority < 0 {
+//		if -userPriority > UserPriority(math.MaxInt32) {
+//			panic(fmt.Sprintf("cannot set explicit priority to a value less than -%d", math.MaxInt32))
+//		}
+//		return enginepb.TxnPriority(-userPriority)
+//	} else if userPriority == 0 {
+//		userPriority = NormalUserPriority
+//	} else if userPriority >= MaxUserPriority {
+//		return enginepb.MaxTxnPriority
+//	} else if userPriority <= MinUserPriority {
+//		return enginepb.MinTxnPriority
+//	}
+//
+//	// We generate random values which are biased according to priorities. If v1 is a value
+//	// generated for priority p1 and v2 is a value of priority v2, we want the ratio of wins vs
+//	// losses to be the same with the ratio of priorities:
+//	//
+//	//    P[ v1 > v2 ]     p1                                           p1
+//	//    ------------  =  --     or, equivalently:    P[ v1 > v2 ] = -------
+//	//    P[ v2 < v1 ]     p2                                         p1 + p2
+//	//
+//	//
+//	// For example, priority 10 wins 10 out of 11 times over priority 1, and it wins 100 out of 101
+//	// times over priority 0.1.
+//	//
+//	//
+//	// We use the exponential distribution. This distribution has the probability density function
+//	//   PDF_lambda(x) = lambda * exp(-lambda * x)
+//	// and the cumulative distribution function (i.e. probability that a random value is smaller
+//	// than x):
+//	//   CDF_lambda(x) = Integral_0^x PDF_lambda(x) dx
+//	//                 = 1 - exp(-lambda * x)
+//	//
+//	// Let's assume we generate x from the exponential distribution with the lambda rate set to
+//	// l1 and we generate y from the distribution with the rate set to l2. The probability that x
+//	// wins is:
+//	//    P[ x > y ] = Integral_0^inf Integral_0^x PDF_l1(x) PDF_l2(y) dy dx
+//	//               = Integral_0^inf PDF_l1(x) Integral_0^x PDF_l2(y) dy dx
+//	//               = Integral_0^inf PDF_l1(x) CDF_l2(x) dx
+//	//               = Integral_0^inf PDF_l1(x) (1 - exp(-l2 * x)) dx
+//	//               = 1 - Integral_0^inf l1 * exp(-(l1+l2) * x) dx
+//	//               = 1 - l1 / (l1 + l2) * Integral_0^inf PDF_(l1+l2)(x) dx
+//	//               = 1 - l1 / (l1 + l2)
+//	//               = l2 / (l1 + l2)
+//	//
+//	// We want this probability to be p1 / (p1 + p2) which we can get by setting
+//	//    l1 = 1 / p1
+//	//    l2 = 1 / p2
+//	// It's easy to verify that (1/p2) / (1/p1 + 1/p2) = p1 / (p2 + p1).
+//	//
+//	// We can generate an exponentially distributed value using (rand.ExpFloat64() / lambda).
+//	// In our case this works out to simply rand.ExpFloat64() * userPriority.
+//	val := rand.ExpFloat64() * float64(userPriority)
+//
+//	// To convert to an integer, we scale things to accommodate a few (5) standard deviations for
+//	// the maximum priority. The choice of the value is a trade-off between loss of resolution for
+//	// low priorities and overflow (capping the value to MaxInt32) for high priorities.
+//	//
+//	// For userPriority=MaxUserPriority, the probability of overflow is 0.7%.
+//	// For userPriority=(MaxUserPriority/2), the probability of overflow is 0.005%.
+//	val = (val / (5 * float64(MaxUserPriority))) * math.MaxInt32
+//	if val < float64(enginepb.MinTxnPriority+1) {
+//		return enginepb.MinTxnPriority + 1
+//	} else if val > float64(enginepb.MaxTxnPriority-1) {
+//		return enginepb.MaxTxnPriority - 1
+//	}
+//	return enginepb.TxnPriority(val)
+//}
 
 // Restart reconfigures a transaction for restart. The epoch is
 // incremented for an in-place restart. The timestamp of the
 // transaction on restart is set to the maximum of the transaction's
 // timestamp and the specified timestamp.
-func (t *Transaction) Restart(
-	userPriority UserPriority, upgradePriority enginepb.TxnPriority, timestamp hlc.Timestamp,
-) {
-	t.BumpEpoch()
-	if t.WriteTimestamp.Less(timestamp) {
-		t.WriteTimestamp = timestamp
-	}
-	t.ReadTimestamp = t.WriteTimestamp
-	// Upgrade priority to the maximum of:
-	// - the current transaction priority
-	// - a random priority created from userPriority
-	// - the conflicting transaction's upgradePriority
-	t.UpgradePriority(MakePriority(userPriority))
-	t.UpgradePriority(upgradePriority)
-	// Reset all epoch-scoped state.
-	t.Sequence = 0
-	t.WriteTooOld = false
-	t.CommitTimestampFixed = false
-	t.LockSpans = nil
-	t.InFlightWrites = nil
-	t.IgnoredSeqNums = nil
-}
+//func (t *Transaction) Restart(
+//	userPriority UserPriority, upgradePriority enginepb.TxnPriority, timestamp hlc.Timestamp,
+//) {
+//	t.BumpEpoch()
+//	if t.WriteTimestamp.Less(timestamp) {
+//		t.WriteTimestamp = timestamp
+//	}
+//	t.ReadTimestamp = t.WriteTimestamp
+//	// Upgrade priority to the maximum of:
+//	// - the current transaction priority
+//	// - a random priority created from userPriority
+//	// - the conflicting transaction's upgradePriority
+//	//t.UpgradePriority(MakePriority(userPriority))
+//	//t.UpgradePriority(upgradePriority)
+//	// Reset all epoch-scoped state.
+//	t.Sequence = 0
+//	t.WriteTooOld = false
+//	t.CommitTimestampFixed = false
+//	t.LockSpans = nil
+//	t.InFlightWrites = nil
+//	t.IgnoredSeqNums = nil
+//}
 
 // BumpEpoch increments the transaction's epoch, allowing for an in-place
 // restart. This invalidates all write intents previously written at lower
 // epochs.
 func (t *Transaction) BumpEpoch() {
-	t.Epoch++
+	//t.Epoch++
 }
 
 // Refresh reconfigures a transaction to account for a read refresh up to the
 // specified timestamp. For details about transaction read refreshes, see the
 // comment on txnSpanRefresher.
 func (t *Transaction) Refresh(timestamp hlc.Timestamp) {
-	t.WriteTimestamp.Forward(timestamp)
-	t.ReadTimestamp.Forward(t.WriteTimestamp)
-	t.WriteTooOld = false
+	//t.WriteTimestamp.Forward(timestamp)
+	//t.ReadTimestamp.Forward(t.WriteTimestamp)
+	//t.WriteTooOld = false
 }
 
 // Update ratchets priority, timestamp and original timestamp values (among
@@ -1059,126 +1054,127 @@ func (t *Transaction) Update(o *Transaction) {
 		return
 	}
 	o.AssertInitialized(context.TODO())
-	if t.ID == (uuid.UUID{}) {
-		*t = *o
-		return
-	} else if t.ID != o.ID {
-		log.Fatalf(context.Background(), "updating txn %s with different txn %s", t.String(), o.String())
-		return
-	}
-	if len(t.Key) == 0 {
-		t.Key = o.Key
-	}
+	//if t.ID == (uuid.UUID{}) {
+	//	*t = *o
+	//	return
+	//} else if t.ID != o.ID {
+	//	log.Fatalf(context.Background(), "updating txn %s with different txn %s", t.String(), o.String())
+	//	return
+	//}
+	//if len(t.Key) == 0 {
+	//	t.Key = o.Key
+	//}
 
 	// Update epoch-scoped state, depending on the two transactions' epochs.
-	if t.Epoch < o.Epoch {
-		// Replace all epoch-scoped state.
-		t.Epoch = o.Epoch
-		t.Status = o.Status
-		t.WriteTooOld = o.WriteTooOld
-		t.CommitTimestampFixed = o.CommitTimestampFixed
-		t.Sequence = o.Sequence
-		t.LockSpans = o.LockSpans
-		t.InFlightWrites = o.InFlightWrites
-		t.IgnoredSeqNums = o.IgnoredSeqNums
-	} else if t.Epoch == o.Epoch {
-		// Forward all epoch-scoped state.
-		switch t.Status {
-		case PENDING:
-			t.Status = o.Status
-		case STAGING:
-			if o.Status != PENDING {
-				t.Status = o.Status
-			}
-		case ABORTED:
-			if o.Status == COMMITTED {
-				log.Warningf(context.Background(), "updating ABORTED txn %s with COMMITTED txn %s", t.String(), o.String())
-			}
-		case COMMITTED:
-			// Nothing to do.
-		}
-
-		if t.ReadTimestamp == o.ReadTimestamp {
-			// If neither of the transactions has a bumped ReadTimestamp, then the
-			// WriteTooOld flag is cumulative.
-			t.WriteTooOld = t.WriteTooOld || o.WriteTooOld
-			t.CommitTimestampFixed = t.CommitTimestampFixed || o.CommitTimestampFixed
-		} else if t.ReadTimestamp.Less(o.ReadTimestamp) {
-			// If `o` has a higher ReadTimestamp (i.e. it's the result of a refresh,
-			// which refresh generally clears the WriteTooOld field), then it dictates
-			// the WriteTooOld field. This relies on refreshes not being performed
-			// concurrently with any requests whose response's WriteTooOld field
-			// matters.
-			t.WriteTooOld = o.WriteTooOld
-			t.CommitTimestampFixed = o.CommitTimestampFixed
-		}
-		// If t has a higher ReadTimestamp, than it gets to dictate the
-		// WriteTooOld field - so there's nothing to update.
-
-		if t.Sequence < o.Sequence {
-			t.Sequence = o.Sequence
-		}
-		if len(o.LockSpans) > 0 {
-			t.LockSpans = o.LockSpans
-		}
-		if len(o.InFlightWrites) > 0 {
-			t.InFlightWrites = o.InFlightWrites
-		}
-		if len(o.IgnoredSeqNums) > 0 {
-			t.IgnoredSeqNums = o.IgnoredSeqNums
-		}
-	} else /* t.Epoch > o.Epoch */ {
-		// Ignore epoch-specific state from previous epoch. However, ensure that
-		// the transaction status still makes sense.
-		switch o.Status {
-		case ABORTED:
-			// Once aborted, always aborted. The transaction coordinator might
-			// have incremented the txn's epoch without realizing that it was
-			// aborted.
-			t.Status = ABORTED
-		case COMMITTED:
-			log.Warningf(context.Background(), "updating txn %s with COMMITTED txn at earlier epoch %s", t.String(), o.String())
-		}
-	}
-
-	// Forward each of the transaction timestamps.
-	t.WriteTimestamp.Forward(o.WriteTimestamp)
-	t.LastHeartbeat.Forward(o.LastHeartbeat)
-	t.GlobalUncertaintyLimit.Forward(o.GlobalUncertaintyLimit)
-	t.ReadTimestamp.Forward(o.ReadTimestamp)
-
-	// On update, set lower bound timestamps to the minimum seen by either txn.
-	// These shouldn't differ unless one of them is empty, but we're careful
-	// anyway.
-	if t.MinTimestamp.IsEmpty() {
-		t.MinTimestamp = o.MinTimestamp
-	} else if !o.MinTimestamp.IsEmpty() {
-		t.MinTimestamp.Backward(o.MinTimestamp)
-	}
-
-	// Absorb the collected clock uncertainty information.
-	for _, v := range o.ObservedTimestamps {
-		t.UpdateObservedTimestamp(v.NodeID, v.Timestamp)
-	}
+	//if t.Epoch < o.Epoch {
+	//	// Replace all epoch-scoped state.
+	//	t.Epoch = o.Epoch
+	//	t.Status = o.Status
+	//	t.WriteTooOld = o.WriteTooOld
+	//	t.CommitTimestampFixed = o.CommitTimestampFixed
+	//	t.Sequence = o.Sequence
+	//	t.LockSpans = o.LockSpans
+	//	t.InFlightWrites = o.InFlightWrites
+	//	t.IgnoredSeqNums = o.IgnoredSeqNums
+	//} else if t.Epoch == o.Epoch {
+	//	// Forward all epoch-scoped state.
+	//	switch t.Status {
+	//	case PENDING:
+	//		t.Status = o.Status
+	//	case STAGING:
+	//		if o.Status != PENDING {
+	//			t.Status = o.Status
+	//		}
+	//	case ABORTED:
+	//		if o.Status == COMMITTED {
+	//			log.Warningf(context.Background(), "updating ABORTED txn %s with COMMITTED txn %s", t.String(), o.String())
+	//		}
+	//	case COMMITTED:
+	//		// Nothing to do.
+	//	}
+	//
+	//	if t.ReadTimestamp == o.ReadTimestamp {
+	//		// If neither of the transactions has a bumped ReadTimestamp, then the
+	//		// WriteTooOld flag is cumulative.
+	//		t.WriteTooOld = t.WriteTooOld || o.WriteTooOld
+	//		t.CommitTimestampFixed = t.CommitTimestampFixed || o.CommitTimestampFixed
+	//	} else if t.ReadTimestamp.Less(o.ReadTimestamp) {
+	//		// If `o` has a higher ReadTimestamp (i.e. it's the result of a refresh,
+	//		// which refresh generally clears the WriteTooOld field), then it dictates
+	//		// the WriteTooOld field. This relies on refreshes not being performed
+	//		// concurrently with any requests whose response's WriteTooOld field
+	//		// matters.
+	//		t.WriteTooOld = o.WriteTooOld
+	//		t.CommitTimestampFixed = o.CommitTimestampFixed
+	//	}
+	//	// If t has a higher ReadTimestamp, than it gets to dictate the
+	//	// WriteTooOld field - so there's nothing to update.
+	//
+	//	if t.Sequence < o.Sequence {
+	//		t.Sequence = o.Sequence
+	//	}
+	//	if len(o.LockSpans) > 0 {
+	//		t.LockSpans = o.LockSpans
+	//	}
+	//	if len(o.InFlightWrites) > 0 {
+	//		t.InFlightWrites = o.InFlightWrites
+	//	}
+	//	if len(o.IgnoredSeqNums) > 0 {
+	//		t.IgnoredSeqNums = o.IgnoredSeqNums
+	//	}
+	//} else /* t.Epoch > o.Epoch */ {
+	//	// Ignore epoch-specific state from previous epoch. However, ensure that
+	//	// the transaction status still makes sense.
+	//	switch o.Status {
+	//	case ABORTED:
+	//		// Once aborted, always aborted. The transaction coordinator might
+	//		// have incremented the txn's epoch without realizing that it was
+	//		// aborted.
+	//		t.Status = ABORTED
+	//	case COMMITTED:
+	//		log.Warningf(context.Background(), "updating txn %s with COMMITTED txn at earlier epoch %s", t.String(), o.String())
+	//	}
+	//}
+	//
+	//// Forward each of the transaction timestamps.
+	//t.WriteTimestamp.Forward(o.WriteTimestamp)
+	//t.LastHeartbeat.Forward(o.LastHeartbeat)
+	//t.GlobalUncertaintyLimit.Forward(o.GlobalUncertaintyLimit)
+	//t.ReadTimestamp.Forward(o.ReadTimestamp)
+	//
+	//// On update, set lower bound timestamps to the minimum seen by either txn.
+	//// These shouldn't differ unless one of them is empty, but we're careful
+	//// anyway.
+	//if t.MinTimestamp.IsEmpty() {
+	//	t.MinTimestamp = o.MinTimestamp
+	//} else if !o.MinTimestamp.IsEmpty() {
+	//	t.MinTimestamp.Backward(o.MinTimestamp)
+	//}
+	//
+	//// Absorb the collected clock uncertainty information.
+	//for _, v := range o.ObservedTimestamps {
+	//	t.UpdateObservedTimestamp(v.NodeID, v.Timestamp)
+	//}
 
 	// Ratchet the transaction priority.
-	t.UpgradePriority(o.Priority)
+	//t.UpgradePriority(o.Priority)
 }
 
 // UpgradePriority sets transaction priority to the maximum of current
 // priority and the specified minPriority. The exception is if the
 // current priority is set to the minimum, in which case the minimum
 // is preserved.
-func (t *Transaction) UpgradePriority(minPriority enginepb.TxnPriority) {
-	if minPriority > t.Priority && t.Priority != enginepb.MinTxnPriority {
-		t.Priority = minPriority
-	}
-}
+//func (t *Transaction) UpgradePriority(minPriority enginepb.TxnPriority) {
+//	if minPriority > t.Priority && t.Priority != enginepb.MinTxnPriority {
+//		t.Priority = minPriority
+//	}
+//}
 
 // IsLocking returns whether the transaction has begun acquiring locks.
 // This method will never return false for a writing transaction.
 func (t *Transaction) IsLocking() bool {
-	return t.Key != nil
+	//return t.Key != nil
+	return false
 }
 
 // LocksAsLockUpdates turns t.LockSpans into a bunch of LockUpdates.
@@ -1200,17 +1196,17 @@ func (t Transaction) SafeFormat(w redact.SafePrinter, _ rune) {
 	if len(t.Name) > 0 {
 		w.Printf("%q ", redact.SafeString(t.Name))
 	}
-	w.Printf("meta={%s} lock=%t stat=%s rts=%s wto=%t gul=%s",
-		t.TxnMeta, t.IsLocking(), t.Status, t.ReadTimestamp, t.WriteTooOld, t.GlobalUncertaintyLimit)
-	if ni := len(t.LockSpans); t.Status != PENDING && ni > 0 {
-		w.Printf(" int=%d", ni)
-	}
+	//w.Printf("meta={%s} lock=%t stat=%s rts=%s wto=%t gul=%s",
+	//	t.TxnMeta, t.IsLocking(), t.Status, t.ReadTimestamp, t.WriteTooOld, t.GlobalUncertaintyLimit)
+	//if ni := len(t.LockSpans); t.Status != PENDING && ni > 0 {
+	//	w.Printf(" int=%d", ni)
+	//}
 	if nw := len(t.InFlightWrites); t.Status != PENDING && nw > 0 {
 		w.Printf(" ifw=%d", nw)
 	}
-	if ni := len(t.IgnoredSeqNums); ni > 0 {
-		w.Printf(" isn=%d", ni)
-	}
+	//if ni := len(t.IgnoredSeqNums); ni > 0 {
+	//	w.Printf(" isn=%d", ni)
+	//}
 }
 
 // ResetObservedTimestamps clears out all timestamps recorded from individual
@@ -1282,30 +1278,30 @@ func (t *Transaction) GetObservedTimestamp(nodeID NodeID) (hlc.ClockTimestamp, b
 // - Property 2 comes from that the new range's 'end' seqnum is the
 //   current write seqnum and thus larger than or equal to every
 //   previously seen value.
-func (t *Transaction) AddIgnoredSeqNumRange(newRange enginepb.IgnoredSeqNumRange) {
-	// Truncate the list at the last element not included in the new range.
-
-	list := t.IgnoredSeqNums
-	i := sort.Search(len(list), func(i int) bool {
-		return list[i].End >= newRange.Start
-	})
-
-	cpy := make([]enginepb.IgnoredSeqNumRange, i+1)
-	copy(cpy[:i], list[:i])
-	cpy[i] = newRange
-	t.IgnoredSeqNums = cpy
-}
+//func (t *Transaction) AddIgnoredSeqNumRange(newRange enginepb.IgnoredSeqNumRange) {
+//	// Truncate the list at the last element not included in the new range.
+//
+//	list := t.IgnoredSeqNums
+//	i := sort.Search(len(list), func(i int) bool {
+//		return list[i].End >= newRange.Start
+//	})
+//
+//	cpy := make([]enginepb.IgnoredSeqNumRange, i+1)
+//	copy(cpy[:i], list[:i])
+//	cpy[i] = newRange
+//	t.IgnoredSeqNums = cpy
+//}
 
 // AsRecord returns a TransactionRecord object containing only the subset of
 // fields from the receiver that must be persisted in the transaction record.
 func (t *Transaction) AsRecord() TransactionRecord {
 	var tr TransactionRecord
-	tr.TxnMeta = t.TxnMeta
+	//tr.TxnMeta = t.TxnMeta
 	tr.Status = t.Status
 	tr.LastHeartbeat = t.LastHeartbeat
 	tr.LockSpans = t.LockSpans
 	tr.InFlightWrites = t.InFlightWrites
-	tr.IgnoredSeqNums = t.IgnoredSeqNums
+	//tr.IgnoredSeqNums = t.IgnoredSeqNums
 	return tr
 }
 
@@ -1314,12 +1310,12 @@ func (t *Transaction) AsRecord() TransactionRecord {
 // transaction record.
 func (tr *TransactionRecord) AsTransaction() Transaction {
 	var t Transaction
-	t.TxnMeta = tr.TxnMeta
+	//t.TxnMeta = tr.TxnMeta
 	t.Status = tr.Status
 	t.LastHeartbeat = tr.LastHeartbeat
 	t.LockSpans = tr.LockSpans
 	t.InFlightWrites = tr.InFlightWrites
-	t.IgnoredSeqNums = tr.IgnoredSeqNums
+	//t.IgnoredSeqNums = tr.IgnoredSeqNums
 	return t
 }
 
@@ -1337,32 +1333,32 @@ func (tr *TransactionRecord) AsTransaction() Transaction {
 // TransactionRefreshTimestamp returns whether the supplied error is a retry
 // error that can be discarded if the transaction in the error is refreshed. If
 // true, the function returns the timestamp that the Transaction object should
-// be refreshed at in order to discard the error and avoid a restart.
-func TransactionRefreshTimestamp(pErr *Error) (bool, hlc.Timestamp) {
-	txn := pErr.GetTxn()
-	if txn == nil {
-		return false, hlc.Timestamp{}
-	}
-	timestamp := txn.WriteTimestamp
-	switch err := pErr.GetDetail().(type) {
-	case *TransactionRetryError:
-		if err.Reason != RETRY_SERIALIZABLE && err.Reason != RETRY_WRITE_TOO_OLD {
-			return false, hlc.Timestamp{}
-		}
-	case *WriteTooOldError:
-		// TODO(andrei): Chances of success for on write-too-old conditions might be
-		// usually small: if our txn previously read the key that generated this
-		// error, obviously the refresh will fail. It might be worth trying to
-		// detect these cases and save the futile attempt; we'd need to have access
-		// to the key that generated the error.
-		timestamp.Forward(err.RetryTimestamp())
-	case *ReadWithinUncertaintyIntervalError:
-		timestamp.Forward(err.RetryTimestamp())
-	default:
-		return false, hlc.Timestamp{}
-	}
-	return true, timestamp
-}
+//// be refreshed at in order to discard the error and avoid a restart.
+//func TransactionRefreshTimestamp(pErr *Error) (bool, hlc.Timestamp) {
+//	txn := pErr.GetTxn()
+//	if txn == nil {
+//		return false, hlc.Timestamp{}
+//	}
+//	//timestamp := txn.WriteTimestamp
+//	switch err := pErr.GetDetail().(type) {
+//	case *TransactionRetryError:
+//		if err.Reason != RETRY_SERIALIZABLE && err.Reason != RETRY_WRITE_TOO_OLD {
+//			return false, hlc.Timestamp{}
+//		}
+//	case *WriteTooOldError:
+//		// TODO(andrei): Chances of success for on write-too-old conditions might be
+//		// usually small: if our txn previously read the key that generated this
+//		// error, obviously the refresh will fail. It might be worth trying to
+//		// detect these cases and save the futile attempt; we'd need to have access
+//		// to the key that generated the error.
+//		//timestamp.Forward(err.RetryTimestamp())
+//	case *ReadWithinUncertaintyIntervalError:
+//		//timestamp.Forward(err.RetryTimestamp())
+//	default:
+//		return false, hlc.Timestamp{}
+//	}
+//	return true, 0
+//}
 
 // Replicas returns all of the replicas present in the descriptor after this
 // trigger applies.
@@ -1852,22 +1848,22 @@ func (l *Lease) Equal(that interface{}) bool {
 
 // MakeIntent makes an intent with the given txn and key.
 // This is suitable for use when constructing WriteIntentError.
-func MakeIntent(txn *enginepb.TxnMeta, key Key) Intent {
-	var i Intent
-	i.Key = key
-	i.Txn = *txn
-	return i
-}
+//func MakeIntent(txn *enginepb.TxnMeta, key Key) Intent {
+//	var i Intent
+//	i.Key = key
+//	i.Txn = *txn
+//	return i
+//}
 
 // AsIntents takes a transaction and a slice of keys and
 // returns it as a slice of intents.
-func AsIntents(txn *enginepb.TxnMeta, keys []Key) []Intent {
-	ret := make([]Intent, len(keys))
-	for i := range keys {
-		ret[i] = MakeIntent(txn, keys[i])
-	}
-	return ret
-}
+//func AsIntents(txn *enginepb.TxnMeta, keys []Key) []Intent {
+//	ret := make([]Intent, len(keys))
+//	for i := range keys {
+//		ret[i] = MakeIntent(txn, keys[i])
+//	}
+//	return ret
+//}
 
 // MakeLockUpdate makes a lock update from the given txn and span.
 //
@@ -1882,22 +1878,22 @@ func MakeLockUpdate(txn *Transaction, span Span) LockUpdate {
 func (u *LockUpdate) SetTxn(txn *Transaction) {
 	// u.Txn = txn.TxnMeta
 	u.Status = txn.Status
-	u.IgnoredSeqNums = txn.IgnoredSeqNums
+	//u.IgnoredSeqNums = txn.IgnoredSeqNums
 }
 
 // SafeFormat implements redact.SafeFormatter.
 func (ls LockStateInfo) SafeFormat(w redact.SafePrinter, r rune) {
-	expand := w.Flag('+')
-	w.Printf("range_id=%d key=%s ", ls.RangeID, ls.Key)
-	redactableLockHolder := redact.Sprint(nil)
-	if ls.LockHolder != nil {
-		if expand {
-			redactableLockHolder = redact.Sprint(ls.LockHolder.ID)
-		} else {
-			redactableLockHolder = redact.Sprint(ls.LockHolder.Short())
-		}
-	}
-	w.Printf("holder=%s ", redactableLockHolder)
+	//expand := w.Flag('+')
+	//w.Printf("range_id=%d key=%s ", ls.RangeID, ls.Key)
+	//redactableLockHolder := redact.Sprint(nil)
+	//if ls.LockHolder != nil {
+	//	if expand {
+	//		redactableLockHolder = redact.Sprint(ls.LockHolder.ID)
+	//	} else {
+	//		redactableLockHolder = redact.Sprint(ls.LockHolder.Short())
+	//	}
+	//}
+	//w.Printf("holder=%s ", redactableLockHolder)
 	//w.Printf("durability=%s ", ls.Durability)
 	//w.Printf("duration=%s", ls.HoldDuration)
 	//if len(ls.Waiters) > 0 {
@@ -2308,37 +2304,37 @@ type SequencedWriteBySeq []SequencedWrite
 func (s SequencedWriteBySeq) Len() int { return len(s) }
 
 // Less implements sort.Interface.
-func (s SequencedWriteBySeq) Less(i, j int) bool { return s[i].Sequence < s[j].Sequence }
+//func (s SequencedWriteBySeq) Less(i, j int) bool { return s[i].Sequence < s[j].Sequence }
 
 // Swap implements sort.Interface.
 func (s SequencedWriteBySeq) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-var _ sort.Interface = SequencedWriteBySeq{}
+//var _ sort.Interface = SequencedWriteBySeq{}
 
 // Find searches for the index of the SequencedWrite with the provided
 // sequence number. Returns -1 if no corresponding write is found.
-func (s SequencedWriteBySeq) Find(seq enginepb.TxnSeq) int {
-	if util.RaceEnabled {
-		if !sort.IsSorted(s) {
-			panic("SequencedWriteBySeq must be sorted")
-		}
-	}
-	if i := sort.Search(len(s), func(i int) bool {
-		return s[i].Sequence >= seq
-	}); i < len(s) && s[i].Sequence == seq {
-		return i
-	}
-	return -1
-}
+//func (s SequencedWriteBySeq) Find(seq enginepb.TxnSeq) int {
+//	if util.RaceEnabled {
+//		if !sort.IsSorted(s) {
+//			panic("SequencedWriteBySeq must be sorted")
+//		}
+//	}
+//	if i := sort.Search(len(s), func(i int) bool {
+//		return s[i].Sequence >= seq
+//	}); i < len(s) && s[i].Sequence == seq {
+//		return i
+//	}
+//	return -1
+//}
 
 // Silence unused warning.
-var _ = (SequencedWriteBySeq{}).Find
+//var _ = (SequencedWriteBySeq{}).Find
 
-func init() {
-	// Inject the format dependency into the enginepb package.
-	enginepb.FormatBytesAsKey = func(k []byte) string { return Key(k).String() }
-	enginepb.FormatBytesAsValue = func(v []byte) string { return Value{RawBytes: v}.PrettyPrint() }
-}
+//func init() {
+//	// Inject the format dependency into the enginepb package.
+//	enginepb.FormatBytesAsKey = func(k []byte) string { return Key(k).String() }
+//	enginepb.FormatBytesAsValue = func(v []byte) string { return Value{RawBytes: v}.PrettyPrint() }
+//}
 
 // SafeValue implements the redact.SafeValue interface.
 func (ReplicaChangeType) SafeValue() {}

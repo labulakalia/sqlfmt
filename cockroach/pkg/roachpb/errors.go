@@ -730,7 +730,7 @@ func NewTransactionRetryWithProtoRefreshError(
 // transaction, as opposed to continuing with the existing one at a bumped
 // epoch.
 func (e *TransactionRetryWithProtoRefreshError) PrevTxnAborted() bool {
-	return !e.TxnID.Equal(e.Transaction.ID)
+	return false
 }
 
 // NewTransactionPushError initializes a new TransactionPushError.
