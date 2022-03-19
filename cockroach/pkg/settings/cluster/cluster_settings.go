@@ -15,12 +15,11 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
-	"github.com/cockroachdb/errors"
 )
 
 // Settings is the collection of cluster settings. For a running CockroachDB
@@ -49,7 +48,6 @@ type Settings struct {
 	// active cluster version, and access this binary's version details. Setting
 	// the active cluster version has a very specific, intended usage pattern.
 	// Look towards the interface itself for more commentary.
-	Version clusterversion.Handle
 
 	// Cache can be used for arbitrary caching, e.g. to cache decoded
 	// enterprises licenses for utilccl.CheckEnterpriseEnabled().
@@ -132,9 +130,6 @@ func (s *Settings) MakeUpdater() settings.Updater {
 func MakeClusterSettings() *Settings {
 	s := &Settings{}
 
-	sv := &s.SV
-	s.Version = clusterversion.MakeVersionHandle(&s.SV)
-	sv.Init(context.TODO(), s.Version)
 	return s
 }
 
@@ -145,8 +140,7 @@ func MakeClusterSettings() *Settings {
 // It is typically used for testing or one-off situations in which a Settings
 // object is needed, but cluster settings don't play a crucial role.
 func MakeTestingClusterSettings() *Settings {
-	return MakeTestingClusterSettingsWithVersions(
-		clusterversion.TestingBinaryVersion, clusterversion.TestingBinaryVersion, true /* initializeVersion */)
+	return &Settings{}
 }
 
 // MakeTestingClusterSettingsWithVersions returns a Settings object that has its
@@ -160,17 +154,5 @@ func MakeTestingClusterSettingsWithVersions(
 	binaryVersion, binaryMinSupportedVersion roachpb.Version, initializeVersion bool,
 ) *Settings {
 	s := &Settings{}
-
-	sv := &s.SV
-	s.Version = clusterversion.MakeVersionHandleWithOverride(
-		&s.SV, binaryVersion, binaryMinSupportedVersion)
-	sv.Init(context.TODO(), s.Version)
-
-	if initializeVersion {
-		// Initialize cluster version to specified binaryVersion.
-		if err := clusterversion.Initialize(context.TODO(), binaryVersion, &s.SV); err != nil {
-			log.Fatalf(context.TODO(), "unable to initialize version: %s", err)
-		}
-	}
 	return s
 }

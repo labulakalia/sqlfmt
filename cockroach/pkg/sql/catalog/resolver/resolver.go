@@ -13,6 +13,7 @@ package resolver
 import (
 	"context"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
@@ -29,7 +30,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlerrors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
-	"github.com/cockroachdb/errors"
 )
 
 // SchemaResolver abstracts the interfaces needed from the logical
@@ -304,18 +304,6 @@ func ResolveSchemaNameByID(
 	schemaID descpb.ID,
 	version clusterversion.Handle,
 ) (string, error) {
-	// Fast-path for public schema and virtual schemas, to avoid hot lookups.
-	staticSchemaMap := catconstants.GetStaticSchemaIDMap(ctx, version)
-	if schemaName, ok := staticSchemaMap[uint32(schemaID)]; ok {
-		return schemaName, nil
-	}
-	schemas, err := GetForDatabase(ctx, txn, codec, db)
-	if err != nil {
-		return "", err
-	}
-	if schema, ok := schemas[schemaID]; ok {
-		return schema.Name, nil
-	}
 	return "", errors.Newf("unable to resolve schema id %d for db %d", schemaID, db.GetID())
 }
 

@@ -11,9 +11,6 @@
 package catconstants
 
 import (
-	"context"
-
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 )
 
@@ -34,16 +31,6 @@ var StaticSchemaIDMap = map[uint32]string{
 	InformationSchemaID: InformationSchemaName,
 	CrdbInternalID:      CRDBInternalSchemaName,
 	PgExtensionSchemaID: PgExtensionSchemaName,
-}
-
-// GetStaticSchemaIDMap returns a map of schema ids to schema names for the
-// static schemas.
-func GetStaticSchemaIDMap(ctx context.Context, version clusterversion.Handle) map[uint32]string {
-	if !version.IsActive(ctx, clusterversion.PublicSchemasWithDescriptors) {
-		return StaticSchemaIDMapVirtualPublicSchema
-	}
-
-	return StaticSchemaIDMap
 }
 
 // PgCatalogName is the name of the pg_catalog system schema.

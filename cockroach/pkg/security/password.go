@@ -27,7 +27,6 @@ import (
 	"unsafe"
 
 	"github.com/cockroachdb/errors"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
@@ -382,27 +381,10 @@ var PasswordHashMethod = settings.RegisterEnumSetting(
 	},
 ).WithPublic()
 
-// hasClusterVersion verifies that all nodes have been upgraded to
-// support the given target version key.
-func hasClusterVersion(
-	ctx context.Context, values *settings.Values, versionkey clusterversion.Key,
-) bool {
-	var vh clusterversion.Handle
-	if values != nil {
-		vh = values.Opaque().(clusterversion.Handle)
-	}
-	return vh != nil && vh.IsActive(ctx, versionkey)
-}
-
 // GetConfiguredPasswordHashMethod returns the configured hash method
 // to use before storing passwords provided in cleartext from clients.
 func GetConfiguredPasswordHashMethod(ctx context.Context, sv *settings.Values) (method HashMethod) {
 	method = HashMethod(PasswordHashMethod.Get(sv))
-	if method == HashSCRAMSHA256 && !hasClusterVersion(ctx, sv, clusterversion.SCRAMAuthentication) {
-		// Not all nodes are upgraded to understand SCRAM yet. Force
-		// Bcrypt for now, otherwise previous-version nodes will get confused.
-		method = HashBCrypt
-	}
 	return method
 }
 
