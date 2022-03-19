@@ -29,11 +29,6 @@ const (
 	MShapeTypeFlag = 1 << 29
 )
 
-// To2D returns the ShapeType for the corresponding 2D geometry type.
-func (s ShapeType) To2D() ShapeType {
-	return ShapeType(uint32(s) & (MShapeTypeFlag - 1))
-}
-
 // SRID is a Spatial Reference Identifer. All geometry and geography shapes are
 // stored and represented as using coordinates that are bare floats. SRIDs tie these
 // floats to the planar or spherical coordinate system, allowing them to be interpreted

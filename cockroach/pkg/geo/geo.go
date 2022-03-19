@@ -14,18 +14,15 @@ package geo
 import (
 	"bytes"
 	"encoding/binary"
-	"math"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geographiclib"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/cockroachdb/errors"
 	"github.com/golang/geo/r1"
 	"github.com/golang/geo/s1"
 	"github.com/golang/geo/s2"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/twpayne/go-geom"
 	"github.com/twpayne/go-geom/encoding/ewkb"
 )
@@ -130,11 +127,6 @@ type Geometry struct {
 
 // MakeGeometry returns a new Geometry. Assumes the input EWKB is validated and in little endian.
 func MakeGeometry(spatialObject geopb.SpatialObject) (Geometry, error) {
-	if spatialObject.SRID != 0 {
-		if _, err := geoprojbase.Projection(spatialObject.SRID); err != nil {
-			return Geometry{}, err
-		}
-	}
 	if spatialObject.Type != geopb.SpatialObjectType_GeometryType {
 		return Geometry{}, pgerror.Newf(
 			pgcode.InvalidObjectDefinition,
@@ -346,11 +338,6 @@ func (g *Geometry) ShapeType() geopb.ShapeType {
 	return g.spatialObject.ShapeType
 }
 
-// ShapeType2D returns the 2D shape type of the Geometry.
-func (g *Geometry) ShapeType2D() geopb.ShapeType {
-	return g.ShapeType().To2D()
-}
-
 // CartesianBoundingBox returns a Cartesian bounding box.
 func (g *Geometry) CartesianBoundingBox() *CartesianBoundingBox {
 	if g.spatialObject.BoundingBox == nil {
@@ -368,40 +355,8 @@ func (g *Geometry) BoundingBoxRef() *geopb.BoundingBox {
 // This will return 0 for empty spatial objects, and math.MaxUint64 for any object outside
 // the defined bounds of the given SRID projection.
 func (g *Geometry) SpaceCurveIndex() (uint64, error) {
-	bbox := g.CartesianBoundingBox()
-	if bbox == nil {
-		return 0, nil
-	}
-	centerX := (bbox.BoundingBox.LoX + bbox.BoundingBox.HiX) / 2
-	centerY := (bbox.BoundingBox.LoY + bbox.BoundingBox.HiY) / 2
-	// By default, bound by MaxInt32 (we have not typically seen bounds greater than 1B).
-	bounds := geoprojbase.Bounds{
-		MinX: math.MinInt32,
-		MaxX: math.MaxInt32,
-		MinY: math.MinInt32,
-		MaxY: math.MaxInt32,
-	}
-	if g.SRID() != 0 {
-		proj, err := geoprojbase.Projection(g.SRID())
-		if err != nil {
-			return 0, err
-		}
-		bounds = proj.Bounds
-	}
-	// If we're out of bounds, give up and return a large number.
-	if centerX > bounds.MaxX || centerY > bounds.MaxY || centerX < bounds.MinX || centerY < bounds.MinY {
-		return math.MaxUint64, nil
-	}
 
-	const boxLength = 1 << 32
-	// Add 1 to each bound so that we normalize the coordinates to [0, 1) before
-	// multiplying by boxLength to give coordinates that are integers in the interval [0, boxLength-1].
-	xBounds := (bounds.MaxX - bounds.MinX) + 1
-	yBounds := (bounds.MaxY - bounds.MinY) + 1
-	// hilbertInverse returns values in the interval [0, boxLength^2-1], so return [0, 2^64-1].
-	xPos := uint64(((centerX - bounds.MinX) / xBounds) * boxLength)
-	yPos := uint64(((centerY - bounds.MinY) / yBounds) * boxLength)
-	return hilbertInverse(boxLength, xPos, yPos), nil
+	return 0, nil
 }
 
 // Compare compares a Geometry against another.
@@ -438,17 +393,6 @@ type Geography struct {
 
 // MakeGeography returns a new Geography. Assumes the input EWKB is validated and in little endian.
 func MakeGeography(spatialObject geopb.SpatialObject) (Geography, error) {
-	projection, err := geoprojbase.Projection(spatialObject.SRID)
-	if err != nil {
-		return Geography{}, err
-	}
-	if !projection.IsLatLng {
-		return Geography{}, pgerror.Newf(
-			pgcode.InvalidParameterValue,
-			"SRID %d cannot be used for geography as it is not in a lon/lat coordinate system",
-			spatialObject.SRID,
-		)
-	}
 	if spatialObject.Type != geopb.SpatialObjectType_GeographyType {
 		return Geography{}, pgerror.Newf(
 			pgcode.InvalidObjectDefinition,
@@ -613,20 +557,6 @@ func (g *Geography) SRID() geopb.SRID {
 // ShapeType returns the shape type of the Geography.
 func (g *Geography) ShapeType() geopb.ShapeType {
 	return g.spatialObject.ShapeType
-}
-
-// ShapeType2D returns the 2D shape type of the Geography.
-func (g *Geography) ShapeType2D() geopb.ShapeType {
-	return g.ShapeType().To2D()
-}
-
-// Spheroid returns the spheroid represented by the given Geography.
-func (g *Geography) Spheroid() (*geographiclib.Spheroid, error) {
-	proj, err := geoprojbase.Projection(g.SRID())
-	if err != nil {
-		return nil, err
-	}
-	return proj.Spheroid, nil
 }
 
 // AsS2 converts a given Geography into it's S2 form.

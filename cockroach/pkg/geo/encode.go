@@ -16,11 +16,10 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/golang/geo/s1"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/golang/geo/s1"
 	"github.com/pierrre/geohash"
 	"github.com/twpayne/go-geom"
 	"github.com/twpayne/go-geom/encoding/ewkb"
@@ -91,21 +90,9 @@ const (
 
 // geomToGeoJSONCRS converts a geom to its CRS GeoJSON form.
 func geomToGeoJSONCRS(t geom.T, long bool) (*geojson.CRS, error) {
-	projection, err := geoprojbase.Projection(geopb.SRID(t.SRID()))
-	if err != nil {
-		return nil, err
-	}
-	var prop string
-	if long {
-		prop = fmt.Sprintf("urn:ogc:def:crs:%s::%d", projection.AuthName, projection.AuthSRID)
-	} else {
-		prop = fmt.Sprintf("%s:%d", projection.AuthName, projection.AuthSRID)
-	}
 	crs := &geojson.CRS{
-		Type: "name",
-		Properties: map[string]interface{}{
-			"name": prop,
-		},
+		Type:       "name",
+		Properties: map[string]interface{}{},
 	}
 	return crs, nil
 }

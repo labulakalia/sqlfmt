@@ -92,8 +92,6 @@ func postgisColumnsTablePopulator(
 					if matchingFamily == types.GeometryFamily {
 						if m.ShapeType == geopb.ShapeType_Unset {
 							shapeName = strings.ToUpper(shapeName)
-						} else {
-							shapeName = strings.ToUpper(m.ShapeType.To2D().String())
 						}
 					} else {
 						if m.ShapeType != geopb.ShapeType_Unset {
