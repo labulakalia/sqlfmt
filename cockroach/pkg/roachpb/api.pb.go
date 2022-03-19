@@ -7,7 +7,6 @@ import (
 	context "context"
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	lock "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
 	//rspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/readsummary/rspb"
 	settings "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
@@ -582,7 +581,6 @@ type GetRequest struct {
 	// does not acquire a lock. When set to any other strength, a lock of that
 	// strength is acquired with the Unreplicated durability (i.e. best-effort)
 	// the key, if it exists.
-	KeyLocking lock.Strength `protobuf:"varint,2,opt,name=key_locking,json=keyLocking,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Strength" json:"key_locking,omitempty"`
 }
 
 func (m *GetRequest) Reset()         { *m = GetRequest{} }
@@ -1436,7 +1434,6 @@ type ScanRequest struct {
 	// NOTE: the locks acquire with this strength are point locks on each of the
 	// keys returned by the request, not a single range lock over the entire span
 	// scanned by the request.
-	KeyLocking lock.Strength `protobuf:"varint,5,opt,name=key_locking,json=keyLocking,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Strength" json:"key_locking,omitempty"`
 }
 
 func (m *ScanRequest) Reset()         { *m = ScanRequest{} }
@@ -1539,7 +1536,6 @@ type ReverseScanRequest struct {
 	// NOTE: the locks acquire with this strength are point locks on each of the
 	// keys returned by the request, not a single range lock over the entire span
 	// scanned by the request.
-	KeyLocking lock.Strength `protobuf:"varint,5,opt,name=key_locking,json=keyLocking,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Strength" json:"key_locking,omitempty"`
 }
 
 func (m *ReverseScanRequest) Reset()         { *m = ReverseScanRequest{} }
@@ -6902,7 +6898,6 @@ type Header struct {
 	//
 	// If the desired behavior is to block on the conflicting lock up to some
 	// maximum duration, use the Block wait policy and set a context timeout.
-	WaitPolicy lock.WaitPolicy `protobuf:"varint,18,opt,name=wait_policy,json=waitPolicy,proto3,enum=cockroach.kv.kvserver.concurrency.lock.WaitPolicy" json:"wait_policy,omitempty"`
 	// lock_timeout specifies the maximum amount of time that the batch request
 	// will wait while attempting to acquire a lock on a key or while blocking on
 	// an existing lock in order to perform a non-locking read on a key. The time
@@ -9772,11 +9767,6 @@ func (m *GetRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.KeyLocking != 0 {
-		i = encodeVarintApi(dAtA, i, uint64(m.KeyLocking))
-		i--
-		dAtA[i] = 0x10
-	}
 	{
 		size, err := m.RequestHeader.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -10659,11 +10649,6 @@ func (m *ScanRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.KeyLocking != 0 {
-		i = encodeVarintApi(dAtA, i, uint64(m.KeyLocking))
-		i--
-		dAtA[i] = 0x28
-	}
 	if m.ScanFormat != 0 {
 		i = encodeVarintApi(dAtA, i, uint64(m.ScanFormat))
 		i--
@@ -10772,11 +10757,6 @@ func (m *ReverseScanRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.KeyLocking != 0 {
-		i = encodeVarintApi(dAtA, i, uint64(m.KeyLocking))
-		i--
-		dAtA[i] = 0x28
-	}
 	if m.ScanFormat != 0 {
 		i = encodeVarintApi(dAtA, i, uint64(m.ScanFormat))
 		i--
@@ -17620,13 +17600,6 @@ func (m *Header) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x98
 	}
-	if m.WaitPolicy != 0 {
-		i = encodeVarintApi(dAtA, i, uint64(m.WaitPolicy))
-		i--
-		dAtA[i] = 0x1
-		i--
-		dAtA[i] = 0x90
-	}
 	{
 		size, err := m.ClientRangeInfo.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -19204,10 +19177,6 @@ func (m *GetRequest) Size() (n int) {
 	var l int
 	_ = l
 	l = m.RequestHeader.Size()
-	n += 1 + l + sovApi(uint64(l))
-	if m.KeyLocking != 0 {
-		n += 1 + sovApi(uint64(m.KeyLocking))
-	}
 	return n
 }
 
@@ -19502,9 +19471,6 @@ func (m *ScanRequest) Size() (n int) {
 	if m.ScanFormat != 0 {
 		n += 1 + sovApi(uint64(m.ScanFormat))
 	}
-	if m.KeyLocking != 0 {
-		n += 1 + sovApi(uint64(m.KeyLocking))
-	}
 	return n
 }
 
@@ -19547,9 +19513,6 @@ func (m *ReverseScanRequest) Size() (n int) {
 	n += 1 + l + sovApi(uint64(l))
 	if m.ScanFormat != 0 {
 		n += 1 + sovApi(uint64(m.ScanFormat))
-	}
-	if m.KeyLocking != 0 {
-		n += 1 + sovApi(uint64(m.KeyLocking))
 	}
 	return n
 }
@@ -22345,9 +22308,6 @@ func (m *Header) Size() (n int) {
 	}
 	l = m.ClientRangeInfo.Size()
 	n += 2 + l + sovApi(uint64(l))
-	if m.WaitPolicy != 0 {
-		n += 2 + sovApi(uint64(m.WaitPolicy))
-	}
 	if m.RoutingPolicy != 0 {
 		n += 2 + sovApi(uint64(m.RoutingPolicy))
 	}
@@ -23351,19 +23311,12 @@ func (m *GetRequest) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field KeyLocking", wireType)
 			}
-			m.KeyLocking = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowApi
 				}
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.KeyLocking |= lock.Strength(b&0x7F) << shift
-				if b < 0x80 {
-					break
 				}
 			}
 		default:
@@ -25646,21 +25599,6 @@ func (m *ScanRequest) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field KeyLocking", wireType)
 			}
-			m.KeyLocking = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowApi
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.KeyLocking |= lock.Strength(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipApi(dAtA[iNdEx:])
@@ -25949,21 +25887,6 @@ func (m *ReverseScanRequest) Unmarshal(dAtA []byte) error {
 		case 5:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field KeyLocking", wireType)
-			}
-			m.KeyLocking = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowApi
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.KeyLocking |= lock.Strength(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
 			}
 		default:
 			iNdEx = preIndex
@@ -42166,21 +42089,6 @@ func (m *Header) Unmarshal(dAtA []byte) error {
 		case 18:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field WaitPolicy", wireType)
-			}
-			m.WaitPolicy = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowApi
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.WaitPolicy |= lock.WaitPolicy(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
 			}
 		case 19:
 			if wireType != 0 {

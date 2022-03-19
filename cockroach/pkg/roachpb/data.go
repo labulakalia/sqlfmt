@@ -29,7 +29,6 @@ import (
 	"github.com/cockroachdb/apd/v3"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
@@ -1958,11 +1957,6 @@ func AsIntents(txn *enginepb.TxnMeta, keys []Key) []Intent {
 	return ret
 }
 
-// MakeLockAcquisition makes a lock acquisition message from the given
-// txn, key, and durability level.
-func MakeLockAcquisition(txn *Transaction, key Key, dur lock.Durability) LockAcquisition {
-	return LockAcquisition{Span: Span{Key: key}, Txn: txn.TxnMeta, Durability: dur}
-}
 
 // MakeLockUpdate makes a lock update from the given txn and span.
 //
@@ -1993,19 +1987,19 @@ func (ls LockStateInfo) SafeFormat(w redact.SafePrinter, r rune) {
 		}
 	}
 	w.Printf("holder=%s ", redactableLockHolder)
-	w.Printf("durability=%s ", ls.Durability)
-	w.Printf("duration=%s", ls.HoldDuration)
-	if len(ls.Waiters) > 0 {
-		w.Printf("\n waiters:")
-
-		for _, lw := range ls.Waiters {
-			if expand {
-				w.Printf("\n  %+v", lw)
-			} else {
-				w.Printf("\n  %s", lw)
-			}
-		}
-	}
+	//w.Printf("durability=%s ", ls.Durability)
+	//w.Printf("duration=%s", ls.HoldDuration)
+	//if len(ls.Waiters) > 0 {
+	//	w.Printf("\n waiters:")
+	//
+	//	for _, lw := range ls.Waiters {
+	//		if expand {
+	//			w.Printf("\n  %+v", lw)
+	//		} else {
+	//			w.Printf("\n  %s", lw)
+	//		}
+	//	}
+	//}
 }
 
 func (ls LockStateInfo) String() string {

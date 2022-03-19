@@ -13,7 +13,6 @@ package roachpb
 import (
 	"fmt"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/humanizeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
@@ -59,16 +58,6 @@ const (
 func (rc ReadConsistencyType) SupportsBatch(ba BatchRequest) error {
 	switch rc {
 	case CONSISTENT:
-		return nil
-	case READ_UNCOMMITTED, INCONSISTENT:
-		for _, ru := range ba.Requests {
-			m := ru.GetInner().Method()
-			switch m {
-			case Get, Scan, ReverseScan, QueryResolvedTimestamp:
-			default:
-				return errors.Errorf("method %s not allowed with %s batch", m, rc)
-			}
-		}
 		return nil
 	}
 	panic("unreachable")
@@ -149,14 +138,6 @@ func IsLocking(args Request) bool {
 	return (args.flags() & isLocking) != 0
 }
 
-// LockingDurability returns the durability of the locks acquired by the
-// request. The function assumes that IsLocking(args).
-func LockingDurability(args Request) lock.Durability {
-	if IsReadOnly(args) {
-		return lock.Unreplicated
-	}
-	return lock.Replicated
-}
 
 // IsIntentWrite returns true if the request produces write intents at
 // the request's sequence number when used within a transaction.
@@ -748,11 +729,7 @@ func (*ScanInterleavedIntentsRequest) Method() Method { return ScanInterleavedIn
 // Method implements the Request interface.
 func (*BarrierRequest) Method() Method { return Barrier }
 
-// ShallowCopy implements the Request interface.
-func (gr *GetRequest) ShallowCopy() Request {
-	shallowCopy := *gr
-	return &shallowCopy
-}
+
 
 // ShallowCopy implements the Request interface.
 func (pr *PutRequest) ShallowCopy() Request {
@@ -796,23 +773,7 @@ func (crr *ClearRangeRequest) ShallowCopy() Request {
 	return &shallowCopy
 }
 
-// ShallowCopy implements the Request interface.
-func (crr *RevertRangeRequest) ShallowCopy() Request {
-	shallowCopy := *crr
-	return &shallowCopy
-}
 
-// ShallowCopy implements the Request interface.
-func (sr *ScanRequest) ShallowCopy() Request {
-	shallowCopy := *sr
-	return &shallowCopy
-}
-
-// ShallowCopy implements the Request interface.
-func (rsr *ReverseScanRequest) ShallowCopy() Request {
-	shallowCopy := *rsr
-	return &shallowCopy
-}
 
 // ShallowCopy implements the Request interface.
 func (ccr *CheckConsistencyRequest) ShallowCopy() Request {
@@ -1038,15 +999,6 @@ func (r *BarrierRequest) ShallowCopy() Request {
 
 // NewGet returns a Request initialized to get the value at key. If
 // forUpdate is true, an unreplicated, exclusive lock is acquired on on
-// the key, if it exists.
-func NewGet(key Key, forUpdate bool) Request {
-	return &GetRequest{
-		RequestHeader: RequestHeader{
-			Key: key,
-		},
-		KeyLocking: scanLockStrength(forUpdate),
-	}
-}
 
 // NewIncrement returns a Request initialized to increment the value at
 // key by increment.
@@ -1175,50 +1127,6 @@ func NewDeleteRange(startKey, endKey Key, returnKeys bool) Request {
 	}
 }
 
-// NewScan returns a Request initialized to scan from start to end keys.
-// If forUpdate is true, unreplicated, exclusive locks are acquired on
-// each of the resulting keys.
-func NewScan(key, endKey Key, forUpdate bool) Request {
-	return &ScanRequest{
-		RequestHeader: RequestHeader{
-			Key:    key,
-			EndKey: endKey,
-		},
-		KeyLocking: scanLockStrength(forUpdate),
-	}
-}
-
-// NewReverseScan returns a Request initialized to reverse scan from end.
-// If forUpdate is true, unreplicated, exclusive locks are acquired on
-// each of the resulting keys.
-func NewReverseScan(key, endKey Key, forUpdate bool) Request {
-	return &ReverseScanRequest{
-		RequestHeader: RequestHeader{
-			Key:    key,
-			EndKey: endKey,
-		},
-		KeyLocking: scanLockStrength(forUpdate),
-	}
-}
-
-func scanLockStrength(forUpdate bool) lock.Strength {
-	if forUpdate {
-		return lock.Exclusive
-	}
-	return lock.None
-}
-
-func flagForLockStrength(l lock.Strength) flag {
-	if l != lock.None {
-		return isLocking
-	}
-	return 0
-}
-
-func (gr *GetRequest) flags() flag {
-	maybeLocking := flagForLockStrength(gr.KeyLocking)
-	return isRead | isTxn | maybeLocking | updatesTSCache | needsRefresh
-}
 
 func (*PutRequest) flags() flag {
 	return isWrite | isTxn | isLocking | isIntentWrite | appliesTSCache | canBackpressure
@@ -1293,19 +1201,6 @@ func (*ClearRangeRequest) flags() flag {
 
 // Note that RevertRange commands cannot be part of a transaction as
 // they clear all MVCC versions above their target time.
-func (*RevertRangeRequest) flags() flag {
-	return isWrite | isRange | isAlone | bypassesReplicaCircuitBreaker
-}
-
-func (sr *ScanRequest) flags() flag {
-	maybeLocking := flagForLockStrength(sr.KeyLocking)
-	return isRead | isRange | isTxn | maybeLocking | updatesTSCache | needsRefresh
-}
-
-func (rsr *ReverseScanRequest) flags() flag {
-	maybeLocking := flagForLockStrength(rsr.KeyLocking)
-	return isRead | isRange | isReverse | isTxn | maybeLocking | updatesTSCache | needsRefresh
-}
 
 // EndTxn updates the timestamp cache to prevent replays.
 // Replays for the same transaction key and timestamp will have

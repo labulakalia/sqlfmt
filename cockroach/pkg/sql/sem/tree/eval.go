@@ -22,7 +22,7 @@ import (
 	"github.com/cockroachdb/apd/v3"
 	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	//"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
@@ -3188,7 +3188,7 @@ type EvalContext struct {
 	ClusterID   uuid.UUID
 	ClusterName string
 	NodeID      *base.SQLIDContainer
-	Codec       keys.SQLCodec
+	//Codec       keys.SQLCodec
 
 	// Locality contains the location of the current node as a set of user-defined
 	// key/value pairs, ordered from most inclusive to least inclusive. If there
@@ -3320,7 +3320,7 @@ func MakeTestingEvalContext(st *cluster.Settings) EvalContext {
 // EvalContext so do not start or close the memory monitor.
 func MakeTestingEvalContextWithMon(st *cluster.Settings, monitor *mon.BytesMonitor) EvalContext {
 	ctx := EvalContext{
-		Codec:            keys.SystemSQLCodec,
+		//Codec:            keys.SystemSQLCodec,
 		//Txn:              &kv.Txn{},
 		SessionDataStack: sessiondata.NewStack(&sessiondata.SessionData{}),
 		Settings:         st,

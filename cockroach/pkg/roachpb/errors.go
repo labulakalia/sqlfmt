@@ -166,7 +166,7 @@ func NewError(err error) *Error {
 			} else {
 				e.deprecatedTransactionRestart = TransactionRestart_NONE
 			}
-			e.deprecatedDetail.MustSetInner(detail)
+			//e.deprecatedDetail.MustSetInner(detail)
 			e.checkTxnStatusValid()
 		} else {
 			e.deprecatedMessage = err.Error()
@@ -383,7 +383,7 @@ func (e *Error) GetDetail() ErrorDetailInterface {
 		// Legacy behavior.
 		//
 		// TODO(tbg): delete in v21.2.
-		detail, _ = e.deprecatedDetail.GetInner().(ErrorDetailInterface)
+		//detail, _ = e.deprecatedDetail.GetInner().(ErrorDetailInterface)
 	}
 	return detail
 }
@@ -406,12 +406,12 @@ func (e *Error) UpdateTxn(o *Transaction) {
 	} else {
 		e.UnexposedTxn.Update(o)
 	}
-	if sErr, ok := e.deprecatedDetail.GetInner().(ErrorDetailInterface); ok {
+	//if sErr, ok := e.deprecatedDetail.GetInner().(ErrorDetailInterface); ok {
 		// Refresh the message as the txn is updated.
 		//
-		// TODO(tbg): deprecated, remove in 21.2.
-		e.deprecatedMessage = sErr.message(e)
-	}
+	//	// TODO(tbg): deprecated, remove in 21.2.
+	//	e.deprecatedMessage = sErr.message(e)
+	//}
 	e.checkTxnStatusValid()
 }
 
@@ -422,19 +422,19 @@ func (e *Error) checkTxnStatusValid() {
 	// remove all of these deprecated fields in 21.2.
 
 	txn := e.UnexposedTxn
-	err := e.deprecatedDetail.GetInner()
+	//err := e.deprecatedDetail.GetInner()
 	if txn == nil {
 		return
 	}
 	if e.deprecatedTransactionRestart == TransactionRestart_NONE {
 		return
 	}
-	if errors.HasType(err, (*TransactionAbortedError)(nil)) {
-		return
-	}
-	if txn.Status.IsFinalized() {
-		log.Fatalf(context.TODO(), "transaction unexpectedly finalized in (%T): %v", err, e)
-	}
+	//if errors.HasType(err, (*TransactionAbortedError)(nil)) {
+	//	return
+	//}
+	//if txn.Status.IsFinalized() {
+	//	log.Fatalf(context.TODO(), "transaction unexpectedly finalized in (%T): %v", err, e)
+	//}
 }
 
 // GetTxn returns the txn.

@@ -6,8 +6,6 @@ package roachpb
 import (
 	bytes "bytes"
 	fmt "fmt"
-	lock "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
-	//rspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/readsummary/rspb"
 	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	github_com_cockroachdb_cockroach_pkg_storage_enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	github_com_cockroachdb_cockroach_pkg_util_hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
@@ -1125,7 +1123,7 @@ var xxx_messageInfo_Intent_SingleKeySpan proto.InternalMessageInfo
 type LockAcquisition struct {
 	Span       `protobuf:"bytes,1,opt,name=span,proto3,embedded=span" json:"span"`
 	Txn        enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
-	Durability lock.Durability  `protobuf:"varint,3,opt,name=durability,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Durability" json:"durability,omitempty"`
+	//Durability lock.Durability  `protobuf:"varint,3,opt,name=durability,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Durability" json:"durability,omitempty"`
 }
 
 func (m *LockAcquisition) Reset()         { *m = LockAcquisition{} }
@@ -1209,12 +1207,12 @@ type LockStateInfo struct {
 	// The current lock holder, or nil if the lock is not held.
 	LockHolder *enginepb.TxnMeta `protobuf:"bytes,3,opt,name=lock_holder,json=lockHolder,proto3" json:"lock_holder,omitempty"`
 	// The durability that the lock is held at, or Unreplicated if not held.
-	Durability lock.Durability `protobuf:"varint,4,opt,name=durability,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Durability" json:"durability,omitempty"`
+	//Durability lock.Durability `protobuf:"varint,4,opt,name=durability,proto3,enum=cockroach.kv.kvserver.concurrency.lock.Durability" json:"durability,omitempty"`
 	// The wall clock duration since this lock was acquired (or zero, if not held).
 	HoldDuration time.Duration `protobuf:"bytes,5,opt,name=hold_duration,json=holdDuration,proto3,stdduration" json:"hold_duration"`
 	// The readers and writers currently waiting on the lock.  Stable ordering
 	// is not guaranteed.
-	Waiters []lock.Waiter `protobuf:"bytes,6,rep,name=waiters,proto3" json:"waiters"`
+	//Waiters []lock.Waiter `protobuf:"bytes,6,rep,name=waiters,proto3" json:"waiters"`
 }
 
 func (m *LockStateInfo) Reset()      { *m = LockStateInfo{} }
@@ -2892,11 +2890,11 @@ func (m *LockAcquisition) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Durability != 0 {
-		i = encodeVarintData(dAtA, i, uint64(m.Durability))
-		i--
-		dAtA[i] = 0x18
-	}
+	//if m.Durability != 0 {
+	//	i = encodeVarintData(dAtA, i, uint64(m.Durability))
+	//	i--
+	//	dAtA[i] = 0x18
+	//}
 	{
 		size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -3002,20 +3000,20 @@ func (m *LockStateInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Waiters) > 0 {
-		for iNdEx := len(m.Waiters) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Waiters[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintData(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x32
-		}
-	}
+	//if len(m.Waiters) > 0 {
+	//	for iNdEx := len(m.Waiters) - 1; iNdEx >= 0; iNdEx-- {
+	//		{
+	//			size, err := m.Waiters[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+	//			if err != nil {
+	//				return 0, err
+	//			}
+	//			i -= size
+	//			i = encodeVarintData(dAtA, i, uint64(size))
+	//		}
+	//		i--
+	//		dAtA[i] = 0x32
+	//	}
+	//}
 	n32, err32 := github_com_gogo_protobuf_types.StdDurationMarshalTo(m.HoldDuration, dAtA[i-github_com_gogo_protobuf_types.SizeOfStdDuration(m.HoldDuration):])
 	if err32 != nil {
 		return 0, err32
@@ -3024,11 +3022,11 @@ func (m *LockStateInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i = encodeVarintData(dAtA, i, uint64(n32))
 	i--
 	dAtA[i] = 0x2a
-	if m.Durability != 0 {
-		i = encodeVarintData(dAtA, i, uint64(m.Durability))
-		i--
-		dAtA[i] = 0x20
-	}
+	//if m.Durability != 0 {
+	//	i = encodeVarintData(dAtA, i, uint64(m.Durability))
+	//	i--
+	//	dAtA[i] = 0x20
+	//}
 	if m.LockHolder != nil {
 		{
 			size, err := m.LockHolder.MarshalToSizedBuffer(dAtA[:i])
@@ -4098,9 +4096,9 @@ func (m *LockAcquisition) Size() (n int) {
 	n += 1 + l + sovData(uint64(l))
 	l = m.Txn.Size()
 	n += 1 + l + sovData(uint64(l))
-	if m.Durability != 0 {
-		n += 1 + sovData(uint64(m.Durability))
-	}
+	//if m.Durability != 0 {
+	//	n += 1 + sovData(uint64(m.Durability))
+	//}
 	return n
 }
 
@@ -4143,17 +4141,17 @@ func (m *LockStateInfo) Size() (n int) {
 		l = m.LockHolder.Size()
 		n += 1 + l + sovData(uint64(l))
 	}
-	if m.Durability != 0 {
-		n += 1 + sovData(uint64(m.Durability))
-	}
+	//if m.Durability != 0 {
+	//	n += 1 + sovData(uint64(m.Durability))
+	//}
 	l = github_com_gogo_protobuf_types.SizeOfStdDuration(m.HoldDuration)
 	n += 1 + l + sovData(uint64(l))
-	if len(m.Waiters) > 0 {
-		for _, e := range m.Waiters {
-			l = e.Size()
-			n += 1 + l + sovData(uint64(l))
-		}
-	}
+	//if len(m.Waiters) > 0 {
+	//	for _, e := range m.Waiters {
+	//		l = e.Size()
+	//		n += 1 + l + sovData(uint64(l))
+	//	}
+	//}
 	return n
 }
 
@@ -6804,21 +6802,21 @@ func (m *LockAcquisition) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Durability", wireType)
 			}
-			m.Durability = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowData
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Durability |= lock.Durability(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
+			//m.Durability = 0
+			//for shift := uint(0); ; shift += 7 {
+			//	if shift >= 64 {
+			//		return ErrIntOverflowData
+			//	}
+			//	if iNdEx >= l {
+			//		return io.ErrUnexpectedEOF
+			//	}
+			//	b := dAtA[iNdEx]
+			//	iNdEx++
+			//	m.Durability |= lock.Durability(b&0x7F) << shift
+			//	if b < 0x80 {
+			//		break
+			//	}
+			//}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipData(dAtA[iNdEx:])
@@ -7131,21 +7129,21 @@ func (m *LockStateInfo) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Durability", wireType)
 			}
-			m.Durability = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowData
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Durability |= lock.Durability(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
+			//m.Durability = 0
+			//for shift := uint(0); ; shift += 7 {
+			//	if shift >= 64 {
+			//		return ErrIntOverflowData
+			//	}
+			//	if iNdEx >= l {
+			//		return io.ErrUnexpectedEOF
+			//	}
+			//	b := dAtA[iNdEx]
+			//	iNdEx++
+			//	m.Durability |= lock.Durability(b&0x7F) << shift
+			//	if b < 0x80 {
+			//		break
+			//	}
+			//}
 		case 5:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field HoldDuration", wireType)
@@ -7208,10 +7206,10 @@ func (m *LockStateInfo) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Waiters = append(m.Waiters, lock.Waiter{})
-			if err := m.Waiters[len(m.Waiters)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//m.Waiters = append(m.Waiters, lock.Waiter{})
+			//if err := m.Waiters[len(m.Waiters)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
