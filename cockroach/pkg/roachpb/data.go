@@ -27,6 +27,8 @@ import (
 	"unsafe"
 
 	"github.com/cockroachdb/apd/v3"
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/redact"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keysbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
@@ -41,8 +43,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timetz"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/redact"
 	"go.etcd.io/etcd/raft/v3/raftpb"
 )
 
@@ -124,7 +124,7 @@ func (rk RKey) Next() RKey {
 // is added to the final byte and the carry propagated. The special
 // cases of nil and KeyMin always returns KeyMax.
 func (rk RKey) PrefixEnd() RKey {
-	return RKey(keysbase.PrefixEnd(rk))
+	return keysbase.PrefixEnd(rk)
 }
 
 func (rk RKey) String() string {

@@ -14,6 +14,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/config"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/config/zonepb"
@@ -30,7 +31,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlerrors"
-	"github.com/cockroachdb/errors"
 )
 
 func init() {
