@@ -10,8 +10,6 @@
 
 package log
 
-import "github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
-
 //go:generate mockgen -package=log -destination=mocks_generated_test.go --mock_names=TestingLogSink=MockLogSink . TestingLogSink
 
 // TestingLogSink is exported for mock generation.
@@ -57,7 +55,6 @@ type logSink interface {
 
 	// exitCode returns the exit code to use if the logger decides
 	// to terminate because of an error in output().
-	exitCode() exit.Code
 
 	// emergencyOutput attempts to emit some formatted bytes, and
 	// ignores any errors.
@@ -67,8 +64,3 @@ type logSink interface {
 	// this method.
 	// emergencyOutput([]byte)
 }
-
-var _ logSink = (*stderrSink)(nil)
-var _ logSink = (*fileSink)(nil)
-var _ logSink = (*fluentSink)(nil)
-var _ logSink = (*httpSink)(nil)

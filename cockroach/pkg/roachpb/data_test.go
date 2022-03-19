@@ -21,7 +21,8 @@ import (
 	"time"
 
 	"github.com/cockroachdb/apd/v3"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/cockroachdb/redact"
+	"github.com/kr/pretty"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/zerofields"
@@ -31,12 +32,9 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/redact"
-	"github.com/kr/pretty"
 	"github.com/stretchr/testify/require"
 	"go.etcd.io/etcd/raft/v3/raftpb"
 )
@@ -602,9 +600,6 @@ func TestTransactionUpdate(t *testing.T) {
 	require.Equal(t, expTxn5, txn5)
 
 	// Updating a different transaction fatals.
-	var exited bool
-	log.SetExitFunc(true /* hideStack */, func(exit.Code) { exited = true })
-	defer log.ResetExitFunc()
 
 	var txn6 Transaction
 	txn6.ID = uuid.MakeV4()
@@ -612,7 +607,6 @@ func TestTransactionUpdate(t *testing.T) {
 	txn6.Update(&txn)
 
 	require.Equal(t, origTxn6, txn6)
-	require.True(t, exited)
 }
 
 func TestTransactionUpdateMinTimestamp(t *testing.T) {

@@ -17,14 +17,13 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/errors/oserror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/fileutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/errors/oserror"
 )
 
 // TestLogScope represents the lifetime of a logging output.  It
@@ -41,7 +40,6 @@ type TestLogScope struct {
 		channels                map[Channel]*loggerT
 		debugLog                *loggerT
 		testingFd2CaptureLogger *loggerT
-		exitOverrideFn          func(exit.Code, error)
 		exitOverrideHideStack   bool
 
 		allSinkInfos []*sinkInfo

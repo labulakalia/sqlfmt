@@ -20,11 +20,11 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/redact"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/redact"
 )
 
 // logging is the global state of the logging setup.
@@ -87,7 +87,7 @@ type loggingT struct {
 
 		// exitOverride is used when shutting down logging.
 		exitOverride struct {
-			hideStack bool                   // hides stack trace; only in effect when f is not nil
+			hideStack bool // hides stack trace; only in effect when f is not nil
 		}
 
 		// fatalCh is closed on fatal errors.
@@ -326,7 +326,6 @@ func (l *loggerT) outputLogEntry(entry logEntry) {
 				if !s.criticality {
 					// An error on this sink is not critical. Just report
 					// the error and move on.
-					l.reportErrorEverywhereLocked(context.Background(), err)
 				} else {
 					// This error is critical. We'll have to terminate the
 					// process below.
