@@ -21,7 +21,6 @@ import (
 	"github.com/cockroachdb/errors"
 	pbtypes "github.com/gogo/protobuf/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoindex"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/jobs/jobspb"
@@ -262,7 +261,7 @@ func (n *createTableNode) startExec(params runParams) error {
 				if primaryKeySerial {
 					params.p.BufferClientNotice(
 						params.ctx,
-						pgnotice.Newf("using sequential values in a primary key does not perform as well as using random UUIDs. See %s", docs.URL("serial.html")),
+						pgnotice.Newf("using sequential values in a primary key does not perform as well as using random UUIDs. See %s", ("serial.html")),
 					)
 					break
 				}

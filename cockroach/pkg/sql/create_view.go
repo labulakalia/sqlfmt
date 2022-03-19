@@ -14,7 +14,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
@@ -40,7 +40,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/eventpb"
-	"github.com/cockroachdb/errors"
 )
 
 // createViewNode represents a CREATE VIEW statement.
@@ -675,5 +674,5 @@ func overrideColumnNames(cols colinfo.ResultColumns, newNames tree.NameList) col
 
 func crossDBReferenceDeprecationHint() string {
 	return fmt.Sprintf("Note that cross-database references will be removed in future releases. See: %s",
-		docs.ReleaseNotesURL(`#deprecations`))
+		(`#deprecations`))
 }

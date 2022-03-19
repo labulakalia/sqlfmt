@@ -14,7 +14,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
@@ -26,7 +26,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
-	"github.com/cockroachdb/errors"
 )
 
 // uniqueRowIDExpr is used as default expression when
@@ -165,7 +164,7 @@ func (p *planner) generateSerialInColumnDef(
 					),
 					"change the serial_normalization to sql_sequence or sql_sequence_cached if you wish "+
 						"to use a smaller sized serial column at the cost of performance. See %s",
-					docs.URL("serial.html"),
+					("serial.html"),
 				),
 			)
 		}

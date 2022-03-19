@@ -14,7 +14,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoindex"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
@@ -33,7 +33,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/eventpb"
-	"github.com/cockroachdb/errors"
 )
 
 type createIndexNode struct {
@@ -425,7 +424,7 @@ func replaceExpressionElemsWithVirtualCols(
 							elem.Expr.String(),
 							typ.Name(),
 						),
-						"you may want to create an inverted index instead. See the documentation for inverted indexes: "+docs.URL("inverted-indexes.html"),
+						"you may want to create an inverted index instead. See the documentation for inverted indexes: "+("inverted-indexes.html"),
 					)
 				}
 				return pgerror.Newf(
@@ -445,7 +444,7 @@ func replaceExpressionElemsWithVirtualCols(
 							elem.Expr.String(),
 							typ.Name(),
 						),
-						"see the documentation for more information about inverted indexes: "+docs.URL("inverted-indexes.html"),
+						"see the documentation for more information about inverted indexes: "+("inverted-indexes.html"),
 					)
 				}
 				if i == lastColumnIdx && !colinfo.ColumnTypeIsInvertedIndexable(typ) {
@@ -456,7 +455,7 @@ func replaceExpressionElemsWithVirtualCols(
 							elem.Expr.String(),
 							typ.Name(),
 						),
-						"see the documentation for more information about inverted indexes: "+docs.URL("inverted-indexes.html"),
+						"see the documentation for more information about inverted indexes: "+("inverted-indexes.html"),
 					)
 				}
 			}

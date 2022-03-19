@@ -22,12 +22,12 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/build/bazel"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/cockroachdb/errors"
 )
 
 // #cgo CXXFLAGS: -std=c++14
@@ -220,7 +220,7 @@ func wrapGEOSInitError(err error) error {
 	return errors.WithHintf(
 		err,
 		"Ensure you have the spatial libraries installed as per the instructions in %s",
-		docs.URL("install-cockroachdb-"+page),
+		("install-cockroachdb-" + page),
 	)
 }
 

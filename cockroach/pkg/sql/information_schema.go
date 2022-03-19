@@ -19,8 +19,8 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
@@ -38,7 +38,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/vtable"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
-	"github.com/cockroachdb/errors"
 	"github.com/lib/pq/oid"
 	"golang.org/x/text/collate"
 )
@@ -211,7 +210,7 @@ func validateInformationSchemaTable(table *descpb.TableDescriptor) error {
 
 var informationSchemaAdministrableRoleAuthorizations = virtualSchemaTable{
 	comment: `roles for which the current user has admin option
-` + docs.URL("information-schema.html#administrable_role_authorizations") + `
+` + ("information-schema.html#administrable_role_authorizations") + `
 https://www.postgresql.org/docs/9.5/infoschema-administrable-role-authorizations.html`,
 	schema: vtable.InformationSchemaAdministrableRoleAuthorizations,
 	populate: func(
@@ -223,7 +222,7 @@ https://www.postgresql.org/docs/9.5/infoschema-administrable-role-authorizations
 
 var informationSchemaApplicableRoles = virtualSchemaTable{
 	comment: `roles available to the current user
-` + docs.URL("information-schema.html#applicable_roles") + `
+` + ("information-schema.html#applicable_roles") + `
 https://www.postgresql.org/docs/9.5/infoschema-applicable-roles.html`,
 	schema: vtable.InformationSchemaApplicableRoles,
 	populate: func(
@@ -264,7 +263,7 @@ func populateRoleHierarchy(
 
 var informationSchemaCharacterSets = virtualSchemaTable{
 	comment: `character sets available in the current database
-` + docs.URL("information-schema.html#character_sets") + `
+` + ("information-schema.html#character_sets") + `
 https://www.postgresql.org/docs/9.5/infoschema-character-sets.html`,
 	schema: vtable.InformationSchemaCharacterSets,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -286,7 +285,7 @@ https://www.postgresql.org/docs/9.5/infoschema-character-sets.html`,
 
 var informationSchemaCheckConstraints = virtualSchemaTable{
 	comment: `check constraints
-` + docs.URL("information-schema.html#check_constraints") + `
+` + ("information-schema.html#check_constraints") + `
 https://www.postgresql.org/docs/9.5/infoschema-check-constraints.html`,
 	schema: vtable.InformationSchemaCheckConstraints,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -356,7 +355,7 @@ https://www.postgresql.org/docs/9.5/infoschema-check-constraints.html`,
 
 var informationSchemaColumnPrivileges = virtualSchemaTable{
 	comment: `column privilege grants (incomplete)
-` + docs.URL("information-schema.html#column_privileges") + `
+` + ("information-schema.html#column_privileges") + `
 https://www.postgresql.org/docs/9.5/infoschema-column-privileges.html`,
 	schema: vtable.InformationSchemaColumnPrivileges,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -393,7 +392,7 @@ https://www.postgresql.org/docs/9.5/infoschema-column-privileges.html`,
 
 var informationSchemaColumnsTable = virtualSchemaTable{
 	comment: `table and view columns (incomplete)
-` + docs.URL("information-schema.html#columns") + `
+` + ("information-schema.html#columns") + `
 https://www.postgresql.org/docs/9.5/infoschema-columns.html`,
 	schema: vtable.InformationSchemaColumns,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -546,7 +545,7 @@ https://www.postgresql.org/docs/9.5/infoschema-columns.html`,
 
 var informationSchemaColumnUDTUsage = virtualSchemaTable{
 	comment: `columns with user defined types
-` + docs.URL("information-schema.html#column_udt_usage") + `
+` + ("information-schema.html#column_udt_usage") + `
 https://www.postgresql.org/docs/current/infoschema-column-udt-usage.html`,
 	schema: vtable.InformationSchemaColumnUDTUsage,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -579,7 +578,7 @@ https://www.postgresql.org/docs/current/infoschema-column-udt-usage.html`,
 
 var informationSchemaEnabledRoles = virtualSchemaTable{
 	comment: `roles for the current user
-` + docs.URL("information-schema.html#enabled_roles") + `
+` + ("information-schema.html#enabled_roles") + `
 https://www.postgresql.org/docs/9.5/infoschema-enabled-roles.html`,
 	schema: vtable.InformationSchemaEnabledRoles,
 	populate: func(ctx context.Context, p *planner, _ catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -773,7 +772,7 @@ https://www.postgresql.org/docs/9.5/infoschema-constraint-column-usage.html`,
 // MySQL:    https://dev.mysql.com/doc/refman/5.7/en/key-column-usage-table.html
 var informationSchemaKeyColumnUsageTable = virtualSchemaTable{
 	comment: `column usage by indexes and key constraints
-` + docs.URL("information-schema.html#key_column_usage") + `
+` + ("information-schema.html#key_column_usage") + `
 https://www.postgresql.org/docs/9.5/infoschema-key-column-usage.html`,
 	schema: vtable.InformationSchemaKeyColumnUsage,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -877,7 +876,7 @@ func dStringForFKAction(action catpb.ForeignKeyAction) tree.Datum {
 // MySQL:    https://dev.mysql.com/doc/refman/5.7/en/referential-constraints-table.html
 var informationSchemaReferentialConstraintsTable = virtualSchemaTable{
 	comment: `foreign key constraints
-` + docs.URL("information-schema.html#referential_constraints") + `
+` + ("information-schema.html#referential_constraints") + `
 https://www.postgresql.org/docs/9.5/infoschema-referential-constraints.html`,
 	schema: vtable.InformationSchemaReferentialConstraints,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -927,7 +926,7 @@ https://www.postgresql.org/docs/9.5/infoschema-referential-constraints.html`,
 // MySQL:    missing
 var informationSchemaRoleTableGrants = virtualSchemaTable{
 	comment: `privileges granted on table or views (incomplete; see also information_schema.table_privileges; may contain excess users or roles)
-` + docs.URL("information-schema.html#role_table_grants") + `
+` + ("information-schema.html#role_table_grants") + `
 https://www.postgresql.org/docs/9.5/infoschema-role-table-grants.html`,
 	schema: vtable.InformationSchemaRoleTableGrants,
 	// This is the same as information_schema.table_privileges. In postgres, this virtual table does
@@ -950,7 +949,7 @@ https://www.postgresql.org/docs/9.5/infoschema-routines.html`,
 // MySQL:    https://dev.mysql.com/doc/refman/5.7/en/schemata-table.html
 var informationSchemaSchemataTable = virtualSchemaTable{
 	comment: `database schemas (may contain schemata without permission)
-` + docs.URL("information-schema.html#schemata") + `
+` + ("information-schema.html#schemata") + `
 https://www.postgresql.org/docs/9.5/infoschema-schemata.html`,
 	schema: vtable.InformationSchemaSchemata,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -983,7 +982,7 @@ var builtinTypePrivileges = []struct {
 // which has one row for each grantee.
 var informationSchemaTypePrivilegesTable = virtualSchemaTable{
 	comment: `type privileges (incomplete; may contain excess users or roles)
-` + docs.URL("information-schema.html#type_privileges"),
+` + ("information-schema.html#type_privileges"),
 	schema: vtable.InformationSchemaTypePrivileges,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
 		return forEachDatabaseDesc(ctx, p, dbContext, true, /* requiresPrivileges */
@@ -1051,7 +1050,7 @@ var informationSchemaTypePrivilegesTable = virtualSchemaTable{
 // MySQL:    https://dev.mysql.com/doc/refman/5.7/en/schema-privileges-table.html
 var informationSchemaSchemataTablePrivileges = virtualSchemaTable{
 	comment: `schema privileges (incomplete; may contain excess users or roles)
-` + docs.URL("information-schema.html#schema_privileges"),
+` + ("information-schema.html#schema_privileges"),
 	schema: vtable.InformationSchemaSchemaPrivileges,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
 		return forEachDatabaseDesc(ctx, p, dbContext, true, /* requiresPrivileges */
@@ -1107,7 +1106,7 @@ func dStringForIndexDirection(dir descpb.IndexDescriptor_Direction) tree.Datum {
 
 var informationSchemaSequences = virtualSchemaTable{
 	comment: `sequences
-` + docs.URL("information-schema.html#sequences") + `
+` + ("information-schema.html#sequences") + `
 https://www.postgresql.org/docs/9.5/infoschema-sequences.html`,
 	schema: vtable.InformationSchemaSequences,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -1138,7 +1137,7 @@ https://www.postgresql.org/docs/9.5/infoschema-sequences.html`,
 // MySQL:    https://dev.mysql.com/doc/refman/5.7/en/statistics-table.html
 var informationSchemaStatisticsTable = virtualSchemaTable{
 	comment: `index metadata and statistics (incomplete)
-` + docs.URL("information-schema.html#statistics"),
+` + ("information-schema.html#statistics"),
 	schema: vtable.InformationSchemaStatistics,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
 		return forEachTableDesc(ctx, p, dbContext, hideVirtual, /* virtual tables have no indexes */
@@ -1244,7 +1243,7 @@ var informationSchemaStatisticsTable = virtualSchemaTable{
 // MySQL:    https://dev.mysql.com/doc/refman/5.7/en/table-constraints-table.html
 var informationSchemaTableConstraintTable = virtualSchemaTable{
 	comment: `table constraints
-` + docs.URL("information-schema.html#table_constraints") + `
+` + ("information-schema.html#table_constraints") + `
 https://www.postgresql.org/docs/9.5/infoschema-table-constraints.html`,
 	schema: vtable.InformationSchemaTableConstraint,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -1343,7 +1342,7 @@ var informationSchemaUserPrivileges = virtualSchemaTable{
 // MySQL:    https://dev.mysql.com/doc/refman/5.7/en/table-privileges-table.html
 var informationSchemaTablePrivileges = virtualSchemaTable{
 	comment: `privileges granted on table or views (incomplete; may contain excess users or roles)
-` + docs.URL("information-schema.html#table_privileges") + `
+` + ("information-schema.html#table_privileges") + `
 https://www.postgresql.org/docs/9.5/infoschema-table-privileges.html`,
 	schema:   vtable.InformationSchemaTablePrivileges,
 	populate: populateTablePrivileges,
@@ -1400,7 +1399,7 @@ var (
 
 var informationSchemaTablesTable = virtualSchemaTable{
 	comment: `tables and views
-` + docs.URL("information-schema.html#tables") + `
+` + ("information-schema.html#tables") + `
 https://www.postgresql.org/docs/9.5/infoschema-tables.html`,
 	schema: vtable.InformationSchemaTables,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
@@ -1448,7 +1447,7 @@ func addTablesTableRow(
 // MySQL:    https://dev.mysql.com/doc/refman/5.7/en/views-table.html
 var informationSchemaViewsTable = virtualSchemaTable{
 	comment: `views (incomplete)
-` + docs.URL("information-schema.html#views") + `
+` + ("information-schema.html#views") + `
 https://www.postgresql.org/docs/9.5/infoschema-views.html`,
 	schema: vtable.InformationSchemaViews,
 	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {

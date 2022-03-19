@@ -16,8 +16,8 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
@@ -39,7 +39,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/iterutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
-	"github.com/cockroachdb/errors"
 	"github.com/lib/pq/oid"
 )
 
@@ -1071,7 +1070,7 @@ func checkColumnsValidForInvertedIndex(tableDesc *Mutable, indexColNames []strin
 							col.GetName(),
 							col.GetType().Name(),
 						),
-						"see the documentation for more information about inverted indexes: "+docs.URL("inverted-indexes.html"),
+						"see the documentation for more information about inverted indexes: "+("inverted-indexes.html"),
 					)
 
 				}
@@ -1084,7 +1083,7 @@ func checkColumnsValidForInvertedIndex(tableDesc *Mutable, indexColNames []strin
 							col.GetName(),
 							col.GetType().Name(),
 						),
-						"see the documentation for more information about inverted indexes: "+docs.URL("inverted-indexes.html"),
+						"see the documentation for more information about inverted indexes: "+("inverted-indexes.html"),
 					)
 				}
 			}

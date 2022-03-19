@@ -16,7 +16,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/closedts"
@@ -35,7 +35,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
 )
 
 // RangefeedEnabled is a cluster setting that enables rangefeed requests.
@@ -153,7 +152,7 @@ func (r *Replica) rangeFeedWithRangeID(
 ) *roachpb.Error {
 	if !r.isRangefeedEnabled() && !RangefeedEnabled.Get(&r.store.cfg.Settings.SV) {
 		return roachpb.NewErrorf("rangefeeds require the kv.rangefeed.enabled setting. See %s",
-			docs.URL(`change-data-capture.html#enable-rangefeeds-to-reduce-latency`))
+			(`change-data-capture.html#enable-rangefeeds-to-reduce-latency`))
 	}
 	ctx := r.AnnotateCtx(stream.Context())
 
