@@ -767,7 +767,6 @@ func newSQLServer(ctx context.Context, cfg sqlServerArgs) (*SQLServer, error) {
 	execCfg.SchemaChangerMetrics = sql.NewSchemaChangerMetrics()
 	cfg.registry.AddMetricStruct(execCfg.SchemaChangerMetrics)
 
-	execCfg.FeatureFlagMetrics = featureflag.NewFeatureFlagMetrics()
 	cfg.registry.AddMetricStruct(execCfg.FeatureFlagMetrics)
 
 	if gcJobTestingKnobs := cfg.TestingKnobs.GCJob; gcJobTestingKnobs != nil {

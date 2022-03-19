@@ -13,6 +13,7 @@ package tree
 import (
 	"context"
 	"fmt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 	"math"
 	"regexp"
 	"strings"
@@ -20,8 +21,8 @@ import (
 	"unicode/utf8"
 
 	"github.com/cockroachdb/apd/v3"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
@@ -52,7 +53,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
 	"github.com/lib/pq/oid"
 )
 

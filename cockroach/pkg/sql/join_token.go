@@ -14,14 +14,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/featureflag"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
-	"github.com/cockroachdb/errors"
 )
 
 // FeatureTLSAutoJoinEnabled is used to enable and disable the TLS auto-join
@@ -35,18 +32,6 @@ var FeatureTLSAutoJoinEnabled = settings.RegisterBoolSetting(
 
 // CreateJoinToken implements the tree.JoinTokenCreator interface.
 func (p *planner) CreateJoinToken(ctx context.Context) (string, error) {
-	hasAdmin, err := p.HasAdminRole(ctx)
-	if err != nil {
-		return "", err
-	}
-	if !hasAdmin {
-		return "", pgerror.New(pgcode.InsufficientPrivilege, "must be admin to create join token")
-	}
-	if err = featureflag.CheckEnabled(
-		ctx, p.ExecCfg(), FeatureTLSAutoJoinEnabled, "create join tokens"); err != nil {
-		return "", err
-	}
-
 	cm, err := p.ExecCfg().RPCContext.SecurityContext.GetCertificateManager()
 	if err != nil {
 		return "", errors.Wrap(err, "error when getting certificate manager")

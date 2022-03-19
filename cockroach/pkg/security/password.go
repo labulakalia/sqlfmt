@@ -26,12 +26,12 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/clusterversion"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/quotapool"
-	"github.com/cockroachdb/errors"
 	"github.com/xdg-go/scram"
 	"github.com/xdg-go/stringprep"
 	"golang.org/x/crypto/bcrypt"

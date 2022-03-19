@@ -12,8 +12,6 @@ package sql
 
 import (
 	"context"
-	"fmt"
-
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/featureflag"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
@@ -34,14 +32,6 @@ var featureSchemaChangeEnabled = settings.RegisterBoolSetting(
 func checkSchemaChangeEnabled(
 	ctx context.Context, execCfg *ExecutorConfig, schemaFeatureName string,
 ) error {
-	if err := featureflag.CheckEnabled(
-		ctx,
-		execCfg,
-		featureSchemaChangeEnabled,
-		fmt.Sprintf("%s is part of the schema change category, which", schemaFeatureName),
-	); err != nil {
-		return err
-	}
 	return nil
 }
 

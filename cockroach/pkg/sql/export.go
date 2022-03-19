@@ -114,14 +114,6 @@ func (ef *execFactory) ConstructExport(
 		)
 	}
 
-	if err := featureflag.CheckEnabled(
-		ef.planner.EvalContext().Context,
-		ef.planner.execCfg,
-		featureExportEnabled,
-		"EXPORT",
-	); err != nil {
-		return nil, err
-	}
 
 	if !ef.planner.IsAutoCommit() {
 		return nil, errors.Errorf("EXPORT cannot be used inside a multi-statement transaction")
@@ -139,21 +131,6 @@ func (ef *execFactory) ConstructExport(
 	destination, ok := destinationDatum.(*tree.DString)
 	if !ok {
 		return nil, errors.Errorf("expected string value for the file location")
-	}
-	admin, err := ef.planner.HasAdminRole(ef.planner.EvalContext().Context)
-	if err != nil {
-		panic(err)
-	}
-	if !admin && !ef.planner.ExecCfg().ExternalIODirConfig.EnableNonAdminImplicitAndArbitraryOutbound {
-		conf, err := cloud.ExternalStorageConfFromURI(string(*destination), ef.planner.User())
-		if err != nil {
-			return nil, err
-		}
-		if !conf.AccessIsWithExplicitAuth() {
-			panic(pgerror.Newf(
-				pgcode.InsufficientPrivilege,
-				"only users with the admin role are allowed to EXPORT to the specified URI"))
-		}
 	}
 	optVals, err := evalStringOptions(ef.planner.EvalContext(), options, exportOptionExpectValues)
 	if err != nil {

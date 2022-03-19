@@ -341,15 +341,6 @@ func importPlanHook(
 
 	addToFileFormatTelemetry(importStmt.FileFormat, "attempted")
 
-	if err := featureflag.CheckEnabled(
-		ctx,
-		p.ExecCfg(),
-		featureImportEnabled,
-		"IMPORT",
-	); err != nil {
-		return nil, nil, nil, false, err
-	}
-
 	filesFn, err := p.TypeAsStringArray(ctx, importStmt.Files, "IMPORT")
 	if err != nil {
 		return nil, nil, nil, false, err

@@ -14,6 +14,7 @@ import (
 	"bytes"
 	"encoding/hex"
 	"fmt"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 	"math"
 	"regexp"
 	"sort"
@@ -24,7 +25,8 @@ import (
 	"unsafe"
 
 	"github.com/cockroachdb/apd/v3"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/redact"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
@@ -43,8 +45,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uint128"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/redact"
 	"github.com/lib/pq/oid"
 	"golang.org/x/text/collate"
 	"golang.org/x/text/language"
@@ -5602,7 +5602,6 @@ var baseDatumTypeSizes = map[types.Family]struct {
 }{
 	types.UnknownFamily:        {unsafe.Sizeof(dNull{}), fixedSize},
 	types.BoolFamily:           {unsafe.Sizeof(DBool(false)), fixedSize},
-	types.Box2DFamily:          {unsafe.Sizeof(DBox2D{CartesianBoundingBox: geo.CartesianBoundingBox{}}), fixedSize},
 	types.BitFamily:            {unsafe.Sizeof(DBitArray{}), variableSize},
 	types.IntFamily:            {unsafe.Sizeof(DInt(0)), fixedSize},
 	types.FloatFamily:          {unsafe.Sizeof(DFloat(0.0)), fixedSize},

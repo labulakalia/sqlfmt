@@ -2039,15 +2039,6 @@ func (ef *execFactory) ConstructCancelSessions(input exec.Node, ifExists bool) (
 
 // ConstructCreateStatistics is part of the exec.Factory interface.
 func (ef *execFactory) ConstructCreateStatistics(cs *tree.CreateStats) (exec.Node, error) {
-	ctx := ef.planner.extendedEvalCtx.Context
-	if err := featureflag.CheckEnabled(
-		ctx,
-		ef.planner.ExecCfg(),
-		featureStatsEnabled,
-		"ANALYZE/CREATE STATISTICS",
-	); err != nil {
-		return nil, err
-	}
 	// Don't run as a job if we are inside an EXPLAIN / EXPLAIN ANALYZE. That will
 	// allow us to get insight into the actual execution.
 	runAsJob := !ef.isExplain && ef.planner.instrumentation.ShouldUseJobForCreateStats()
