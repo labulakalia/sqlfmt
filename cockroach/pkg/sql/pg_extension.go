@@ -12,10 +12,6 @@ package sql
 
 import (
 	"context"
-	"strings"
-
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoprojbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catconstants"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
@@ -32,7 +28,6 @@ var pgExtension = virtualSchema{
 	tableDefs: map[descpb.ID]virtualSchemaDef{
 		catconstants.PgExtensionGeographyColumnsTableID: pgExtensionGeographyColumnsTable,
 		catconstants.PgExtensionGeometryColumnsTableID:  pgExtensionGeometryColumnsTable,
-		catconstants.PgExtensionSpatialRefSysTableID:    pgExtensionSpatialRefSysTable,
 	},
 	validWithNoDatabaseContext: false,
 }
@@ -57,47 +52,13 @@ func postgisColumnsTablePopulator(
 					if col.GetType().Family() != matchingFamily {
 						continue
 					}
-					m, err := col.GetType().GeoMetadata()
-					if err != nil {
-						return err
-					}
 
 					var datumNDims tree.Datum
-					switch m.ShapeType {
-					case geopb.ShapeType_Geometry, geopb.ShapeType_Unset:
-						// For geometry_columns, the query in PostGIS COALESCES the value to 2.
-						// Otherwise, the value is NULL.
-						if matchingFamily == types.GeometryFamily {
-							datumNDims = tree.NewDInt(2)
-						} else {
-							datumNDims = tree.DNull
-						}
-					default:
-						zm := m.ShapeType & (geopb.ZShapeTypeFlag | geopb.MShapeTypeFlag)
-						switch zm {
-						case geopb.ZShapeTypeFlag | geopb.MShapeTypeFlag:
-							datumNDims = tree.NewDInt(4)
-						case geopb.ZShapeTypeFlag, geopb.MShapeTypeFlag:
-							datumNDims = tree.NewDInt(3)
-						default:
-							datumNDims = tree.NewDInt(2)
-						}
-					}
 
 					// PostGIS is weird on this one! It has the following behavior:
 					//
 					// * For Geometry, it uses the 2D shape type, all uppercase.
 					// * For Geography, use the correct OGR case for the shape type.
-					shapeName := geopb.ShapeType_Geometry.String()
-					if matchingFamily == types.GeometryFamily {
-						if m.ShapeType == geopb.ShapeType_Unset {
-							shapeName = strings.ToUpper(shapeName)
-						}
-					} else {
-						if m.ShapeType != geopb.ShapeType_Unset {
-							shapeName = m.ShapeType.String()
-						}
-					}
 
 					if err := addRow(
 						tree.NewDString(db.GetName()),
@@ -105,8 +66,6 @@ func postgisColumnsTablePopulator(
 						tree.NewDString(table.GetName()),
 						tree.NewDString(col.GetName()),
 						datumNDims,
-						tree.NewDInt(tree.DInt(m.SRID)),
-						tree.NewDString(shapeName),
 					); err != nil {
 						return err
 					}
@@ -145,30 +104,4 @@ CREATE TABLE pg_extension.geometry_columns (
 	type text
 )`,
 	populate: postgisColumnsTablePopulator(types.GeometryFamily),
-}
-
-var pgExtensionSpatialRefSysTable = virtualSchemaTable{
-	comment: `Shows all defined Spatial Reference Identifiers (SRIDs). Matches PostGIS' spatial_ref_sys table.`,
-	schema: `
-CREATE TABLE pg_extension.spatial_ref_sys (
-	srid integer,
-	auth_name varchar(256),
-	auth_srid integer,
-	srtext varchar(2048),
-	proj4text varchar(2048)
-)`,
-	populate: func(ctx context.Context, p *planner, dbContext catalog.DatabaseDescriptor, addRow func(...tree.Datum) error) error {
-		for _, projection := range geoprojbase.AllProjections() {
-			if err := addRow(
-				tree.NewDInt(tree.DInt(projection.SRID)),
-				tree.NewDString(projection.AuthName),
-				tree.NewDInt(tree.DInt(projection.AuthSRID)),
-				tree.NewDString(projection.SRText),
-				tree.NewDString(projection.Proj4Text.String()),
-			); err != nil {
-				return err
-			}
-		}
-		return nil
-	},
 }

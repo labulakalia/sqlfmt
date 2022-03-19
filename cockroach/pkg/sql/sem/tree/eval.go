@@ -13,7 +13,6 @@ package tree
 import (
 	"context"
 	"fmt"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 	"math"
 	"regexp"
 	"strings"
@@ -2465,11 +2464,6 @@ var CmpOps = cmpOpFixups(map[treecmp.ComparisonOperatorSymbol]cmpOpOverload{
 				Volatility: VolatilityImmutable,
 			},
 		},
-		makeBox2DComparisonOperators(
-			func(lhs, rhs *geo.CartesianBoundingBox) bool {
-				return lhs.Covers(rhs)
-			},
-		)...,
 	),
 
 	treecmp.RegIMatch: {
@@ -2647,71 +2641,6 @@ func checkExperimentalBox2DComparisonOperatorEnabled(ctx *EvalContext) error {
 		)
 	}
 	return nil
-}
-
-func makeBox2DComparisonOperators(op func(lhs, rhs *geo.CartesianBoundingBox) bool) cmpOpOverload {
-	return cmpOpOverload{
-		&CmpOp{
-			LeftType:  types.Box2D,
-			RightType: types.Box2D,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				if err := checkExperimentalBox2DComparisonOperatorEnabled(ctx); err != nil {
-					return nil, err
-				}
-				ret := op(
-					&MustBeDBox2D(left).CartesianBoundingBox,
-					&MustBeDBox2D(right).CartesianBoundingBox,
-				)
-				return MakeDBool(DBool(ret)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Box2D,
-			RightType: types.Geometry,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				if err := checkExperimentalBox2DComparisonOperatorEnabled(ctx); err != nil {
-					return nil, err
-				}
-				ret := op(
-					&MustBeDBox2D(left).CartesianBoundingBox,
-					MustBeDGeometry(right).CartesianBoundingBox(),
-				)
-				return MakeDBool(DBool(ret)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Geometry,
-			RightType: types.Box2D,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				if err := checkExperimentalBox2DComparisonOperatorEnabled(ctx); err != nil {
-					return nil, err
-				}
-				ret := op(
-					MustBeDGeometry(left).CartesianBoundingBox(),
-					&MustBeDBox2D(right).CartesianBoundingBox,
-				)
-				return MakeDBool(DBool(ret)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Geometry,
-			RightType: types.Geometry,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				if err := checkExperimentalBox2DComparisonOperatorEnabled(ctx); err != nil {
-					return nil, err
-				}
-				ret := op(
-					MustBeDGeometry(left).CartesianBoundingBox(),
-					MustBeDGeometry(right).CartesianBoundingBox(),
-				)
-				return MakeDBool(DBool(ret)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	}
 }
 
 // This map contains the inverses for operators in the CmpOps map that have
@@ -4714,21 +4643,6 @@ func (t *DInt) Eval(_ *EvalContext) (Datum, error) {
 
 // Eval implements the TypedExpr interface.
 func (t *DInterval) Eval(_ *EvalContext) (Datum, error) {
-	return t, nil
-}
-
-// Eval implements the TypedExpr interface.
-func (t *DBox2D) Eval(_ *EvalContext) (Datum, error) {
-	return t, nil
-}
-
-// Eval implements the TypedExpr interface.
-func (t *DGeography) Eval(_ *EvalContext) (Datum, error) {
-	return t, nil
-}
-
-// Eval implements the TypedExpr interface.
-func (t *DGeometry) Eval(_ *EvalContext) (Datum, error) {
 	return t, nil
 }
 

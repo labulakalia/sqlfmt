@@ -11,7 +11,6 @@
 package tree
 
 import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
 )
 
@@ -264,25 +263,8 @@ func (a *DatumAlloc) NewDVoid() *DVoid {
 // pre-allocated space to the DatumAlloc.
 func (a *DatumAlloc) NewDGeographyEmpty() *DGeography {
 	r := a.NewDGeography(DGeography{})
-	a.giveBytesToEWKB(r.SpatialObjectRef())
 	return r
 }
-
-// DoneInitNewDGeo is called after unmarshalling a SpatialObject allocated via
-// NewDGeographyEmpty/NewDGeometryEmpty, to return space to the DatumAlloc.
-func (a *DatumAlloc) DoneInitNewDGeo(so *geopb.SpatialObject) {
-	// Don't allocate next time if the allocation was wasted and there is no way
-	// to pre-allocate enough. This is just a crude heuristic to avoid wasting
-	// allocations if the EWKBs are very large.
-	a.lastEWKBBeyondAllocSize = len(so.EWKB) > maxEWKBAllocSize
-	c := cap(so.EWKB)
-	l := len(so.EWKB)
-	if (c - l) > l {
-		a.ewkbAlloc = so.EWKB[l:l:c]
-		so.EWKB = so.EWKB[:l:l]
-	}
-}
-
 // NewDGeometry allocates a DGeometry.
 func (a *DatumAlloc) NewDGeometry(v DGeometry) *DGeometry {
 	if a.AllocSize == 0 {
@@ -303,24 +285,8 @@ func (a *DatumAlloc) NewDGeometry(v DGeometry) *DGeometry {
 // pre-allocated space to the DatumAlloc.
 func (a *DatumAlloc) NewDGeometryEmpty() *DGeometry {
 	r := a.NewDGeometry(DGeometry{})
-	a.giveBytesToEWKB(r.SpatialObjectRef())
 	return r
 }
-
-func (a *DatumAlloc) giveBytesToEWKB(so *geopb.SpatialObject) {
-	if a.ewkbAlloc == nil && !a.lastEWKBBeyondAllocSize {
-		if a.curEWKBAllocSize == 0 {
-			a.curEWKBAllocSize = defaultEWKBAllocSize
-		} else if a.curEWKBAllocSize < maxEWKBAllocSize {
-			a.curEWKBAllocSize *= 2
-		}
-		so.EWKB = make([]byte, 0, a.curEWKBAllocSize)
-	} else {
-		so.EWKB = a.ewkbAlloc
-		a.ewkbAlloc = nil
-	}
-}
-
 // NewDTime allocates a DTime.
 func (a *DatumAlloc) NewDTime(v DTime) *DTime {
 	if a.AllocSize == 0 {

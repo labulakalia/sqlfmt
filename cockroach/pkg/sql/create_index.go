@@ -209,20 +209,6 @@ func makeIndexDescriptor(
 		}
 
 		indexDesc.Type = descpb.IndexDescriptor_INVERTED
-		column, err := tableDesc.FindColumnWithName(columns[len(columns)-1].Column)
-		if err != nil {
-			return nil, err
-		}
-		switch column.GetType().Family() {
-		case types.GeometryFamily:
-			config, err := geoindex.GeometryIndexConfigForSRID(column.GetType().GeoSRIDOrZero())
-			if err != nil {
-				return nil, err
-			}
-			indexDesc.GeoConfig = *config
-		case types.GeographyFamily:
-			indexDesc.GeoConfig = *geoindex.DefaultGeographyIndexConfig()
-		}
 	}
 
 	if n.Sharded != nil {

@@ -1353,11 +1353,6 @@ func TestGeospatialSize(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.wkt, func(t *testing.T) {
-			t.Run("geometry", func(t *testing.T) {
-				g, err := tree.ParseDGeometry(tc.wkt)
-				require.NoError(t, err)
-				require.Equal(t, tc.expected, g.Size())
-			})
 			t.Run("geography", func(t *testing.T) {
 				g, err := tree.ParseDGeography(tc.wkt)
 				require.NoError(t, err)

@@ -11,7 +11,7 @@
 package valueside
 
 import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/descpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
@@ -19,7 +19,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
-	"github.com/cockroachdb/errors"
 )
 
 // Decode decodes a value encoded by Encode.
@@ -113,32 +112,6 @@ func DecodeUntaggedDatum(
 			return nil, b, err
 		}
 		return a.NewDDate(tree.MakeDDate(pgdate.MakeCompatibleDateFromDisk(data))), b, nil
-	case types.Box2DFamily:
-		b, data, err := encoding.DecodeUntaggedBox2DValue(buf)
-		if err != nil {
-			return nil, b, err
-		}
-		return a.NewDBox2D(tree.DBox2D{
-			CartesianBoundingBox: geo.CartesianBoundingBox{BoundingBox: data},
-		}), b, nil
-	case types.GeographyFamily:
-		g := a.NewDGeographyEmpty()
-		so := g.Geography.SpatialObjectRef()
-		b, err := encoding.DecodeUntaggedGeoValue(buf, so)
-		a.DoneInitNewDGeo(so)
-		if err != nil {
-			return nil, b, err
-		}
-		return g, b, nil
-	case types.GeometryFamily:
-		g := a.NewDGeometryEmpty()
-		so := g.Geometry.SpatialObjectRef()
-		b, err := encoding.DecodeUntaggedGeoValue(buf, so)
-		a.DoneInitNewDGeo(so)
-		if err != nil {
-			return nil, b, err
-		}
-		return g, b, nil
 	case types.TimeFamily:
 		b, data, err := encoding.DecodeUntaggedIntValue(buf)
 		if err != nil {

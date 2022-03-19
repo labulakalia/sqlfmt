@@ -13,24 +13,13 @@ package geo
 import (
 	"fmt"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/cockroachdb/errors"
 )
 
 // NewMismatchingSRIDsError returns the error message for SRIDs of GeospatialTypes
 // a and b being a mismatch.
-func NewMismatchingSRIDsError(a geopb.SpatialObject, b geopb.SpatialObject) error {
-	return pgerror.Newf(
-		pgcode.InvalidParameterValue,
-		"operation on mixed SRIDs forbidden: (%s, %d) != (%s, %d)",
-		a.ShapeType,
-		a.SRID,
-		b.ShapeType,
-		b.SRID,
-	)
-}
 
 // EmptyGeometryError is an error that is returned when the Geometry or any
 // parts of its subgeometries are empty.

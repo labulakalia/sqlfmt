@@ -77,27 +77,6 @@ func Encode(b []byte, val tree.Datum, dir encoding.Direction) ([]byte, error) {
 		return encoding.EncodeStringDescending(b, string(*t)), nil
 	case *tree.DVoid:
 		return encoding.EncodeVoidAscendingOrDescending(b), nil
-	case *tree.DBox2D:
-		if dir == encoding.Ascending {
-			return encoding.EncodeBox2DAscending(b, t.CartesianBoundingBox.BoundingBox)
-		}
-		return encoding.EncodeBox2DDescending(b, t.CartesianBoundingBox.BoundingBox)
-	case *tree.DGeography:
-		so := t.Geography.SpatialObjectRef()
-		if dir == encoding.Ascending {
-			return encoding.EncodeGeoAscending(b, t.Geography.SpaceCurveIndex(), so)
-		}
-		return encoding.EncodeGeoDescending(b, t.Geography.SpaceCurveIndex(), so)
-	case *tree.DGeometry:
-		so := t.Geometry.SpatialObjectRef()
-		spaceCurveIndex, err := t.Geometry.SpaceCurveIndex()
-		if err != nil {
-			return nil, err
-		}
-		if dir == encoding.Ascending {
-			return encoding.EncodeGeoAscending(b, spaceCurveIndex, so)
-		}
-		return encoding.EncodeGeoDescending(b, spaceCurveIndex, so)
 	case *tree.DDate:
 		if dir == encoding.Ascending {
 			return encoding.EncodeVarintAscending(b, t.UnixEpochDaysWithOrig()), nil

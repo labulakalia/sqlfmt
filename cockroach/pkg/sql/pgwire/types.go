@@ -224,10 +224,10 @@ func writeTextDatumNotNull(
 		b.putInt32(int32(len(s)))
 		b.write([]byte(s))
 
-	case *tree.DGeometry:
-		s := v.Geometry.EWKBHex()
-		b.putInt32(int32(len(s)))
-		b.write([]byte(s))
+	//case *tree.DGeometry:
+	//	s := v.Geometry.EWKBHex()
+	//	b.putInt32(int32(len(s)))
+	//	b.write([]byte(s))
 
 	case *tree.DTimestamp:
 		writeTextTimestamp(b, v.Time)
@@ -698,12 +698,12 @@ func writeBinaryDatumNotNull(
 		b.putInt64(int64(math.Float64bits(v.HiY)))
 
 	case *tree.DGeography:
-		b.putInt32(int32(len(v.EWKB())))
-		b.write(v.EWKB())
+		//b.putInt32(int32(len(v.EWKB())))
+		//b.write(v.EWKB())
 
 	case *tree.DGeometry:
-		b.putInt32(int32(len(v.EWKB())))
-		b.write(v.EWKB())
+		//b.putInt32(int32(len(v.EWKB())))
+		//b.write(v.EWKB())
 
 	case *tree.DArray:
 		if v.ParamTyp.Family() == types.ArrayFamily {

@@ -11,7 +11,7 @@
 package valueside
 
 import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
@@ -20,7 +20,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
 	"github.com/lib/pq/oid"
 )
 
@@ -80,21 +79,6 @@ func MarshalLegacy(colType *types.T, val tree.Datum) (roachpb.Value, error) {
 		if v, ok := val.(*tree.DDate); ok {
 			r.SetInt(v.UnixEpochDaysWithOrig())
 			return r, nil
-		}
-	case types.Box2DFamily:
-		if v, ok := val.(*tree.DBox2D); ok {
-			r.SetBox2D(v.CartesianBoundingBox.BoundingBox)
-			return r, nil
-		}
-	case types.GeographyFamily:
-		if v, ok := val.(*tree.DGeography); ok {
-			err := r.SetGeo(v.SpatialObject())
-			return r, err
-		}
-	case types.GeometryFamily:
-		if v, ok := val.(*tree.DGeometry); ok {
-			err := r.SetGeo(v.SpatialObject())
-			return r, err
 		}
 	case types.TimeFamily:
 		if v, ok := val.(*tree.DTime); ok {
@@ -246,26 +230,6 @@ func UnmarshalLegacy(a *tree.DatumAlloc, typ *types.T, value roachpb.Value) (tre
 			return nil, err
 		}
 		return a.NewDDate(tree.MakeDDate(pgdate.MakeCompatibleDateFromDisk(v))), nil
-	case types.Box2DFamily:
-		v, err := value.GetBox2D()
-		if err != nil {
-			return nil, err
-		}
-		return a.NewDBox2D(tree.DBox2D{
-			CartesianBoundingBox: geo.CartesianBoundingBox{BoundingBox: v},
-		}), nil
-	case types.GeographyFamily:
-		v, err := value.GetGeo()
-		if err != nil {
-			return nil, err
-		}
-		return a.NewDGeography(tree.DGeography{Geography: geo.MakeGeographyUnsafe(v)}), nil
-	case types.GeometryFamily:
-		v, err := value.GetGeo()
-		if err != nil {
-			return nil, err
-		}
-		return a.NewDGeometry(tree.DGeometry{Geometry: geo.MakeGeometryUnsafe(v)}), nil
 	case types.TimeFamily:
 		v, err := value.GetInt()
 		if err != nil {

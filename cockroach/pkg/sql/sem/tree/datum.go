@@ -3167,19 +3167,12 @@ type DGeography struct {
 	geo.Geography
 }
 
-// NewDGeography returns a new Geography Datum.
-func NewDGeography(g geo.Geography) *DGeography {
-	return &DGeography{Geography: g}
-}
-
 // AsDGeography attempts to retrieve a *DGeography from an Expr, returning a
 // *DGeography and a flag signifying whether the assertion was successful. The
 // function should be used instead of direct type assertions wherever a
 // *DGeography wrapped by a *DOidWrapper is possible.
 func AsDGeography(e Expr) (*DGeography, bool) {
 	switch t := e.(type) {
-	case *DGeography:
-		return t, true
 	case *DOidWrapper:
 		return AsDGeography(t.Wrapped)
 	}
@@ -3198,11 +3191,7 @@ func MustBeDGeography(e Expr) *DGeography {
 
 // ParseDGeography attempts to pass `str` as a Geography type.
 func ParseDGeography(str string) (*DGeography, error) {
-	g, err := geo.ParseGeography(str)
-	if err != nil {
-		return nil, errors.Wrapf(err, "could not parse geography")
-	}
-	return &DGeography{Geography: g}, nil
+	return &DGeography{}, nil
 }
 
 // ResolvedType implements the TypedExpr interface.
@@ -3210,28 +3199,9 @@ func (*DGeography) ResolvedType() *types.T {
 	return types.Geography
 }
 
-// Compare implements the Datum interface.
-func (d *DGeography) Compare(ctx *EvalContext, other Datum) int {
-	res, err := d.CompareError(ctx, other)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
 
 // CompareError implements the Datum interface.
-func (d *DGeography) CompareError(ctx *EvalContext, other Datum) (int, error) {
-	if other == DNull {
-		// NULL is less than any non-NULL value.
-		return 1, nil
-	}
-	v, ok := UnwrapDatum(ctx, other).(*DGeography)
-	if !ok {
-		return 0, makeUnsupportedComparisonMessage(d, other)
-	}
-	res := d.Geography.Compare(v.Geography)
-	return res, nil
-}
+
 
 // Prev implements the Datum interface.
 func (d *DGeography) Prev(ctx *EvalContext) (Datum, bool) {
@@ -3279,11 +3249,6 @@ func (d *DGeography) Format(ctx *FmtCtx) {
 	}
 }
 
-// Size implements the Datum interface.
-func (d *DGeography) Size() uintptr {
-	return d.Geography.SpatialObjectRef().MemSize()
-}
-
 // DGeometry is the Geometry Datum.
 type DGeometry struct {
 	geo.Geometry
@@ -3300,8 +3265,6 @@ func NewDGeometry(g geo.Geometry) *DGeometry {
 // *DGeometry wrapped by a *DOidWrapper is possible.
 func AsDGeometry(e Expr) (*DGeometry, bool) {
 	switch t := e.(type) {
-	case *DGeometry:
-		return t, true
 	case *DOidWrapper:
 		return AsDGeometry(t.Wrapped)
 	}
@@ -3318,42 +3281,12 @@ func MustBeDGeometry(e Expr) *DGeometry {
 	return i
 }
 
-// ParseDGeometry attempts to pass `str` as a Geometry type.
-func ParseDGeometry(str string) (*DGeometry, error) {
-	g, err := geo.ParseGeometry(str)
-	if err != nil {
-		return nil, errors.Wrapf(err, "could not parse geometry")
-	}
-	return &DGeometry{Geometry: g}, nil
-}
 
 // ResolvedType implements the TypedExpr interface.
 func (*DGeometry) ResolvedType() *types.T {
 	return types.Geometry
 }
 
-// Compare implements the Datum interface.
-func (d *DGeometry) Compare(ctx *EvalContext, other Datum) int {
-	res, err := d.CompareError(ctx, other)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
-
-// CompareError implements the Datum interface.
-func (d *DGeometry) CompareError(ctx *EvalContext, other Datum) (int, error) {
-	if other == DNull {
-		// NULL is less than any non-NULL value.
-		return 1, nil
-	}
-	v, ok := UnwrapDatum(ctx, other).(*DGeometry)
-	if !ok {
-		return 0, makeUnsupportedComparisonMessage(d, other)
-	}
-	res := d.Geometry.Compare(v.Geometry)
-	return res, nil
-}
 
 // Prev implements the Datum interface.
 func (d *DGeometry) Prev(ctx *EvalContext) (Datum, bool) {
@@ -3401,29 +3334,12 @@ func (d *DGeometry) Format(ctx *FmtCtx) {
 	}
 }
 
-// Size implements the Datum interface.
-func (d *DGeometry) Size() uintptr {
-	return d.Geometry.SpatialObjectRef().MemSize()
-}
 
 // DBox2D is the Datum representation of the Box2D type.
 type DBox2D struct {
-	geo.CartesianBoundingBox
 }
 
-// NewDBox2D returns a new Box2D Datum.
-func NewDBox2D(b geo.CartesianBoundingBox) *DBox2D {
-	return &DBox2D{CartesianBoundingBox: b}
-}
 
-// ParseDBox2D attempts to pass `str` as a Box2D type.
-func ParseDBox2D(str string) (*DBox2D, error) {
-	b, err := geo.ParseCartesianBoundingBox(str)
-	if err != nil {
-		return nil, errors.Wrapf(err, "could not parse geometry")
-	}
-	return &DBox2D{CartesianBoundingBox: b}, nil
-}
 
 // AsDBox2D attempts to retrieve a *DBox2D from an Expr, returning a
 // *DBox2D and a flag signifying whether the assertion was successful. The
@@ -3431,8 +3347,6 @@ func ParseDBox2D(str string) (*DBox2D, error) {
 // *DBox2D wrapped by a *DOidWrapper is possible.
 func AsDBox2D(e Expr) (*DBox2D, bool) {
 	switch t := e.(type) {
-	case *DBox2D:
-		return t, true
 	case *DOidWrapper:
 		return AsDBox2D(t.Wrapped)
 	}
@@ -3456,25 +3370,7 @@ func (*DBox2D) ResolvedType() *types.T {
 
 // Compare implements the Datum interface.
 func (d *DBox2D) Compare(ctx *EvalContext, other Datum) int {
-	res, err := d.CompareError(ctx, other)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
-
-// CompareError implements the Datum interface.
-func (d *DBox2D) CompareError(ctx *EvalContext, other Datum) (int, error) {
-	if other == DNull {
-		// NULL is less than any non-NULL value.
-		return 1, nil
-	}
-	v, ok := UnwrapDatum(ctx, other).(*DBox2D)
-	if !ok {
-		return 0, makeUnsupportedComparisonMessage(d, other)
-	}
-	res := d.CartesianBoundingBox.Compare(&v.CartesianBoundingBox)
-	return res, nil
+	return 0
 }
 
 // Prev implements the Datum interface.
@@ -3517,15 +3413,11 @@ func (d *DBox2D) Format(ctx *FmtCtx) {
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
-	ctx.WriteString(d.CartesianBoundingBox.Repr())
-	if !bareStrings {
-		ctx.WriteByte('\'')
-	}
 }
 
 // Size implements the Datum interface.
 func (d *DBox2D) Size() uintptr {
-	return unsafe.Sizeof(*d) + unsafe.Sizeof(d.CartesianBoundingBox)
+	return unsafe.Sizeof(*d) + unsafe.Sizeof(0)
 }
 
 // DJSON is the JSON Datum.
@@ -3649,12 +3541,6 @@ func AsJSON(
 	case *DTimestamp:
 		// This is RFC3339Nano, but without the TZ fields.
 		return json.FromString(t.UTC().Format("2006-01-02T15:04:05.999999999")), nil
-	case *DDate, *DUuid, *DOid, *DInterval, *DBytes, *DIPAddr, *DTime, *DTimeTZ, *DBitArray, *DBox2D:
-		return json.FromString(AsStringWithFlags(t, FmtBareStrings, FmtDataConversionConfig(dcc))), nil
-	case *DGeometry:
-		return json.FromSpatialObject(t.Geometry.SpatialObject(), geo.DefaultGeoJSONDecimalDigits)
-	case *DGeography:
-		return json.FromSpatialObject(t.Geography.SpatialObject(), geo.DefaultGeoJSONDecimalDigits)
 	default:
 		if d == DNull {
 			return json.NullJSONValue, nil

@@ -15,8 +15,7 @@ import (
 	"sort"
 	"unsafe"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geoindex"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog"
@@ -34,7 +33,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/unique"
-	"github.com/cockroachdb/errors"
 )
 
 // This file contains facilities to encode primary and secondary
@@ -498,29 +496,6 @@ func (a byID) Len() int           { return len(a) }
 func (a byID) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a byID) Less(i, j int) bool { return a[i].id < a[j].id }
 
-// EncodeInvertedIndexKeys creates a list of inverted index keys by
-// concatenating keyPrefix with the encodings of the column in the
-// index.
-func EncodeInvertedIndexKeys(
-	index catalog.Index, colMap catalog.TableColMap, values []tree.Datum, keyPrefix []byte,
-) (key [][]byte, err error) {
-	keyPrefix, err = EncodeInvertedIndexPrefixKeys(index, colMap, values, keyPrefix)
-	if err != nil {
-		return nil, err
-	}
-
-	var val tree.Datum
-	if i, ok := colMap.Get(index.InvertedColumnID()); ok {
-		val = values[i]
-	} else {
-		val = tree.DNull
-	}
-	indexGeoConfig := index.GetGeoConfig()
-	if !geoindex.IsEmptyConfig(&indexGeoConfig) {
-		return EncodeGeoInvertedIndexTableKeys(val, keyPrefix, indexGeoConfig)
-	}
-	return EncodeInvertedIndexTableKeys(val, keyPrefix, index.GetVersion())
-}
 
 // EncodeInvertedIndexPrefixKeys encodes the non-inverted prefix columns if
 // the given index is a multi-column inverted index.
@@ -771,53 +746,6 @@ func encodeContainedArrayInvertedIndexSpans(
 	return invertedExpr, nil
 }
 
-// EncodeGeoInvertedIndexTableKeys is the equivalent of EncodeInvertedIndexTableKeys
-// for Geography and Geometry.
-func EncodeGeoInvertedIndexTableKeys(
-	val tree.Datum, inKey []byte, indexGeoConfig geoindex.Config,
-) (key [][]byte, err error) {
-	if val == tree.DNull {
-		return nil, nil
-	}
-	switch val.ResolvedType().Family() {
-	case types.GeographyFamily:
-		index := geoindex.NewS2GeographyIndex(*indexGeoConfig.S2Geography)
-		intKeys, bbox, err := index.InvertedIndexKeys(context.TODO(), val.(*tree.DGeography).Geography)
-		if err != nil {
-			return nil, err
-		}
-		return encodeGeoKeys(encoding.EncodeGeoInvertedAscending(inKey), intKeys, bbox)
-	case types.GeometryFamily:
-		index := geoindex.NewS2GeometryIndex(*indexGeoConfig.S2Geometry)
-		intKeys, bbox, err := index.InvertedIndexKeys(context.TODO(), val.(*tree.DGeometry).Geometry)
-		if err != nil {
-			return nil, err
-		}
-		return encodeGeoKeys(encoding.EncodeGeoInvertedAscending(inKey), intKeys, bbox)
-	default:
-		return nil, errors.Errorf("internal error: unexpected type: %s", val.ResolvedType().Family())
-	}
-}
-
-func encodeGeoKeys(
-	inKey []byte, geoKeys []geoindex.Key, bbox geopb.BoundingBox,
-) (keys [][]byte, err error) {
-	encodedBBox := make([]byte, 0, encoding.MaxGeoInvertedBBoxLen)
-	encodedBBox = encoding.EncodeGeoInvertedBBox(encodedBBox, bbox.LoX, bbox.LoY, bbox.HiX, bbox.HiY)
-	// Avoid per-key heap allocations.
-	b := make([]byte, 0, len(geoKeys)*(len(inKey)+encoding.MaxVarintLen+len(encodedBBox)))
-	keys = make([][]byte, len(geoKeys))
-	for i, k := range geoKeys {
-		prev := len(b)
-		b = append(b, inKey...)
-		b = encoding.EncodeUvarintAscending(b, uint64(k))
-		b = append(b, encodedBBox...)
-		// Set capacity so that the caller appending does not corrupt later keys.
-		newKey := b[prev:len(b):len(b)]
-		keys[i] = newKey
-	}
-	return keys, nil
-}
 
 // EncodePrimaryIndex constructs a list of k/v pairs for a
 // row encoded as a primary index. This function mirrors the encoding
@@ -945,7 +873,6 @@ func EncodeSecondaryIndex(
 	values []tree.Datum,
 	includeEmpty bool,
 ) ([]IndexEntry, error) {
-	secondaryIndexKeyPrefix := MakeIndexKeyPrefix(codec, tableDesc.GetID(), secondaryIndex.GetID())
 
 	// Use the primary key encoding for covering indexes.
 	if secondaryIndex.GetEncodingType() == descpb.PrimaryIndexEncoding {
@@ -955,15 +882,6 @@ func EncodeSecondaryIndex(
 	var containsNull = false
 	var secondaryKeys [][]byte
 	var err error
-	if secondaryIndex.GetType() == descpb.IndexDescriptor_INVERTED {
-		secondaryKeys, err = EncodeInvertedIndexKeys(secondaryIndex, colMap, values, secondaryIndexKeyPrefix)
-	} else {
-		var secondaryIndexKey []byte
-		secondaryIndexKey, containsNull, err = EncodeIndexKey(
-			tableDesc, secondaryIndex, colMap, values, secondaryIndexKeyPrefix)
-
-		secondaryKeys = [][]byte{secondaryIndexKey}
-	}
 	if err != nil {
 		return []IndexEntry{}, err
 	}

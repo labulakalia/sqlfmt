@@ -12,7 +12,6 @@ import (
 	"math"
 	"strings"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
@@ -654,9 +653,6 @@ func (u *sqlSymUnion) scheduleLabelSpec() *tree.ScheduleLabelSpec {
 	return u.val.(*tree.ScheduleLabelSpec)
 }
 
-func (u *sqlSymUnion) geoShapeType() geopb.ShapeType {
-	return u.val.(geopb.ShapeType)
-}
 func newNameFromStr(s string) *tree.Name {
 	return (*tree.Name)(&s)
 }
@@ -34621,198 +34617,6 @@ sqldefault:
 		{
 			return unimplementedWithIssueDetail(sqllex, 21286, "polygon")
 		}
-	case 1885:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11186
-		{
-			sqlVAL.union.val = geopb.ShapeType_Point
-		}
-	case 1886:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11187
-		{
-			sqlVAL.union.val = geopb.ShapeType_PointM
-		}
-	case 1887:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11188
-		{
-			sqlVAL.union.val = geopb.ShapeType_PointZ
-		}
-	case 1888:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11189
-		{
-			sqlVAL.union.val = geopb.ShapeType_PointZM
-		}
-	case 1889:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11190
-		{
-			sqlVAL.union.val = geopb.ShapeType_LineString
-		}
-	case 1890:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11191
-		{
-			sqlVAL.union.val = geopb.ShapeType_LineStringM
-		}
-	case 1891:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11192
-		{
-			sqlVAL.union.val = geopb.ShapeType_LineStringZ
-		}
-	case 1892:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11193
-		{
-			sqlVAL.union.val = geopb.ShapeType_LineStringZM
-		}
-	case 1893:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11194
-		{
-			sqlVAL.union.val = geopb.ShapeType_Polygon
-		}
-	case 1894:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11195
-		{
-			sqlVAL.union.val = geopb.ShapeType_PolygonM
-		}
-	case 1895:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11196
-		{
-			sqlVAL.union.val = geopb.ShapeType_PolygonZ
-		}
-	case 1896:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11197
-		{
-			sqlVAL.union.val = geopb.ShapeType_PolygonZM
-		}
-	case 1897:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11198
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiPoint
-		}
-	case 1898:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11199
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiPointM
-		}
-	case 1899:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11200
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiPointZ
-		}
-	case 1900:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11201
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiPointZM
-		}
-	case 1901:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11202
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiLineString
-		}
-	case 1902:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11203
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiLineStringM
-		}
-	case 1903:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11204
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiLineStringZ
-		}
-	case 1904:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11205
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiLineStringZM
-		}
-	case 1905:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11206
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiPolygon
-		}
-	case 1906:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11207
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiPolygonM
-		}
-	case 1907:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11208
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiPolygonZ
-		}
-	case 1908:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11209
-		{
-			sqlVAL.union.val = geopb.ShapeType_MultiPolygonZM
-		}
-	case 1909:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11210
-		{
-			sqlVAL.union.val = geopb.ShapeType_GeometryCollection
-		}
-	case 1910:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11211
-		{
-			sqlVAL.union.val = geopb.ShapeType_GeometryCollectionM
-		}
-	case 1911:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11212
-		{
-			sqlVAL.union.val = geopb.ShapeType_GeometryCollectionZ
-		}
-	case 1912:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11213
-		{
-			sqlVAL.union.val = geopb.ShapeType_GeometryCollectionZM
-		}
-	case 1913:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11214
-		{
-			sqlVAL.union.val = geopb.ShapeType_Geometry
-		}
-	case 1914:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11215
-		{
-			sqlVAL.union.val = geopb.ShapeType_GeometryM
-		}
-	case 1915:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11216
-		{
-			sqlVAL.union.val = geopb.ShapeType_GeometryZ
-		}
-	case 1916:
-		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
-//line sql-gen.y:11217
-		{
-			sqlVAL.union.val = geopb.ShapeType_GeometryZM
-		}
 	case 1917:
 		sqlDollar = sqlS[sqlpt-1 : sqlpt+1]
 //line sql-gen.y:11220
@@ -34831,38 +34635,38 @@ sqldefault:
 		{
 			sqlVAL.union.val = types.Box2D
 		}
-	case 1920:
-		sqlDollar = sqlS[sqlpt-4 : sqlpt+1]
-//line sql-gen.y:11224
-		{
-			sqlVAL.union.val = types.MakeGeometry(sqlDollar[3].union.geoShapeType(), 0)
-		}
-	case 1921:
-		sqlDollar = sqlS[sqlpt-4 : sqlpt+1]
-//line sql-gen.y:11228
-		{
-			sqlVAL.union.val = types.MakeGeography(sqlDollar[3].union.geoShapeType(), 0)
-		}
-	case 1922:
-		sqlDollar = sqlS[sqlpt-6 : sqlpt+1]
-//line sql-gen.y:11232
-		{
-			val, err := sqlDollar[5].union.numVal().AsInt32()
-			if err != nil {
-				return setErr(sqllex, err)
-			}
-			sqlVAL.union.val = types.MakeGeometry(sqlDollar[3].union.geoShapeType(), geopb.SRID(val))
-		}
-	case 1923:
-		sqlDollar = sqlS[sqlpt-6 : sqlpt+1]
-//line sql-gen.y:11240
-		{
-			val, err := sqlDollar[5].union.numVal().AsInt32()
-			if err != nil {
-				return setErr(sqllex, err)
-			}
-			sqlVAL.union.val = types.MakeGeography(sqlDollar[3].union.geoShapeType(), geopb.SRID(val))
-		}
+//	case 1920:
+//		sqlDollar = sqlS[sqlpt-4 : sqlpt+1]
+////line sql-gen.y:11224
+//		{
+//			sqlVAL.union.val = types.MakeGeometry(sqlDollar[3].union.geoShapeType(), 0)
+//		}
+//	case 1921:
+//		sqlDollar = sqlS[sqlpt-4 : sqlpt+1]
+////line sql-gen.y:11228
+//		{
+//			sqlVAL.union.val = types.MakeGeography(sqlDollar[3].union.geoShapeType(), 0)
+//		}
+//	case 1922:
+//		sqlDollar = sqlS[sqlpt-6 : sqlpt+1]
+////line sql-gen.y:11232
+//		{
+//			val, err := sqlDollar[5].union.numVal().AsInt32()
+//			if err != nil {
+//				return setErr(sqllex, err)
+//			}
+//			sqlVAL.union.val = types.MakeGeometry(sqlDollar[3].union.geoShapeType(), int32(val))
+//		}
+//	case 1923:
+//		sqlDollar = sqlS[sqlpt-6 : sqlpt+1]
+////line sql-gen.y:11240
+//		{
+//			val, err := sqlDollar[5].union.numVal().AsInt32()
+//			if err != nil {
+//				return setErr(sqllex, err)
+//			}
+//			sqlVAL.union.val = types.MakeGeography(sqlDollar[3].union.geoShapeType(), int32(val))
+//		}
 	case 1929:
 		sqlDollar = sqlS[sqlpt-3 : sqlpt+1]
 //line sql-gen.y:11266

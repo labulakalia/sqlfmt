@@ -271,12 +271,6 @@ func encodeArrayElement(b []byte, d tree.Datum) ([]byte, error) {
 		return encoding.EncodeUntaggedDecimalValue(b, &t.Decimal), nil
 	case *tree.DDate:
 		return encoding.EncodeUntaggedIntValue(b, t.UnixEpochDaysWithOrig()), nil
-	case *tree.DBox2D:
-		return encoding.EncodeUntaggedBox2DValue(b, t.CartesianBoundingBox.BoundingBox)
-	case *tree.DGeography:
-		return encoding.EncodeUntaggedGeoValue(b, t.SpatialObjectRef())
-	case *tree.DGeometry:
-		return encoding.EncodeUntaggedGeoValue(b, t.SpatialObjectRef())
 	case *tree.DTime:
 		return encoding.EncodeUntaggedIntValue(b, int64(*t)), nil
 	case *tree.DTimeTZ:

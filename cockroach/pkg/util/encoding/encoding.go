@@ -25,17 +25,15 @@ import (
 	"unsafe"
 
 	"github.com/cockroachdb/apd/v3"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/encoding/encodingtype"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ipaddr"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeofday"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timetz"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
 )
 
 const (
@@ -1108,164 +1106,18 @@ func DecodeVoidAscendingOrDescending(b []byte) ([]byte, error) {
 	return b[1:], nil
 }
 
-// EncodeBox2DAscending encodes a bounding box in ascending order.
-func EncodeBox2DAscending(b []byte, box geopb.BoundingBox) ([]byte, error) {
-	b = append(b, box2DMarker)
-	b = EncodeFloatAscending(b, box.LoX)
-	b = EncodeFloatAscending(b, box.HiX)
-	b = EncodeFloatAscending(b, box.LoY)
-	b = EncodeFloatAscending(b, box.HiY)
-	return b, nil
-}
 
-// EncodeBox2DDescending encodes a bounding box in descending order.
-func EncodeBox2DDescending(b []byte, box geopb.BoundingBox) ([]byte, error) {
-	b = append(b, box2DMarker)
-	b = EncodeFloatDescending(b, box.LoX)
-	b = EncodeFloatDescending(b, box.HiX)
-	b = EncodeFloatDescending(b, box.LoY)
-	b = EncodeFloatDescending(b, box.HiY)
-	return b, nil
-}
 
-// DecodeBox2DAscending decodes a box2D object in ascending order.
-func DecodeBox2DAscending(b []byte) ([]byte, geopb.BoundingBox, error) {
-	box := geopb.BoundingBox{}
-	if PeekType(b) != Box2D {
-		return nil, box, errors.Errorf("did not find Box2D marker")
-	}
 
-	b = b[1:]
-	var err error
-	b, box.LoX, err = DecodeFloatAscending(b)
-	if err != nil {
-		return nil, box, err
-	}
-	b, box.HiX, err = DecodeFloatAscending(b)
-	if err != nil {
-		return nil, box, err
-	}
-	b, box.LoY, err = DecodeFloatAscending(b)
-	if err != nil {
-		return nil, box, err
-	}
-	b, box.HiY, err = DecodeFloatAscending(b)
-	if err != nil {
-		return nil, box, err
-	}
-	return b, box, nil
-}
 
-// DecodeBox2DDescending decodes a box2D object in descending order.
-func DecodeBox2DDescending(b []byte) ([]byte, geopb.BoundingBox, error) {
-	box := geopb.BoundingBox{}
-	if PeekType(b) != Box2D {
-		return nil, box, errors.Errorf("did not find Box2D marker")
-	}
 
-	b = b[1:]
-	var err error
-	b, box.LoX, err = DecodeFloatDescending(b)
-	if err != nil {
-		return nil, box, err
-	}
-	b, box.HiX, err = DecodeFloatDescending(b)
-	if err != nil {
-		return nil, box, err
-	}
-	b, box.LoY, err = DecodeFloatDescending(b)
-	if err != nil {
-		return nil, box, err
-	}
-	b, box.HiY, err = DecodeFloatDescending(b)
-	if err != nil {
-		return nil, box, err
-	}
-	return b, box, nil
-}
 
-// EncodeGeoAscending encodes a geopb.SpatialObject value in ascending order and
-// returns the new buffer.
-// It is sorted by the given curve index, followed by the bytes of the spatial object.
-func EncodeGeoAscending(b []byte, curveIndex uint64, so *geopb.SpatialObject) ([]byte, error) {
-	b = append(b, geoMarker)
-	b = EncodeUint64Ascending(b, curveIndex)
 
-	data, err := protoutil.Marshal(so)
-	if err != nil {
-		return nil, err
-	}
-	b = encodeBytesAscendingWithTerminator(b, data, ascendingGeoEscapes.escapedTerm)
-	return b, nil
-}
 
-// EncodeGeoDescending encodes a geopb.SpatialObject value in descending order and
-// returns the new buffer.
-// It is sorted by the given curve index, followed by the bytes of the spatial object.
-func EncodeGeoDescending(b []byte, curveIndex uint64, so *geopb.SpatialObject) ([]byte, error) {
-	b = append(b, geoDescMarker)
-	b = EncodeUint64Descending(b, curveIndex)
 
-	data, err := protoutil.Marshal(so)
-	if err != nil {
-		return nil, err
-	}
-	n := len(b)
-	b = encodeBytesAscendingWithTerminator(b, data, ascendingGeoEscapes.escapedTerm)
-	onesComplement(b[n:])
-	return b, nil
-}
-
-// DecodeGeoAscending decodes a geopb.SpatialObject value that was encoded
-// in ascending order back into a geopb.SpatialObject. The so parameter
-// must already be empty/reset.
-func DecodeGeoAscending(b []byte, so *geopb.SpatialObject) ([]byte, error) {
-	if PeekType(b) != Geo {
-		return nil, errors.Errorf("did not find Geo marker")
-	}
-	b = b[1:]
-	var err error
-	b, _, err = DecodeUint64Ascending(b)
-	if err != nil {
-		return nil, err
-	}
-
-	var pbBytes []byte
-	b, pbBytes, err = decodeBytesInternal(b, pbBytes, ascendingGeoEscapes, false /* expectMarker */, false /* deepCopy */)
-	if err != nil {
-		return b, err
-	}
-	// Not using protoutil.Unmarshal since the call to so.Reset() will waste the
-	// pre-allocated EWKB.
-	err = so.Unmarshal(pbBytes)
-	return b, err
-}
 
 // DecodeGeoDescending decodes a geopb.SpatialObject value that was encoded
 // in descending order back into a geopb.SpatialObject. The so parameter
-// must already be empty/reset.
-func DecodeGeoDescending(b []byte, so *geopb.SpatialObject) ([]byte, error) {
-	if PeekType(b) != GeoDesc {
-		return nil, errors.Errorf("did not find Geo marker")
-	}
-	b = b[1:]
-	var err error
-	b, _, err = DecodeUint64Descending(b)
-	if err != nil {
-		return nil, err
-	}
-
-	var pbBytes []byte
-	b, pbBytes, err = decodeBytesInternal(b, pbBytes, descendingGeoEscapes, false /* expectMarker */, false /* deepCopy */)
-	if err != nil {
-		return b, err
-	}
-	onesComplement(pbBytes)
-	// Not using protoutil.Unmarshal since the call to so.Reset() will waste the
-	// pre-allocated EWKB.
-	err = so.Unmarshal(pbBytes)
-	return b, err
-}
 
 // EncodeTimeTZAscending encodes a timetz.TimeTZ value and appends it to
 // the supplied buffer and returns the final buffer.
@@ -2363,39 +2215,7 @@ func EncodeVoidValue(appendTo []byte, colID uint32) []byte {
 	return EncodeValueTag(appendTo, colID, Void)
 }
 
-// EncodeBox2DValue encodes a geopb.BoundingBox with its value tag, appends it to
-// the supplied buffer and returns the final buffer.
-func EncodeBox2DValue(appendTo []byte, colID uint32, b geopb.BoundingBox) ([]byte, error) {
-	appendTo = EncodeValueTag(appendTo, colID, Box2D)
-	return EncodeUntaggedBox2DValue(appendTo, b)
-}
 
-// EncodeUntaggedBox2DValue encodes a geopb.BoundingBox value, appends it to the supplied buffer,
-// and returns the final buffer.
-func EncodeUntaggedBox2DValue(appendTo []byte, b geopb.BoundingBox) ([]byte, error) {
-	appendTo = EncodeFloatAscending(appendTo, b.LoX)
-	appendTo = EncodeFloatAscending(appendTo, b.HiX)
-	appendTo = EncodeFloatAscending(appendTo, b.LoY)
-	appendTo = EncodeFloatAscending(appendTo, b.HiY)
-	return appendTo, nil
-}
-
-// EncodeGeoValue encodes a geopb.SpatialObject value with its value tag, appends it to
-// the supplied buffer, and returns the final buffer.
-func EncodeGeoValue(appendTo []byte, colID uint32, so *geopb.SpatialObject) ([]byte, error) {
-	appendTo = EncodeValueTag(appendTo, colID, Geo)
-	return EncodeUntaggedGeoValue(appendTo, so)
-}
-
-// EncodeUntaggedGeoValue encodes a geopb.SpatialObject value, appends it to the supplied buffer,
-// and returns the final buffer.
-func EncodeUntaggedGeoValue(appendTo []byte, so *geopb.SpatialObject) ([]byte, error) {
-	bytes, err := protoutil.Marshal(so)
-	if err != nil {
-		return nil, err
-	}
-	return EncodeUntaggedBytesValue(appendTo, bytes), nil
-}
 
 // EncodeDecimalValue encodes an apd.Decimal value with its value tag, appends
 // it to the supplied buffer, and returns the final buffer.
@@ -2664,44 +2484,6 @@ func DecodeDecimalValue(b []byte) (remaining []byte, d apd.Decimal, err error) {
 	return DecodeUntaggedDecimalValue(b)
 }
 
-// DecodeUntaggedBox2DValue decodes a value encoded by EncodeUntaggedBox2DValue.
-func DecodeUntaggedBox2DValue(b []byte) (remaining []byte, box geopb.BoundingBox, err error) {
-	box = geopb.BoundingBox{}
-	remaining = b
-
-	remaining, box.LoX, err = DecodeFloatAscending(remaining)
-	if err != nil {
-		return b, box, err
-	}
-	remaining, box.HiX, err = DecodeFloatAscending(remaining)
-	if err != nil {
-		return b, box, err
-	}
-	remaining, box.LoY, err = DecodeFloatAscending(remaining)
-	if err != nil {
-		return b, box, err
-	}
-	remaining, box.HiY, err = DecodeFloatAscending(remaining)
-	if err != nil {
-		return b, box, err
-	}
-	return remaining, box, err
-}
-
-// DecodeUntaggedGeoValue decodes a value encoded by EncodeUntaggedGeoValue into
-// the provided geopb.SpatialObject reference. The so parameter must already be
-// empty/reset.
-func DecodeUntaggedGeoValue(b []byte, so *geopb.SpatialObject) (remaining []byte, err error) {
-	var data []byte
-	remaining, data, err = DecodeUntaggedBytesValue(b)
-	if err != nil {
-		return b, err
-	}
-	// Not using protoutil.Unmarshal since the call to so.Reset() will waste the
-	// pre-allocated EWKB.
-	err = so.Unmarshal(data)
-	return remaining, err
-}
 
 // DecodeUntaggedDecimalValue decodes a value encoded by EncodeUntaggedDecimalValue.
 func DecodeUntaggedDecimalValue(b []byte) (remaining []byte, d apd.Decimal, err error) {

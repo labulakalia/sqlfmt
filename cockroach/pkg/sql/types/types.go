@@ -17,15 +17,14 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
+	"github.com/cockroachdb/errors"
+	"github.com/gogo/protobuf/proto"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/oidext"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
-	"github.com/cockroachdb/errors"
-	"github.com/gogo/protobuf/proto"
 	"github.com/lib/pq/oid"
 )
 
@@ -934,40 +933,6 @@ func MakeTimeTZ(precision int32) *T {
 	}}
 }
 
-// MakeGeometry constructs a new instance of a GEOMETRY type (oid = T_geometry)
-// that has the given shape and SRID.
-func MakeGeometry(shape geopb.ShapeType, srid geopb.SRID) *T {
-	// Negative values are promoted to 0.
-	if srid < 0 {
-		srid = 0
-	}
-	return &T{InternalType: InternalType{
-		Family: GeometryFamily,
-		Oid:    oidext.T_geometry,
-		Locale: &emptyLocale,
-		GeoMetadata: &GeoMetadata{
-			ShapeType: shape,
-			SRID:      srid,
-		},
-	}}
-}
-
-// MakeGeography constructs a new instance of a geography-related type.
-func MakeGeography(shape geopb.ShapeType, srid geopb.SRID) *T {
-	// Negative values are promoted to 0.
-	if srid < 0 {
-		srid = 0
-	}
-	return &T{InternalType: InternalType{
-		Family: GeographyFamily,
-		Oid:    oidext.T_geography,
-		Locale: &emptyLocale,
-		GeoMetadata: &GeoMetadata{
-			ShapeType: shape,
-			SRID:      srid,
-		},
-	}}
-}
 
 // GeoMetadata returns the GeoMetadata of the type object if it exists.
 // This should only exist on Geometry and Geography types.
@@ -980,10 +945,7 @@ func (t *T) GeoMetadata() (*GeoMetadata, error) {
 
 // GeoSRIDOrZero returns the geo SRID of the type object if it exists.
 // This should only exist on a subset of Geometry and Geography types.
-func (t *T) GeoSRIDOrZero() geopb.SRID {
-	if t.InternalType.GeoMetadata != nil {
-		return t.InternalType.GeoMetadata.SRID
-	}
+func (t *T) GeoSRIDOrZero() int32 {
 	return 0
 }
 
@@ -2008,18 +1970,6 @@ func (t *InternalType) Identical(other *InternalType) bool {
 		if *t.IntervalDurationField != *other.IntervalDurationField {
 			return false
 		}
-	} else if t.IntervalDurationField != nil {
-		return false
-	} else if other.IntervalDurationField != nil {
-		return false
-	}
-	if t.GeoMetadata != nil && other.GeoMetadata != nil {
-		if t.GeoMetadata.ShapeType != other.GeoMetadata.ShapeType {
-			return false
-		}
-		if t.GeoMetadata.SRID != other.GeoMetadata.SRID {
-			return false
-		}
 	} else if t.GeoMetadata != nil {
 		return false
 	} else if other.GeoMetadata != nil {
@@ -2797,16 +2747,5 @@ var postgresPredefinedTypeIssues = map[string]int{
 
 // SQLString outputs the GeoMetadata in a SQL-compatible string.
 func (m *GeoMetadata) SQLString() string {
-	// If SRID is available, display both shape and SRID.
-	// If shape is available but not SRID, just display shape.
-	if m.SRID != 0 {
-		shapeName := strings.ToLower(m.ShapeType.String())
-		if m.ShapeType == geopb.ShapeType_Unset {
-			shapeName = "geometry"
-		}
-		return fmt.Sprintf("(%s,%d)", shapeName, m.SRID)
-	} else if m.ShapeType != geopb.ShapeType_Unset {
-		return fmt.Sprintf("(%s)", m.ShapeType)
-	}
 	return ""
 }
