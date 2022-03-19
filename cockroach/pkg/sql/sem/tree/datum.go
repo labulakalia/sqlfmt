@@ -31,12 +31,11 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ipaddr"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stringencoding"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeofday"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timetz"
@@ -3401,219 +3400,13 @@ func (d *DBox2D) Size() uintptr {
 	return unsafe.Sizeof(*d) + unsafe.Sizeof(0)
 }
 
-// DJSON is the JSON Datum.
-type DJSON struct{ json.JSON }
 
-// NewDJSON is a helper routine to create a DJSON initialized from its argument.
-func NewDJSON(j json.JSON) *DJSON {
-	return &DJSON{j}
-}
-
-// ParseDJSON takes a string of JSON and returns a DJSON value.
-func ParseDJSON(s string) (Datum, error) {
-	j, err := json.ParseJSON(s)
-	if err != nil {
-		return nil, pgerror.Wrapf(err, pgcode.Syntax, "could not parse JSON")
-	}
-	return NewDJSON(j), nil
-}
-
-// MakeDJSON returns a JSON value given a Go-style representation of JSON.
-// * JSON null is Go `nil`,
-// * JSON true is Go `true`,
-// * JSON false is Go `false`,
-// * JSON numbers are json.Number | int | int64 | float64,
-// * JSON string is a Go string,
-// * JSON array is a Go []interface{},
-// * JSON object is a Go map[string]interface{}.
-func MakeDJSON(d interface{}) (Datum, error) {
-	j, err := json.MakeJSON(d)
-	if err != nil {
-		return nil, err
-	}
-	return &DJSON{j}, nil
-}
-
-var dNullJSON = NewDJSON(json.NullJSONValue)
 
 // AsDJSON attempts to retrieve a *DJSON from an Expr, returning a *DJSON and
 // a flag signifying whether the assertion was successful. The function should
 // be used instead of direct type assertions wherever a *DJSON wrapped by a
 // *DOidWrapper is possible.
-func AsDJSON(e Expr) (*DJSON, bool) {
-	switch t := e.(type) {
-	case *DJSON:
-		return t, true
-	case *DOidWrapper:
-		return AsDJSON(t.Wrapped)
-	}
-	return nil, false
-}
 
-// MustBeDJSON attempts to retrieve a DJSON from an Expr, panicking if the
-// assertion fails.
-func MustBeDJSON(e Expr) DJSON {
-	i, ok := AsDJSON(e)
-	if !ok {
-		panic(errors.AssertionFailedf("expected *DJSON, found %T", e))
-	}
-	return *i
-}
-
-// AsJSON converts a datum into our standard json representation.
-func AsJSON(
-	d Datum, dcc sessiondatapb.DataConversionConfig, loc *time.Location,
-) (json.JSON, error) {
-	d = UnwrapDatum(nil /* evalCtx */, d)
-	switch t := d.(type) {
-	case *DBool:
-		return json.FromBool(bool(*t)), nil
-	case *DInt:
-		return json.FromInt(int(*t)), nil
-	case *DFloat:
-		return json.FromFloat64(float64(*t))
-	case *DDecimal:
-		return json.FromDecimal(t.Decimal), nil
-	case *DString:
-		return json.FromString(string(*t)), nil
-	case *DCollatedString:
-		return json.FromString(t.Contents), nil
-	case *DEnum:
-		return json.FromString(t.LogicalRep), nil
-	case *DJSON:
-		return t.JSON, nil
-	case *DArray:
-		builder := json.NewArrayBuilder(t.Len())
-		for _, e := range t.Array {
-			j, err := AsJSON(e, dcc, loc)
-			if err != nil {
-				return nil, err
-			}
-			builder.Add(j)
-		}
-		return builder.Build(), nil
-	case *DTuple:
-		builder := json.NewObjectBuilder(len(t.D))
-		// We need to make sure that t.typ is initialized before getting the tuple
-		// labels (it is valid for t.typ be left uninitialized when instantiating a
-		// DTuple).
-		t.maybePopulateType()
-		labels := t.typ.TupleLabels()
-		for i, e := range t.D {
-			j, err := AsJSON(e, dcc, loc)
-			if err != nil {
-				return nil, err
-			}
-			var key string
-			if i >= len(labels) {
-				key = fmt.Sprintf("f%d", i+1)
-			} else {
-				key = labels[i]
-			}
-			builder.Add(key, j)
-		}
-		return builder.Build(), nil
-	case *DTimestampTZ:
-		// Our normal timestamp-formatting code uses a variation on RFC 3339,
-		// without the T separator. This causes some compatibility problems
-		// with certain JSON consumers, so we'll use an alternate formatting
-		// path here to maintain consistency with PostgreSQL.
-		return json.FromString(t.Time.In(loc).Format(time.RFC3339Nano)), nil
-	case *DTimestamp:
-		// This is RFC3339Nano, but without the TZ fields.
-		return json.FromString(t.UTC().Format("2006-01-02T15:04:05.999999999")), nil
-	default:
-		if d == DNull {
-			return json.NullJSONValue, nil
-		}
-
-		return nil, errors.AssertionFailedf("unexpected type %T for AsJSON", d)
-	}
-}
-
-// ResolvedType implements the TypedExpr interface.
-func (*DJSON) ResolvedType() *types.T {
-	return types.Jsonb
-}
-
-// Compare implements the Datum interface.
-func (d *DJSON) Compare(ctx *EvalContext, other Datum) int {
-	res, err := d.CompareError(ctx, other)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
-
-// CompareError implements the Datum interface.
-func (d *DJSON) CompareError(ctx *EvalContext, other Datum) (int, error) {
-	if other == DNull {
-		// NULL is less than any non-NULL value.
-		return 1, nil
-	}
-	v, ok := UnwrapDatum(ctx, other).(*DJSON)
-	if !ok {
-		return 0, makeUnsupportedComparisonMessage(d, other)
-	}
-	c, err := d.JSON.Compare(v.JSON)
-	if err != nil {
-		return 0, err
-	}
-	return c, nil
-}
-
-// Prev implements the Datum interface.
-func (d *DJSON) Prev(_ *EvalContext) (Datum, bool) {
-	return nil, false
-}
-
-// Next implements the Datum interface.
-func (d *DJSON) Next(_ *EvalContext) (Datum, bool) {
-	return nil, false
-}
-
-// IsMax implements the Datum interface.
-func (d *DJSON) IsMax(_ *EvalContext) bool {
-	return false
-}
-
-// IsMin implements the Datum interface.
-func (d *DJSON) IsMin(_ *EvalContext) bool {
-	return d.JSON == json.NullJSONValue
-}
-
-// Max implements the Datum interface.
-func (d *DJSON) Max(_ *EvalContext) (Datum, bool) {
-	return nil, false
-}
-
-// Min implements the Datum interface.
-func (d *DJSON) Min(_ *EvalContext) (Datum, bool) {
-	return &DJSON{json.NullJSONValue}, true
-}
-
-// AmbiguousFormat implements the Datum interface.
-func (*DJSON) AmbiguousFormat() bool { return true }
-
-// Format implements the NodeFormatter interface.
-func (d *DJSON) Format(ctx *FmtCtx) {
-	// TODO(justin): ideally the JSON string encoder should know it needs to
-	// escape things to be inside SQL strings in order to avoid this allocation.
-	s := d.JSON.String()
-	if ctx.flags.HasFlags(fmtRawStrings) {
-		ctx.WriteString(s)
-	} else {
-		// TODO(knz): This seems incorrect,
-		// see https://sqlfmt/cockroach/issues/60673
-		lexbase.EncodeSQLStringWithFlags(&ctx.Buffer, s, ctx.flags.EncodeFlags())
-	}
-}
-
-// Size implements the Datum interface.
-// TODO(justin): is this a frequently-called method? Should we be caching the computed size?
-func (d *DJSON) Size() uintptr {
-	return unsafe.Sizeof(*d) + d.JSON.Size()
-}
 
 // DTuple is the tuple Datum.
 type DTuple struct {
@@ -5371,8 +5164,6 @@ func NewDefaultDatum(evalCtx *EvalContext, t *types.T) (d Datum, err error) {
 		return DMinIPAddr, nil
 	case types.TimeFamily:
 		return dTimeMin, nil
-	case types.JsonFamily:
-		return dNullJSON, nil
 	case types.TimeTZFamily:
 		return dZeroTimeTZ, nil
 	case types.GeometryFamily, types.GeographyFamily, types.Box2DFamily:
@@ -5484,7 +5275,6 @@ var baseDatumTypeSizes = map[types.Family]struct {
 	types.TimestampFamily:      {unsafe.Sizeof(DTimestamp{}), fixedSize},
 	types.TimestampTZFamily:    {unsafe.Sizeof(DTimestampTZ{}), fixedSize},
 	types.IntervalFamily:       {unsafe.Sizeof(DInterval{}), fixedSize},
-	types.JsonFamily:           {unsafe.Sizeof(DJSON{}), variableSize},
 	types.UuidFamily:           {unsafe.Sizeof(DUuid{}), fixedSize},
 	types.INetFamily:           {unsafe.Sizeof(DIPAddr{}), fixedSize},
 	types.OidFamily:            {unsafe.Sizeof(DInt(0)), fixedSize},

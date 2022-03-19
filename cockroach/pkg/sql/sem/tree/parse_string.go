@@ -56,8 +56,6 @@ func ParseAndRequireString(
 			return nil, false, typErr
 		}
 		d, err = ParseDIntervalWithTypeMetadata(intervalStyle(ctx), s, itm)
-	case types.JsonFamily:
-		d, err = ParseDJSON(s)
 	case types.OidFamily:
 		if t.Oid() != oid.T_oid && s == ZeroOidValue {
 			d = wrapAsZeroOid(t)

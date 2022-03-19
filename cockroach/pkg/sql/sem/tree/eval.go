@@ -43,7 +43,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeofday"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
@@ -430,22 +429,7 @@ func ArrayContains(ctx *EvalContext, haystack *DArray, needles *DArray) (*DBool,
 }
 
 // JSONExistsAny return true if any value in dArray is exist in the json
-func JSONExistsAny(_ *EvalContext, json DJSON, dArray *DArray) (*DBool, error) {
-	// TODO(justin): this can be optimized.
-	for _, k := range dArray.Array {
-		if k == DNull {
-			continue
-		}
-		e, err := json.JSON.Exists(string(MustBeDString(k)))
-		if err != nil {
-			return nil, err
-		}
-		if e {
-			return DBoolTrue, nil
-		}
-	}
-	return DBoolFalse, nil
-}
+
 
 func initArrayToArrayConcatenation() {
 	for _, t := range types.Scalar {
@@ -537,20 +521,6 @@ func (o binOpOverload) lookupImpl(left, right *types.T) (*BinOp, bool) {
 		}
 	}
 	return nil, false
-}
-
-// GetJSONPath is used for the #> and #>> operators.
-func GetJSONPath(j json.JSON, ary DArray) (json.JSON, error) {
-	// TODO(justin): this is slightly annoying because we have to allocate
-	// a new array since the JSON package isn't aware of DArray.
-	path := make([]string, len(ary.Array))
-	for i, v := range ary.Array {
-		if v == DNull {
-			return nil, nil
-		}
-		path[i] = string(MustBeDString(v))
-	}
-	return json.FetchPath(j, path)
 }
 
 // BinOps contains the binary operations indexed by operation type.
@@ -1197,54 +1167,7 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			},
 			Volatility: VolatilityImmutable,
 		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.String,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, _, err := left.(*DJSON).JSON.RemoveString(string(MustBeDString(right)))
-				if err != nil {
-					return nil, err
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.Int,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, _, err := left.(*DJSON).JSON.RemoveIndex(int(MustBeDInt(right)))
-				if err != nil {
-					return nil, err
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.MakeArray(types.String),
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j := left.(*DJSON).JSON
-				arr := *MustBeDArray(right)
 
-				for _, str := range arr.Array {
-					if str == DNull {
-						continue
-					}
-					var err error
-					j, _, err = j.RemoveString(string(MustBeDString(str)))
-					if err != nil {
-						return nil, err
-					}
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
 		&BinOp{
 			LeftType:   types.INet,
 			RightType:  types.INet,
@@ -1718,19 +1641,7 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			},
 			Volatility: VolatilityImmutable,
 		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.Jsonb,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, err := MustBeDJSON(left).JSON.Concat(MustBeDJSON(right).JSON)
-				if err != nil {
-					return nil, err
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
+
 	},
 
 	// TODO(pmattis): Check that the shift is valid.
@@ -1877,136 +1788,8 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 		},
 	},
 
-	treebin.JSONFetchVal: {
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.String,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, err := left.(*DJSON).JSON.FetchValKey(string(MustBeDString(right)))
-				if err != nil {
-					return nil, err
-				}
-				if j == nil {
-					return DNull, nil
-				}
-				return &DJSON{j}, nil
-			},
-			PreferredOverload: true,
-			Volatility:        VolatilityImmutable,
-		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.Int,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, err := left.(*DJSON).JSON.FetchValIdx(int(MustBeDInt(right)))
-				if err != nil {
-					return nil, err
-				}
-				if j == nil {
-					return DNull, nil
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 
-	treebin.JSONFetchValPath: {
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.MakeArray(types.String),
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				path, err := GetJSONPath(left.(*DJSON).JSON, *MustBeDArray(right))
-				if err != nil {
-					return nil, err
-				}
-				if path == nil {
-					return DNull, nil
-				}
-				return &DJSON{path}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 
-	treebin.JSONFetchText: {
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.String,
-			ReturnType: types.String,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				res, err := left.(*DJSON).JSON.FetchValKey(string(MustBeDString(right)))
-				if err != nil {
-					return nil, err
-				}
-				if res == nil {
-					return DNull, nil
-				}
-				text, err := res.AsText()
-				if err != nil {
-					return nil, err
-				}
-				if text == nil {
-					return DNull, nil
-				}
-				return NewDString(*text), nil
-			},
-			PreferredOverload: true,
-			Volatility:        VolatilityImmutable,
-		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.Int,
-			ReturnType: types.String,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				res, err := left.(*DJSON).JSON.FetchValIdx(int(MustBeDInt(right)))
-				if err != nil {
-					return nil, err
-				}
-				if res == nil {
-					return DNull, nil
-				}
-				text, err := res.AsText()
-				if err != nil {
-					return nil, err
-				}
-				if text == nil {
-					return DNull, nil
-				}
-				return NewDString(*text), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treebin.JSONFetchTextPath: {
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.MakeArray(types.String),
-			ReturnType: types.String,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				res, err := GetJSONPath(left.(*DJSON).JSON, *MustBeDArray(right))
-				if err != nil {
-					return nil, err
-				}
-				if res == nil {
-					return DNull, nil
-				}
-				text, err := res.AsText()
-				if err != nil {
-					return nil, err
-				}
-				if text == nil {
-					return DNull, nil
-				}
-				return NewDString(*text), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 }
 
 // CmpOp is a comparison operator.
@@ -2478,108 +2261,9 @@ var CmpOps = cmpOpFixups(map[treecmp.ComparisonOperatorSymbol]cmpOpOverload{
 		},
 	},
 
-	treecmp.JSONExists: {
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.String,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				e, err := left.(*DJSON).JSON.Exists(string(MustBeDString(right)))
-				if err != nil {
-					return nil, err
-				}
-				if e {
-					return DBoolTrue, nil
-				}
-				return DBoolFalse, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 
-	treecmp.JSONSomeExists: {
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.StringArray,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				return JSONExistsAny(ctx, MustBeDJSON(left), MustBeDArray(right))
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 
-	treecmp.JSONAllExists: {
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.StringArray,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				// TODO(justin): this can be optimized.
-				for _, k := range MustBeDArray(right).Array {
-					if k == DNull {
-						continue
-					}
-					e, err := left.(*DJSON).JSON.Exists(string(MustBeDString(k)))
-					if err != nil {
-						return nil, err
-					}
-					if !e {
-						return DBoolFalse, nil
-					}
-				}
-				return DBoolTrue, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 
-	treecmp.Contains: {
-		&CmpOp{
-			LeftType:  types.AnyArray,
-			RightType: types.AnyArray,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				haystack := MustBeDArray(left)
-				needles := MustBeDArray(right)
-				return ArrayContains(ctx, haystack, needles)
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.Jsonb,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				c, err := json.Contains(left.(*DJSON).JSON, right.(*DJSON).JSON)
-				if err != nil {
-					return nil, err
-				}
-				return MakeDBool(DBool(c)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treecmp.ContainedBy: {
-		&CmpOp{
-			LeftType:  types.AnyArray,
-			RightType: types.AnyArray,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				needles := MustBeDArray(left)
-				haystack := MustBeDArray(right)
-				return ArrayContains(ctx, haystack, needles)
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.Jsonb,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				c, err := json.Contains(right.(*DJSON).JSON, left.(*DJSON).JSON)
-				if err != nil {
-					return nil, err
-				}
-				return MakeDBool(DBool(c)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 	treecmp.Overlaps: append(
 		cmpOpOverload{
 			&CmpOp{
@@ -4648,11 +4332,6 @@ func (t *DInterval) Eval(_ *EvalContext) (Datum, error) {
 
 // Eval implements the TypedExpr interface.
 func (t *DEnum) Eval(_ *EvalContext) (Datum, error) {
-	return t, nil
-}
-
-// Eval implements the TypedExpr interface.
-func (t *DJSON) Eval(_ *EvalContext) (Datum, error) {
 	return t, nil
 }
 

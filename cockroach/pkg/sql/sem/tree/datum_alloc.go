@@ -43,7 +43,6 @@ type DatumAlloc struct {
 	dintervalAlloc    []DInterval
 	duuidAlloc        []DUuid
 	dipnetAlloc       []DIPAddr
-	djsonAlloc        []DJSON
 	dtupleAlloc       []DTuple
 	doidAlloc         []DOid
 	dvoidAlloc        []DVoid
@@ -385,21 +384,6 @@ func (a *DatumAlloc) NewDIPAddr(v DIPAddr) *DIPAddr {
 	buf := &a.dipnetAlloc
 	if len(*buf) == 0 {
 		*buf = make([]DIPAddr, a.AllocSize)
-	}
-	r := &(*buf)[0]
-	*r = v
-	*buf = (*buf)[1:]
-	return r
-}
-
-// NewDJSON allocates a DJSON.
-func (a *DatumAlloc) NewDJSON(v DJSON) *DJSON {
-	if a.AllocSize == 0 {
-		a.AllocSize = defaultDatumAllocSize
-	}
-	buf := &a.djsonAlloc
-	if len(*buf) == 0 {
-		*buf = make([]DJSON, a.AllocSize)
 	}
 	r := &(*buf)[0]
 	*r = v

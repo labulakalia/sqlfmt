@@ -19,7 +19,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treewindow"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/pretty"
 	"github.com/cockroachdb/errors"
 )
@@ -1029,14 +1028,6 @@ func (node *CastExpr) doc(p *PrettyCfg) pretty.Doc {
 		}
 		fallthrough
 	case CastShort:
-		if typ, ok := GetStaticallyKnownType(node.Type); ok {
-			switch typ.Family() {
-			case types.JsonFamily:
-				if sv, ok := node.Expr.(*StrVal); ok && p.JSONFmt {
-					return p.jsonCast(sv, "::", typ)
-				}
-			}
-		}
 		return pretty.Fold(pretty.Concat,
 			p.exprDocWithParen(node.Expr),
 			pretty.Text("::"),
@@ -2388,49 +2379,8 @@ func (node *CloseCursor) doc(p *PrettyCfg) pretty.Doc {
 // jsonCast attempts to pretty print a string that is cast or asserted as JSON.
 func (p *PrettyCfg) jsonCast(sv *StrVal, op string, typ *types.T) pretty.Doc {
 	return pretty.Fold(pretty.Concat,
-		p.jsonString(sv.RawString()),
 		pretty.Text(op),
 		pretty.Text(typ.SQLString()),
 	)
 }
 
-// jsonString parses s as JSON and pretty prints it.
-func (p *PrettyCfg) jsonString(s string) pretty.Doc {
-	j, err := json.ParseJSON(s)
-	if err != nil {
-		return pretty.Text(s)
-	}
-	return p.bracket(`'`, p.jsonNode(j), `'`)
-}
-
-// jsonNode pretty prints a JSON node.
-func (p *PrettyCfg) jsonNode(j json.JSON) pretty.Doc {
-	// Figure out what type this is.
-	if it, _ := j.ObjectIter(); it != nil {
-		// Object.
-		elems := make([]pretty.Doc, 0, j.Len())
-		for it.Next() {
-			elems = append(elems, p.nestUnder(
-				pretty.Concat(
-					pretty.Text(json.FromString(it.Key()).String()),
-					pretty.Text(`:`),
-				),
-				p.jsonNode(it.Value()),
-			))
-		}
-		return p.bracket("{", p.commaSeparated(elems...), "}")
-	} else if n := j.Len(); n > 0 {
-		// Non-empty array.
-		elems := make([]pretty.Doc, n)
-		for i := 0; i < n; i++ {
-			elem, err := j.FetchValIdx(i)
-			if err != nil {
-				return pretty.Text(j.String())
-			}
-			elems[i] = p.jsonNode(elem)
-		}
-		return p.bracket("[", p.commaSeparated(elems...), "]")
-	}
-	// Other.
-	return pretty.Text(j.String())
-}
