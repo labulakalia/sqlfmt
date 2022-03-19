@@ -3179,16 +3179,6 @@ func AsDGeography(e Expr) (*DGeography, bool) {
 	return nil, false
 }
 
-// MustBeDGeography attempts to retrieve a *DGeography from an Expr, panicking
-// if the assertion fails.
-func MustBeDGeography(e Expr) *DGeography {
-	i, ok := AsDGeography(e)
-	if !ok {
-		panic(errors.AssertionFailedf("expected *DGeography, found %T", e))
-	}
-	return i
-}
-
 // ParseDGeography attempts to pass `str` as a Geography type.
 func ParseDGeography(str string) (*DGeography, error) {
 	return &DGeography{}, nil
