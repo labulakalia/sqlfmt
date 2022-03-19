@@ -15,10 +15,10 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/closedts"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/admission"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/contextutil"
@@ -29,7 +29,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
 )
 
 // asyncRollbackTimeout is the context timeout during rollback() for a client
@@ -141,22 +140,6 @@ func NewTxn(ctx context.Context, db *DB, gatewayNodeID roachpb.NodeID) *Txn {
 // that this initializes Txn.admissionHeader to specify that the source is
 // FROM_SQL.
 // qualityOfService is the QoSLevel level to use in admission control, whose
-// value also corresponds exactly with the admission.WorkPriority to use.
-func NewTxnWithSteppingEnabled(
-	ctx context.Context,
-	db *DB,
-	gatewayNodeID roachpb.NodeID,
-	qualityOfService sessiondatapb.QoSLevel,
-) *Txn {
-	txn := NewTxn(ctx, db, gatewayNodeID)
-	txn.admissionHeader = roachpb.AdmissionHeader{
-		Priority:   int32(qualityOfService),
-		CreateTime: timeutil.Now().UnixNano(),
-		Source:     roachpb.AdmissionHeader_FROM_SQL,
-	}
-	_ = txn.ConfigureStepping(ctx, SteppingEnabled)
-	return txn
-}
 
 // NewTxnRootKV is like NewTxn but specifically represents a transaction
 // originating within KV and that is at the root of the tree of requests. For KV

@@ -16,18 +16,16 @@ import (
 	"strings"
 	"time"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/admission"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/retry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stop"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
-	"github.com/cockroachdb/errors"
 )
 
 // KeyValue represents a single key/value pair. This is similar to
@@ -265,7 +263,6 @@ type DB struct {
 	// placed here simply for plumbing convenience, as there is a diversity of
 	// SQL code that all uses kv.DB.
 	// TODO(sumeer): find a home for this in the SQL layer.
-	SQLKVResponseAdmissionQ *admission.WorkQueue
 }
 
 // NonTransactionalSender returns a Sender that can be used for sending
@@ -910,24 +907,6 @@ func (db *DB) Txn(ctx context.Context, retryable func(context.Context, *Txn) err
 	return runTxn(ctx, txn, retryable)
 }
 
-// TxnWithSteppingEnabled is the same Txn, but represents a request originating
-// from SQL and has stepping enabled and quality of service set.
-func (db *DB) TxnWithSteppingEnabled(
-	ctx context.Context,
-	qualityOfService sessiondatapb.QoSLevel,
-	retryable func(context.Context, *Txn) error,
-) error {
-	// TODO(radu): we should open a tracing Span here (we need to figure out how
-	// to use the correct tracer).
-
-	// Observed timestamps don't work with multi-tenancy. See:
-	//
-	// https://sqlfmt/cockroach/issues/48008
-	nodeID, _ := db.ctx.NodeID.OptionalNodeID() // zero if not available
-	txn := NewTxnWithSteppingEnabled(ctx, db, nodeID, qualityOfService)
-	txn.SetDebugName("unnamed")
-	return runTxn(ctx, txn, retryable)
-}
 
 // TxnRootKV is the same as Txn, but specifically represents a request
 // originating within KV, and that is at the root of the tree of requests. For

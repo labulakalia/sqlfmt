@@ -259,7 +259,7 @@ func lookupRangeFwdScan(
 	prefetchNum int64,
 	prefetchReverse bool,
 ) (rs, preRs []roachpb.RangeDescriptor, err error) {
-	if skipFwd := prefetchReverse && key.Equal(roachpb.KeyMax); skipFwd {
+	if skipFwd := prefetchReverse ; skipFwd {
 		// Don't attempt a forward scan because it's neither defined nor required.
 		//
 		// If !prefetchReverse && key.Equal(roachpb.KeyMax), we'll throw an error

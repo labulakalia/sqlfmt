@@ -231,7 +231,7 @@ type LocalOnlySessionData struct {
 	CostScansWithDefaultColSize bool `protobuf:"varint,61,opt,name=cost_scans_with_default_col_size,json=costScansWithDefaultColSize,proto3" json:"cost_scans_with_default_col_size,omitempty"`
 	// DefaultTxnQualityOfService indicates the default QoSLevel/WorkPriority of
 	// newly created transactions.
-	DefaultTxnQualityOfService QoSLevel `protobuf:"varint,62,opt,name=default_txn_quality_of_service,json=defaultTxnQualityOfService,proto3,casttype=QoSLevel" json:"default_txn_quality_of_service,omitempty"`
+	//DefaultTxnQualityOfService QoSLevel `protobuf:"varint,62,opt,name=default_txn_quality_of_service,json=defaultTxnQualityOfService,proto3,casttype=QoSLevel" json:"default_txn_quality_of_service,omitempty"`
 	// OptSplitScanLimit indicates the maximum number of UNION ALL statements a
 	// Scan may be split into during query optimization to avoid a sort.
 	OptSplitScanLimit int32 `protobuf:"varint,63,opt,name=opt_split_scan_limit,json=optSplitScanLimit,proto3" json:"opt_split_scan_limit,omitempty"`
@@ -538,13 +538,13 @@ func (m *LocalOnlySessionData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0xf8
 	}
-	if m.DefaultTxnQualityOfService != 0 {
-		i = encodeVarintLocalOnlySessionData(dAtA, i, uint64(m.DefaultTxnQualityOfService))
-		i--
-		dAtA[i] = 0x3
-		i--
-		dAtA[i] = 0xf0
-	}
+	//if m.DefaultTxnQualityOfService != 0 {
+	//	i = encodeVarintLocalOnlySessionData(dAtA, i, uint64(m.DefaultTxnQualityOfService))
+	//	i--
+	//	dAtA[i] = 0x3
+	//	i--
+	//	dAtA[i] = 0xf0
+	//}
 	if m.CostScansWithDefaultColSize {
 		i--
 		if m.CostScansWithDefaultColSize {
@@ -1391,9 +1391,9 @@ func (m *LocalOnlySessionData) Size() (n int) {
 	if m.CostScansWithDefaultColSize {
 		n += 3
 	}
-	if m.DefaultTxnQualityOfService != 0 {
-		n += 2 + sovLocalOnlySessionData(uint64(m.DefaultTxnQualityOfService))
-	}
+	//if m.DefaultTxnQualityOfService != 0 {
+	//	n += 2 + sovLocalOnlySessionData(uint64(m.DefaultTxnQualityOfService))
+	//}
 	if m.OptSplitScanLimit != 0 {
 		n += 2 + sovLocalOnlySessionData(uint64(m.OptSplitScanLimit))
 	}
@@ -2822,21 +2822,21 @@ func (m *LocalOnlySessionData) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DefaultTxnQualityOfService", wireType)
 			}
-			m.DefaultTxnQualityOfService = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLocalOnlySessionData
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.DefaultTxnQualityOfService |= QoSLevel(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
+			//m.DefaultTxnQualityOfService = 0
+			//for shift := uint(0); ; shift += 7 {
+			//	if shift >= 64 {
+			//		return ErrIntOverflowLocalOnlySessionData
+			//	}
+			//	if iNdEx >= l {
+			//		return io.ErrUnexpectedEOF
+			//	}
+			//	//b := dAtA[iNdEx]
+			//	//iNdEx++
+			//	//m.DefaultTxnQualityOfService |= QoSLevel(b&0x7F) << shift
+			//	//if b < 0x80 {
+			//	//	break
+			//	//}
+			//}
 		case 63:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field OptSplitScanLimit", wireType)

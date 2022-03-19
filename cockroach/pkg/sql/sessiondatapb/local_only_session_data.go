@@ -14,8 +14,6 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/admission"
-	"github.com/cockroachdb/errors"
 )
 
 // ExperimentalDistSQLPlanningMode controls if and when the opt-driven DistSQL
@@ -229,39 +227,39 @@ func NewSchemaChangerModeFromString(val string) (_ NewSchemaChangerMode, ok bool
 	}
 }
 
-// QoSLevel controls the level of admission control to use for new SQL requests.
-type QoSLevel admission.WorkPriority
-
-const (
-	// SystemLow denotes the minimum system QoS level, which is not settable as a
-	// session default_transaction_quality_of_service value.
-	SystemLow = QoSLevel(admission.LowPri)
-
-	// TTLStatsLow denotes a QoS level used internally by the TTL feature, which
-	// is not settable as a session default_transaction_quality_of_service value.
-	TTLStatsLow = QoSLevel(admission.TTLLowPri)
-
-	// TTLLow denotes a QoS level used internally by the TTL feature, which is not
-	// settable as a session default_transaction_quality_of_service value.
-	TTLLow = QoSLevel(admission.TTLLowPri)
-
-	// UserLow denotes an end user QoS level lower than the default.
-	UserLow = QoSLevel(admission.UserLowPri)
-
-	// Normal denotes an end user QoS level unchanged from the default.
-	Normal = QoSLevel(admission.NormalPri)
-
-	// UserHigh denotes an end user QoS level higher than the default.
-	UserHigh = QoSLevel(admission.UserHighPri)
-
-	// Locking denotes an internal increased priority for transactions that are
-	// acquiring locks.
-	Locking = QoSLevel(admission.LockingPri)
-
-	// SystemHigh denotes the maximum system QoS level, which is not settable as a
-	// session default_transaction_quality_of_service value.
-	SystemHigh = QoSLevel(admission.HighPri)
-)
+//// QoSLevel controls the level of admission control to use for new SQL requests.
+//type QoSLevel admission.WorkPriority
+//
+//const (
+//	// SystemLow denotes the minimum system QoS level, which is not settable as a
+//	// session default_transaction_quality_of_service value.
+//	SystemLow = QoSLevel(admission.LowPri)
+//
+//	// TTLStatsLow denotes a QoS level used internally by the TTL feature, which
+//	// is not settable as a session default_transaction_quality_of_service value.
+//	TTLStatsLow = QoSLevel(admission.TTLLowPri)
+//
+//	// TTLLow denotes a QoS level used internally by the TTL feature, which is not
+//	// settable as a session default_transaction_quality_of_service value.
+//	TTLLow = QoSLevel(admission.TTLLowPri)
+//
+//	// UserLow denotes an end user QoS level lower than the default.
+//	UserLow = QoSLevel(admission.UserLowPri)
+//
+//	// Normal denotes an end user QoS level unchanged from the default.
+//	Normal = QoSLevel(admission.NormalPri)
+//
+//	// UserHigh denotes an end user QoS level higher than the default.
+//	UserHigh = QoSLevel(admission.UserHighPri)
+//
+//	// Locking denotes an internal increased priority for transactions that are
+//	// acquiring locks.
+//	Locking = QoSLevel(admission.LockingPri)
+//
+//	// SystemHigh denotes the maximum system QoS level, which is not settable as a
+//	// session default_transaction_quality_of_service value.
+//	SystemHigh = QoSLevel(admission.HighPri)
+//)
 
 const (
 	// NormalName is the external session setting string value to use to mean
@@ -290,65 +288,65 @@ const (
 	// LockingName is the string value to display indicating a Locking QoS level.
 	LockingName = "locking"
 )
-
-var qosLevelsDict = map[QoSLevel]string{
-	SystemLow:  SystemLowName,
-	TTLLow:     TTLLowName,
-	UserLow:    UserLowName,
-	Normal:     NormalName,
-	UserHigh:   UserHighName,
-	Locking:    LockingName,
-	SystemHigh: SystemHighName,
-}
-
-// ParseQoSLevelFromString converts a string into a QoSLevel
-func ParseQoSLevelFromString(val string) (_ QoSLevel, ok bool) {
-	switch strings.ToUpper(val) {
-	case strings.ToUpper(UserHighName):
-		return UserHigh, true
-	case strings.ToUpper(UserLowName):
-		return UserLow, true
-	case strings.ToUpper(NormalName):
-		return Normal, true
-	default:
-		return 0, false
-	}
-}
-
-// String prints the string representation of the
-// default_transaction_quality_of_service session setting.
-func (e QoSLevel) String() string {
-	if name, ok := qosLevelsDict[e]; ok {
-		return name
-	}
-	return fmt.Sprintf("%d", int(e))
-}
-
-// ToQoSLevelString interprets an int32 value as a QoSLevel and returns its
-// String representation.
-func ToQoSLevelString(value int32) string {
-	if value > int32(SystemHigh) || value < int32(SystemLow) {
-		return fmt.Sprintf("%d", value)
-	}
-	qosLevel := QoSLevel(value)
-	return qosLevel.String()
-}
-
-// Validate checks for a valid user QoSLevel setting before returning it.
-func (e QoSLevel) Validate() QoSLevel {
-	switch e {
-	case Normal, UserHigh, UserLow:
-		return e
-	default:
-		panic(errors.AssertionFailedf("use of illegal user QoSLevel: %s", e.String()))
-	}
-}
-
-// ValidateInternal checks for a valid internal QoSLevel setting before
-// returning it.
-func (e QoSLevel) ValidateInternal() QoSLevel {
-	if _, ok := qosLevelsDict[e]; ok {
-		return e
-	}
-	panic(errors.AssertionFailedf("use of illegal internal QoSLevel: %s", e.String()))
-}
+//
+//var qosLevelsDict = map[QoSLevel]string{
+//	SystemLow:  SystemLowName,
+//	TTLLow:     TTLLowName,
+//	UserLow:    UserLowName,
+//	Normal:     NormalName,
+//	UserHigh:   UserHighName,
+//	Locking:    LockingName,
+//	SystemHigh: SystemHighName,
+//}
+//
+//// ParseQoSLevelFromString converts a string into a QoSLevel
+//func ParseQoSLevelFromString(val string) (_ QoSLevel, ok bool) {
+//	switch strings.ToUpper(val) {
+//	case strings.ToUpper(UserHighName):
+//		return UserHigh, true
+//	case strings.ToUpper(UserLowName):
+//		return UserLow, true
+//	case strings.ToUpper(NormalName):
+//		return Normal, true
+//	default:
+//		return 0, false
+//	}
+//}
+//
+//// String prints the string representation of the
+//// default_transaction_quality_of_service session setting.
+//func (e QoSLevel) String() string {
+//	if name, ok := qosLevelsDict[e]; ok {
+//		return name
+//	}
+//	return fmt.Sprintf("%d", int(e))
+//}
+//
+//// ToQoSLevelString interprets an int32 value as a QoSLevel and returns its
+//// String representation.
+//func ToQoSLevelString(value int32) string {
+//	if value > int32(SystemHigh) || value < int32(SystemLow) {
+//		return fmt.Sprintf("%d", value)
+//	}
+//	qosLevel := QoSLevel(value)
+//	return qosLevel.String()
+//}
+//
+//// Validate checks for a valid user QoSLevel setting before returning it.
+//func (e QoSLevel) Validate() QoSLevel {
+//	switch e {
+//	case Normal, UserHigh, UserLow:
+//		return e
+//	default:
+//		panic(errors.AssertionFailedf("use of illegal user QoSLevel: %s", e.String()))
+//	}
+//}
+//
+//// ValidateInternal checks for a valid internal QoSLevel setting before
+//// returning it.
+//func (e QoSLevel) ValidateInternal() QoSLevel {
+//	if _, ok := qosLevelsDict[e]; ok {
+//		return e
+//	}
+//	panic(errors.AssertionFailedf("use of illegal internal QoSLevel: %s", e.String()))
+//}

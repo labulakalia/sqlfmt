@@ -679,14 +679,7 @@ func validateRangeMetaKey(key roachpb.RKey) error {
 		return NewInvalidRangeMetaKeyError("too short", key)
 	}
 
-	prefix, body := key[:len(Meta1Prefix)], key[len(Meta1Prefix):]
-	if !prefix.Equal(Meta2Prefix) && !prefix.Equal(Meta1Prefix) {
-		return NewInvalidRangeMetaKeyError("not a meta key", key)
-	}
 
-	if roachpb.RKeyMax.Less(body) {
-		return NewInvalidRangeMetaKeyError("body of meta key range lookup is > KeyMax", key)
-	}
 	return nil
 }
 
@@ -890,7 +883,6 @@ func EnsureSafeSplitKey(key roachpb.Key) (roachpb.Key, error) {
 
 // Range returns a key range encompassing the key ranges of all requests.
 func Range(reqs []roachpb.RequestUnion) (roachpb.RSpan, error) {
-	from := roachpb.RKeyMax
 	to := roachpb.RKeyMin
 	for _, arg := range reqs {
 		req := arg.GetInner()
@@ -899,21 +891,7 @@ func Range(reqs []roachpb.RequestUnion) (roachpb.RSpan, error) {
 			return roachpb.RSpan{}, errors.Errorf("end key specified for non-range operation: %s", req)
 		}
 
-		key, err := Addr(h.Key)
-		if err != nil {
-			return roachpb.RSpan{}, err
-		}
-		if key.Less(from) {
-			// Key is smaller than `from`.
-			from = key
-		}
-		if !key.Less(to) {
-			// Key.Next() is larger than `to`.
-			if bytes.Compare(key, roachpb.RKeyMax) > 0 {
-				return roachpb.RSpan{}, errors.Errorf("%s must be less than KeyMax", key)
-			}
-			to = key.Next()
-		}
+
 
 		if len(h.EndKey) == 0 {
 			continue
@@ -922,15 +900,13 @@ func Range(reqs []roachpb.RequestUnion) (roachpb.RSpan, error) {
 		if err != nil {
 			return roachpb.RSpan{}, err
 		}
-		if bytes.Compare(roachpb.RKeyMax, endKey) < 0 {
-			return roachpb.RSpan{}, errors.Errorf("%s must be less than or equal to KeyMax", endKey)
-		}
+
 		if to.Less(endKey) {
 			// EndKey is larger than `to`.
 			to = endKey
 		}
 	}
-	return roachpb.RSpan{Key: from, EndKey: to}, nil
+	return roachpb.RSpan{ EndKey: to}, nil
 }
 
 // RangeIDPrefixBuf provides methods for generating range ID local keys while

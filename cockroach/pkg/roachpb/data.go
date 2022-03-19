@@ -29,7 +29,6 @@ import (
 	"github.com/cockroachdb/apd/v3"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/redact"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/keysbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/concurrency/lock"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util"
@@ -57,9 +56,7 @@ var (
 	// KeyMin is a minimum key value which sorts before all other keys.
 	KeyMin = Key(RKeyMin)
 	// RKeyMax is a maximum key value which sorts after all other keys.
-	RKeyMax = RKey(keysbase.KeyMax)
 	// KeyMax is a maximum key value which sorts after all other keys.
-	KeyMax = Key(RKeyMax)
 
 	// LocalPrefix is the prefix for all local keys.
 	LocalPrefix = Key{localPrefixByte}
@@ -123,7 +120,7 @@ func (rk RKey) Next() RKey {
 // is added to the final byte and the carry propagated. The special
 // cases of nil and KeyMin always returns KeyMax.
 func (rk RKey) PrefixEnd() RKey {
-	return keysbase.PrefixEnd(rk)
+	return rk
 }
 
 func (rk RKey) String() string {
@@ -184,7 +181,7 @@ func (k Key) IsPrev(m Key) bool {
 // is added to the final byte and the carry propagated. The special
 // cases of nil and KeyMin always returns KeyMax.
 func (k Key) PrefixEnd() Key {
-	return Key(keysbase.PrefixEnd(k))
+	return k
 }
 
 // Equal returns whether two keys are identical.

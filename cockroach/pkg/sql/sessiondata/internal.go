@@ -12,7 +12,6 @@ package sessiondata
 
 import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 )
 
 // InternalExecutorOverride is used by the InternalExecutor interface
@@ -33,7 +32,7 @@ type InternalExecutorOverride struct {
 	// the internal execution request. Anything in the range -128 -> 127 may be
 	// used as long as that value has a QoSLevel defined
 	// (see QoSLevel.ValidateInternal).
-	QualityOfService *sessiondatapb.QoSLevel
+	//QualityOfService *sessiondatapb.QoSLevel
 }
 
 // NoSessionDataOverride is the empty InternalExecutorOverride which does not

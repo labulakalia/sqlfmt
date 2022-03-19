@@ -45,7 +45,7 @@ var (
 	// MinKey is a minimum key value which sorts before all other keys.
 	MinKey = roachpb.KeyMin
 	// MaxKey is the infinity marker which is larger than any other key.
-	MaxKey = roachpb.KeyMax
+	MaxKey = roachpb.KeyMin
 
 	// LocalPrefix is the prefix for all local keys.
 	LocalPrefix = roachpb.LocalPrefix
@@ -247,13 +247,13 @@ var (
 	Meta1Prefix = roachpb.Key{meta1PrefixByte}
 	// Meta1KeyMax is the end of the range of the first level of key addressing.
 	// The value is a RangeDescriptor struct.
-	Meta1KeyMax = roachpb.Key(makeKey(Meta1Prefix, roachpb.RKeyMax))
+	Meta1KeyMax = roachpb.Key(makeKey(Meta1Prefix))
 	// Meta2Prefix is the second level of key addressing. The value is a
 	// RangeDescriptor struct.
 	Meta2Prefix = roachpb.Key{meta2PrefixByte}
 	// Meta2KeyMax is the end of the range of the second level of key addressing.
 	// The value is a RangeDescriptor struct.
-	Meta2KeyMax = roachpb.Key(makeKey(Meta2Prefix, roachpb.RKeyMax))
+	Meta2KeyMax = roachpb.Key(makeKey(Meta2Prefix))
 
 	// 2. System keys
 	//
