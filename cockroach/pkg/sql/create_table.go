@@ -2329,18 +2329,6 @@ func newTableDesc(
 
 	// Row level TTL tables require a scheduled job to be created as well.
 	if ttl := ret.RowLevelTTL; ttl != nil {
-		j, err := CreateRowLevelTTLScheduledJob(
-			params.ctx,
-			params.ExecCfg(),
-			params.p.txn,
-			params.p.User(),
-			ret.GetID(),
-			ttl,
-		)
-		if err != nil {
-			return nil, err
-		}
-		ttl.ScheduleID = j.ScheduleID()
 	}
 	return ret, nil
 }
@@ -2399,27 +2387,6 @@ func checkTTLEnabledForCluster(ctx context.Context, st *cluster.Settings) error 
 		)
 	}
 	return nil
-}
-
-// CreateRowLevelTTLScheduledJob creates a new row-level TTL schedule.
-func CreateRowLevelTTLScheduledJob(
-	ctx context.Context,
-	execCfg *ExecutorConfig,
-	txn *kv.Txn,
-	owner security.SQLUsername,
-	tblID descpb.ID,
-	ttl *catpb.RowLevelTTL,
-) (*jobs.ScheduledJob, error) {
-	telemetry.Inc(sqltelemetry.RowLevelTTLCreated)
-	env := JobSchedulerEnv(execCfg)
-	j, err := newRowLevelTTLScheduledJob(env, owner, tblID, ttl)
-	if err != nil {
-		return nil, err
-	}
-	if err := j.Create(ctx, execCfg.InternalExecutor, txn); err != nil {
-		return nil, err
-	}
-	return j, nil
 }
 
 func rowLevelTTLAutomaticColumnDef(ttl *catpb.RowLevelTTL) (*tree.ColumnTableDef, error) {

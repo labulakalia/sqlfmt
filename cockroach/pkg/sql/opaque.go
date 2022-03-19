@@ -221,8 +221,6 @@ func planOpaque(ctx context.Context, p *planner, stmt tree.Statement) (planNode,
 		return p.ShowClusterSetting(ctx, n)
 	case *tree.ShowTenantClusterSetting:
 		return p.ShowTenantClusterSetting(ctx, n)
-	case *tree.ShowCreateSchedules:
-		return p.ShowCreateSchedule(ctx, n)
 	case *tree.ShowHistogram:
 		return p.ShowHistogram(ctx, n)
 	case *tree.ShowTableStats:
