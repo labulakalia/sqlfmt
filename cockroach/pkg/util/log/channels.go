@@ -13,14 +13,11 @@ package log
 import (
 	"context"
 	"fmt"
-	"strings"
-	"time"
-
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
-	"github.com/cockroachdb/errors"
+	"strings"
 )
 
 //go:generate go run gen/main.go logpb/log.proto logging.md ../../../docs/generated/logging.md
@@ -65,12 +62,6 @@ func shoutfDepth(
 	ctx context.Context, depth int, sev Severity, ch Channel, format string, args ...interface{},
 ) {
 	if sev == severity.FATAL {
-		// Fatal error handling later already tries to exit even if I/O should
-		// block, but crash reporting might also be in the way.
-		t := time.AfterFunc(10*time.Second, func() {
-			exit.WithCode(exit.TimeoutAfterFatalError())
-		})
-		defer t.Stop()
 	}
 	if !LoggingToStderr(sev) {
 		// The logging call below would not otherwise appear on stderr;

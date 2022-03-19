@@ -12,8 +12,8 @@ package log
 
 import (
 	"context"
-
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
@@ -38,7 +38,6 @@ func setExitErrFunc(hideStack bool, f func(exit.Code, error)) {
 	logging.mu.Lock()
 	defer logging.mu.Unlock()
 
-	logging.mu.exitOverride.f = f
 	logging.mu.exitOverride.hideStack = hideStack
 }
 
@@ -47,7 +46,6 @@ func ResetExitFunc() {
 	logging.mu.Lock()
 	defer logging.mu.Unlock()
 
-	logging.mu.exitOverride.f = nil
 	logging.mu.exitOverride.hideStack = false
 }
 
@@ -61,14 +59,6 @@ func (l *loggerT) exitLocked(err error, code exit.Code) {
 
 	l.reportErrorEverywhereLocked(context.Background(), err)
 
-	logging.mu.Lock()
-	f := logging.mu.exitOverride.f
-	logging.mu.Unlock()
-	if f != nil {
-		f(code, err)
-	} else {
-		exit.WithCode(code)
-	}
 }
 
 // reportErrorEverywhereLocked writes the error details to both the

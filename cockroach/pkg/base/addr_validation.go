@@ -14,12 +14,9 @@ import (
 	"context"
 	"fmt"
 	"net"
-	"os"
 	"strconv"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/cliflags"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
-	"github.com/cockroachdb/errors"
 )
 
 // ValidateAddrs controls the address fields in the Config object
@@ -36,53 +33,6 @@ import (
 // separated by a colon. In the latter case either can be empty to
 // indicate it's left unspecified.
 func (cfg *Config) ValidateAddrs(ctx context.Context) error {
-	// Validate the advertise address.
-	advHost, advPort, err := validateAdvertiseAddr(ctx,
-		cfg.AdvertiseAddr, cfg.Addr, "", cliflags.ListenAddr)
-	if err != nil {
-		return invalidFlagErr(err, cliflags.AdvertiseAddr)
-	}
-	cfg.AdvertiseAddr = net.JoinHostPort(advHost, advPort)
-
-	// Validate the RPC listen address.
-	listenHost, listenPort, err := validateListenAddr(ctx, cfg.Addr, "")
-	if err != nil {
-		return invalidFlagErr(err, cliflags.ListenAddr)
-	}
-	cfg.Addr = net.JoinHostPort(listenHost, listenPort)
-
-	// Validate the SQL advertise address. Use the provided advertise
-	// addr as default.
-	advSQLHost, advSQLPort, err := validateAdvertiseAddr(ctx,
-		cfg.SQLAdvertiseAddr, cfg.SQLAddr, advHost, cliflags.ListenSQLAddr)
-	if err != nil {
-		return invalidFlagErr(err, cliflags.SQLAdvertiseAddr)
-	}
-	cfg.SQLAdvertiseAddr = net.JoinHostPort(advSQLHost, advSQLPort)
-
-	// Validate the SQL listen address - use the resolved listen addr as default.
-	sqlHost, sqlPort, err := validateListenAddr(ctx, cfg.SQLAddr, listenHost)
-	if err != nil {
-		return invalidFlagErr(err, cliflags.ListenSQLAddr)
-	}
-	cfg.SQLAddr = net.JoinHostPort(sqlHost, sqlPort)
-
-	// Validate the HTTP advertise address. Use the provided advertise
-	// addr as default.
-	advHTTPHost, advHTTPPort, err := validateAdvertiseAddr(ctx,
-		cfg.HTTPAdvertiseAddr, cfg.HTTPAddr, advHost, cliflags.ListenHTTPAddr)
-	if err != nil {
-		return errors.Wrap(err, "cannot compute public HTTP address")
-	}
-	cfg.HTTPAdvertiseAddr = net.JoinHostPort(advHTTPHost, advHTTPPort)
-
-	// Validate the HTTP address -- use the resolved listen addr
-	// as default.
-	httpHost, httpPort, err := validateListenAddr(ctx, cfg.HTTPAddr, listenHost)
-	if err != nil {
-		return invalidFlagErr(err, cliflags.ListenHTTPAddr)
-	}
-	cfg.HTTPAddr = net.JoinHostPort(httpHost, httpPort)
 	return nil
 }
 
@@ -125,64 +75,6 @@ func UpdateAddrs(ctx context.Context, addr, advAddr *string, ln net.Addr) error 
 	}
 	*advAddr = net.JoinHostPort(advHost, advPort)
 	return nil
-}
-
-// validateAdvertiseAddr validates and normalizes an address suitable
-// for use in gossiping - for use by other nodes. This ensures
-// that if the "host" part is empty, it gets filled in with
-// the configured listen address if any, or the canonical host name.
-func validateAdvertiseAddr(
-	ctx context.Context, advAddr, listenAddr, defaultHost string, listenFlag cliflags.FlagInfo,
-) (string, string, error) {
-	listenHost, listenPort, err := getListenAddr(listenAddr, defaultHost)
-	if err != nil {
-		return "", "", invalidFlagErr(err, listenFlag)
-	}
-
-	advHost, advPort := "", ""
-	if advAddr != "" {
-		var err error
-		advHost, advPort, err = net.SplitHostPort(advAddr)
-		if err != nil {
-			return "", "", err
-		}
-	}
-	// If there was no port number, reuse the one from the listen
-	// address.
-	if advPort == "" || advPort == "0" {
-		advPort = listenPort
-	}
-	// Resolve non-numeric to numeric.
-	portNumber, err := net.DefaultResolver.LookupPort(ctx, "tcp", advPort)
-	if err != nil {
-		return "", "", err
-	}
-	advPort = strconv.Itoa(portNumber)
-
-	// If the advertise host is empty, then we have two cases.
-	if advHost == "" {
-		if listenHost != "" {
-			// If the listen address was non-empty (ie. explicit, not
-			// "listen on all addresses"), use that.
-			advHost = listenHost
-		} else {
-			// No specific listen address, use the canonical host name.
-			var err error
-			advHost, err = os.Hostname()
-			if err != nil {
-				return "", "", err
-			}
-
-			// As a sanity check, verify that the canonical host name
-			// properly resolves. It's not the full story (it could resolve
-			// locally but not elsewhere) but at least it prevents typos.
-			_, err = net.DefaultResolver.LookupIPAddr(ctx, advHost)
-			if err != nil {
-				return "", "", err
-			}
-		}
-	}
-	return advHost, advPort, nil
 }
 
 // validateListenAddr validates and normalizes an address suitable for
@@ -264,8 +156,4 @@ func LookupAddr(ctx context.Context, resolver *net.Resolver, host string) (strin
 	}
 	// No IPv4 address, return the first resolved address instead.
 	return addrs[0].String(), nil
-}
-
-func invalidFlagErr(err error, flag cliflags.FlagInfo) error {
-	return errors.Wrapf(err, "invalid --%s", flag.Name)
 }

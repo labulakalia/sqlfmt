@@ -16,14 +16,13 @@ import (
 	"io/fs"
 	"math"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logflags"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
-	"github.com/cockroachdb/errors"
 )
 
 type config struct {
@@ -406,33 +405,11 @@ func attachBufferWrapper(ctx context.Context, s *sinkInfo, c logconfig.CommonSin
 	if b.IsNone() {
 		return
 	}
-
-	errCallback := func(err error) {
-		// TODO(knz): explain which sink is encountering the error in the
-		// error message.
-		// See: https://sqlfmt/cockroach/issues/72461
-		Ops.Errorf(context.Background(), "logging error: %v", err)
-	}
 	if s.criticality {
 		// TODO(knz): explain which sink is encountering the error in the
 		// error message.
 		// See: https://sqlfmt/cockroach/issues/72461
-		errCallback = func(err error) {
-			Ops.Errorf(context.Background(), "logging error: %v", err)
-
-			logging.mu.Lock()
-			f := logging.mu.exitOverride.f
-			logging.mu.Unlock()
-
-			code := s.sink.exitCode()
-			if f != nil {
-				f(code, err)
-			} else {
-				exit.WithCode(code)
-			}
-		}
 	}
-	s.sink = newBufferSink(ctx, s.sink, *b.MaxStaleness, int(*b.FlushTriggerSize), int32(*b.MaxInFlight), errCallback)
 }
 
 // applyConfig applies a common sink configuration to a sinkInfo.

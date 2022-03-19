@@ -13,10 +13,10 @@ package log
 import (
 	"bufio"
 	"bytes"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 	"io"
 	"regexp"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/cockroachdb/errors"
 )

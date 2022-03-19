@@ -176,7 +176,7 @@ var HelpMessages = func(h map[string]HelpMessageBody) map[string]HelpMessageBody
 	reformatSeeAlso := func(seeAlso string) string {
 		return strings.Replace(
 			strings.Replace(seeAlso, ", ", "\n  ", -1),
-			"WEBDOCS", docs.URLBase, -1)
+			"WEBDOCS", "", -1)
 	}
 	srcMsg := h["<SOURCE>"]
 	srcMsg.SeeAlso = reformatSeeAlso(strings.TrimSpace(srcMsg.SeeAlso))

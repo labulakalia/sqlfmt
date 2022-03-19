@@ -22,7 +22,6 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/cliflags"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/humanizeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil/addr"
@@ -433,9 +432,6 @@ var _ pflag.Value = &StoreSpecList{}
 // of pflag's value interface.
 func (ssl StoreSpecList) String() string {
 	var buffer bytes.Buffer
-	for _, ss := range ssl.Specs {
-		fmt.Fprintf(&buffer, "--%s=%s ", cliflags.Store.Name, ss)
-	}
 	// Trim the extra space from the end if it exists.
 	if l := buffer.Len(); l > 0 {
 		buffer.Truncate(l - 1)

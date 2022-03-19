@@ -18,7 +18,6 @@ import (
 	"runtime"
 
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils/skip"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/fileutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logconfig"
@@ -136,7 +135,6 @@ func newLogScope(t tShim, mostlyInline bool) (sc *TestLogScope) {
 	}
 	logging.testingFd2CaptureLogger = nil
 	logging.mu.Lock()
-	sc.previous.exitOverrideFn = logging.mu.exitOverride.f
 	sc.previous.exitOverrideHideStack = logging.mu.exitOverride.hideStack
 	logging.mu.Unlock()
 
@@ -271,15 +269,6 @@ func getTestConfig(fileDir *string, mostlyInline bool) (testConfig logconfig.Con
 			// why the 'go test' invocation fails prematurely.
 			testConfig.Sinks.Stderr.Filter = severity.FATAL
 		}
-	}
-
-	if skip.UnderBench() {
-		// Avoid logging anything to stderr, to avoid polluting the output
-		// of benchmarks. This is necessary because 'go test' unhelpfully
-		// merges stdout and stderr writes together.
-		//
-		// This overrides any default set above.
-		testConfig.Sinks.Stderr.Filter = severity.NONE
 	}
 
 	forcePanicsToStderr(&testConfig)
@@ -422,7 +411,6 @@ func (l *TestLogScope) Close(t tShim) {
 		}
 	}
 	logging.mu.Lock()
-	logging.mu.exitOverride.f = l.previous.exitOverrideFn
 	logging.mu.exitOverride.hideStack = l.previous.exitOverrideHideStack
 	logging.mu.Unlock()
 

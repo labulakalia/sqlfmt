@@ -20,7 +20,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
@@ -88,7 +87,6 @@ type loggingT struct {
 
 		// exitOverride is used when shutting down logging.
 		exitOverride struct {
-			f         func(exit.Code, error) // overrides exit.WithCode when non-nil; testing only
 			hideStack bool                   // hides stack trace; only in effect when f is not nil
 		}
 
@@ -259,14 +257,7 @@ func (l *loggerT) outputLogEntry(entry logEntry) {
 		//
 		// https://sqlfmt/cockroach/issues/23119
 		fatalTrigger = make(chan struct{})
-		exitFunc := func(x exit.Code, _ error) { exit.WithCode(x) }
 		logging.mu.Lock()
-		if logging.mu.exitOverride.f != nil {
-			if logging.mu.exitOverride.hideStack {
-				entry.stacks = []byte("stack trace omitted via SetExitFunc()\n")
-			}
-			exitFunc = logging.mu.exitOverride.f
-		}
 		logging.mu.Unlock()
 		exitCalled := make(chan struct{})
 
@@ -280,7 +271,6 @@ func (l *loggerT) outputLogEntry(entry logEntry) {
 			case <-time.After(10 * time.Second):
 			case <-fatalTrigger:
 			}
-			exitFunc(exit.FatalError(), nil)
 			close(exitCalled)
 		}()
 	}
@@ -327,7 +317,6 @@ func (l *loggerT) outputLogEntry(entry logEntry) {
 		defer l.outputMu.Unlock()
 
 		var outputErr error
-		var outputErrExitCode exit.Code
 		for i, s := range l.sinkInfos {
 			if bufs.b[i] == nil {
 				// The sink was not accepting entries at this level. Nothing to do.
@@ -341,9 +330,6 @@ func (l *loggerT) outputLogEntry(entry logEntry) {
 				} else {
 					// This error is critical. We'll have to terminate the
 					// process below.
-					if outputErr == nil {
-						outputErrExitCode = s.sink.exitCode()
-					}
 					outputErr = errors.CombineErrors(outputErr, err)
 				}
 			}
@@ -357,7 +343,6 @@ func (l *loggerT) outputLogEntry(entry logEntry) {
 			// here. Note that exitLocked() shouts the error to all sinks,
 			// so even though this sink is not available any more, we'll
 			// keep a trace of the error in another sink.
-			l.exitLocked(outputErr, outputErrExitCode)
 			return // unreachable except in tests
 		}
 	}

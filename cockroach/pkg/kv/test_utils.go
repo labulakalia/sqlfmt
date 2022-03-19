@@ -11,10 +11,7 @@
 package kv
 
 import (
-	"strings"
-
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvbase"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/testutils"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 )
 
@@ -47,22 +44,5 @@ func OnlyFollowerReads(rec tracing.Recording) bool {
 // kvserver.Is{Retryable,Illegal}ReplicationChangeError,
 // which avoids string matching.
 func IsExpectedRelocateError(err error) bool {
-	allowlist := []string{
-		"descriptor changed",
-		"unable to remove replica .* which is not present",
-		"unable to add replica .* which is already present",
-		"none of the remaining voters .* are legal additions", // https://sqlfmt/cockroach/issues/74902
-		"received invalid ChangeReplicasTrigger .* to remove self",
-		"raft group deleted",
-		"snapshot failed",
-		"breaker open",
-		"unable to select removal target", // https://sqlfmt/cockroach/issues/49513
-		"cannot up-replicate to .*; missing gossiped StoreDescriptor",
-		"remote couldn't accept .* snapshot",
-		"cannot add placeholder",
-		"removing leaseholder not allowed since it isn't the Raft leader",
-		"could not find a better lease transfer target for",
-	}
-	pattern := "(" + strings.Join(allowlist, "|") + ")"
-	return testutils.IsError(err, pattern)
+	return true
 }
