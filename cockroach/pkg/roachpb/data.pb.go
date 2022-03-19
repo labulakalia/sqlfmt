@@ -1162,7 +1162,6 @@ var xxx_messageInfo_LockAcquisition proto.InternalMessageInfo
 // ignored seqnum ranges to the resolution algorithm.
 type LockUpdate struct {
 	Span           `protobuf:"bytes,1,opt,name=span,proto3,embedded=span" json:"span"`
-	Txn            enginepb.TxnMeta              `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
 	Status         TransactionStatus             `protobuf:"varint,3,opt,name=status,proto3,enum=cockroach.roachpb.TransactionStatus" json:"status,omitempty"`
 	IgnoredSeqNums []enginepb.IgnoredSeqNumRange `protobuf:"bytes,4,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
 }
@@ -2957,14 +2956,14 @@ func (m *LockUpdate) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x18
 	}
-	{
-		size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintData(dAtA, i, uint64(size))
-	}
+	// {
+	// 	// size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
+	// 	if err != nil {
+	// 		return 0, err
+	// 	}
+	// 	i -= size
+	// 	i = encodeVarintData(dAtA, i, uint64(size))
+	// }
 	i--
 	dAtA[i] = 0x12
 	{
@@ -4110,7 +4109,7 @@ func (m *LockUpdate) Size() (n int) {
 	_ = l
 	l = m.Span.Size()
 	n += 1 + l + sovData(uint64(l))
-	l = m.Txn.Size()
+	// l = m.Txn.Size()
 	n += 1 + l + sovData(uint64(l))
 	if m.Status != 0 {
 		n += 1 + sovData(uint64(m.Status))
@@ -6929,9 +6928,9 @@ func (m *LockUpdate) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			// if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				// return err
+			// }
 			iNdEx = postIndex
 		case 3:
 			if wireType != 0 {

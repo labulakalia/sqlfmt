@@ -10,7 +10,7 @@ import (
 	//rspb "github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/readsummary/rspb"
 	settings "github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
-	github_com_cockroachdb_cockroach_pkg_storage_enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
+	//github_com_cockroachdb_cockroach_pkg_storage_enginepb "github.com/labulakalia/sqlfmt/cockroach/pkg/storage/enginepb"
 	github_com_cockroachdb_cockroach_pkg_util_hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	hlc "github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	tracingpb "github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing/tracingpb"
@@ -462,7 +462,6 @@ type RequestHeader struct {
 	// including Key and excluding EndKey.
 	EndKey Key `protobuf:"bytes,4,opt,name=end_key,json=endKey,proto3,casttype=Key" json:"end_key,omitempty"`
 	// A zero-indexed transactional sequence number.
-	Sequence github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq `protobuf:"varint,5,opt,name=sequence,proto3,casttype=sqlfmt/cockroach/pkg/storage/enginepb.TxnSeq" json:"sequence,omitempty"`
 }
 
 func (m *RequestHeader) Reset()         { *m = RequestHeader{} }
@@ -1805,7 +1804,7 @@ var xxx_messageInfo_RecomputeStatsRequest proto.InternalMessageInfo
 type RecomputeStatsResponse struct {
 	ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3,embedded=header" json:"header"`
 	// added_delta is the adjustment made to the range's stats, i.e. `new_stats = old_stats + added_delta`.
-	AddedDelta enginepb.MVCCStatsDelta `protobuf:"bytes,2,opt,name=added_delta,json=addedDelta,proto3" json:"added_delta"`
+	//AddedDelta enginepb.MVCCStatsDelta `protobuf:"bytes,2,opt,name=added_delta,json=addedDelta,proto3" json:"added_delta"`
 }
 
 func (m *RecomputeStatsResponse) Reset()         { *m = RecomputeStatsResponse{} }
@@ -2716,7 +2715,6 @@ type PushTxnRequest struct {
 	// the push transaction request. Note that this may not be the most
 	// up-to-date value of the transaction record, but will be set or
 	// merged as appropriate.
-	PusheeTxn enginepb.TxnMeta `protobuf:"bytes,3,opt,name=pushee_txn,json=pusheeTxn,proto3" json:"pushee_txn"`
 	// PushTo is the timestamp which PusheeTxn should be pushed to. During
 	// conflict resolution, it should be set just after the timestamp of the
 	// conflicting read or write.
@@ -2813,7 +2811,6 @@ var xxx_messageInfo_PushTxnResponse proto.InternalMessageInfo
 type RecoverTxnRequest struct {
 	RequestHeader `protobuf:"bytes,1,opt,name=header,proto3,embedded=header" json:"header"`
 	// Transaction record to recover.
-	Txn enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
 	// Did all of the STAGING transaction's writes succeed? If so, the transaction
 	// is implicitly committed and the commit can be made explicit by giving its
 	// record a COMMITTED status. If not, the transaction can be aborted as long
@@ -2894,7 +2891,6 @@ var xxx_messageInfo_RecoverTxnResponse proto.InternalMessageInfo
 type QueryTxnRequest struct {
 	RequestHeader `protobuf:"bytes,1,opt,name=header,proto3,embedded=header" json:"header"`
 	// Transaction record to query.
-	Txn enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
 	// If true, the query will not return until there are changes to either the
 	// transaction status or priority -OR- to the set of dependent transactions.
 	WaitForUpdate bool `protobuf:"varint,3,opt,name=wait_for_update,json=waitForUpdate,proto3" json:"wait_for_update,omitempty"`
@@ -3007,7 +3003,7 @@ type QueryIntentRequest struct {
 	// intent is found or not (see condition above). This is useful to avoid the
 	// need to update each QueryIntentRequest when a transaction is querying its
 	// own intent after having successfully refreshed.
-	Txn enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
+	//Txn enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn,proto3" json:"txn"`
 	// If true, return an IntentMissingError if a matching intent is not found.
 	// Special-cased to return a SERIALIZABLE retry error if a SERIALIZABLE
 	// transaction queries its own intent and finds it has been pushed.
@@ -3163,7 +3159,6 @@ var xxx_messageInfo_QueryLocksResponse proto.InternalMessageInfo
 type ResolveIntentRequest struct {
 	RequestHeader `protobuf:"bytes,1,opt,name=header,proto3,embedded=header" json:"header"`
 	// The transaction whose intent is being resolved.
-	IntentTxn enginepb.TxnMeta `protobuf:"bytes,2,opt,name=intent_txn,json=intentTxn,proto3" json:"intent_txn"`
 	// The status of the transaction.
 	Status TransactionStatus `protobuf:"varint,3,opt,name=status,proto3,enum=cockroach.roachpb.TransactionStatus" json:"status,omitempty"`
 	// Optionally poison the abort span for the transaction on the intent's range.
@@ -3171,7 +3166,6 @@ type ResolveIntentRequest struct {
 	// txns ever poison the abort spans).
 	Poison bool `protobuf:"varint,4,opt,name=poison,proto3" json:"poison,omitempty"`
 	// The list of ignored seqnum ranges as per the Transaction record.
-	IgnoredSeqNums []enginepb.IgnoredSeqNumRange `protobuf:"bytes,5,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
 }
 
 func (m *ResolveIntentRequest) Reset()         { *m = ResolveIntentRequest{} }
@@ -3245,7 +3239,7 @@ var xxx_messageInfo_ResolveIntentResponse proto.InternalMessageInfo
 type ResolveIntentRangeRequest struct {
 	RequestHeader `protobuf:"bytes,1,opt,name=header,proto3,embedded=header" json:"header"`
 	// The transaction whose intents are being resolved.
-	IntentTxn enginepb.TxnMeta `protobuf:"bytes,2,opt,name=intent_txn,json=intentTxn,proto3" json:"intent_txn"`
+	//IntentTxn enginepb.TxnMeta `protobuf:"bytes,2,opt,name=intent_txn,json=intentTxn,proto3" json:"intent_txn"`
 	// The status of the transaction.
 	Status TransactionStatus `protobuf:"varint,3,opt,name=status,proto3,enum=cockroach.roachpb.TransactionStatus" json:"status,omitempty"`
 	// Optionally poison the abort span for the transaction on all ranges on which
@@ -3257,7 +3251,7 @@ type ResolveIntentRangeRequest struct {
 	// iteration over the span to find intents to resolve.
 	MinTimestamp hlc.Timestamp `protobuf:"bytes,5,opt,name=min_timestamp,json=minTimestamp,proto3" json:"min_timestamp"`
 	// The list of ignored seqnum ranges as per the Transaction record.
-	IgnoredSeqNums []enginepb.IgnoredSeqNumRange `protobuf:"bytes,6,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
+	//IgnoredSeqNums []enginepb.IgnoredSeqNumRange `protobuf:"bytes,6,rep,name=ignored_seqnums,json=ignoredSeqnums,proto3" json:"ignored_seqnums"`
 }
 
 func (m *ResolveIntentRangeRequest) Reset()         { *m = ResolveIntentRangeRequest{} }
@@ -4388,7 +4382,7 @@ var xxx_messageInfo_AdminScatterRequest proto.InternalMessageInfo
 type AdminScatterResponse struct {
 	ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3,embedded=header" json:"header"`
 	RangeInfos     []RangeInfo         `protobuf:"bytes,3,rep,name=range_infos,json=rangeInfos,proto3" json:"range_infos"`
-	MVCCStats      *enginepb.MVCCStats `protobuf:"bytes,4,opt,name=mvcc_stats,json=mvccStats,proto3" json:"mvcc_stats,omitempty"`
+	//MVCCStats      *enginepb.MVCCStats `protobuf:"bytes,4,opt,name=mvcc_stats,json=mvccStats,proto3" json:"mvcc_stats,omitempty"`
 }
 
 func (m *AdminScatterResponse) Reset()         { *m = AdminScatterResponse{} }
@@ -4689,7 +4683,7 @@ type AddSSTableRequest struct {
 	// used as-is during evaluation of the AddSSTable command to update the range
 	// MVCCStats, instead of computing the stats for the SSTable by iterating it.
 	// Including these stats can make the evaluation of AddSSTable much cheaper.
-	MVCCStats *enginepb.MVCCStats `protobuf:"bytes,4,opt,name=mvcc_stats,json=mvccStats,proto3" json:"mvcc_stats,omitempty"`
+	//MVCCStats *enginepb.MVCCStats `protobuf:"bytes,4,opt,name=mvcc_stats,json=mvccStats,proto3" json:"mvcc_stats,omitempty"`
 	// IngestAsWrites causes the content of the provided SSTable to be ingested in
 	// a regular WriteBatch, instead of directly adding the provided SST to the
 	// storage engine. This is useful if the data size is so small that the fixed
@@ -5083,7 +5077,7 @@ type RangeStatsResponse struct {
 	ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3,embedded=header" json:"header"`
 	// MVCCStats are the MVCC statistics for the range that processed the
 	// request.
-	MVCCStats enginepb.MVCCStats `protobuf:"bytes,2,opt,name=mvcc_stats,json=mvccStats,proto3" json:"mvcc_stats"`
+	//MVCCStats enginepb.MVCCStats `protobuf:"bytes,2,opt,name=mvcc_stats,json=mvccStats,proto3" json:"mvcc_stats"`
 	// DeprecatedLastQueriesPerSecond is the most recent rate of request/s or QPS
 	// for the range. The field is deprecated in favor of MaxQueriesPerSecond.
 	//
@@ -8254,7 +8248,7 @@ type ContentionEvent struct {
 	Key Key `protobuf:"bytes,1,opt,name=key,proto3,casttype=Key" json:"key,omitempty"`
 	// TxnMeta is the transaction conflicted with, i.e. the transaction holding a
 	// lock or lock reservation.
-	TxnMeta enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn_meta,json=txnMeta,proto3" json:"txn_meta"`
+	//TxnMeta enginepb.TxnMeta `protobuf:"bytes,2,opt,name=txn_meta,json=txnMeta,proto3" json:"txn_meta"`
 	// Duration spent contending against the other transaction.
 	Duration time.Duration `protobuf:"bytes,3,opt,name=duration,proto3,stdduration" json:"duration"`
 }
@@ -8276,13 +8270,13 @@ func (m *ContentionEvent) XXX_Marshal(b []byte, deterministic bool) ([]byte, err
 	return b[:n], nil
 }
 func (m *ContentionEvent) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ContentionEvent.Merge(m, src)
+	//xxx_messageInfo_ContentionEvent.Merge(m, src)
 }
 func (m *ContentionEvent) XXX_Size() int {
 	return m.Size()
 }
 func (m *ContentionEvent) XXX_DiscardUnknown() {
-	xxx_messageInfo_ContentionEvent.DiscardUnknown(m)
+	// xxx_messageInfo_ContentionEvent.DiscardUnknown(m)
 }
 
 var xxx_messageInfo_ContentionEvent proto.InternalMessageInfo
@@ -8487,7 +8481,7 @@ func init() {
 	proto.RegisterType((*TokenBucketResponse)(nil), "cockroach.roachpb.TokenBucketResponse")
 	proto.RegisterType((*JoinNodeRequest)(nil), "cockroach.roachpb.JoinNodeRequest")
 	proto.RegisterType((*JoinNodeResponse)(nil), "cockroach.roachpb.JoinNodeResponse")
-	proto.RegisterType((*ContentionEvent)(nil), "cockroach.roachpb.ContentionEvent")
+	// proto.RegisterType((*ContentionEvent)(nil), "cockroach.roachpb.ContentionEvent")
 	proto.RegisterType((*ScanStats)(nil), "cockroach.roachpb.ScanStats")
 }
 
@@ -9658,11 +9652,11 @@ func (m *RequestHeader) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Sequence != 0 {
-		i = encodeVarintApi(dAtA, i, uint64(m.Sequence))
-		i--
-		dAtA[i] = 0x28
-	}
+	//if m.Sequence != 0 {
+	//	i = encodeVarintApi(dAtA, i, uint64(m.Sequence))
+	//	i--
+	//	dAtA[i] = 0x28
+	//}
 	if len(m.EndKey) > 0 {
 		i -= len(m.EndKey)
 		copy(dAtA[i:], m.EndKey)
@@ -11074,14 +11068,6 @@ func (m *RecomputeStatsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.AddedDelta.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
 	i--
 	dAtA[i] = 0x12
 	{
@@ -12084,24 +12070,24 @@ func (m *PushTxnRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	}
 	i--
 	dAtA[i] = 0x22
-	{
-		size, err := m.PusheeTxn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.PusheeTxn.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintApi(dAtA, i, uint64(size))
+	//}
 	i--
-	dAtA[i] = 0x1a
-	{
-		size, err := m.PusherTxn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+	//dAtA[i] = 0x1a
+	//{
+	//	size, err := m.PusherTxn.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintApi(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x12
 	{
@@ -12190,14 +12176,7 @@ func (m *RecoverTxnRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x18
 	}
-	{
-		size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+
 	i--
 	dAtA[i] = 0x12
 	{
@@ -12300,14 +12279,10 @@ func (m *QueryTxnRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x18
 	}
-	{
-		size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+	//{
+	//	//i -= size
+	//	i = encodeVarintApi(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x12
 	{
@@ -12420,14 +12395,14 @@ func (m *QueryIntentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x18
 	}
-	{
-		size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.Txn.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintApi(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x12
 	{
@@ -12596,20 +12571,6 @@ func (m *ResolveIntentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.IgnoredSeqNums) > 0 {
-		for iNdEx := len(m.IgnoredSeqNums) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.IgnoredSeqNums[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintApi(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x2a
-		}
-	}
 	if m.Poison {
 		i--
 		if m.Poison {
@@ -12625,14 +12586,7 @@ func (m *ResolveIntentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x18
 	}
-	{
-		size, err := m.IntentTxn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+
 	i--
 	dAtA[i] = 0x12
 	{
@@ -12701,20 +12655,7 @@ func (m *ResolveIntentRangeRequest) MarshalToSizedBuffer(dAtA []byte) (int, erro
 	_ = i
 	var l int
 	_ = l
-	if len(m.IgnoredSeqNums) > 0 {
-		for iNdEx := len(m.IgnoredSeqNums) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.IgnoredSeqNums[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintApi(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x32
-		}
-	}
+
 	{
 		size, err := m.MinTimestamp.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -12740,14 +12681,7 @@ func (m *ResolveIntentRangeRequest) MarshalToSizedBuffer(dAtA []byte) (int, erro
 		i--
 		dAtA[i] = 0x18
 	}
-	{
-		size, err := m.IntentTxn.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+
 	i--
 	dAtA[i] = 0x12
 	{
@@ -14204,18 +14138,18 @@ func (m *AdminScatterResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.MVCCStats != nil {
-		{
-			size, err := m.MVCCStats.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintApi(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x22
-	}
+	//if m.MVCCStats != nil {
+	//	{
+	//		size, err := m.MVCCStats.MarshalToSizedBuffer(dAtA[:i])
+	//		if err != nil {
+	//			return 0, err
+	//		}
+	//		i -= size
+	//		i = encodeVarintApi(dAtA, i, uint64(size))
+	//	}
+	//	i--
+	//	dAtA[i] = 0x22
+	//}
 	if len(m.RangeInfos) > 0 {
 		for iNdEx := len(m.RangeInfos) - 1; iNdEx >= 0; iNdEx-- {
 			{
@@ -14519,18 +14453,18 @@ func (m *AddSSTableRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x28
 	}
-	if m.MVCCStats != nil {
-		{
-			size, err := m.MVCCStats.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintApi(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x22
-	}
+	//if m.MVCCStats != nil {
+	//	{
+	//		size, err := m.MVCCStats.MarshalToSizedBuffer(dAtA[:i])
+	//		if err != nil {
+	//			return 0, err
+	//		}
+	//		i -= size
+	//		i = encodeVarintApi(dAtA, i, uint64(size))
+	//	}
+	//	i--
+	//	dAtA[i] = 0x22
+	//}
 	if m.DisallowShadowing {
 		i--
 		if m.DisallowShadowing {
@@ -14964,14 +14898,14 @@ func (m *RangeStatsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x19
 	}
-	{
-		size, err := m.MVCCStats.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.MVCCStats.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintApi(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x12
 	{
@@ -19017,14 +18951,14 @@ func (m *ContentionEvent) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i = encodeVarintApi(dAtA, i, uint64(n310))
 	i--
 	dAtA[i] = 0x1a
-	{
-		size, err := m.TxnMeta.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintApi(dAtA, i, uint64(size))
-	}
+	//{
+	//	size, err := m.TxnMeta.MarshalToSizedBuffer(dAtA[:i])
+	//	if err != nil {
+	//		return 0, err
+	//	}
+	//	i -= size
+	//	i = encodeVarintApi(dAtA, i, uint64(size))
+	//}
 	i--
 	dAtA[i] = 0x12
 	if len(m.Key) > 0 {
@@ -19135,9 +19069,9 @@ func (m *RequestHeader) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovApi(uint64(l))
 	}
-	if m.Sequence != 0 {
-		n += 1 + sovApi(uint64(m.Sequence))
-	}
+	//if m.Sequence != 0 {
+	//	n += 1 + sovApi(uint64(m.Sequence))
+	//}
 	return n
 }
 
@@ -19634,7 +19568,6 @@ func (m *RecomputeStatsResponse) Size() (n int) {
 	_ = l
 	l = m.ResponseHeader.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.AddedDelta.Size()
 	n += 1 + l + sovApi(uint64(l))
 	return n
 }
@@ -19970,9 +19903,9 @@ func (m *PushTxnRequest) Size() (n int) {
 	_ = l
 	l = m.RequestHeader.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.PusherTxn.Size()
+	//l = m.PusherTxn.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.PusheeTxn.Size()
+	//l = m.PusheeTxn.Size()
 	n += 1 + l + sovApi(uint64(l))
 	l = m.PushTo.Size()
 	n += 1 + l + sovApi(uint64(l))
@@ -20005,8 +19938,7 @@ func (m *RecoverTxnRequest) Size() (n int) {
 	var l int
 	_ = l
 	l = m.RequestHeader.Size()
-	n += 1 + l + sovApi(uint64(l))
-	l = m.Txn.Size()
+
 	n += 1 + l + sovApi(uint64(l))
 	if m.ImplicitlyCommitted {
 		n += 2
@@ -20035,7 +19967,6 @@ func (m *QueryTxnRequest) Size() (n int) {
 	_ = l
 	l = m.RequestHeader.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.Txn.Size()
 	n += 1 + l + sovApi(uint64(l))
 	if m.WaitForUpdate {
 		n += 2
@@ -20079,7 +20010,7 @@ func (m *QueryIntentRequest) Size() (n int) {
 	_ = l
 	l = m.RequestHeader.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.Txn.Size()
+	//l = m.Txn.Size()
 	n += 1 + l + sovApi(uint64(l))
 	if m.ErrorIfMissing {
 		n += 2
@@ -20140,7 +20071,6 @@ func (m *ResolveIntentRequest) Size() (n int) {
 	_ = l
 	l = m.RequestHeader.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.IntentTxn.Size()
 	n += 1 + l + sovApi(uint64(l))
 	if m.Status != 0 {
 		n += 1 + sovApi(uint64(m.Status))
@@ -20148,12 +20078,7 @@ func (m *ResolveIntentRequest) Size() (n int) {
 	if m.Poison {
 		n += 2
 	}
-	if len(m.IgnoredSeqNums) > 0 {
-		for _, e := range m.IgnoredSeqNums {
-			l = e.Size()
-			n += 1 + l + sovApi(uint64(l))
-		}
-	}
+
 	return n
 }
 
@@ -20176,7 +20101,6 @@ func (m *ResolveIntentRangeRequest) Size() (n int) {
 	_ = l
 	l = m.RequestHeader.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.IntentTxn.Size()
 	n += 1 + l + sovApi(uint64(l))
 	if m.Status != 0 {
 		n += 1 + sovApi(uint64(m.Status))
@@ -20186,12 +20110,7 @@ func (m *ResolveIntentRangeRequest) Size() (n int) {
 	}
 	l = m.MinTimestamp.Size()
 	n += 1 + l + sovApi(uint64(l))
-	if len(m.IgnoredSeqNums) > 0 {
-		for _, e := range m.IgnoredSeqNums {
-			l = e.Size()
-			n += 1 + l + sovApi(uint64(l))
-		}
-	}
+
 	return n
 }
 
@@ -20751,10 +20670,10 @@ func (m *AdminScatterResponse) Size() (n int) {
 			n += 1 + l + sovApi(uint64(l))
 		}
 	}
-	if m.MVCCStats != nil {
-		l = m.MVCCStats.Size()
-		n += 1 + l + sovApi(uint64(l))
-	}
+	//if m.MVCCStats != nil {
+	//	l = m.MVCCStats.Size()
+	//	n += 1 + l + sovApi(uint64(l))
+	//}
 	return n
 }
 
@@ -20851,10 +20770,10 @@ func (m *AddSSTableRequest) Size() (n int) {
 	if m.DisallowShadowing {
 		n += 2
 	}
-	if m.MVCCStats != nil {
-		l = m.MVCCStats.Size()
-		n += 1 + l + sovApi(uint64(l))
-	}
+	//if m.MVCCStats != nil {
+	//	l = m.MVCCStats.Size()
+	//	n += 1 + l + sovApi(uint64(l))
+	//}
 	if m.IngestAsWrites {
 		n += 2
 	}
@@ -20985,7 +20904,7 @@ func (m *RangeStatsResponse) Size() (n int) {
 	_ = l
 	l = m.ResponseHeader.Size()
 	n += 1 + l + sovApi(uint64(l))
-	l = m.MVCCStats.Size()
+	//l = m.MVCCStats.Size()
 	n += 1 + l + sovApi(uint64(l))
 	if m.DeprecatedLastQueriesPerSecond != 0 {
 		n += 9
@@ -22827,7 +22746,7 @@ func (m *ContentionEvent) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovApi(uint64(l))
 	}
-	l = m.TxnMeta.Size()
+	//l = m.TxnMeta.Size()/
 	n += 1 + l + sovApi(uint64(l))
 	l = github_com_gogo_protobuf_types.SizeOfStdDuration(m.Duration)
 	n += 1 + l + sovApi(uint64(l))
@@ -23011,7 +22930,7 @@ func (m *RequestHeader) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Sequence", wireType)
 			}
-			m.Sequence = 0
+			// m.Sequence = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowApi
@@ -23021,7 +22940,7 @@ func (m *RequestHeader) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Sequence |= github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq(b&0x7F) << shift
+				//m.Sequence |= github_com_cockroachdb_cockroach_pkg_storage_enginepb.TxnSeq(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -26733,9 +26652,7 @@ func (m *RecomputeStatsResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.AddedDelta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -29327,9 +29244,9 @@ func (m *PushTxnRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.PusheeTxn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.PusheeTxn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
@@ -29631,9 +29548,7 @@ func (m *RecoverTxnRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+
 			iNdEx = postIndex
 		case 3:
 			if wireType != 0 {
@@ -29882,9 +29797,6 @@ func (m *QueryTxnRequest) Unmarshal(dAtA []byte) error {
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
-			}
-			if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
 			}
 			iNdEx = postIndex
 		case 3:
@@ -30225,9 +30137,9 @@ func (m *QueryIntentRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.Txn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 3:
 			if wireType != 0 {
@@ -30684,9 +30596,6 @@ func (m *ResolveIntentRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.IntentTxn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
 			iNdEx = postIndex
 		case 3:
 			if wireType != 0 {
@@ -30756,10 +30665,7 @@ func (m *ResolveIntentRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
-			if err := m.IgnoredSeqNums[len(m.IgnoredSeqNums)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -30956,9 +30862,7 @@ func (m *ResolveIntentRangeRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.IntentTxn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+
 			iNdEx = postIndex
 		case 3:
 			if wireType != 0 {
@@ -31061,10 +30965,8 @@ func (m *ResolveIntentRangeRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
-			if err := m.IgnoredSeqNums[len(m.IgnoredSeqNums)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//m.IgnoredSeqNums = append(m.IgnoredSeqNums, enginepb.IgnoredSeqNumRange{})
+
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -35481,12 +35383,12 @@ func (m *AdminScatterResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.MVCCStats == nil {
-				m.MVCCStats = &enginepb.MVCCStats{}
-			}
-			if err := m.MVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//if m.MVCCStats == nil {
+			//	m.MVCCStats = &enginepb.MVCCStats{}
+			//}
+		/*	if err := m.MVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
-			}
+			}*/
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -36259,12 +36161,12 @@ func (m *AddSSTableRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.MVCCStats == nil {
-				m.MVCCStats = &enginepb.MVCCStats{}
-			}
-			if err := m.MVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if m.MVCCStats == nil {
+			//	//m.MVCCStats = &enginepb.MVCCStats{}
+			//}
+			//if err := m.MVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 5:
 			if wireType != 0 {
@@ -37434,9 +37336,9 @@ func (m *RangeStatsResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.MVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			//if err := m.MVCCStats.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			//	return err
+			//}
 			iNdEx = postIndex
 		case 3:
 			if wireType != 1 {
@@ -45906,9 +45808,9 @@ func (m *ContentionEvent) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.TxnMeta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			// if err := m.TxnMeta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			// 	return err
+			// }
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {

@@ -26,7 +26,7 @@ import (
 // A build will become metamorphic with metamorphicBuildProbability probability
 // if 'crdb_test' build flag is specified (this is the case for all test
 // targets).
-func IsMetamorphicBuild() bool {
+func IsMetamo1rphicBuild() bool {
 	return metamorphicBuild
 }
 

@@ -1513,9 +1513,7 @@ func (acrr *AdminChangeReplicasRequest) Changes() []ReplicationChange {
 func (rir *ResolveIntentRequest) AsLockUpdate() LockUpdate {
 	return LockUpdate{
 		Span:           rir.Span(),
-		Txn:            rir.IntentTxn,
 		Status:         rir.Status,
-		IgnoredSeqNums: rir.IgnoredSeqNums,
 	}
 }
 
@@ -1524,9 +1522,7 @@ func (rir *ResolveIntentRequest) AsLockUpdate() LockUpdate {
 func (rirr *ResolveIntentRangeRequest) AsLockUpdate() LockUpdate {
 	return LockUpdate{
 		Span:           rirr.Span(),
-		Txn:            rirr.IntentTxn,
 		Status:         rirr.Status,
-		IgnoredSeqNums: rirr.IgnoredSeqNums,
 	}
 }
 
@@ -1549,14 +1545,14 @@ func (r *JoinNodeResponse) CreateStoreIdent() (StoreIdent, error) {
 }
 
 // SafeFormat implements redact.SafeFormatter.
-func (c *ContentionEvent) SafeFormat(w redact.SafePrinter, _ rune) {
-	w.Printf("conflicted with %s on %s for %.3fs", c.TxnMeta.ID, c.Key, c.Duration.Seconds())
-}
+//func (c *ContentionEvent) SafeFormat(w redact.SafePrinter, _ rune) {
+//	w.Printf("conflicted with %s on %s for %.3fs", c.TxnMeta.ID, c.Key, c.Duration.Seconds())
+//}
 
 // String implements fmt.Stringer.
-func (c *ContentionEvent) String() string {
-	return redact.StringWithoutMarkers(c)
-}
+//func (c *ContentionEvent) String() string {
+//	return redact.StringWithoutMarkers(c)
+//}
 
 // Equal returns whether the two structs are identical. Needed for compatibility
 // with proto2.
