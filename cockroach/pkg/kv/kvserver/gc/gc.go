@@ -21,10 +21,9 @@ import (
 	"math"
 	"time"
 
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/abortspan"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv/kvserver/kvserverbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/storage"
@@ -35,7 +34,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
 )
 
 const (
@@ -227,66 +225,66 @@ type CleanupTxnIntentsAsyncFunc func(context.Context, *roachpb.Transaction) erro
 // cleanupIntentsFn to resolve intents synchronously, and
 // cleanupTxnIntentsAsyncFn to asynchronously cleanup intents and
 // associated transaction record on success.
-func Run(
-	ctx context.Context,
-	desc *roachpb.RangeDescriptor,
-	snap storage.Reader,
-	now, newThreshold hlc.Timestamp,
-	options RunOptions,
-	gcTTL time.Duration,
-	gcer GCer,
-	cleanupIntentsFn CleanupIntentsFunc,
-	cleanupTxnIntentsAsyncFn CleanupTxnIntentsAsyncFunc,
-) (Info, error) {
-
-	txnExp := now.Add(-kvserverbase.TxnCleanupThreshold.Nanoseconds(), 0)
-	if err := gcer.SetGCThreshold(ctx, Threshold{
-		Key: newThreshold,
-		Txn: txnExp,
-	}); err != nil {
-		return Info{}, errors.Wrap(err, "failed to set GC thresholds")
-	}
-
-	info := Info{
-		GCTTL:     gcTTL,
-		Now:       now,
-		Threshold: newThreshold,
-	}
-
-	err := processReplicatedKeyRange(ctx, desc, snap, now, newThreshold, options.IntentAgeThreshold, gcer,
-		intentBatcherOptions{
-			maxIntentsPerIntentCleanupBatch:        options.MaxIntentsPerIntentCleanupBatch,
-			maxIntentKeyBytesPerIntentCleanupBatch: options.MaxIntentKeyBytesPerIntentCleanupBatch,
-			maxTxnsPerIntentCleanupBatch:           options.MaxTxnsPerIntentCleanupBatch,
-			intentCleanupBatchTimeout:              options.IntentCleanupBatchTimeout,
-		}, cleanupIntentsFn, &info)
-	if err != nil {
-		return Info{}, err
-	}
-
-	// From now on, all keys processed are range-local and inline (zero timestamp).
-
-	// Process local range key entries (txn records, queue last processed times).
-	if err := processLocalKeyRange(ctx, snap, desc, txnExp, &info, cleanupTxnIntentsAsyncFn, gcer); err != nil {
-		if errors.Is(err, ctx.Err()) {
-			return Info{}, err
-		}
-		log.Warningf(ctx, "while gc'ing local key range: %s", err)
-	}
-
-	// Clean up the AbortSpan.
-	log.Event(ctx, "processing AbortSpan")
-	if err := processAbortSpan(ctx, snap, desc.RangeID, txnExp, &info, gcer); err != nil {
-		if errors.Is(err, ctx.Err()) {
-			return Info{}, err
-		}
-		log.Warningf(ctx, "while gc'ing abort span: %s", err)
-	}
-
-	log.Eventf(ctx, "GC'ed keys; stats %+v", info)
-
-	return info, nil
-}
+//func Run(
+//	ctx context.Context,
+//	desc *roachpb.RangeDescriptor,
+//	snap storage.Reader,
+//	now, newThreshold hlc.Timestamp,
+//	options RunOptions,
+//	gcTTL time.Duration,
+//	gcer GCer,
+//	cleanupIntentsFn CleanupIntentsFunc,
+//	cleanupTxnIntentsAsyncFn CleanupTxnIntentsAsyncFunc,
+//) (Info, error) {
+//
+//	txnExp := now.Add(-kvserverbase.TxnCleanupThreshold.Nanoseconds(), 0)
+//	if err := gcer.SetGCThreshold(ctx, Threshold{
+//		Key: newThreshold,
+//		Txn: txnExp,
+//	}); err != nil {
+//		return Info{}, errors.Wrap(err, "failed to set GC thresholds")
+//	}
+//
+//	info := Info{
+//		GCTTL:     gcTTL,
+//		Now:       now,
+//		Threshold: newThreshold,
+//	}
+//
+//	err := processReplicatedKeyRange(ctx, desc, snap, now, newThreshold, options.IntentAgeThreshold, gcer,
+//		intentBatcherOptions{
+//			maxIntentsPerIntentCleanupBatch:        options.MaxIntentsPerIntentCleanupBatch,
+//			maxIntentKeyBytesPerIntentCleanupBatch: options.MaxIntentKeyBytesPerIntentCleanupBatch,
+//			maxTxnsPerIntentCleanupBatch:           options.MaxTxnsPerIntentCleanupBatch,
+//			intentCleanupBatchTimeout:              options.IntentCleanupBatchTimeout,
+//		}, cleanupIntentsFn, &info)
+//	if err != nil {
+//		return Info{}, err
+//	}
+//
+//	// From now on, all keys processed are range-local and inline (zero timestamp).
+//
+//	// Process local range key entries (txn records, queue last processed times).
+//	if err := processLocalKeyRange(ctx, snap, desc, txnExp, &info, cleanupTxnIntentsAsyncFn, gcer); err != nil {
+//		if errors.Is(err, ctx.Err()) {
+//			return Info{}, err
+//		}
+//		log.Warningf(ctx, "while gc'ing local key range: %s", err)
+//	}
+//
+//	// Clean up the AbortSpan.
+//	log.Event(ctx, "processing AbortSpan")
+//	if err := processAbortSpan(ctx, snap, desc.RangeID, txnExp, &info, gcer); err != nil {
+//		if errors.Is(err, ctx.Err()) {
+//			return Info{}, err
+//		}
+//		log.Warningf(ctx, "while gc'ing abort span: %s", err)
+//	}
+//
+//	log.Eventf(ctx, "GC'ed keys; stats %+v", info)
+//
+//	return info, nil
+//}
 
 // processReplicatedKeyRange identifies garbage and sends GC requests to
 // remove it.
@@ -683,28 +681,28 @@ func processLocalKeyRange(
 // this transaction must have realized that it has been aborted (due to
 // heartbeating having failed). The parameter minAge is typically a
 // multiple of the heartbeat timeout used by the coordinator.
-func processAbortSpan(
-	ctx context.Context,
-	snap storage.Reader,
-	rangeID roachpb.RangeID,
-	threshold hlc.Timestamp,
-	info *Info,
-	gcer PureGCer,
-) error {
-	b := makeBatchingInlineGCer(gcer, func(err error) {
-		log.Warningf(ctx, "unable to GC from abort span: %s", err)
-	})
-	defer b.Flush(ctx)
-	abortSpan := abortspan.New(rangeID)
-	return abortSpan.Iterate(ctx, snap, func(key roachpb.Key, v roachpb.AbortSpanEntry) error {
-		info.AbortSpanTotal++
-		if v.Timestamp.Less(threshold) {
-			info.AbortSpanGCNum++
-			b.FlushingAdd(ctx, key)
-		}
-		return nil
-	})
-}
+//func processAbortSpan(
+//	ctx context.Context,
+//	snap storage.Reader,
+//	rangeID roachpb.RangeID,
+//	threshold hlc.Timestamp,
+//	info *Info,
+//	gcer PureGCer,
+//) error {
+//	b := makeBatchingInlineGCer(gcer, func(err error) {
+//		log.Warningf(ctx, "unable to GC from abort span: %s", err)
+//	})
+//	defer b.Flush(ctx)
+//	abortSpan := abortspan.New(rangeID)
+//	return abortSpan.Iterate(ctx, snap, func(key roachpb.Key, v roachpb.AbortSpanEntry) error {
+//		info.AbortSpanTotal++
+//		if v.Timestamp.Less(threshold) {
+//			info.AbortSpanGCNum++
+//			b.FlushingAdd(ctx, key)
+//		}
+//		return nil
+//	})
+//}
 
 // batchingInlineGCer is a helper to paginate the GC of inline (i.e. zero
 // timestamp keys). After creation, keys are added via FlushingAdd(). A

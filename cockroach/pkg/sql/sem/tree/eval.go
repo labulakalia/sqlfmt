@@ -23,7 +23,6 @@ import (
 	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
@@ -2901,13 +2900,13 @@ type EvalPlanner interface {
 	//
 	// The fields set in session that are set override the respective fields if
 	// they have previously been set through SetSessionData().
-	QueryRowEx(
-		ctx context.Context,
-		opName string,
-		txn *kv.Txn,
-		override sessiondata.InternalExecutorOverride,
-		stmt string,
-		qargs ...interface{}) (Datums, error)
+	//QueryRowEx(
+	//	ctx context.Context,
+	//	opName string,
+	//	txn *kv.Txn,
+	//	override sessiondata.InternalExecutorOverride,
+	//	stmt string,
+	//	qargs ...interface{}) (Datums, error)
 
 	// QueryIteratorEx executes the query, returning an iterator that can be used
 	// to get the results. If the call is successful, the returned iterator
@@ -2915,14 +2914,14 @@ type EvalPlanner interface {
 	//
 	// The fields set in session that are set override the respective fields if they
 	// have previously been set through SetSessionData().
-	QueryIteratorEx(
-		ctx context.Context,
-		opName string,
-		txn *kv.Txn,
-		override sessiondata.InternalExecutorOverride,
-		stmt string,
-		qargs ...interface{},
-	) (InternalRows, error)
+	//QueryIteratorEx(
+	//	ctx context.Context,
+	//	opName string,
+	//	txn *kv.Txn,
+	//	override sessiondata.InternalExecutorOverride,
+	//	stmt string,
+	//	qargs ...interface{},
+	//) (InternalRows, error)
 }
 
 // InternalRows is an iterator interface that's exposed by the internal
@@ -3262,10 +3261,10 @@ type EvalContext struct {
 
 	PreparedStatementState PreparedStatementState
 
-	// The transaction in which the statement is executing.
-	Txn *kv.Txn
-	// A handle to the database.
-	DB *kv.DB
+	//// The transaction in which the statement is executing.
+	//Txn *kv.Txn
+	//// A handle to the database.
+	//DB *kv.DB
 
 	ReCache *RegexpCache
 
@@ -3322,7 +3321,7 @@ func MakeTestingEvalContext(st *cluster.Settings) EvalContext {
 func MakeTestingEvalContextWithMon(st *cluster.Settings, monitor *mon.BytesMonitor) EvalContext {
 	ctx := EvalContext{
 		Codec:            keys.SystemSQLCodec,
-		Txn:              &kv.Txn{},
+		//Txn:              &kv.Txn{},
 		SessionDataStack: sessiondata.NewStack(&sessiondata.SessionData{}),
 		Settings:         st,
 		NodeID:           base.TestingIDContainer,
@@ -3412,15 +3411,6 @@ func (ctx *EvalContext) GetStmtTimestamp() time.Time {
 	return ctx.StmtTimestamp
 }
 
-// GetClusterTimestamp retrieves the current cluster timestamp as per
-// the evaluation context. The timestamp is guaranteed to be nonzero.
-func (ctx *EvalContext) GetClusterTimestamp() *DDecimal {
-	ts := ctx.Txn.CommitTimestamp()
-	if ts.IsEmpty() {
-		panic(errors.AssertionFailedf("zero cluster timestamp in txn"))
-	}
-	return TimestampToDecimalDatum(ts)
-}
 
 // HasPlaceholders returns true if this EvalContext's placeholders have been
 // assigned. Will be false during Prepare.
@@ -5311,21 +5301,20 @@ type CallbackValueGenerator struct {
 	// as prev initially, and the value it previously returned for subsequent
 	// invocations. Once it returns -1 or an error, it will not be invoked any
 	// more.
-	cb  func(ctx context.Context, prev int, txn *kv.Txn) (int, error)
+	//cb  func(ctx context.Context, prev int, txn *kv.Txn) (int, error)
 	val int
-	txn *kv.Txn
+	//txn *kv.Txn
 }
 
-var _ ValueGenerator = &CallbackValueGenerator{}
 
 // NewCallbackValueGenerator creates a new CallbackValueGenerator.
-func NewCallbackValueGenerator(
-	cb func(ctx context.Context, prev int, txn *kv.Txn) (int, error),
-) *CallbackValueGenerator {
-	return &CallbackValueGenerator{
-		cb: cb,
-	}
-}
+//func NewCallbackValueGenerator(
+//	cb func(ctx context.Context, prev int, txn *kv.Txn) (int, error),
+//) *CallbackValueGenerator {
+//	return &CallbackValueGenerator{
+//		cb: cb,
+//	}
+//}
 
 // ResolvedType is part of the ValueGenerator interface.
 func (c *CallbackValueGenerator) ResolvedType() *types.T {
@@ -5333,23 +5322,23 @@ func (c *CallbackValueGenerator) ResolvedType() *types.T {
 }
 
 // Start is part of the ValueGenerator interface.
-func (c *CallbackValueGenerator) Start(_ context.Context, txn *kv.Txn) error {
-	c.txn = txn
-	return nil
-}
+//func (c *CallbackValueGenerator) Start(_ context.Context, txn *kv.Txn) error {
+//	c.txn = txn
+//	return nil
+//}
 
 // Next is part of the ValueGenerator interface.
-func (c *CallbackValueGenerator) Next(ctx context.Context) (bool, error) {
-	var err error
-	c.val, err = c.cb(ctx, c.val, c.txn)
-	if err != nil {
-		return false, err
-	}
-	if c.val == -1 {
-		return false, nil
-	}
-	return true, nil
-}
+//func (c *CallbackValueGenerator) Next(ctx context.Context) (bool, error) {
+//	var err error
+//	c.val, err = c.cb(ctx, c.val, c.txn)
+//	if err != nil {
+//		return false, err
+//	}
+//	if c.val == -1 {
+//		return false, nil
+//	}
+//	return true, nil
+//}
 
 // Values is part of the ValueGenerator interface.
 func (c *CallbackValueGenerator) Values() (Datums, error) {
