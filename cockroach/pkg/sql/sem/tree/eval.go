@@ -37,7 +37,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlliveness"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/arith"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
@@ -429,7 +428,6 @@ func ArrayContains(ctx *EvalContext, haystack *DArray, needles *DArray) (*DBool,
 }
 
 // JSONExistsAny return true if any value in dArray is exist in the json
-
 
 func initArrayToArrayConcatenation() {
 	for _, t := range types.Scalar {
@@ -1641,7 +1639,6 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			},
 			Volatility: VolatilityImmutable,
 		},
-
 	},
 
 	// TODO(pmattis): Check that the shift is valid.
@@ -1787,9 +1784,6 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			Volatility: VolatilityImmutable,
 		},
 	},
-
-
-
 }
 
 // CmpOp is a comparison operator.
@@ -2260,9 +2254,6 @@ var CmpOps = cmpOpFixups(map[treecmp.ComparisonOperatorSymbol]cmpOpOverload{
 			Volatility: VolatilityImmutable,
 		},
 	},
-
-
-
 
 	treecmp.Overlaps: append(
 		cmpOpOverload{
@@ -3302,8 +3293,6 @@ type EvalContext struct {
 	// tiny amount, yet the account reserves a lot more resulting in
 	// significantly overestimating the memory usage.
 	SingleDatumAggMemAccount *mon.BoundAccount
-
-	SQLLivenessReader sqlliveness.Reader
 
 	SQLStatsController SQLStatsController
 
