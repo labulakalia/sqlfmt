@@ -57,11 +57,6 @@ var (
 	// ErrInt2OutOfRange is reported when casting to INT2 overflows.
 	ErrInt2OutOfRange = pgerror.New(pgcode.NumericValueOutOfRange, "integer out of range for type int2")
 	// ErrFloatOutOfRange is reported when float arithmetic overflows.
-	ErrFloatOutOfRange = pgerror.New(pgcode.NumericValueOutOfRange, "float out of range")
-	// ErrDecOutOfRange is reported when decimal arithmetic overflows.
-	ErrDecOutOfRange = pgerror.New(pgcode.NumericValueOutOfRange, "decimal out of range")
-	// errCharOutOfRange is reported when int cast to ASCII byte overflows.
-	errCharOutOfRange = pgerror.New(pgcode.NumericValueOutOfRange, "\"char\" out of range")
 
 	// ErrDivByZero is reported on a division by zero.
 	ErrDivByZero       = pgerror.New(pgcode.DivisionByZero, "division by zero")
@@ -69,9 +64,7 @@ var (
 
 	// ErrShiftArgOutOfRange is reported when a shift argument is out of range.
 	ErrShiftArgOutOfRange = pgerror.New(pgcode.InvalidParameterValue, "shift argument out of range")
-
-	big10E6  = apd.NewBigInt(1e6)
-	big10E10 = apd.NewBigInt(1e10)
+	//
 )
 
 // NewCannotMixBitArraySizesError creates an error for the case when a bitwise

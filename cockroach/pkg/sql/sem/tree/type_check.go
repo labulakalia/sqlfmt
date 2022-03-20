@@ -23,7 +23,7 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
 	"golang.org/x/text/language"
 )
@@ -592,13 +592,7 @@ func (expr *CastExpr) TypeCheck(
 func (expr *IndirectionExpr) TypeCheck(
 	ctx context.Context, semaCtx *SemaContext, desired *types.T,
 ) (TypedExpr, error) {
-	for i, t := range expr.Indirection {
-		if t.Slice {
-			return nil, unimplemented.NewWithIssuef(32551, "ARRAY slicing in %s", expr)
-		}
-		if i > 0 {
-			return nil, unimplemented.NewWithIssueDetailf(32552, "ind", "multidimensional indexing: %s", expr)
-		}
+	for _, t := range expr.Indirection {
 
 		beginExpr, err := typeCheckAndRequire(ctx, semaCtx, t.Begin, types.Int, "ARRAY subscript")
 		if err != nil {
@@ -653,10 +647,7 @@ func (expr *CollateExpr) TypeCheck(
 ) (TypedExpr, error) {
 	if strings.ToLower(expr.Locale) == DefaultCollationTag {
 		return nil, errors.WithHint(
-			unimplemented.NewWithIssuef(
-				57255,
-				"DEFAULT collations are not supported",
-			),
+			errors.New("DEFAULT collations are not supported"),
 			`omit the 'COLLATE "default"' clause in your statement`,
 		)
 	}
@@ -876,64 +867,6 @@ func NewInvalidFunctionUsageError(class FunctionClass, context string) error {
 	return pgerror.Newf(code, "%s functions are not allowed in %s", cat, context)
 }
 
-// checkFunctionUsage checks whether a given built-in function is
-// allowed in the current context.
-func (sc *SemaContext) checkFunctionUsage(expr *FuncExpr, def *FunctionDefinition) error {
-	if def.UnsupportedWithIssue != 0 {
-		// Note: no need to embed the function name in the message; the
-		// caller will add the function name as prefix.
-		const msg = "this function is not yet supported"
-		if def.UnsupportedWithIssue < 0 {
-			return unimplemented.New(def.Name+"()", msg)
-		}
-		return unimplemented.NewWithIssueDetail(def.UnsupportedWithIssue, def.Name, msg)
-	}
-	if def.Private {
-		return pgerror.Wrapf(errPrivateFunction, pgcode.ReservedName,
-			"%s()", errors.Safe(def.Name))
-	}
-	if sc == nil {
-		// We can't check anything further. Give up.
-		return nil
-	}
-
-	if expr.IsWindowFunctionApplication() {
-		if sc.Properties.required.rejectFlags&RejectWindowApplications != 0 {
-			return NewInvalidFunctionUsageError(WindowClass, sc.Properties.required.context)
-		}
-
-		if sc.Properties.Derived.InWindowFunc &&
-			sc.Properties.required.rejectFlags&RejectNestedWindowFunctions != 0 {
-			return pgerror.Newf(pgcode.Windowing, "window function calls cannot be nested")
-		}
-		sc.Properties.Derived.SeenWindowApplication = true
-	} else {
-		// If it is an aggregate function *not used OVER a window*, then
-		// we have an aggregation.
-		if def.Class == AggregateClass {
-			if sc.Properties.Derived.inFuncExpr &&
-				sc.Properties.required.rejectFlags&RejectNestedAggregates != 0 {
-				return NewAggInAggError()
-			}
-			if sc.Properties.required.rejectFlags&RejectAggregates != 0 {
-				return NewInvalidFunctionUsageError(AggregateClass, sc.Properties.required.context)
-			}
-			sc.Properties.Derived.SeenAggregate = true
-		}
-	}
-	if def.Class == GeneratorClass {
-		if sc.Properties.Derived.inFuncExpr &&
-			sc.Properties.required.rejectFlags&RejectNestedGenerators != 0 {
-			return NewInvalidNestedSRFError(sc.Properties.required.context)
-		}
-		if sc.Properties.required.rejectFlags&RejectGenerators != 0 {
-			return NewInvalidFunctionUsageError(GeneratorClass, sc.Properties.required.context)
-		}
-		sc.Properties.Derived.SeenGenerator = true
-	}
-	return nil
-}
-
 // NewContextDependentOpsNotAllowedError creates an error for the case when
 // context-dependent operators are not allowed in the given context.
 func NewContextDependentOpsNotAllowedError(context string) error {
@@ -995,10 +928,6 @@ func (expr *FuncExpr) TypeCheck(
 		return nil, err
 	}
 
-	if err := semaCtx.checkFunctionUsage(expr, def); err != nil {
-		return nil, pgerror.Wrapf(err, pgcode.InvalidParameterValue,
-			"%s()", def.Name)
-	}
 	if semaCtx != nil {
 		// We'll need to remember we are in a function application to
 		// generate suitable errors in checkFunctionUsage().  We cannot

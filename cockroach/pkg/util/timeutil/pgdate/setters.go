@@ -15,7 +15,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 )
 
 // The functions in this file are used by fieldExtract.Extract().
@@ -90,11 +89,6 @@ var unsupportedAbbreviations = [...]string{
 	"WAT", "WEST", "WET", "WIB", "WIT", "WITA",
 }
 
-func init() {
-	for _, tz := range unsupportedAbbreviations {
-		keywordSetters[strings.ToLower(tz)] = fieldSetterUnsupportedAbbreviation
-	}
-}
 
 // fieldSetterExact returns a fieldSetter that unconditionally sets field to v.
 func fieldSetterExact(field field, v int) fieldSetter {
@@ -161,10 +155,4 @@ func fieldSetterUTC(fe *fieldExtract, _ string) error {
 	fe.location = time.UTC
 	fe.wanted = fe.wanted.ClearAll(tzFields)
 	return nil
-}
-
-// fieldSetterUnsupportedAbbreviation always returns an error, but
-// captures the abbreviation in telemetry.
-func fieldSetterUnsupportedAbbreviation(_ *fieldExtract, s string) error {
-	return unimplemented.NewWithIssueDetail(31710, s, "timestamp abbreviations not supported")
 }

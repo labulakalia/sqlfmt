@@ -11,7 +11,6 @@
 package tree
 
 import (
-	"bytes"
 	"fmt"
 	"unicode/utf8"
 
@@ -44,26 +43,6 @@ func (d *DTuple) pgwireFormat(ctx *FmtCtx) {
 	// string printer called pgwireFormatStringInTuple().
 
 	ctx.WriteByte(')')
-}
-
-func pgwireFormatStringInTuple(buf *bytes.Buffer, in string) {
-	quote := pgwireQuoteStringInTuple(in)
-	if quote {
-		buf.WriteByte('"')
-	}
-	// Loop through each unicode code point.
-	for _, r := range in {
-		if r == '"' || r == '\\' {
-			// Strings in tuples double " and \.
-			buf.WriteByte(byte(r))
-			buf.WriteByte(byte(r))
-		} else {
-			buf.WriteRune(r)
-		}
-	}
-	if quote {
-		buf.WriteByte('"')
-	}
 }
 
 func (d *DArray) pgwireFormat(ctx *FmtCtx) {

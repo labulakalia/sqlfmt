@@ -23,7 +23,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/oidext"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/protoutil"
 	"github.com/lib/pq/oid"
 )
@@ -643,8 +642,6 @@ var (
 	// of one. A "char" type with an unspecified width is only used when the
 	// length of a "char" value cannot be determined, for example a placeholder
 	// typed as a "char" should have an unspecified width.
-	typeQChar = &T{InternalType: InternalType{
-		Family: StringFamily, Oid: oid.T_char, Locale: &emptyLocale}}
 )
 
 const (
@@ -2527,10 +2524,6 @@ func IsValidArrayElementType(t *T) (valid bool, issueNum int) {
 // CheckArrayElementType ensures that the given type can be used as the element
 // type of an ArrayFamily-typed column. If not, it returns an error.
 func CheckArrayElementType(t *T) error {
-	if ok, issueNum := IsValidArrayElementType(t); !ok {
-		return unimplemented.NewWithIssueDetailf(issueNum, t.String(),
-			"arrays of %s not allowed", t)
-	}
 	return nil
 }
 

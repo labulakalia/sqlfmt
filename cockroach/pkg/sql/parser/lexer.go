@@ -19,7 +19,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
-	unimp "github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/cockroachdb/errors"
 )
 
@@ -209,7 +208,6 @@ func (l *lexer) PurposelyUnimplemented(feature string, reason string) {
 
 // UnimplementedWithIssue wraps Error, setting lastUnimplementedError.
 func (l *lexer) UnimplementedWithIssue(issue int) {
-	l.lastError = unimp.NewWithIssue(issue, "this syntax")
 	l.populateErrorDetails()
 	l.lastError = &tree.UnsupportedError{
 		Err:         l.lastError,
@@ -219,7 +217,6 @@ func (l *lexer) UnimplementedWithIssue(issue int) {
 
 // UnimplementedWithIssueDetail wraps Error, setting lastUnimplementedError.
 func (l *lexer) UnimplementedWithIssueDetail(issue int, detail string) {
-	l.lastError = unimp.NewWithIssueDetail(issue, detail, "this syntax")
 	l.populateErrorDetails()
 	l.lastError = &tree.UnsupportedError{
 		Err:         l.lastError,
@@ -229,7 +226,6 @@ func (l *lexer) UnimplementedWithIssueDetail(issue int, detail string) {
 
 // Unimplemented wraps Error, setting lastUnimplementedError.
 func (l *lexer) Unimplemented(feature string) {
-	l.lastError = unimp.New(feature, "this syntax")
 	l.populateErrorDetails()
 	l.lastError = &tree.UnsupportedError{
 		Err:         l.lastError,

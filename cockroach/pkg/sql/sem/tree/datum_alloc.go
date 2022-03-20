@@ -51,15 +51,10 @@ type DatumAlloc struct {
 	env         CollationEnvironment
 
 	// Allocations for geopb.SpatialObject.EWKB
-	ewkbAlloc               []byte
-	curEWKBAllocSize        int
-	lastEWKBBeyondAllocSize bool
 }
 
 const defaultDatumAllocSize = 16  // Arbitrary, could be tuned.
 const datumAllocMultiplier = 4    // Arbitrary, could be tuned.
-const defaultEWKBAllocSize = 4096 // Arbitrary, could be tuned.
-const maxEWKBAllocSize = 16384    // Arbitrary, could be tuned.
 
 // NewDatums allocates Datums of the specified size.
 func (a *DatumAlloc) NewDatums(num int) Datums {

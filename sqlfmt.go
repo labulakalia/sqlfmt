@@ -10,23 +10,23 @@ import (
 
 var (
 	ignoreComments = regexp.MustCompile(`^--.*\s*`)
-	prettyCfg = defaultPrettyCfg()
 )
 
-func defaultPrettyCfg() *tree.PrettyCfg {
+func getPrettyCfg(lineWidth int) *tree.PrettyCfg {
 	prettyCfg := &tree.PrettyCfg{
-		LineWidth: tree.DefaultLineWidth,
+		LineWidth: lineWidth,
 		Simplify:  true,
 		TabWidth:  4,
 		UseTabs:   true,
 		Align:     tree.PrettyNoAlign,
-		Case: strings.ToUpper,
-		JSONFmt:true,
+		Case:      strings.ToUpper,
+		JSONFmt:   true,
 	}
 	return prettyCfg
 }
 
-func FormatSQL(stmt string)(string, error) {
+func FormatSQL(stmt string) (string, error) {
+	prettyCfg := getPrettyCfg(len(stmt) / 2 + 10)
 	var prettied strings.Builder
 	stmt = strings.TrimSpace(stmt)
 	hasContent := false

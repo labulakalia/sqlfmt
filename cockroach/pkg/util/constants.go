@@ -31,7 +31,6 @@ func IsMetamo1rphicBuild() bool {
 var metamorphicBuild bool
 
 const (
-	metamorphicBuildProbability = 0.8
 	metamorphicValueProbability = 0.75
 	metamorphicBoolProbability  = 0.5
 )

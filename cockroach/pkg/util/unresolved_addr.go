@@ -13,9 +13,6 @@ package util
 import (
 	"fmt"
 	"net"
-	"os"
-
-	addrutil "github.com/labulakalia/sqlfmt/cockroach/pkg/util/netutil/addr"
 )
 
 // TestAddr is an address to use for test servers. Listening on port 0
@@ -57,34 +54,6 @@ func NewUnresolvedAddr(network, addr string) *UnresolvedAddr {
 		AddressField: addr,
 	}
 }
-
-// MakeUnresolvedAddrWithDefaults creates a new UnresolvedAddr from a network and
-// raw address string, using the following defaults if not given:
-//
-// - Network: tcp
-// - Host: local hostname or 127.0.0.1
-// - Port: given default port
-func MakeUnresolvedAddrWithDefaults(network, addr, defaultPort string) UnresolvedAddr {
-	if network == "" {
-		network = "tcp"
-	}
-	if host, port, err := addrutil.SplitHostPort(addr, defaultPort); err != nil {
-		addr = net.JoinHostPort(addr, defaultPort)
-	} else {
-		if host == "" {
-			host, err = os.Hostname()
-			if err != nil {
-				host = "127.0.0.1"
-			}
-		}
-		addr = net.JoinHostPort(host, port)
-	}
-	return UnresolvedAddr{
-		NetworkField: network,
-		AddressField: addr,
-	}
-}
-
 // Note that we make *UnresolvedAddr implement the net.Addr interface, not
 // UnresolvedAddr. This is done because assigning a non-empty struct to an
 // interface requires an allocation, while assigning a pointer to an interface

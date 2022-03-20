@@ -2077,7 +2077,6 @@ func (o *CreateStatsOptions) Format(ctx *FmtCtx) {
 	if o.AsOf.Expr != nil {
 		ctx.WriteString(sep)
 		ctx.FormatNode(&o.AsOf)
-		sep = " "
 	}
 }
 

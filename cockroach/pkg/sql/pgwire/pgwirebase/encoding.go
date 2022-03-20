@@ -43,7 +43,6 @@ import (
 
 const (
 	defaultMaxReadBufferMessageSize = 1 << 24
-	minReadBufferMessageSize        = 1 << 14
 )
 
 const readBufferMaxMessageSizeClusterSettingName = "sql.conn.max_read_buffer_message_size"

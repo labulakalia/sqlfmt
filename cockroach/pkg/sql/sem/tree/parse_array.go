@@ -12,6 +12,7 @@ package tree
 
 import (
 	"bytes"
+	"errors"
 	"strings"
 	"unicode"
 	"unicode/utf8"
@@ -19,12 +20,11 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 )
 
 var enclosingError = pgerror.Newf(pgcode.InvalidTextRepresentation, "array must be enclosed in { and }")
 var extraTextError = pgerror.Newf(pgcode.InvalidTextRepresentation, "extra text after closing right brace")
-var nestedArraysNotSupportedError = unimplemented.NewWithIssueDetail(32552, "strcast", "nested arrays not supported")
+var nestedArraysNotSupportedError = errors.New("11")
 var malformedError = pgerror.Newf(pgcode.InvalidTextRepresentation, "malformed array")
 
 var isQuoteChar = func(ch byte) bool {

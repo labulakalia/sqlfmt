@@ -57,9 +57,6 @@ const (
 	nanosInSecond = 1000 * 1000 * 1000
 	nanosInMicro  = 1000
 
-	// Used in overflow calculations.
-	maxYearsInDuration = math.MaxInt64 / nanosInMonth
-	minYearsInDuration = math.MinInt64 / nanosInMonth
 )
 
 var (
