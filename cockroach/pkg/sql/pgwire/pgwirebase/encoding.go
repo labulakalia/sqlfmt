@@ -30,7 +30,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ipaddr"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeofday"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
@@ -299,8 +298,7 @@ func validateArrayDimensions(nDimensions int, nElements int) error {
 		}
 		fallthrough
 	default:
-		return unimplemented.NewWithIssuef(32552,
-			"%d-dimension arrays not supported; only 1-dimension", nDimensions)
+		return errors.New("dimension arrays not supported; only 1-dimension")
 	}
 	return nil
 }
