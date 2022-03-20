@@ -11,7 +11,6 @@
 package log
 
 import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
@@ -34,9 +33,4 @@ func (l *stderrSink) attachHints(stacks []byte) []byte {
 func (l *stderrSink) output(b []byte, _ sinkOutputOptions) error {
 	_, err := OrigStderr.Write(b)
 	return err
-}
-
-// exitCode implements the logSink interface.
-func (l *stderrSink) exitCode() exit.Code {
-	return exit.LoggingStderrUnavailable()
 }

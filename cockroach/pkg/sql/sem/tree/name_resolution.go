@@ -15,7 +15,6 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/catalog/catconstants"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
@@ -114,9 +113,7 @@ func classifyColumnItem(n *UnresolvedName) (VarName, error) {
 const (
 	// PublicSchema is the name of the physical schema in every
 	// database/catalog.
-	PublicSchema string = catconstants.PublicSchemaName
 	// PublicSchemaName is the same, typed as Name.
-	PublicSchemaName Name = Name(PublicSchema)
 )
 
 // QualifiedNameResolver is the helper interface to resolve qualified
@@ -164,19 +161,6 @@ func (n *UnresolvedName) ResolveFunction(
 
 	fullName := function
 
-	if prefix == catconstants.PgCatalogName {
-		// If the user specified e.g. `pg_catalog.max()` we want to find
-		// it in the global namespace.
-		prefix = ""
-	}
-	if prefix == catconstants.PublicSchemaName {
-		// If the user specified public, it may be from a PostgreSQL extension.
-		// Double check the function definition allows resolution on the public
-		// schema, and resolve as such if appropriate.
-		if d, ok := FunDefs[function]; ok && d.AvailableOnPublicSchema {
-			return d, nil
-		}
-	}
 
 	if prefix != "" {
 		fullName = prefix + "." + function

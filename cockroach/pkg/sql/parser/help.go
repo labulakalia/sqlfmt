@@ -18,12 +18,11 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
-	"github.com/cockroachdb/errors"
 )
 
 // HelpMessage describes a contextual help message.
@@ -102,7 +101,7 @@ func helpWithFunction(sqllex sqlLexer, f tree.ResolvableFunctionReference) int {
 		Function: f.String(),
 		HelpMessageBody: HelpMessageBody{
 			Category: d.Category,
-			SeeAlso:  docs.URL("functions-and-operators.html"),
+			SeeAlso:  ("functions-and-operators.html"),
 		},
 	}
 
@@ -176,7 +175,7 @@ var HelpMessages = func(h map[string]HelpMessageBody) map[string]HelpMessageBody
 	reformatSeeAlso := func(seeAlso string) string {
 		return strings.Replace(
 			strings.Replace(seeAlso, ", ", "\n  ", -1),
-			"WEBDOCS", docs.URLBase, -1)
+			"WEBDOCS", "", -1)
 	}
 	srcMsg := h["<SOURCE>"]
 	srcMsg.SeeAlso = reformatSeeAlso(strings.TrimSpace(srcMsg.SeeAlso))

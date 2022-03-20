@@ -42,33 +42,7 @@ func (d *DTuple) pgwireFormat(ctx *FmtCtx) {
 	// instead printed as-is. Only non-valid characters get escaped to
 	// hex. So we delegate this formatting to a tuple-specific
 	// string printer called pgwireFormatStringInTuple().
-	ctx.WriteByte('(')
-	comma := ""
-	for i, v := range d.D {
-		ctx.WriteString(comma)
-		t := d.ResolvedType().TupleContents()[i]
-		switch dv := UnwrapDatum(nil, v).(type) {
-		case dNull:
-		case *DString:
-			s := ResolveBlankPaddedChar(string(*dv), t)
-			pgwireFormatStringInTuple(&ctx.Buffer, s)
-		case *DCollatedString:
-			s := ResolveBlankPaddedChar(dv.Contents, t)
-			pgwireFormatStringInTuple(&ctx.Buffer, s)
-			// Bytes cannot use the default case because they will be incorrectly
-			// double escaped.
-		case *DBytes:
-			ctx.FormatNode(dv)
-		case *DJSON:
-			var buf bytes.Buffer
-			dv.JSON.Format(&buf)
-			pgwireFormatStringInTuple(&ctx.Buffer, buf.String())
-		default:
-			s := AsStringWithFlags(v, ctx.flags, FmtDataConversionConfig(ctx.dataConversionConfig))
-			pgwireFormatStringInTuple(&ctx.Buffer, s)
-		}
-		comma = ","
-	}
+
 	ctx.WriteByte(')')
 }
 

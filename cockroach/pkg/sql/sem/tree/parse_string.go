@@ -56,14 +56,6 @@ func ParseAndRequireString(
 			return nil, false, typErr
 		}
 		d, err = ParseDIntervalWithTypeMetadata(intervalStyle(ctx), s, itm)
-	case types.Box2DFamily:
-		d, err = ParseDBox2D(s)
-	case types.GeographyFamily:
-		d, err = ParseDGeography(s)
-	case types.GeometryFamily:
-		d, err = ParseDGeometry(s)
-	case types.JsonFamily:
-		d, err = ParseDJSON(s)
 	case types.OidFamily:
 		if t.Oid() != oid.T_oid && s == ZeroOidValue {
 			d = wrapAsZeroOid(t)

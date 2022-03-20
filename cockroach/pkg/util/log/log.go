@@ -11,11 +11,8 @@
 package log
 
 import (
-	"context"
-
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/cockroachdb/errors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 )
 
 func init() {
@@ -54,16 +51,4 @@ func V(level Level) bool {
 // if ExpensiveLogEnabled(ctx, 2) {
 //   msg := constructExpensiveMessage()
 //   log.VEventf(ctx, 2, msg)
-// }
-//
-func ExpensiveLogEnabled(ctx context.Context, level Level) bool {
-	if sp := tracing.SpanFromContext(ctx); sp != nil {
-		if sp.IsVerbose() || sp.Tracer().HasExternalSink() {
-			return true
-		}
-	}
-	if VDepth(level, 1 /* depth */) {
-		return true
-	}
-	return false
-}
+///

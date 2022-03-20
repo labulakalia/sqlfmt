@@ -13,7 +13,6 @@ package tree
 import (
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeofday"
@@ -76,19 +75,9 @@ func SampleDatum(t *types.T) Datum {
 	case types.INetFamily:
 		i, _ := ParseDIPAddrFromINetString("127.0.0.1")
 		return i
-	case types.JsonFamily:
-		j, _ := ParseDJSON(`{"a": "b"}`)
-		return j
 	case types.OidFamily:
 		return NewDOid(DInt(1009))
-	case types.Box2DFamily:
-		b := geo.NewCartesianBoundingBox().AddPoint(1, 2).AddPoint(3, 4)
-		return NewDBox2D(*b)
-	case types.GeographyFamily:
-		return NewDGeography(geo.MustParseGeographyFromEWKB([]byte("\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf0\x3f\x00\x00\x00\x00\x00\x00\xf0\x3f")))
-	case types.GeometryFamily:
-		return NewDGeometry(geo.MustParseGeometryFromEWKB([]byte("\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf0\x3f\x00\x00\x00\x00\x00\x00\xf0\x3f")))
-	default:
+		default:
 		panic(errors.AssertionFailedf("SampleDatum not implemented for %s", t))
 	}
 }

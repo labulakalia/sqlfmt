@@ -6,7 +6,7 @@ package sessiondatapb
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//github_com_cockroachdb_cockroach_pkg_security "github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"
@@ -173,7 +173,7 @@ type LocalOnlySessionData struct {
 	// established the connection before SET ROLE was first performed.
 	// This is only populated when SET ROLE is used, otherwise the session_user
 	// is the same as the UserProto in SessionData.
-	SessionUserProto github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto `protobuf:"bytes,46,opt,name=session_user_proto,json=sessionUserProto,proto3,casttype=sqlfmt/cockroach/pkg/security.SQLUsernameProto" json:"session_user_proto,omitempty"`
+	//SessionUserProto github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto `protobuf:"bytes,46,opt,name=session_user_proto,json=sessionUserProto,proto3,casttype=sqlfmt/cockroach/pkg/security.SQLUsernameProto" json:"session_user_proto,omitempty"`
 	// TxnRowsWrittenLog is the threshold for the number of rows written by a SQL
 	// transaction which - once exceeded - will trigger a logging event to SQL_PERF
 	// (or SQL_INTERNAL_PERF for internal transactions); 0 means disabled.
@@ -231,7 +231,7 @@ type LocalOnlySessionData struct {
 	CostScansWithDefaultColSize bool `protobuf:"varint,61,opt,name=cost_scans_with_default_col_size,json=costScansWithDefaultColSize,proto3" json:"cost_scans_with_default_col_size,omitempty"`
 	// DefaultTxnQualityOfService indicates the default QoSLevel/WorkPriority of
 	// newly created transactions.
-	DefaultTxnQualityOfService QoSLevel `protobuf:"varint,62,opt,name=default_txn_quality_of_service,json=defaultTxnQualityOfService,proto3,casttype=QoSLevel" json:"default_txn_quality_of_service,omitempty"`
+	//DefaultTxnQualityOfService QoSLevel `protobuf:"varint,62,opt,name=default_txn_quality_of_service,json=defaultTxnQualityOfService,proto3,casttype=QoSLevel" json:"default_txn_quality_of_service,omitempty"`
 	// OptSplitScanLimit indicates the maximum number of UNION ALL statements a
 	// Scan may be split into during query optimization to avoid a sort.
 	OptSplitScanLimit int32 `protobuf:"varint,63,opt,name=opt_split_scan_limit,json=optSplitScanLimit,proto3" json:"opt_split_scan_limit,omitempty"`
@@ -538,13 +538,13 @@ func (m *LocalOnlySessionData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0xf8
 	}
-	if m.DefaultTxnQualityOfService != 0 {
-		i = encodeVarintLocalOnlySessionData(dAtA, i, uint64(m.DefaultTxnQualityOfService))
-		i--
-		dAtA[i] = 0x3
-		i--
-		dAtA[i] = 0xf0
-	}
+	//if m.DefaultTxnQualityOfService != 0 {
+	//	i = encodeVarintLocalOnlySessionData(dAtA, i, uint64(m.DefaultTxnQualityOfService))
+	//	i--
+	//	dAtA[i] = 0x3
+	//	i--
+	//	dAtA[i] = 0xf0
+	//}
 	if m.CostScansWithDefaultColSize {
 		i--
 		if m.CostScansWithDefaultColSize {
@@ -715,15 +715,15 @@ func (m *LocalOnlySessionData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0xf8
 	}
-	if len(m.SessionUserProto) > 0 {
-		i -= len(m.SessionUserProto)
-		copy(dAtA[i:], m.SessionUserProto)
-		i = encodeVarintLocalOnlySessionData(dAtA, i, uint64(len(m.SessionUserProto)))
-		i--
-		dAtA[i] = 0x2
-		i--
-		dAtA[i] = 0xf2
-	}
+	//if len(m.SessionUserProto) > 0 {
+	//	i -= len(m.SessionUserProto)
+	//	copy(dAtA[i:], m.SessionUserProto)
+	//	i = encodeVarintLocalOnlySessionData(dAtA, i, uint64(len(m.SessionUserProto)))
+	//	i--
+	//	dAtA[i] = 0x2
+	//	i--
+	//	dAtA[i] = 0xf2
+	//}
 	if m.PlacementEnabled {
 		i--
 		if m.PlacementEnabled {
@@ -1337,10 +1337,10 @@ func (m *LocalOnlySessionData) Size() (n int) {
 	if m.PlacementEnabled {
 		n += 3
 	}
-	l = len(m.SessionUserProto)
-	if l > 0 {
-		n += 2 + l + sovLocalOnlySessionData(uint64(l))
-	}
+	//l = len(m.SessionUserProto)
+	//if l > 0 {
+	//	n += 2 + l + sovLocalOnlySessionData(uint64(l))
+	//}
 	if m.TxnRowsWrittenLog != 0 {
 		n += 2 + sovLocalOnlySessionData(uint64(m.TxnRowsWrittenLog))
 	}
@@ -1391,9 +1391,9 @@ func (m *LocalOnlySessionData) Size() (n int) {
 	if m.CostScansWithDefaultColSize {
 		n += 3
 	}
-	if m.DefaultTxnQualityOfService != 0 {
-		n += 2 + sovLocalOnlySessionData(uint64(m.DefaultTxnQualityOfService))
-	}
+	//if m.DefaultTxnQualityOfService != 0 {
+	//	n += 2 + sovLocalOnlySessionData(uint64(m.DefaultTxnQualityOfService))
+	//}
 	if m.OptSplitScanLimit != 0 {
 		n += 2 + sovLocalOnlySessionData(uint64(m.OptSplitScanLimit))
 	}
@@ -2422,7 +2422,7 @@ func (m *LocalOnlySessionData) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.SessionUserProto = github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto(dAtA[iNdEx:postIndex])
+			//m.SessionUserProto = github_com_cockroachdb_cockroach_pkg_security.SQLUsernameProto(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 47:
 			if wireType != 0 {
@@ -2822,21 +2822,21 @@ func (m *LocalOnlySessionData) Unmarshal(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DefaultTxnQualityOfService", wireType)
 			}
-			m.DefaultTxnQualityOfService = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLocalOnlySessionData
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.DefaultTxnQualityOfService |= QoSLevel(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
+			//m.DefaultTxnQualityOfService = 0
+			//for shift := uint(0); ; shift += 7 {
+			//	if shift >= 64 {
+			//		return ErrIntOverflowLocalOnlySessionData
+			//	}
+			//	if iNdEx >= l {
+			//		return io.ErrUnexpectedEOF
+			//	}
+			//	//b := dAtA[iNdEx]
+			//	//iNdEx++
+			//	//m.DefaultTxnQualityOfService |= QoSLevel(b&0x7F) << shift
+			//	//if b < 0x80 {
+			//	//	break
+			//	//}
+			//}
 		case 63:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field OptSplitScanLimit", wireType)

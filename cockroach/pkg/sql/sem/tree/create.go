@@ -24,15 +24,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/roleoption"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/pretty"
-	"github.com/cockroachdb/errors"
 	"golang.org/x/text/language"
 )
 
@@ -1982,12 +1980,6 @@ type RefreshMaterializedView struct {
 	Name              *UnresolvedObjectName
 	Concurrently      bool
 	RefreshDataOption RefreshDataOption
-}
-
-// TelemetryCounter returns the telemetry counter to increment
-// when this command is used.
-func (node *RefreshMaterializedView) TelemetryCounter() telemetry.Counter {
-	return sqltelemetry.SchemaRefreshMaterializedView
 }
 
 // RefreshDataOption corresponds to arguments for the REFRESH MATERIALIZED VIEW

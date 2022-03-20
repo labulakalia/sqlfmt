@@ -24,18 +24,17 @@ import (
 	"unsafe"
 
 	"github.com/cockroachdb/apd/v3"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/redact"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/ipaddr"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/stringencoding"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeofday"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timetz"
@@ -43,8 +42,6 @@ import (
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uint128"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/redact"
 	"github.com/lib/pq/oid"
 	"golang.org/x/text/collate"
 	"golang.org/x/text/language"
@@ -1245,7 +1242,7 @@ func (d *DString) Prev(_ *EvalContext) (Datum, bool) {
 
 // Next implements the Datum interface.
 func (d *DString) Next(_ *EvalContext) (Datum, bool) {
-	return NewDString(string(roachpb.Key(*d).Next())), true
+	return NewDString(""), true
 }
 
 // IsMax implements the Datum interface.
@@ -1497,7 +1494,7 @@ func (d *DBytes) Prev(_ *EvalContext) (Datum, bool) {
 
 // Next implements the Datum interface.
 func (d *DBytes) Next(_ *EvalContext) (Datum, bool) {
-	return NewDBytes(DBytes(roachpb.Key(*d).Next())), true
+	return NewDBytes(""), true
 }
 
 // IsMax implements the Datum interface.
@@ -3164,12 +3161,6 @@ func (d *DInterval) Size() uintptr {
 
 // DGeography is the Geometry Datum.
 type DGeography struct {
-	geo.Geography
-}
-
-// NewDGeography returns a new Geography Datum.
-func NewDGeography(g geo.Geography) *DGeography {
-	return &DGeography{Geography: g}
 }
 
 // AsDGeography attempts to retrieve a *DGeography from an Expr, returning a
@@ -3178,31 +3169,15 @@ func NewDGeography(g geo.Geography) *DGeography {
 // *DGeography wrapped by a *DOidWrapper is possible.
 func AsDGeography(e Expr) (*DGeography, bool) {
 	switch t := e.(type) {
-	case *DGeography:
-		return t, true
 	case *DOidWrapper:
 		return AsDGeography(t.Wrapped)
 	}
 	return nil, false
 }
 
-// MustBeDGeography attempts to retrieve a *DGeography from an Expr, panicking
-// if the assertion fails.
-func MustBeDGeography(e Expr) *DGeography {
-	i, ok := AsDGeography(e)
-	if !ok {
-		panic(errors.AssertionFailedf("expected *DGeography, found %T", e))
-	}
-	return i
-}
-
 // ParseDGeography attempts to pass `str` as a Geography type.
 func ParseDGeography(str string) (*DGeography, error) {
-	g, err := geo.ParseGeography(str)
-	if err != nil {
-		return nil, errors.Wrapf(err, "could not parse geography")
-	}
-	return &DGeography{Geography: g}, nil
+	return &DGeography{}, nil
 }
 
 // ResolvedType implements the TypedExpr interface.
@@ -3210,28 +3185,9 @@ func (*DGeography) ResolvedType() *types.T {
 	return types.Geography
 }
 
-// Compare implements the Datum interface.
-func (d *DGeography) Compare(ctx *EvalContext, other Datum) int {
-	res, err := d.CompareError(ctx, other)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
 
 // CompareError implements the Datum interface.
-func (d *DGeography) CompareError(ctx *EvalContext, other Datum) (int, error) {
-	if other == DNull {
-		// NULL is less than any non-NULL value.
-		return 1, nil
-	}
-	v, ok := UnwrapDatum(ctx, other).(*DGeography)
-	if !ok {
-		return 0, makeUnsupportedComparisonMessage(d, other)
-	}
-	res := d.Geography.Compare(v.Geography)
-	return res, nil
-}
+
 
 // Prev implements the Datum interface.
 func (d *DGeography) Prev(ctx *EvalContext) (Datum, bool) {
@@ -3273,26 +3229,15 @@ func (d *DGeography) Format(ctx *FmtCtx) {
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
-	ctx.WriteString(d.Geography.EWKBHex())
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
 }
 
-// Size implements the Datum interface.
-func (d *DGeography) Size() uintptr {
-	return d.Geography.SpatialObjectRef().MemSize()
-}
-
 // DGeometry is the Geometry Datum.
 type DGeometry struct {
-	geo.Geometry
 }
 
-// NewDGeometry returns a new Geometry Datum.
-func NewDGeometry(g geo.Geometry) *DGeometry {
-	return &DGeometry{Geometry: g}
-}
 
 // AsDGeometry attempts to retrieve a *DGeometry from an Expr, returning a
 // *DGeometry and a flag signifying whether the assertion was successful. The
@@ -3300,8 +3245,6 @@ func NewDGeometry(g geo.Geometry) *DGeometry {
 // *DGeometry wrapped by a *DOidWrapper is possible.
 func AsDGeometry(e Expr) (*DGeometry, bool) {
 	switch t := e.(type) {
-	case *DGeometry:
-		return t, true
 	case *DOidWrapper:
 		return AsDGeometry(t.Wrapped)
 	}
@@ -3318,42 +3261,12 @@ func MustBeDGeometry(e Expr) *DGeometry {
 	return i
 }
 
-// ParseDGeometry attempts to pass `str` as a Geometry type.
-func ParseDGeometry(str string) (*DGeometry, error) {
-	g, err := geo.ParseGeometry(str)
-	if err != nil {
-		return nil, errors.Wrapf(err, "could not parse geometry")
-	}
-	return &DGeometry{Geometry: g}, nil
-}
 
 // ResolvedType implements the TypedExpr interface.
 func (*DGeometry) ResolvedType() *types.T {
 	return types.Geometry
 }
 
-// Compare implements the Datum interface.
-func (d *DGeometry) Compare(ctx *EvalContext, other Datum) int {
-	res, err := d.CompareError(ctx, other)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
-
-// CompareError implements the Datum interface.
-func (d *DGeometry) CompareError(ctx *EvalContext, other Datum) (int, error) {
-	if other == DNull {
-		// NULL is less than any non-NULL value.
-		return 1, nil
-	}
-	v, ok := UnwrapDatum(ctx, other).(*DGeometry)
-	if !ok {
-		return 0, makeUnsupportedComparisonMessage(d, other)
-	}
-	res := d.Geometry.Compare(v.Geometry)
-	return res, nil
-}
 
 // Prev implements the Datum interface.
 func (d *DGeometry) Prev(ctx *EvalContext) (Datum, bool) {
@@ -3395,35 +3308,17 @@ func (d *DGeometry) Format(ctx *FmtCtx) {
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
-	ctx.WriteString(d.Geometry.EWKBHex())
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
 }
 
-// Size implements the Datum interface.
-func (d *DGeometry) Size() uintptr {
-	return d.Geometry.SpatialObjectRef().MemSize()
-}
 
 // DBox2D is the Datum representation of the Box2D type.
 type DBox2D struct {
-	geo.CartesianBoundingBox
 }
 
-// NewDBox2D returns a new Box2D Datum.
-func NewDBox2D(b geo.CartesianBoundingBox) *DBox2D {
-	return &DBox2D{CartesianBoundingBox: b}
-}
 
-// ParseDBox2D attempts to pass `str` as a Box2D type.
-func ParseDBox2D(str string) (*DBox2D, error) {
-	b, err := geo.ParseCartesianBoundingBox(str)
-	if err != nil {
-		return nil, errors.Wrapf(err, "could not parse geometry")
-	}
-	return &DBox2D{CartesianBoundingBox: b}, nil
-}
 
 // AsDBox2D attempts to retrieve a *DBox2D from an Expr, returning a
 // *DBox2D and a flag signifying whether the assertion was successful. The
@@ -3431,8 +3326,6 @@ func ParseDBox2D(str string) (*DBox2D, error) {
 // *DBox2D wrapped by a *DOidWrapper is possible.
 func AsDBox2D(e Expr) (*DBox2D, bool) {
 	switch t := e.(type) {
-	case *DBox2D:
-		return t, true
 	case *DOidWrapper:
 		return AsDBox2D(t.Wrapped)
 	}
@@ -3456,25 +3349,7 @@ func (*DBox2D) ResolvedType() *types.T {
 
 // Compare implements the Datum interface.
 func (d *DBox2D) Compare(ctx *EvalContext, other Datum) int {
-	res, err := d.CompareError(ctx, other)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
-
-// CompareError implements the Datum interface.
-func (d *DBox2D) CompareError(ctx *EvalContext, other Datum) (int, error) {
-	if other == DNull {
-		// NULL is less than any non-NULL value.
-		return 1, nil
-	}
-	v, ok := UnwrapDatum(ctx, other).(*DBox2D)
-	if !ok {
-		return 0, makeUnsupportedComparisonMessage(d, other)
-	}
-	res := d.CartesianBoundingBox.Compare(&v.CartesianBoundingBox)
-	return res, nil
+	return 0
 }
 
 // Prev implements the Datum interface.
@@ -3517,236 +3392,20 @@ func (d *DBox2D) Format(ctx *FmtCtx) {
 	if !bareStrings {
 		ctx.WriteByte('\'')
 	}
-	ctx.WriteString(d.CartesianBoundingBox.Repr())
-	if !bareStrings {
-		ctx.WriteByte('\'')
-	}
 }
 
 // Size implements the Datum interface.
 func (d *DBox2D) Size() uintptr {
-	return unsafe.Sizeof(*d) + unsafe.Sizeof(d.CartesianBoundingBox)
+	return unsafe.Sizeof(*d) + unsafe.Sizeof(0)
 }
 
-// DJSON is the JSON Datum.
-type DJSON struct{ json.JSON }
 
-// NewDJSON is a helper routine to create a DJSON initialized from its argument.
-func NewDJSON(j json.JSON) *DJSON {
-	return &DJSON{j}
-}
-
-// ParseDJSON takes a string of JSON and returns a DJSON value.
-func ParseDJSON(s string) (Datum, error) {
-	j, err := json.ParseJSON(s)
-	if err != nil {
-		return nil, pgerror.Wrapf(err, pgcode.Syntax, "could not parse JSON")
-	}
-	return NewDJSON(j), nil
-}
-
-// MakeDJSON returns a JSON value given a Go-style representation of JSON.
-// * JSON null is Go `nil`,
-// * JSON true is Go `true`,
-// * JSON false is Go `false`,
-// * JSON numbers are json.Number | int | int64 | float64,
-// * JSON string is a Go string,
-// * JSON array is a Go []interface{},
-// * JSON object is a Go map[string]interface{}.
-func MakeDJSON(d interface{}) (Datum, error) {
-	j, err := json.MakeJSON(d)
-	if err != nil {
-		return nil, err
-	}
-	return &DJSON{j}, nil
-}
-
-var dNullJSON = NewDJSON(json.NullJSONValue)
 
 // AsDJSON attempts to retrieve a *DJSON from an Expr, returning a *DJSON and
 // a flag signifying whether the assertion was successful. The function should
 // be used instead of direct type assertions wherever a *DJSON wrapped by a
 // *DOidWrapper is possible.
-func AsDJSON(e Expr) (*DJSON, bool) {
-	switch t := e.(type) {
-	case *DJSON:
-		return t, true
-	case *DOidWrapper:
-		return AsDJSON(t.Wrapped)
-	}
-	return nil, false
-}
 
-// MustBeDJSON attempts to retrieve a DJSON from an Expr, panicking if the
-// assertion fails.
-func MustBeDJSON(e Expr) DJSON {
-	i, ok := AsDJSON(e)
-	if !ok {
-		panic(errors.AssertionFailedf("expected *DJSON, found %T", e))
-	}
-	return *i
-}
-
-// AsJSON converts a datum into our standard json representation.
-func AsJSON(
-	d Datum, dcc sessiondatapb.DataConversionConfig, loc *time.Location,
-) (json.JSON, error) {
-	d = UnwrapDatum(nil /* evalCtx */, d)
-	switch t := d.(type) {
-	case *DBool:
-		return json.FromBool(bool(*t)), nil
-	case *DInt:
-		return json.FromInt(int(*t)), nil
-	case *DFloat:
-		return json.FromFloat64(float64(*t))
-	case *DDecimal:
-		return json.FromDecimal(t.Decimal), nil
-	case *DString:
-		return json.FromString(string(*t)), nil
-	case *DCollatedString:
-		return json.FromString(t.Contents), nil
-	case *DEnum:
-		return json.FromString(t.LogicalRep), nil
-	case *DJSON:
-		return t.JSON, nil
-	case *DArray:
-		builder := json.NewArrayBuilder(t.Len())
-		for _, e := range t.Array {
-			j, err := AsJSON(e, dcc, loc)
-			if err != nil {
-				return nil, err
-			}
-			builder.Add(j)
-		}
-		return builder.Build(), nil
-	case *DTuple:
-		builder := json.NewObjectBuilder(len(t.D))
-		// We need to make sure that t.typ is initialized before getting the tuple
-		// labels (it is valid for t.typ be left uninitialized when instantiating a
-		// DTuple).
-		t.maybePopulateType()
-		labels := t.typ.TupleLabels()
-		for i, e := range t.D {
-			j, err := AsJSON(e, dcc, loc)
-			if err != nil {
-				return nil, err
-			}
-			var key string
-			if i >= len(labels) {
-				key = fmt.Sprintf("f%d", i+1)
-			} else {
-				key = labels[i]
-			}
-			builder.Add(key, j)
-		}
-		return builder.Build(), nil
-	case *DTimestampTZ:
-		// Our normal timestamp-formatting code uses a variation on RFC 3339,
-		// without the T separator. This causes some compatibility problems
-		// with certain JSON consumers, so we'll use an alternate formatting
-		// path here to maintain consistency with PostgreSQL.
-		return json.FromString(t.Time.In(loc).Format(time.RFC3339Nano)), nil
-	case *DTimestamp:
-		// This is RFC3339Nano, but without the TZ fields.
-		return json.FromString(t.UTC().Format("2006-01-02T15:04:05.999999999")), nil
-	case *DDate, *DUuid, *DOid, *DInterval, *DBytes, *DIPAddr, *DTime, *DTimeTZ, *DBitArray, *DBox2D:
-		return json.FromString(AsStringWithFlags(t, FmtBareStrings, FmtDataConversionConfig(dcc))), nil
-	case *DGeometry:
-		return json.FromSpatialObject(t.Geometry.SpatialObject(), geo.DefaultGeoJSONDecimalDigits)
-	case *DGeography:
-		return json.FromSpatialObject(t.Geography.SpatialObject(), geo.DefaultGeoJSONDecimalDigits)
-	default:
-		if d == DNull {
-			return json.NullJSONValue, nil
-		}
-
-		return nil, errors.AssertionFailedf("unexpected type %T for AsJSON", d)
-	}
-}
-
-// ResolvedType implements the TypedExpr interface.
-func (*DJSON) ResolvedType() *types.T {
-	return types.Jsonb
-}
-
-// Compare implements the Datum interface.
-func (d *DJSON) Compare(ctx *EvalContext, other Datum) int {
-	res, err := d.CompareError(ctx, other)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
-
-// CompareError implements the Datum interface.
-func (d *DJSON) CompareError(ctx *EvalContext, other Datum) (int, error) {
-	if other == DNull {
-		// NULL is less than any non-NULL value.
-		return 1, nil
-	}
-	v, ok := UnwrapDatum(ctx, other).(*DJSON)
-	if !ok {
-		return 0, makeUnsupportedComparisonMessage(d, other)
-	}
-	c, err := d.JSON.Compare(v.JSON)
-	if err != nil {
-		return 0, err
-	}
-	return c, nil
-}
-
-// Prev implements the Datum interface.
-func (d *DJSON) Prev(_ *EvalContext) (Datum, bool) {
-	return nil, false
-}
-
-// Next implements the Datum interface.
-func (d *DJSON) Next(_ *EvalContext) (Datum, bool) {
-	return nil, false
-}
-
-// IsMax implements the Datum interface.
-func (d *DJSON) IsMax(_ *EvalContext) bool {
-	return false
-}
-
-// IsMin implements the Datum interface.
-func (d *DJSON) IsMin(_ *EvalContext) bool {
-	return d.JSON == json.NullJSONValue
-}
-
-// Max implements the Datum interface.
-func (d *DJSON) Max(_ *EvalContext) (Datum, bool) {
-	return nil, false
-}
-
-// Min implements the Datum interface.
-func (d *DJSON) Min(_ *EvalContext) (Datum, bool) {
-	return &DJSON{json.NullJSONValue}, true
-}
-
-// AmbiguousFormat implements the Datum interface.
-func (*DJSON) AmbiguousFormat() bool { return true }
-
-// Format implements the NodeFormatter interface.
-func (d *DJSON) Format(ctx *FmtCtx) {
-	// TODO(justin): ideally the JSON string encoder should know it needs to
-	// escape things to be inside SQL strings in order to avoid this allocation.
-	s := d.JSON.String()
-	if ctx.flags.HasFlags(fmtRawStrings) {
-		ctx.WriteString(s)
-	} else {
-		// TODO(knz): This seems incorrect,
-		// see https://sqlfmt/cockroach/issues/60673
-		lexbase.EncodeSQLStringWithFlags(&ctx.Buffer, s, ctx.flags.EncodeFlags())
-	}
-}
-
-// Size implements the Datum interface.
-// TODO(justin): is this a frequently-called method? Should we be caching the computed size?
-func (d *DJSON) Size() uintptr {
-	return unsafe.Sizeof(*d) + d.JSON.Size()
-}
 
 // DTuple is the tuple Datum.
 type DTuple struct {
@@ -5504,8 +5163,6 @@ func NewDefaultDatum(evalCtx *EvalContext, t *types.T) (d Datum, err error) {
 		return DMinIPAddr, nil
 	case types.TimeFamily:
 		return dTimeMin, nil
-	case types.JsonFamily:
-		return dNullJSON, nil
 	case types.TimeTZFamily:
 		return dZeroTimeTZ, nil
 	case types.GeometryFamily, types.GeographyFamily, types.Box2DFamily:
@@ -5602,7 +5259,6 @@ var baseDatumTypeSizes = map[types.Family]struct {
 }{
 	types.UnknownFamily:        {unsafe.Sizeof(dNull{}), fixedSize},
 	types.BoolFamily:           {unsafe.Sizeof(DBool(false)), fixedSize},
-	types.Box2DFamily:          {unsafe.Sizeof(DBox2D{CartesianBoundingBox: geo.CartesianBoundingBox{}}), fixedSize},
 	types.BitFamily:            {unsafe.Sizeof(DBitArray{}), variableSize},
 	types.IntFamily:            {unsafe.Sizeof(DInt(0)), fixedSize},
 	types.FloatFamily:          {unsafe.Sizeof(DFloat(0.0)), fixedSize},
@@ -5618,7 +5274,6 @@ var baseDatumTypeSizes = map[types.Family]struct {
 	types.TimestampFamily:      {unsafe.Sizeof(DTimestamp{}), fixedSize},
 	types.TimestampTZFamily:    {unsafe.Sizeof(DTimestampTZ{}), fixedSize},
 	types.IntervalFamily:       {unsafe.Sizeof(DInterval{}), fixedSize},
-	types.JsonFamily:           {unsafe.Sizeof(DJSON{}), variableSize},
 	types.UuidFamily:           {unsafe.Sizeof(DUuid{}), fixedSize},
 	types.INetFamily:           {unsafe.Sizeof(DIPAddr{}), fixedSize},
 	types.OidFamily:            {unsafe.Sizeof(DInt(0)), fixedSize},

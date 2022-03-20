@@ -11,7 +11,7 @@
 package tree
 
 import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
@@ -108,17 +108,17 @@ func (l NameList) ToStrings() []string {
 
 // ToSQLUsernames converts a NameList containing SQL input of usernames,
 // normalizes the names and returns them as a list of SQLUsernames.
-func (l NameList) ToSQLUsernames() ([]security.SQLUsername, error) {
-	targetRoles := make([]security.SQLUsername, len(l))
-	for i, role := range l {
-		user, err := security.MakeSQLUsernameFromUserInput(string(role), security.UsernameValidation)
-		if err != nil {
-			return nil, err
-		}
-		targetRoles[i] = user
-	}
-	return targetRoles, nil
-}
+//func (l NameList) ToSQLUsernames() ([]security.SQLUsername, error) {
+//	targetRoles := make([]security.SQLUsername, len(l))
+//	for i, role := range l {
+//		user, err := security.MakeSQLUsernameFromUserInput(string(role), security.UsernameValidation)
+//		if err != nil {
+//			return nil, err
+//		}
+//		targetRoles[i] = user
+//	}
+//	return targetRoles, nil
+//}
 
 // A NameList is a list of identifiers.
 type NameList []Name

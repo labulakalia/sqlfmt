@@ -5,8 +5,6 @@ package types
 
 import (
 	fmt "fmt"
-	geopb "github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
-	github_com_cockroachdb_cockroach_pkg_geo_geopb "github.com/labulakalia/sqlfmt/cockroach/pkg/geo/geopb"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_lib_pq_oid "github.com/lib/pq/oid"
@@ -569,8 +567,6 @@ var xxx_messageInfo_IntervalDurationField proto.InternalMessageInfo
 
 // GeoMetadata contains metadata associated with Geospatial data types.
 type GeoMetadata struct {
-	SRID      github_com_cockroachdb_cockroach_pkg_geo_geopb.SRID `protobuf:"varint,1,opt,name=srid,casttype=sqlfmt/cockroach/pkg/geo/geopb.SRID" json:"srid"`
-	ShapeType geopb.ShapeType                                     `protobuf:"varint,2,opt,name=shape_type,json=shapeType,enum=cockroach.geopb.ShapeType" json:"shape_type"`
 }
 
 func (m *GeoMetadata) Reset()         { *m = GeoMetadata{} }
@@ -896,10 +892,8 @@ func (m *GeoMetadata) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	i = encodeVarintTypes(dAtA, i, uint64(m.ShapeType))
 	i--
 	dAtA[i] = 0x10
-	i = encodeVarintTypes(dAtA, i, uint64(m.SRID))
 	i--
 	dAtA[i] = 0x8
 	return len(dAtA) - i, nil
@@ -1090,13 +1084,6 @@ func (m *IntervalDurationField) Size() (n int) {
 }
 
 func (m *GeoMetadata) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	n += 1 + sovTypes(uint64(m.SRID))
-	n += 1 + sovTypes(uint64(m.ShapeType))
 	return n
 }
 
@@ -1288,42 +1275,16 @@ func (m *GeoMetadata) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: GeoMetadata: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SRID", wireType)
-			}
-			m.SRID = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTypes
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.SRID |= github_com_cockroachdb_cockroach_pkg_geo_geopb.SRID(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		case 2:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ShapeType", wireType)
 			}
-			m.ShapeType = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowTypes
 				}
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.ShapeType |= geopb.ShapeType(b&0x7F) << shift
-				if b < 0x80 {
-					break
 				}
 			}
 		default:

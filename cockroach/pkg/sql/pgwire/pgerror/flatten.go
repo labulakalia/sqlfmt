@@ -16,9 +16,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/docs"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/cockroachdb/errors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 )
 
 // Flatten turns any error into a pgerror with fields populated.  As
@@ -102,7 +101,7 @@ var serializationFailureReasonRegexp = regexp.MustCompile(
 // withSerializationFailureHints appends a doc URL that contains information for
 // commonly seen error messages.
 func withSerializationFailureHints(err error) error {
-	url := docs.URL("transaction-retry-error-reference.html")
+	url := ("transaction-retry-error-reference.html")
 	if match := serializationFailureReasonRegexp.FindStringSubmatch(err.Error()); len(match) >= 2 {
 		url += "#" + strings.ToLower(match[1])
 	}

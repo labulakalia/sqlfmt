@@ -10,12 +10,6 @@
 
 package pgwirecancel
 
-import (
-	"math/rand"
-
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
-)
-
 // BackendKeyData is a 64-bit identifier used by the pgwire protocol to cancel
 // queries. It is created at the time of session initialization. It contains the
 // SQLInstanceID of the node. SQLInstanceID is an alias of int32, but we use a
@@ -39,36 +33,36 @@ const (
 // MakeBackendKeyData creates a new BackendKayData that contains the given
 // SQLInstanceID. The rest of the data are random bits. The number of random
 // bits is larger of the SQLInstanceID is small enough.
-func MakeBackendKeyData(rng *rand.Rand, sqlInstanceID base.SQLInstanceID) BackendKeyData {
-	ret := rng.Uint64()
-	if sqlInstanceID < 1<<11 {
-		// Only keep the lower 52 bits
-		ret = ret & lower52BitsMask
-		// Set the upper 12 bits based on the sqlInstanceID.
-		ret = ret | (uint64(sqlInstanceID) << 52)
-	} else {
-		// Only keep the lower 32 bits.
-		ret = ret & lower32BitsMask
-		// Set the leading bit.
-		ret = ret | leadingBitMask
-		// Set the other upper 31 bits based on the sqlInstanceID.
-		ret = ret | (uint64(sqlInstanceID) << 32)
-	}
-	return BackendKeyData(ret)
-}
+//func MakeBackendKeyData(rng *rand.Rand, sqlInstanceID base.SQLInstanceID) BackendKeyData {
+//	ret := rng.Uint64()
+//	if sqlInstanceID < 1<<11 {
+//		// Only keep the lower 52 bits
+//		ret = ret & lower52BitsMask
+//		// Set the upper 12 bits based on the sqlInstanceID.
+//		ret = ret | (uint64(sqlInstanceID) << 52)
+//	} else {
+//		// Only keep the lower 32 bits.
+//		ret = ret & lower32BitsMask
+//		// Set the leading bit.
+//		ret = ret | leadingBitMask
+//		// Set the other upper 31 bits based on the sqlInstanceID.
+//		ret = ret | (uint64(sqlInstanceID) << 32)
+//	}
+//	return BackendKeyData(ret)
+//}
 
 // GetSQLInstanceID returns the SQLInstanceID that is encoded in this
 // BackendKeyData.
-func (b BackendKeyData) GetSQLInstanceID() base.SQLInstanceID {
-	bits := uint64(b)
-	if bits&leadingBitMask == 0 {
-		// Use the upper 12 bits as the sqlInstanceID.
-		return base.SQLInstanceID(bits >> 52)
-	}
-
-	// Clear the leading bit.
-	bits = bits &^ leadingBitMask
-	// Use the upper 32 bits as the sqlInstanceID.
-	return base.SQLInstanceID(bits >> 32)
-
-}
+//func (b BackendKeyData) GetSQLInstanceID() base.SQLInstanceID {
+//	bits := uint64(b)
+//	if bits&leadingBitMask == 0 {
+//		// Use the upper 12 bits as the sqlInstanceID.
+//		return base.SQLInstanceID(bits >> 52)
+//	}
+//
+//	// Clear the leading bit.
+//	bits = bits &^ leadingBitMask
+//	// Use the upper 32 bits as the sqlInstanceID.
+//	return base.SQLInstanceID(bits >> 32)
+//
+//}

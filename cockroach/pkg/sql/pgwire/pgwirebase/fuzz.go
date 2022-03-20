@@ -14,10 +14,6 @@
 package pgwirebase
 
 import (
-	"context"
-
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 )
 
@@ -41,8 +37,8 @@ func FuzzDecodeDatum(data []byte) int {
 	code := FormatCode(data[0]) % (FormatBinary + 1)
 	b := data[2:]
 
-	evalCtx := tree.NewTestingEvalContext(cluster.MakeTestingClusterSettings())
-	defer evalCtx.Stop(context.Background())
+	//evalCtx := tree.NewTestingEvalContext(cluster.MakeTestingClusterSettings())
+	//defer evalCtx.Stop(context.Background())
 
 	_, err := DecodeDatum(evalCtx, typ, code, b)
 	if err != nil {

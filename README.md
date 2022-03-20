@@ -8,7 +8,7 @@ go get github.com/labulakalia/sqlfmt
 ```
 
 # TODO
-- [ ] remove unused package
+- [ ] remove unused package WIP
 
 
 

@@ -13,6 +13,8 @@ package tree
 import (
 	"context"
 	"fmt"
+
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"math"
 	"regexp"
 	"strings"
@@ -20,39 +22,30 @@ import (
 	"unicode/utf8"
 
 	"github.com/cockroachdb/apd/v3"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/geo"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/kv"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
+	"github.com/cockroachdb/errors"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/base"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/keys"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/settings/cluster"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgnotice"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
+	_ "github.com/labulakalia/sqlfmt/cockroach/pkg/sql/privilege"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/roleoption"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treebin"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondatapb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqlliveness"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/arith"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/bitarray"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/json"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/mon"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeofday"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/uuid"
-	"github.com/cockroachdb/errors"
 	"github.com/lib/pq/oid"
 )
 
@@ -100,7 +93,6 @@ type UnaryOp struct {
 
 	// counter, if non-nil, should be incremented every time the
 	// operator is type checked.
-	counter telemetry.Counter
 }
 
 func (op *UnaryOp) params() TypeList {
@@ -303,7 +295,6 @@ type BinOp struct {
 
 	// counter, if non-nil, should be incremented every time the
 	// operator is type checked.
-	counter telemetry.Counter
 }
 
 func (op *BinOp) params() TypeList {
@@ -435,22 +426,6 @@ func ArrayContains(ctx *EvalContext, haystack *DArray, needles *DArray) (*DBool,
 }
 
 // JSONExistsAny return true if any value in dArray is exist in the json
-func JSONExistsAny(_ *EvalContext, json DJSON, dArray *DArray) (*DBool, error) {
-	// TODO(justin): this can be optimized.
-	for _, k := range dArray.Array {
-		if k == DNull {
-			continue
-		}
-		e, err := json.JSON.Exists(string(MustBeDString(k)))
-		if err != nil {
-			return nil, err
-		}
-		if e {
-			return DBoolTrue, nil
-		}
-	}
-	return DBoolFalse, nil
-}
 
 func initArrayToArrayConcatenation() {
 	for _, t := range types.Scalar {
@@ -542,20 +517,6 @@ func (o binOpOverload) lookupImpl(left, right *types.T) (*BinOp, bool) {
 		}
 	}
 	return nil, false
-}
-
-// GetJSONPath is used for the #> and #>> operators.
-func GetJSONPath(j json.JSON, ary DArray) (json.JSON, error) {
-	// TODO(justin): this is slightly annoying because we have to allocate
-	// a new array since the JSON package isn't aware of DArray.
-	path := make([]string, len(ary.Array))
-	for i, v := range ary.Array {
-		if v == DNull {
-			return nil, nil
-		}
-		path[i] = string(MustBeDString(v))
-	}
-	return json.FetchPath(j, path)
 }
 
 // BinOps contains the binary operations indexed by operation type.
@@ -1202,54 +1163,7 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			},
 			Volatility: VolatilityImmutable,
 		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.String,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, _, err := left.(*DJSON).JSON.RemoveString(string(MustBeDString(right)))
-				if err != nil {
-					return nil, err
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.Int,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, _, err := left.(*DJSON).JSON.RemoveIndex(int(MustBeDInt(right)))
-				if err != nil {
-					return nil, err
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.MakeArray(types.String),
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j := left.(*DJSON).JSON
-				arr := *MustBeDArray(right)
 
-				for _, str := range arr.Array {
-					if str == DNull {
-						continue
-					}
-					var err error
-					j, _, err = j.RemoveString(string(MustBeDString(str)))
-					if err != nil {
-						return nil, err
-					}
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
 		&BinOp{
 			LeftType:   types.INet,
 			RightType:  types.INet,
@@ -1723,19 +1637,6 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			},
 			Volatility: VolatilityImmutable,
 		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.Jsonb,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, err := MustBeDJSON(left).JSON.Concat(MustBeDJSON(right).JSON)
-				if err != nil {
-					return nil, err
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
 	},
 
 	// TODO(pmattis): Check that the shift is valid.
@@ -1747,7 +1648,6 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
 				rval := MustBeDInt(right)
 				if rval < 0 || rval >= 64 {
-					telemetry.Inc(sqltelemetry.LargeLShiftArgumentCounter)
 					return nil, ErrShiftArgOutOfRange
 				}
 				return NewDInt(MustBeDInt(left) << uint(rval)), nil
@@ -1788,7 +1688,6 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
 				rval := MustBeDInt(right)
 				if rval < 0 || rval >= 64 {
-					telemetry.Inc(sqltelemetry.LargeRShiftArgumentCounter)
 					return nil, ErrShiftArgOutOfRange
 				}
 				return NewDInt(MustBeDInt(left) >> uint(rval)), nil
@@ -1883,137 +1782,6 @@ var BinOps = map[treebin.BinaryOperatorSymbol]binOpOverload{
 			Volatility: VolatilityImmutable,
 		},
 	},
-
-	treebin.JSONFetchVal: {
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.String,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, err := left.(*DJSON).JSON.FetchValKey(string(MustBeDString(right)))
-				if err != nil {
-					return nil, err
-				}
-				if j == nil {
-					return DNull, nil
-				}
-				return &DJSON{j}, nil
-			},
-			PreferredOverload: true,
-			Volatility:        VolatilityImmutable,
-		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.Int,
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				j, err := left.(*DJSON).JSON.FetchValIdx(int(MustBeDInt(right)))
-				if err != nil {
-					return nil, err
-				}
-				if j == nil {
-					return DNull, nil
-				}
-				return &DJSON{j}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treebin.JSONFetchValPath: {
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.MakeArray(types.String),
-			ReturnType: types.Jsonb,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				path, err := GetJSONPath(left.(*DJSON).JSON, *MustBeDArray(right))
-				if err != nil {
-					return nil, err
-				}
-				if path == nil {
-					return DNull, nil
-				}
-				return &DJSON{path}, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treebin.JSONFetchText: {
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.String,
-			ReturnType: types.String,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				res, err := left.(*DJSON).JSON.FetchValKey(string(MustBeDString(right)))
-				if err != nil {
-					return nil, err
-				}
-				if res == nil {
-					return DNull, nil
-				}
-				text, err := res.AsText()
-				if err != nil {
-					return nil, err
-				}
-				if text == nil {
-					return DNull, nil
-				}
-				return NewDString(*text), nil
-			},
-			PreferredOverload: true,
-			Volatility:        VolatilityImmutable,
-		},
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.Int,
-			ReturnType: types.String,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				res, err := left.(*DJSON).JSON.FetchValIdx(int(MustBeDInt(right)))
-				if err != nil {
-					return nil, err
-				}
-				if res == nil {
-					return DNull, nil
-				}
-				text, err := res.AsText()
-				if err != nil {
-					return nil, err
-				}
-				if text == nil {
-					return DNull, nil
-				}
-				return NewDString(*text), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treebin.JSONFetchTextPath: {
-		&BinOp{
-			LeftType:   types.Jsonb,
-			RightType:  types.MakeArray(types.String),
-			ReturnType: types.String,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				res, err := GetJSONPath(left.(*DJSON).JSON, *MustBeDArray(right))
-				if err != nil {
-					return nil, err
-				}
-				if res == nil {
-					return DNull, nil
-				}
-				text, err := res.AsText()
-				if err != nil {
-					return nil, err
-				}
-				if text == nil {
-					return DNull, nil
-				}
-				return NewDString(*text), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 }
 
 // CmpOp is a comparison operator.
@@ -2028,7 +1796,6 @@ type CmpOp struct {
 
 	// counter, if non-nil, should be incremented every time the
 	// operator is type checked.
-	counter telemetry.Counter
 
 	// If NullableArgs is false, the operator returns NULL
 	// whenever either argument is NULL.
@@ -2472,11 +2239,6 @@ var CmpOps = cmpOpFixups(map[treecmp.ComparisonOperatorSymbol]cmpOpOverload{
 				Volatility: VolatilityImmutable,
 			},
 		},
-		makeBox2DComparisonOperators(
-			func(lhs, rhs *geo.CartesianBoundingBox) bool {
-				return lhs.Covers(rhs)
-			},
-		)...,
 	),
 
 	treecmp.RegIMatch: {
@@ -2491,108 +2253,6 @@ var CmpOps = cmpOpFixups(map[treecmp.ComparisonOperatorSymbol]cmpOpOverload{
 		},
 	},
 
-	treecmp.JSONExists: {
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.String,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				e, err := left.(*DJSON).JSON.Exists(string(MustBeDString(right)))
-				if err != nil {
-					return nil, err
-				}
-				if e {
-					return DBoolTrue, nil
-				}
-				return DBoolFalse, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treecmp.JSONSomeExists: {
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.StringArray,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				return JSONExistsAny(ctx, MustBeDJSON(left), MustBeDArray(right))
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treecmp.JSONAllExists: {
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.StringArray,
-			Fn: func(_ *EvalContext, left Datum, right Datum) (Datum, error) {
-				// TODO(justin): this can be optimized.
-				for _, k := range MustBeDArray(right).Array {
-					if k == DNull {
-						continue
-					}
-					e, err := left.(*DJSON).JSON.Exists(string(MustBeDString(k)))
-					if err != nil {
-						return nil, err
-					}
-					if !e {
-						return DBoolFalse, nil
-					}
-				}
-				return DBoolTrue, nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treecmp.Contains: {
-		&CmpOp{
-			LeftType:  types.AnyArray,
-			RightType: types.AnyArray,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				haystack := MustBeDArray(left)
-				needles := MustBeDArray(right)
-				return ArrayContains(ctx, haystack, needles)
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.Jsonb,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				c, err := json.Contains(left.(*DJSON).JSON, right.(*DJSON).JSON)
-				if err != nil {
-					return nil, err
-				}
-				return MakeDBool(DBool(c)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
-
-	treecmp.ContainedBy: {
-		&CmpOp{
-			LeftType:  types.AnyArray,
-			RightType: types.AnyArray,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				needles := MustBeDArray(left)
-				haystack := MustBeDArray(right)
-				return ArrayContains(ctx, haystack, needles)
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Jsonb,
-			RightType: types.Jsonb,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				c, err := json.Contains(right.(*DJSON).JSON, left.(*DJSON).JSON)
-				if err != nil {
-					return nil, err
-				}
-				return MakeDBool(DBool(c)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	},
 	treecmp.Overlaps: append(
 		cmpOpOverload{
 			&CmpOp{
@@ -2630,101 +2290,12 @@ var CmpOps = cmpOpFixups(map[treecmp.ComparisonOperatorSymbol]cmpOpOverload{
 				Volatility: VolatilityImmutable,
 			},
 		},
-		makeBox2DComparisonOperators(
-			func(lhs, rhs *geo.CartesianBoundingBox) bool {
-				return lhs.Intersects(rhs)
-			},
-		)...,
 	),
 })
 
 const experimentalBox2DClusterSettingName = "sql.spatial.experimental_box2d_comparison_operators.enabled"
 
-var experimentalBox2DClusterSetting = settings.RegisterBoolSetting(
-	settings.TenantWritable,
-	experimentalBox2DClusterSettingName,
-	"enables the use of certain experimental box2d comparison operators",
-	false,
-).WithPublic()
 
-func checkExperimentalBox2DComparisonOperatorEnabled(ctx *EvalContext) error {
-	if !experimentalBox2DClusterSetting.Get(&ctx.Settings.SV) {
-		return errors.WithHintf(
-			pgerror.Newf(
-				pgcode.FeatureNotSupported,
-				"this box2d comparison operator is experimental",
-			),
-			"To enable box2d comparators, use `SET CLUSTER SETTING %s = on`.",
-			experimentalBox2DClusterSettingName,
-		)
-	}
-	return nil
-}
-
-func makeBox2DComparisonOperators(op func(lhs, rhs *geo.CartesianBoundingBox) bool) cmpOpOverload {
-	return cmpOpOverload{
-		&CmpOp{
-			LeftType:  types.Box2D,
-			RightType: types.Box2D,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				if err := checkExperimentalBox2DComparisonOperatorEnabled(ctx); err != nil {
-					return nil, err
-				}
-				ret := op(
-					&MustBeDBox2D(left).CartesianBoundingBox,
-					&MustBeDBox2D(right).CartesianBoundingBox,
-				)
-				return MakeDBool(DBool(ret)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Box2D,
-			RightType: types.Geometry,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				if err := checkExperimentalBox2DComparisonOperatorEnabled(ctx); err != nil {
-					return nil, err
-				}
-				ret := op(
-					&MustBeDBox2D(left).CartesianBoundingBox,
-					MustBeDGeometry(right).CartesianBoundingBox(),
-				)
-				return MakeDBool(DBool(ret)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Geometry,
-			RightType: types.Box2D,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				if err := checkExperimentalBox2DComparisonOperatorEnabled(ctx); err != nil {
-					return nil, err
-				}
-				ret := op(
-					MustBeDGeometry(left).CartesianBoundingBox(),
-					&MustBeDBox2D(right).CartesianBoundingBox,
-				)
-				return MakeDBool(DBool(ret)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-		&CmpOp{
-			LeftType:  types.Geometry,
-			RightType: types.Geometry,
-			Fn: func(ctx *EvalContext, left Datum, right Datum) (Datum, error) {
-				if err := checkExperimentalBox2DComparisonOperatorEnabled(ctx); err != nil {
-					return nil, err
-				}
-				ret := op(
-					MustBeDGeometry(left).CartesianBoundingBox(),
-					MustBeDGeometry(right).CartesianBoundingBox(),
-				)
-				return MakeDBool(DBool(ret)), nil
-			},
-			Volatility: VolatilityImmutable,
-		},
-	}
-}
 
 // This map contains the inverses for operators in the CmpOps map that have
 // inverses.
@@ -3132,7 +2703,7 @@ type EvalDatabase interface {
 
 	// HasAnyPrivilege returns whether the current user has privilege to access
 	// the given object.
-	HasAnyPrivilege(ctx context.Context, specifier HasPrivilegeSpecifier, user security.SQLUsername, privs []privilege.Privilege) (HasAnyPrivilegeResult, error)
+	//HasAnyPrivilege(ctx context.Context, specifier HasPrivilegeSpecifier, user security.SQLUsername, privs []privilege.Privilege) (HasAnyPrivilegeResult, error)
 }
 
 // HasPrivilegeSpecifier specifies an object to lookup privilege for.
@@ -3249,15 +2820,15 @@ type EvalPlanner interface {
 	// (false, nil) means that the user has NO admin role
 	// (false, err) means that there was an error running the query on
 	// the `system.users` table
-	UserHasAdminRole(ctx context.Context, user security.SQLUsername) (bool, error)
+	//UserHasAdminRole(ctx context.Context, user security.SQLUsername) (bool, error)
 
 	// MemberOfWithAdminOption is used to collect a list of roles (direct and
 	// indirect) that the member is part of. See the comment on the planner
 	// implementation in authorization.go
-	MemberOfWithAdminOption(
-		ctx context.Context,
-		member security.SQLUsername,
-	) (map[security.SQLUsername]bool, error)
+	//MemberOfWithAdminOption(
+	//	ctx context.Context,
+	//	member security.SQLUsername,
+	//) (map[security.SQLUsername]bool, error)
 
 	// ExternalReadFile reads the content from an external file URI.
 	ExternalReadFile(ctx context.Context, uri string) ([]byte, error)
@@ -3309,13 +2880,13 @@ type EvalPlanner interface {
 	//
 	// The fields set in session that are set override the respective fields if
 	// they have previously been set through SetSessionData().
-	QueryRowEx(
-		ctx context.Context,
-		opName string,
-		txn *kv.Txn,
-		override sessiondata.InternalExecutorOverride,
-		stmt string,
-		qargs ...interface{}) (Datums, error)
+	//QueryRowEx(
+	//	ctx context.Context,
+	//	opName string,
+	//	txn *kv.Txn,
+	//	override sessiondata.InternalExecutorOverride,
+	//	stmt string,
+	//	qargs ...interface{}) (Datums, error)
 
 	// QueryIteratorEx executes the query, returning an iterator that can be used
 	// to get the results. If the call is successful, the returned iterator
@@ -3323,14 +2894,14 @@ type EvalPlanner interface {
 	//
 	// The fields set in session that are set override the respective fields if they
 	// have previously been set through SetSessionData().
-	QueryIteratorEx(
-		ctx context.Context,
-		opName string,
-		txn *kv.Txn,
-		override sessiondata.InternalExecutorOverride,
-		stmt string,
-		qargs ...interface{},
-	) (InternalRows, error)
+	//QueryIteratorEx(
+	//	ctx context.Context,
+	//	opName string,
+	//	txn *kv.Txn,
+	//	override sessiondata.InternalExecutorOverride,
+	//	stmt string,
+	//	qargs ...interface{},
+	//) (InternalRows, error)
 }
 
 // InternalRows is an iterator interface that's exposed by the internal
@@ -3547,7 +3118,6 @@ type EvalContextTestingKnobs struct {
 	CallbackGenerators map[string]*CallbackValueGenerator
 }
 
-var _ base.ModuleTestingKnobs = &EvalContextTestingKnobs{}
 
 // ModuleTestingKnobs is part of the base.ModuleTestingKnobs interface.
 func (*EvalContextTestingKnobs) ModuleTestingKnobs() {}
@@ -3593,11 +3163,10 @@ type EvalContext struct {
 	TxnReadOnly bool
 	TxnImplicit bool
 
-	Settings    *cluster.Settings
+	//Settings    *cluster.Settings
 	ClusterID   uuid.UUID
 	ClusterName string
-	NodeID      *base.SQLIDContainer
-	Codec       keys.SQLCodec
+	//Codec       keys.SQLCodec
 
 	// Locality contains the location of the current node as a set of user-defined
 	// key/value pairs, ordered from most inclusive to least inclusive. If there
@@ -3605,9 +3174,9 @@ type EvalContext struct {
 	//
 	//   [region=us,dc=east]
 	//
-	Locality roachpb.Locality
+	//Locality roachpb.Locality
 
-	Tracer *tracing.Tracer
+	//Tracer *tracing.Tracer
 
 	// The statement timestamp. May be different for every statement.
 	// Used for statement_timestamp().
@@ -3670,10 +3239,10 @@ type EvalContext struct {
 
 	PreparedStatementState PreparedStatementState
 
-	// The transaction in which the statement is executing.
-	Txn *kv.Txn
-	// A handle to the database.
-	DB *kv.DB
+	//// The transaction in which the statement is executing.
+	//Txn *kv.Txn
+	//// A handle to the database.
+	//DB *kv.DB
 
 	ReCache *RegexpCache
 
@@ -3690,7 +3259,7 @@ type EvalContext struct {
 
 	TestingKnobs EvalContextTestingKnobs
 
-	Mon *mon.BytesMonitor
+	//Mon *mon.BytesMonitor
 
 	// SingleDatumAggMemAccount is a memory account that all aggregate builtins
 	// that store a single datum will share to account for the memory needed to
@@ -3700,9 +3269,7 @@ type EvalContext struct {
 	// where each aggregate function struct grows its own memory account by
 	// tiny amount, yet the account reserves a lot more resulting in
 	// significantly overestimating the memory usage.
-	SingleDatumAggMemAccount *mon.BoundAccount
-
-	SQLLivenessReader sqlliveness.Reader
+	//SingleDatumAggMemAccount *mon.BoundAccount
 
 	SQLStatsController SQLStatsController
 
@@ -3713,38 +3280,37 @@ type EvalContext struct {
 }
 
 // MakeTestingEvalContext returns an EvalContext that includes a MemoryMonitor.
-func MakeTestingEvalContext(st *cluster.Settings) EvalContext {
-	monitor := mon.NewMonitor(
-		"test-monitor",
-		mon.MemoryResource,
-		nil,           /* curCount */
-		nil,           /* maxHist */
-		-1,            /* increment */
-		math.MaxInt64, /* noteworthy */
-		st,
-	)
-	return MakeTestingEvalContextWithMon(st, monitor)
-}
+//func MakeTestingEvalContext(st *cluster.Settings) EvalContext {
+//	monitor := mon.NewMonitor(
+//		"test-monitor",
+//		mon.MemoryResource,
+//		nil,           /* curCount */
+//		nil,           /* maxHist */
+//		-1,            /* increment */
+//		math.MaxInt64, /* noteworthy */
+//		st,
+//	)
+//	return MakeTestingEvalContextWithMon(st, monitor)
+//}
 
 // MakeTestingEvalContextWithMon returns an EvalContext with the given
 // MemoryMonitor. Ownership of the memory monitor is transferred to the
 // EvalContext so do not start or close the memory monitor.
-func MakeTestingEvalContextWithMon(st *cluster.Settings, monitor *mon.BytesMonitor) EvalContext {
-	ctx := EvalContext{
-		Codec:            keys.SystemSQLCodec,
-		Txn:              &kv.Txn{},
-		SessionDataStack: sessiondata.NewStack(&sessiondata.SessionData{}),
-		Settings:         st,
-		NodeID:           base.TestingIDContainer,
-	}
-	monitor.Start(context.Background(), nil /* pool */, mon.MakeStandaloneBudget(math.MaxInt64))
-	ctx.Mon = monitor
-	ctx.Context = context.TODO()
-	now := timeutil.Now()
-	ctx.SetTxnTimestamp(now)
-	ctx.SetStmtTimestamp(now)
-	return ctx
-}
+//func MakeTestingEvalContextWithMon(st *cluster.Settings, monitor *mon.BytesMonitor) EvalContext {
+//	ctx := EvalContext{
+//		//Codec:            keys.SystemSQLCodec,
+//		//Txn:              &kv.Txn{},
+//		SessionDataStack: sessiondata.NewStack(&sessiondata.SessionData{}),
+//		Settings:         st,
+//	}
+//	monitor.Start(context.Background(), nil /* pool */, mon.MakeStandaloneBudget(math.MaxInt64))
+//	ctx.Mon = monitor
+//	ctx.Context = context.TODO()
+//	now := timeutil.Now()
+//	ctx.SetTxnTimestamp(now)
+//	ctx.SetStmtTimestamp(now)
+//	return ctx
+//}
 
 // SessionData returns the SessionData the current EvalCtx should use to eval.
 func (ctx *EvalContext) SessionData() *sessiondata.SessionData {
@@ -3778,31 +3344,24 @@ func (ctx *EvalContext) PopIVarContainer() {
 }
 
 // QualityOfService returns the current value of session setting
-// default_transaction_quality_of_service if session data is available,
-// otherwise the default value (0).
-func (ctx *EvalContext) QualityOfService() sessiondatapb.QoSLevel {
-	if ctx.SessionData() == nil {
-		return sessiondatapb.Normal
-	}
-	return ctx.SessionData().DefaultTxnQualityOfService
-}
+
 
 // NewTestingEvalContext is a convenience version of MakeTestingEvalContext
 // that returns a pointer.
-func NewTestingEvalContext(st *cluster.Settings) *EvalContext {
-	ctx := MakeTestingEvalContext(st)
-	return &ctx
-}
+//func NewTestingEvalContext(st *cluster.Settings) *EvalContext {
+//	ctx := MakeTestingEvalContext(st)
+//	return &ctx
+//}
 
-// Stop closes out the EvalContext and must be called once it is no longer in use.
-func (ctx *EvalContext) Stop(c context.Context) {
-	if r := recover(); r != nil {
-		ctx.Mon.EmergencyStop(c)
-		panic(r)
-	} else {
-		ctx.Mon.Stop(c)
-	}
-}
+//// Stop closes out the EvalContext and must be called once it is no longer in use.
+////func (ctx *EvalContext) Stop(c context.Context) {
+////	if r := recover(); r != nil {
+////		ctx.Mon.EmergencyStop(c)
+////		panic(r)
+////	} else {
+////		ctx.Mon.Stop(c)
+////	}
+////}
 
 // FmtCtx creates a FmtCtx with the given options as well as the EvalContext's session data.
 func (ctx *EvalContext) FmtCtx(f FmtFlags, opts ...FmtCtxOption) *FmtCtx {
@@ -3829,15 +3388,6 @@ func (ctx *EvalContext) GetStmtTimestamp() time.Time {
 	return ctx.StmtTimestamp
 }
 
-// GetClusterTimestamp retrieves the current cluster timestamp as per
-// the evaluation context. The timestamp is guaranteed to be nonzero.
-func (ctx *EvalContext) GetClusterTimestamp() *DDecimal {
-	ts := ctx.Txn.CommitTimestamp()
-	if ts.IsEmpty() {
-		panic(errors.AssertionFailedf("zero cluster timestamp in txn"))
-	}
-	return TimestampToDecimalDatum(ts)
-}
 
 // HasPlaceholders returns true if this EvalContext's placeholders have been
 // assigned. Will be false during Prepare.
@@ -3850,85 +3400,85 @@ const regionKey = "region"
 // GetLocalRegion returns the region name of the local processor
 // on which we're executing.
 func (ctx *EvalContext) GetLocalRegion() (regionName string, ok bool) {
-	return ctx.Locality.Find(regionKey)
+	return "",false
 }
 
 // TimestampToDecimal converts the logical timestamp into a decimal
 // value with the number of nanoseconds in the integer part and the
 // logical counter in the decimal part.
-func TimestampToDecimal(ts hlc.Timestamp) apd.Decimal {
-	// Compute Walltime * 10^10 + Logical.
-	// We need 10 decimals for the Logical field because its maximum
-	// value is 4294967295 (2^32-1), a value with 10 decimal digits.
-	var res apd.Decimal
-	val := &res.Coeff
-	val.SetInt64(ts.WallTime)
-	val.Mul(val, big10E10)
-	val.Add(val, apd.NewBigInt(int64(ts.Logical)))
-
-	// val must be positive. If it was set to a negative value above,
-	// transfer the sign to res.Negative.
-	res.Negative = val.Sign() < 0
-	val.Abs(val)
-
-	// Shift 10 decimals to the right, so that the logical
-	// field appears as fractional part.
-	res.Exponent = -10
-	return res
-}
+//func TimestampToDecimal(ts hlc.Timestamp) apd.Decimal {
+//	// Compute Walltime * 10^10 + Logical.
+//	// We need 10 decimals for the Logical field because its maximum
+//	// value is 4294967295 (2^32-1), a value with 10 decimal digits.
+//	var res apd.Decimal
+//	val := &res.Coeff
+//	val.SetInt64(ts.WallTime)
+//	val.Mul(val, big10E10)
+//	val.Add(val, apd.NewBigInt(int64(ts.Logical)))
+//
+//	// val must be positive. If it was set to a negative value above,
+//	// transfer the sign to res.Negative.
+//	res.Negative = val.Sign() < 0
+//	val.Abs(val)
+//
+//	// Shift 10 decimals to the right, so that the logical
+//	// field appears as fractional part.
+//	res.Exponent = -10
+//	return res
+//}
 
 // DecimalToInexactDTimestampTZ is the inverse of TimestampToDecimal. It converts
 // a decimal constructed from an hlc.Timestamp into an approximate DTimestampTZ
 // containing the walltime of the hlc.Timestamp.
-func DecimalToInexactDTimestampTZ(d *DDecimal) (*DTimestampTZ, error) {
-	ts, err := decimalToHLC(d)
-	if err != nil {
-		return nil, err
-	}
-	return MakeDTimestampTZ(timeutil.Unix(0, ts.WallTime), time.Microsecond)
-}
+//func DecimalToInexactDTimestampTZ(d *DDecimal) (*DTimestampTZ, error) {
+//	ts, err := decimalToHLC(d)
+//	if err != nil {
+//		return nil, err
+//	}
+//	return MakeDTimestampTZ(timeutil.Unix(0, ts.WallTime), time.Microsecond)
+//}
 
-func decimalToHLC(d *DDecimal) (hlc.Timestamp, error) {
-	var coef apd.BigInt
-	coef.Set(&d.Decimal.Coeff)
-	// The physical portion of the HLC is stored shifted up by 10^10, so shift
-	// it down and clear out the logical component.
-	coef.Div(&coef, big10E10)
-	if !coef.IsInt64() {
-		return hlc.Timestamp{}, pgerror.Newf(
-			pgcode.DatetimeFieldOverflow,
-			"timestamp value out of range: %s", d.String(),
-		)
-	}
-	return hlc.Timestamp{WallTime: coef.Int64()}, nil
-}
+//func decimalToHLC(d *DDecimal) (hlc.Timestamp, error) {
+//	var coef apd.BigInt
+//	coef.Set(&d.Decimal.Coeff)
+//	// The physical portion of the HLC is stored shifted up by 10^10, so shift
+//	// it down and clear out the logical component.
+//	coef.Div(&coef, big10E10)
+//	if !coef.IsInt64() {
+//		return hlc.Timestamp{}, pgerror.Newf(
+//			pgcode.DatetimeFieldOverflow,
+//			"timestamp value out of range: %s", d.String(),
+//		)
+//	}
+//	return hlc.Timestamp{WallTime: coef.Int64()}, nil
+//}
 
 // DecimalToInexactDTimestamp is the inverse of TimestampToDecimal. It converts
 // a decimal constructed from an hlc.Timestamp into an approximate DTimestamp
 // containing the walltime of the hlc.Timestamp.
-func DecimalToInexactDTimestamp(d *DDecimal) (*DTimestamp, error) {
-	ts, err := decimalToHLC(d)
-	if err != nil {
-		return nil, err
-	}
-	return TimestampToInexactDTimestamp(ts), nil
-}
+//func DecimalToInexactDTimestamp(d *DDecimal) (*DTimestamp, error) {
+//	ts, err := decimalToHLC(d)
+//	if err != nil {
+//		return nil, err
+//	}
+//	return TimestampToInexactDTimestamp(ts), nil
+//}
 
 // TimestampToDecimalDatum is the same as TimestampToDecimal, but
 // returns a datum.
-func TimestampToDecimalDatum(ts hlc.Timestamp) *DDecimal {
-	res := TimestampToDecimal(ts)
-	return &DDecimal{
-		Decimal: res,
-	}
-}
+//func TimestampToDecimalDatum(ts hlc.Timestamp) *DDecimal {
+//	res := TimestampToDecimal(ts)
+//	return &DDecimal{
+//		Decimal: res,
+//	}
+//}
 
 // TimestampToInexactDTimestamp converts the logical timestamp into an
 // inexact DTimestamp by dropping the logical counter and using the wall
 // time at the microsecond precision.
-func TimestampToInexactDTimestamp(ts hlc.Timestamp) *DTimestamp {
-	return MustMakeDTimestamp(timeutil.Unix(0, ts.WallTime), time.Microsecond)
-}
+//func TimestampToInexactDTimestamp(ts hlc.Timestamp) *DTimestamp {
+//	return MustMakeDTimestamp(timeutil.Unix(0, ts.WallTime), time.Microsecond)
+//}
 
 // GetRelativeParseTime implements ParseTimeContext.
 func (ctx *EvalContext) GetRelativeParseTime() time.Time {
@@ -4730,27 +4280,7 @@ func (t *DInterval) Eval(_ *EvalContext) (Datum, error) {
 }
 
 // Eval implements the TypedExpr interface.
-func (t *DBox2D) Eval(_ *EvalContext) (Datum, error) {
-	return t, nil
-}
-
-// Eval implements the TypedExpr interface.
-func (t *DGeography) Eval(_ *EvalContext) (Datum, error) {
-	return t, nil
-}
-
-// Eval implements the TypedExpr interface.
-func (t *DGeometry) Eval(_ *EvalContext) (Datum, error) {
-	return t, nil
-}
-
-// Eval implements the TypedExpr interface.
 func (t *DEnum) Eval(_ *EvalContext) (Datum, error) {
-	return t, nil
-}
-
-// Eval implements the TypedExpr interface.
-func (t *DJSON) Eval(_ *EvalContext) (Datum, error) {
 	return t, nil
 }
 
@@ -5748,21 +5278,20 @@ type CallbackValueGenerator struct {
 	// as prev initially, and the value it previously returned for subsequent
 	// invocations. Once it returns -1 or an error, it will not be invoked any
 	// more.
-	cb  func(ctx context.Context, prev int, txn *kv.Txn) (int, error)
+	//cb  func(ctx context.Context, prev int, txn *kv.Txn) (int, error)
 	val int
-	txn *kv.Txn
+	//txn *kv.Txn
 }
 
-var _ ValueGenerator = &CallbackValueGenerator{}
 
 // NewCallbackValueGenerator creates a new CallbackValueGenerator.
-func NewCallbackValueGenerator(
-	cb func(ctx context.Context, prev int, txn *kv.Txn) (int, error),
-) *CallbackValueGenerator {
-	return &CallbackValueGenerator{
-		cb: cb,
-	}
-}
+//func NewCallbackValueGenerator(
+//	cb func(ctx context.Context, prev int, txn *kv.Txn) (int, error),
+//) *CallbackValueGenerator {
+//	return &CallbackValueGenerator{
+//		cb: cb,
+//	}
+//}
 
 // ResolvedType is part of the ValueGenerator interface.
 func (c *CallbackValueGenerator) ResolvedType() *types.T {
@@ -5770,23 +5299,23 @@ func (c *CallbackValueGenerator) ResolvedType() *types.T {
 }
 
 // Start is part of the ValueGenerator interface.
-func (c *CallbackValueGenerator) Start(_ context.Context, txn *kv.Txn) error {
-	c.txn = txn
-	return nil
-}
+//func (c *CallbackValueGenerator) Start(_ context.Context, txn *kv.Txn) error {
+//	c.txn = txn
+//	return nil
+//}
 
 // Next is part of the ValueGenerator interface.
-func (c *CallbackValueGenerator) Next(ctx context.Context) (bool, error) {
-	var err error
-	c.val, err = c.cb(ctx, c.val, c.txn)
-	if err != nil {
-		return false, err
-	}
-	if c.val == -1 {
-		return false, nil
-	}
-	return true, nil
-}
+//func (c *CallbackValueGenerator) Next(ctx context.Context) (bool, error) {
+//	var err error
+//	c.val, err = c.cb(ctx, c.val, c.txn)
+//	if err != nil {
+//		return false, err
+//	}
+//	if c.val == -1 {
+//		return false, nil
+//	}
+//	return true, nil
+//}
 
 // Values is part of the ValueGenerator interface.
 func (c *CallbackValueGenerator) Values() (Datums, error) {

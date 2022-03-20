@@ -19,8 +19,6 @@ import (
 	"time"
 
 	"github.com/cockroachdb/apd/v3"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/arith"
 	"github.com/cockroachdb/errors"
 )
@@ -72,7 +70,6 @@ var (
 
 // errEncodeOverflow is returned by Encode when the sortNanos returned would
 // have overflowed or underflowed.
-var errEncodeOverflow = pgerror.WithCandidateCode(errors.New("overflow during Encode"), pgcode.IntervalFieldOverflow)
 
 // A Duration represents a length of time.
 //
@@ -695,10 +692,6 @@ func (d Duration) Encode() (sortNanos int64, months int64, days int64, err error
 	//
 	// TODO(dan): Compute overflow exactly, then document that EncodeBigInt can be
 	// used in overflow cases.
-	years := d.Months/12 + d.Days/DaysPerMonth/12 + d.nanos/nanosInMonth/12
-	if years > maxYearsInDuration || years < minYearsInDuration {
-		return 0, 0, 0, errEncodeOverflow
-	}
 
 	totalNanos := d.Months*nanosInMonth + d.Days*nanosInDay + d.nanos
 	return totalNanos, d.Months, d.Days, nil

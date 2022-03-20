@@ -15,9 +15,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // fluentSink represents a Fluentd-compatible network collector.
@@ -52,11 +51,6 @@ func (l *fluentSink) active() bool { return true }
 // attachHints implements the logSink interface.
 func (l *fluentSink) attachHints(stacks []byte) []byte {
 	return stacks
-}
-
-// exitCode implements the logSink interface.
-func (l *fluentSink) exitCode() exit.Code {
-	return exit.LoggingNetCollectorUnavailable()
 }
 
 // output implements the logSink interface.

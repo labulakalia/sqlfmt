@@ -15,18 +15,16 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
+	"github.com/cockroachdb/errors"
+	"github.com/cockroachdb/redact"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree/treecmp"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/errorutil/unimplemented"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil/pgdate"
-	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/redact"
 	"golang.org/x/text/language"
 )
 
@@ -353,10 +351,6 @@ func (expr *BinaryExpr) TypeCheck(
 		return nil, pgerror.Wrapf(err, pgcode.InvalidParameterValue, "%s", expr.Operator)
 	}
 
-	// Register operator usage in telemetry.
-	if binOp.counter != nil {
-		telemetry.Inc(binOp.counter)
-	}
 
 	expr.Left, expr.Right = leftTyped, rightTyped
 	expr.Fn = binOp
@@ -448,7 +442,6 @@ func resolveCast(
 		if err != nil {
 			return err
 		}
-		telemetry.Inc(GetCastCounter(fromFamily, toFamily))
 		return nil
 
 	case toFamily == types.EnumFamily && fromFamily == types.EnumFamily:
@@ -457,7 +450,6 @@ func resolveCast(
 		if !castFrom.Equivalent(castTo) {
 			return invalidCastError(castFrom, castTo)
 		}
-		telemetry.Inc(GetCastCounter(fromFamily, toFamily))
 		return nil
 
 	case toFamily == types.TupleFamily && fromFamily == types.TupleFamily:
@@ -487,7 +479,6 @@ func resolveCast(
 				return err
 			}
 		}
-		telemetry.Inc(GetCastCounter(fromFamily, toFamily))
 		return nil
 
 	default:
@@ -503,7 +494,6 @@ func resolveCast(
 			}
 			return err
 		}
-		telemetry.Inc(GetCastCounter(fromFamily, toFamily))
 		return nil
 	}
 }
@@ -628,7 +618,6 @@ func (expr *IndirectionExpr) TypeCheck(
 	expr.Expr = subExpr
 	expr.typ = typ.ArrayContents()
 
-	telemetry.Inc(sqltelemetry.ArraySubscriptCounter)
 	return expr, nil
 }
 
@@ -841,11 +830,6 @@ func (expr *ComparisonExpr) TypeCheck(
 
 	if err := semaCtx.checkVolatility(cmpOp.Volatility); err != nil {
 		return nil, pgerror.Wrapf(err, pgcode.InvalidParameterValue, "%s", expr.Operator)
-	}
-
-	// Register operator usage in telemetry.
-	if cmpOp.counter != nil {
-		telemetry.Inc(cmpOp.counter)
 	}
 
 	expr.Left, expr.Right = leftTyped, rightTyped
@@ -1169,9 +1153,6 @@ func (expr *FuncExpr) TypeCheck(
 	if err := semaCtx.checkVolatility(overloadImpl.Volatility); err != nil {
 		return nil, pgerror.Wrapf(err, pgcode.InvalidParameterValue, "%s()", def.Name)
 	}
-	if overloadImpl.counter != nil {
-		telemetry.Inc(overloadImpl.counter)
-	}
 	return expr, nil
 }
 
@@ -1210,7 +1191,6 @@ func (expr *IfErrExpr) TypeCheck(
 	expr.ErrCode = typedErrCode
 	expr.typ = retType
 
-	telemetry.Inc(sqltelemetry.IfErrCounter)
 	return expr, nil
 }
 
@@ -1456,10 +1436,6 @@ func (expr *UnaryExpr) TypeCheck(
 		return nil, pgerror.Wrapf(err, pgcode.InvalidParameterValue, "%s", expr.Operator)
 	}
 
-	// Register operator usage in telemetry.
-	if unaryOp.counter != nil {
-		telemetry.Inc(unaryOp.counter)
-	}
 
 	expr.Expr = exprTyped
 	expr.fn = unaryOp
@@ -1567,7 +1543,6 @@ func (expr *Array) TypeCheck(
 		expr.Exprs[i] = typedSubExprs[i]
 	}
 
-	telemetry.Inc(sqltelemetry.ArrayConstructorCounter)
 	return expr, nil
 }
 
@@ -1587,7 +1562,6 @@ func (expr *ArrayFlatten) TypeCheck(
 	expr.Subquery = subqueryTyped
 	expr.typ = types.MakeArray(subqueryTyped.ResolvedType())
 
-	telemetry.Inc(sqltelemetry.ArrayFlattenCounter)
 	return expr, nil
 }
 
@@ -1749,29 +1723,6 @@ func (d *DInterval) TypeCheck(_ context.Context, _ *SemaContext, _ *types.T) (Ty
 	return d, nil
 }
 
-// TypeCheck implements the Expr interface. It is implemented as an idempotent
-// identity function for Datum.
-func (d *DBox2D) TypeCheck(_ context.Context, _ *SemaContext, _ *types.T) (TypedExpr, error) {
-	return d, nil
-}
-
-// TypeCheck implements the Expr interface. It is implemented as an idempotent
-// identity function for Datum.
-func (d *DGeography) TypeCheck(_ context.Context, _ *SemaContext, _ *types.T) (TypedExpr, error) {
-	return d, nil
-}
-
-// TypeCheck implements the Expr interface. It is implemented as an idempotent
-// identity function for Datum.
-func (d *DGeometry) TypeCheck(_ context.Context, _ *SemaContext, _ *types.T) (TypedExpr, error) {
-	return d, nil
-}
-
-// TypeCheck implements the Expr interface. It is implemented as an idempotent
-// identity function for Datum.
-func (d *DJSON) TypeCheck(_ context.Context, _ *SemaContext, _ *types.T) (TypedExpr, error) {
-	return d, nil
-}
 
 // TypeCheck implements the Expr interface. It is implemented as an idempotent
 // identity function for Datum.

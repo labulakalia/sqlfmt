@@ -13,16 +13,11 @@ package tree
 import (
 	"context"
 	"fmt"
-	"strings"
-	"time"
-
-	"github.com/cockroachdb/apd/v3"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/types"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/duration"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/util/hlc"
 	"github.com/cockroachdb/errors"
 )
 
@@ -78,7 +73,7 @@ func resolveAsOfFuncType(asOf AsOfClause, searchPath sessiondata.SearchPath) asO
 // AsOfSystemTime represents the result from the AS OF SYSTEM TIME clause.
 type AsOfSystemTime struct {
 	// Timestamp is the HLC timestamp evaluated from the AS OF SYSTEM TIME clause.
-	Timestamp hlc.Timestamp
+	//Timestamp hlc.Timestamp
 	// BoundedStaleness is true if the AS OF SYSTEM TIME clause specifies bounded
 	// staleness should be used. If true, Timestamp specifies an (inclusive) lower
 	// bound to read from - data can be read from a time later than Timestamp. If
@@ -92,7 +87,7 @@ type AsOfSystemTime struct {
 	// have no followers with an up-to-date schema.
 	// This is be zero if there is no maximum bound.
 	// In non-zero, we want a read t where Timestamp <= t < MaxTimestampBound.
-	MaxTimestampBound hlc.Timestamp
+	//MaxTimestampBound hlc.Timestamp
 }
 
 type evalAsOfTimestampOptions struct {
@@ -203,120 +198,13 @@ func EvalAsOfTimestamp(
 		}
 	}
 
-	d, err := te.Eval(evalCtx)
-	if err != nil {
-		return AsOfSystemTime{}, err
-	}
-
-	stmtTimestamp := evalCtx.GetStmtTimestamp()
-	ret.Timestamp, err = DatumToHLC(evalCtx, stmtTimestamp, d)
-	if err != nil {
-		return AsOfSystemTime{}, errors.Wrap(err, "AS OF SYSTEM TIME")
-	}
 	return ret, nil
 }
 
 // DatumToHLC performs the conversion from a Datum to an HLC timestamp.
-func DatumToHLC(evalCtx *EvalContext, stmtTimestamp time.Time, d Datum) (hlc.Timestamp, error) {
-	ts := hlc.Timestamp{}
-	var convErr error
-	switch d := d.(type) {
-	case *DString:
-		s := string(*d)
-		// Parse synthetic flag.
-		syn := false
-		if strings.HasSuffix(s, "?") {
-			s = s[:len(s)-1]
-			syn = true
-		}
-		// Attempt to parse as timestamp.
-		if dt, _, err := ParseDTimestamp(evalCtx, s, time.Nanosecond); err == nil {
-			ts.WallTime = dt.Time.UnixNano()
-			ts.Synthetic = syn
-			break
-		}
-		// Attempt to parse as a decimal.
-		if dec, _, err := apd.NewFromString(s); err == nil {
-			ts, convErr = DecimalToHLC(dec)
-			ts.Synthetic = syn
-			break
-		}
-		// Attempt to parse as an interval.
-		if iv, err := ParseDInterval(evalCtx.GetIntervalStyle(), s); err == nil {
-			if (iv.Duration == duration.Duration{}) {
-				convErr = errors.Errorf("interval value %v too small, absolute value must be >= %v", d, time.Microsecond)
-			}
-			ts.WallTime = duration.Add(stmtTimestamp, iv.Duration).UnixNano()
-			ts.Synthetic = syn
-			break
-		}
-		convErr = errors.Errorf("value is neither timestamp, decimal, nor interval")
-	case *DTimestamp:
-		ts.WallTime = d.UnixNano()
-	case *DTimestampTZ:
-		ts.WallTime = d.UnixNano()
-	case *DInt:
-		ts.WallTime = int64(*d)
-	case *DDecimal:
-		ts, convErr = DecimalToHLC(&d.Decimal)
-	case *DInterval:
-		ts.WallTime = duration.Add(stmtTimestamp, d.Duration).UnixNano()
-	default:
-		convErr = errors.WithSafeDetails(
-			errors.Errorf("expected timestamp, decimal, or interval, got %s", d.ResolvedType()),
-			"go type: %T", d)
-	}
-	if convErr != nil {
-		return ts, convErr
-	}
-	zero := hlc.Timestamp{}
-	if ts.EqOrdering(zero) {
-		return ts, errors.Errorf("zero timestamp is invalid")
-	} else if ts.Less(zero) {
-		return ts, errors.Errorf("timestamp before 1970-01-01T00:00:00Z is invalid")
-	}
-	return ts, nil
-}
 
 // DecimalToHLC performs the conversion from an inputted DECIMAL datum for an
 // AS OF SYSTEM TIME query to an HLC timestamp.
-func DecimalToHLC(d *apd.Decimal) (hlc.Timestamp, error) {
-	if d.Negative {
-		return hlc.Timestamp{}, pgerror.Newf(pgcode.Syntax, "cannot be negative")
-	}
-	var integral, fractional apd.Decimal
-	d.Modf(&integral, &fractional)
-	timestamp, err := integral.Int64()
-	if err != nil {
-		return hlc.Timestamp{}, pgerror.Wrapf(err, pgcode.Syntax, "converting timestamp to integer") // should never happen
-	}
-	if fractional.IsZero() {
-		// there is no logical portion to this clock
-		return hlc.Timestamp{WallTime: timestamp}, nil
-	}
-
-	var logical apd.Decimal
-	multiplier := apd.New(1, 10)
-	condition, err := apd.BaseContext.Mul(&logical, &fractional, multiplier)
-	if err != nil {
-		return hlc.Timestamp{}, pgerror.Wrapf(err, pgcode.Syntax, "determining value of logical clock")
-	}
-	if _, err := condition.GoError(apd.DefaultTraps); err != nil {
-		return hlc.Timestamp{}, pgerror.Wrapf(err, pgcode.Syntax, "determining value of logical clock")
-	}
-
-	counter, err := logical.Int64()
-	if err != nil {
-		return hlc.Timestamp{}, pgerror.Newf(pgcode.Syntax, "logical part has too many digits")
-	}
-	if counter > 1<<31 {
-		return hlc.Timestamp{}, pgerror.Newf(pgcode.Syntax, "logical clock too large: %d", counter)
-	}
-	return hlc.Timestamp{
-		WallTime: timestamp,
-		Logical:  int32(counter),
-	}, nil
-}
 
 // ParseHLC parses a string representation of an `hlc.Timestamp`.
 // This differs from hlc.ParseTimestamp in that it parses the decimal
@@ -330,11 +218,3 @@ func DecimalToHLC(d *apd.Decimal) (hlc.Timestamp, error) {
 // hlc.ParseTimestamp() would be used to parse:
 //
 //   1580361670.629466905,1
-//
-func ParseHLC(s string) (hlc.Timestamp, error) {
-	dec, _, err := apd.NewFromString(s)
-	if err != nil {
-		return hlc.Timestamp{}, err
-	}
-	return DecimalToHLC(dec)
-}

@@ -112,19 +112,7 @@ func RandBytes(r *rand.Rand, size int) []byte {
 
 // FastUint32 returns a lock free uint32 value. Compared to rand.Uint32, this
 // implementation scales. We're using the go runtime's implementation through a
-// linker trick.
-//
-//go:linkname FastUint32 runtime.fastrand
-func FastUint32() uint32
 
-// FastInt63 returns a non-negative pseudo-random 63-bit integer as an int64.
-// Compared to rand.Int63(), this implementation scales.
-func FastInt63() int64 {
-	x, y := FastUint32(), FastUint32() // 32-bit halves
-	u := uint64(x)<<32 ^ uint64(y)
-	i := int64(u >> 1) // clear sign bit
-	return i
-}
 
 // ReadTestdataBytes reads random bytes, but then nudges them into printable
 // ASCII, *reducing their randomness* to make them a little friendlier for

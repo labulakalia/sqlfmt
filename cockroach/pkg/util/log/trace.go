@@ -12,12 +12,9 @@ package log
 
 import (
 	"context"
+	"google.golang.org/api/tracing/v2"
 	"strings"
-
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/channel"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
 	"github.com/cockroachdb/logtags"
 	"golang.org/x/net/trace"
 )
@@ -49,9 +46,9 @@ func embedCtxEventLog(ctx context.Context, el *ctxEventLog) context.Context {
 // logging and event calls to go to the EventLog. The current context must not
 // have an existing open span.
 func withEventLogInternal(ctx context.Context, eventLog trace.EventLog) context.Context {
-	if tracing.SpanFromContext(ctx) != nil {
-		panic("event log under span")
-	}
+	//if tracing.SpanFromContext(ctx) != nil {
+	//	panic("event log under span")
+	//}
 	return embedCtxEventLog(ctx, &ctxEventLog{eventLog: eventLog})
 }
 
@@ -88,12 +85,12 @@ func FinishEventLog(ctx context.Context) {
 // the current ctxEventLog. If neither (or the Span is "black hole"), returns
 // false.
 func getSpanOrEventLog(ctx context.Context) (*tracing.Span, *ctxEventLog, bool) {
-	if sp := tracing.SpanFromContext(ctx); sp != nil {
-		if !sp.IsVerbose() && !sp.Tracer().HasExternalSink() {
+	//if sp := tracing.SpanFromContext(ctx); sp != nil {
+	//	if !sp.IsVerbose() && !sp.Tracer().HasExternalSink() {
 			return nil, nil, false
-		}
-		return sp, nil, true
-	}
+	//	}
+	//	return sp, nil, true
+	//}
 	if el := eventLogFromCtx(ctx); el != nil {
 		return nil, el, true
 	}
@@ -108,16 +105,16 @@ func getSpanOrEventLog(ctx context.Context) (*tracing.Span, *ctxEventLog, bool) 
 // will be marked redactable, otherwise fine-grainer redaction will
 // remain in the result.
 func eventInternal(sp *tracing.Span, el *ctxEventLog, isErr bool, entry *logEntry) {
-	if sp != nil {
-		sp.Recordf("%s", entry)
-		// TODO(obs-inf): figure out a way to signal that this is an error. We could
-		// use a different "error" key (provided it shows up in LightStep). Things
-		// like NetTraceIntegrator would need to be modified to understand the
-		// difference. We could also set a special Tag on the span. See
-		// #8827 for more discussion.
-		_ = isErr
-		return
-	}
+	//if sp != nil {
+	//	sp.Recordf("%s", entry)
+	//	// TODO(obs-inf): figure out a way to signal that this is an error. We could
+	//	// use a different "error" key (provided it shows up in LightStep). Things
+	//	// like NetTraceIntegrator would need to be modified to understand the
+	//	// difference. We could also set a special Tag on the span. See
+	//	// #8827 for more discussion.
+	//	_ = isErr
+	//	return
+	//}
 
 	// No span, record to event log instead.
 	//
@@ -155,67 +152,67 @@ func formatTags(ctx context.Context, brackets bool, buf *strings.Builder) bool {
 // Event looks for a tracing span in the context and logs the given message to
 // it. If no span is found, it looks for an EventLog in the context and logs the
 // message to it. If neither is found, does nothing.
-func Event(ctx context.Context, msg string) {
-	sp, el, ok := getSpanOrEventLog(ctx)
-	if !ok {
-		// Nothing to log. Skip the work.
-		return
-	}
-
-	// Format the tracing event and add it to the trace.
-	entry := makeUnstructuredEntry(ctx,
-		severity.INFO, /* unused for trace events */
-		channel.DEV,   /* unused for trace events */
-		1,             /* depth */
-		sp.Redactable(),
-		msg)
-	eventInternal(sp, el, false /* isErr */, &entry)
-}
+//func Event(ctx context.Context, msg string) {
+//	sp, el, ok := getSpanOrEventLog(ctx)
+//	if !ok {
+//		// Nothing to log. Skip the work.
+//		return
+//	}
+//
+//	// Format the tracing event and add it to the trace.
+//	//entry := makeUnstructuredEntry(ctx,
+//	//	severity.INFO, /* unused for trace events */
+//	//	channel.DEV,   /* unused for trace events */
+//	//	1,             /* depth */
+//	//	sp.Redactable(),
+//	//	msg)
+//	//eventInternal(sp, el, false /* isErr */, &entry)
+//}
 
 // Eventf looks for a tracing span in the context and formats and logs
 // the given message to it. If no span is found, it looks for an EventLog in
 // the context and logs the message to it. If neither is found, does nothing.
-func Eventf(ctx context.Context, format string, args ...interface{}) {
-	sp, el, ok := getSpanOrEventLog(ctx)
-	if !ok {
-		// Nothing to log. Skip the work.
-		return
-	}
-
-	// Format the tracing event and add it to the trace.
-	entry := makeUnstructuredEntry(ctx,
-		severity.INFO, /* unused for trace events */
-		channel.DEV,   /* unused for trace events */
-		1,             /* depth */
-		sp.Redactable(),
-		format, args...)
-	eventInternal(sp, el, false /* isErr */, &entry)
-}
+//func Eventf(ctx context.Context, format string, args ...interface{}) {
+//	sp, el, ok := getSpanOrEventLog(ctx)
+//	if !ok {
+//		// Nothing to log. Skip the work.
+//		return
+//	}
+//
+//	// Format the tracing event and add it to the trace.
+//	//entry := makeUnstructuredEntry(ctx,
+//	//	severity.INFO, /* unused for trace events */
+//	//	channel.DEV,   /* unused for trace events */
+//	//	1,             /* depth */
+//	//	sp.Redactable(),
+//	//	format, args...)
+//	//eventInternal(sp, el, false /* isErr */, &entry)
+//}
 
 func vEventf(
 	ctx context.Context, isErr bool, depth int, level Level, format string, args ...interface{},
 ) {
-	if VDepth(level, 1+depth) {
-		// Log the message (which also logs an event).
-		sev := severity.INFO
-		if isErr {
-			sev = severity.ERROR
-		}
-		logfDepth(ctx, 1+depth, sev, channel.DEV, format, args...)
-	} else {
-		sp, el, ok := getSpanOrEventLog(ctx)
-		if !ok {
-			// Nothing to log. Skip the work.
-			return
-		}
-		entry := makeUnstructuredEntry(ctx,
-			severity.INFO, /* unused for trace events */
-			channel.DEV,   /* unused for trace events */
-			depth+1,
-			sp.Redactable(),
-			format, args...)
-		eventInternal(sp, el, isErr, &entry)
-	}
+	//if VDepth(level, 1+depth) {
+	//	// Log the message (which also logs an event).
+	//	sev := severity.INFO
+	//	if isErr {
+	//		sev = severity.ERROR
+	//	}
+	//	logfDepth(ctx, 1+depth, sev, channel.DEV, format, args...)
+	//} else {
+	//	sp, el, ok := getSpanOrEventLog(ctx)
+	//	if !ok {
+	//		// Nothing to log. Skip the work.
+	//		return
+	//	}
+	//	entry := makeUnstructuredEntry(ctx,
+	//		severity.INFO, /* unused for trace events */
+	//		channel.DEV,   /* unused for trace events */
+	//		depth+1,
+	//		sp.Redactable(),
+	//		format, args...)
+	//	eventInternal(sp, el, isErr, &entry)
+	//}
 }
 
 // VEvent either logs a message to the DEV channel (which also outputs to the

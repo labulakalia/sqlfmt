@@ -13,12 +13,11 @@ package tree
 import (
 	"strconv"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
 )
 
 // TenantID represents a tenant ID that can be pretty-printed.
 type TenantID struct {
-	roachpb.TenantID
 
 	// Specified is set to true when the TENANT clause was specified in
 	// the backup target input syntax. We need this, instead of relying
@@ -38,7 +37,7 @@ var _ NodeFormatter = (*TenantID)(nil)
 
 // Format implements the NodeFormatter interface.
 func (t *TenantID) Format(ctx *FmtCtx) {
-	if ctx.flags.HasFlags(FmtHideConstants) || !t.IsSet() {
+	if ctx.flags.HasFlags(FmtHideConstants)  {
 		// The second part of the condition above is conceptually
 		// redundant, but is sadly needed here because we need to be able
 		// to re-print a TENANT clause after it has been anonymized,
@@ -48,6 +47,6 @@ func (t *TenantID) Format(ctx *FmtCtx) {
 		// accepts expressions.
 		ctx.WriteByte('_')
 	} else {
-		ctx.WriteString(strconv.FormatUint(t.ToUint64(), 10))
+		ctx.WriteString(strconv.FormatUint(1, 10))
 	}
 }

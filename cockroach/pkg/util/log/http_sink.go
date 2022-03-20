@@ -18,7 +18,6 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	"github.com/cockroachdb/errors"
 )
 
@@ -122,12 +121,6 @@ func (*httpSink) active() bool {
 // to the stack message.
 func (*httpSink) attachHints(stacks []byte) []byte {
 	return stacks
-}
-
-// exitCode returns the exit code to use if the logger decides
-// to terminate because of an error in output().
-func (*httpSink) exitCode() exit.Code {
-	return exit.LoggingNetCollectorUnavailable()
 }
 
 // HTTPLogError represents an HTTP error status code from a logging request.

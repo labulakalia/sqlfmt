@@ -15,7 +15,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 )
 
 // bufferSink wraps a child logSink to add buffering and asynchronous behavior.
@@ -306,10 +305,4 @@ func (bs *bufferSink) output(b []byte, opts sinkOutputOptions) error {
 	}
 	bs.messageCh <- bufferSinkMessage{buf, opts.extraFlush, nil}
 	return nil
-}
-
-// exitCode returns the exit code to use if the logger decides
-// to terminate because of an error in output().
-func (bs *bufferSink) exitCode() exit.Code {
-	return bs.child.exitCode()
 }

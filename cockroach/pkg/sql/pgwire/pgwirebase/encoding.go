@@ -22,9 +22,8 @@ import (
 	"unicode/utf8"
 	"unsafe"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/settings"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lex"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/oidext"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sem/tree"
@@ -51,18 +50,18 @@ const readBufferMaxMessageSizeClusterSettingName = "sql.conn.max_read_buffer_mes
 
 // ReadBufferMaxMessageSizeClusterSetting is the cluster setting for configuring
 // ReadBuffer default message sizes.
-var ReadBufferMaxMessageSizeClusterSetting = settings.RegisterByteSizeSetting(
-	settings.TenantWritable,
-	readBufferMaxMessageSizeClusterSettingName,
-	"maximum buffer size to allow for ingesting sql statements. Connections must be restarted for this to take effect.",
-	defaultMaxReadBufferMessageSize,
-	func(val int64) error {
-		if val < minReadBufferMessageSize {
-			return errors.Newf("buffer message size must be at least %s", humanize.Bytes(minReadBufferMessageSize))
-		}
-		return nil
-	},
-)
+//var ReadBufferMaxMessageSizeClusterSetting = settings.RegisterByteSizeSetting(
+//	settings.TenantWritable,
+//	readBufferMaxMessageSizeClusterSettingName,
+//	"maximum buffer size to allow for ingesting sql statements. Connections must be restarted for this to take effect.",
+//	defaultMaxReadBufferMessageSize,
+//	func(val int64) error {
+//		if val < minReadBufferMessageSize {
+//			return errors.Newf("buffer message size must be at least %s", humanize.Bytes(minReadBufferMessageSize))
+//		}
+//		return nil
+//	},
+//)
 
 // FormatCode represents a pgwire data format.
 //
@@ -98,13 +97,13 @@ type ReadBufferOption func(*ReadBuffer)
 
 // ReadBufferOptionWithClusterSettings utilizes the cluster settings for setting
 // various defaults in the ReadBuffer.
-func ReadBufferOptionWithClusterSettings(sv *settings.Values) ReadBufferOption {
-	return func(b *ReadBuffer) {
-		if sv != nil {
-			b.maxMessageSize = int(ReadBufferMaxMessageSizeClusterSetting.Get(sv))
-		}
-	}
-}
+//func ReadBufferOptionWithClusterSettings(sv *settings.Values) ReadBufferOption {
+//	return func(b *ReadBuffer) {
+//		if sv != nil {
+//			b.maxMessageSize = int(ReadBufferMaxMessageSizeClusterSetting.Get(sv))
+//		}
+//	}
+//}
 
 // MakeReadBuffer returns a new ReaderBuffer with the given size.
 func MakeReadBuffer(opts ...ReadBufferOption) ReadBuffer {
@@ -353,24 +352,12 @@ func DecodeDatum(
 				return nil, err
 			}
 			return tree.NewDFloat(tree.DFloat(f)), nil
-		case oidext.T_box2d:
-			d, err := tree.ParseDBox2D(string(b))
-			if err != nil {
-				return nil, pgerror.Newf(pgcode.Syntax, "could not parse string %q as box2d", b)
-			}
-			return d, nil
-		case oidext.T_geography:
-			d, err := tree.ParseDGeography(string(b))
-			if err != nil {
-				return nil, pgerror.Newf(pgcode.Syntax, "could not parse string %q as geography", b)
-			}
-			return d, nil
-		case oidext.T_geometry:
-			d, err := tree.ParseDGeometry(string(b))
-			if err != nil {
-				return nil, pgerror.Newf(pgcode.Syntax, "could not parse string %q as geometry", b)
-			}
-			return d, nil
+		//case oidext.T_geography:
+		//	d, err := tree.ParseDGeography(string(b))
+		//	if err != nil {
+		//		return nil, pgerror.Newf(pgcode.Syntax, "could not parse string %q as geography", b)
+		//	}
+		//	return d, nil
 		case oid.T_void:
 			return tree.DVoidDatum, nil
 		case oid.T_numeric:
@@ -490,11 +477,11 @@ func DecodeDatum(
 				}
 			}
 			return out, nil
-		case oid.T_jsonb:
-			if err := validateStringBytes(b); err != nil {
-				return nil, err
-			}
-			return tree.ParseDJSON(string(b))
+		//case oid.T_jsonb:
+		//	if err := validateStringBytes(b); err != nil {
+		//		return nil, err
+		//	}
+		//	return tree.ParseDJSON(string(b))
 		}
 		if t.Family() == types.ArrayFamily {
 			// Arrays come in in their string form, so we parse them as such and later
@@ -729,19 +716,19 @@ func DecodeDatum(
 				return nil, err
 			}
 			return tree.NewDIPAddr(tree.DIPAddr{IPAddr: ipAddr}), nil
-		case oid.T_jsonb:
-			if len(b) < 1 {
-				return nil, NewProtocolViolationErrorf("no data to decode")
-			}
-			if b[0] != 1 {
-				return nil, NewProtocolViolationErrorf("expected JSONB version 1")
-			}
-			// Skip over the version number.
-			b = b[1:]
-			if err := validateStringBytes(b); err != nil {
-				return nil, err
-			}
-			return tree.ParseDJSON(string(b))
+		//case oid.T_jsonb:
+		//	if len(b) < 1 {
+		//		return nil, NewProtocolViolationErrorf("no data to decode")
+		//	}
+		//	if b[0] != 1 {
+		//		return nil, NewProtocolViolationErrorf("expected JSONB version 1")
+		//	}
+		//	// Skip over the version number.
+		//	b = b[1:]
+		//	if err := validateStringBytes(b); err != nil {
+		//		return nil, err
+		//	}
+		//	return tree.ParseDJSON(string(b))
 		case oid.T_varbit, oid.T_bit:
 			if len(b) < 4 {
 				return nil, NewProtocolViolationErrorf("insufficient data: %d", len(b))

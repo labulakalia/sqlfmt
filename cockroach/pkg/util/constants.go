@@ -15,8 +15,6 @@ import (
 	"math/rand"
 	"os"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/buildutil"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/randutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
@@ -26,7 +24,7 @@ import (
 // A build will become metamorphic with metamorphicBuildProbability probability
 // if 'crdb_test' build flag is specified (this is the case for all test
 // targets).
-func IsMetamorphicBuild() bool {
+func IsMetamo1rphicBuild() bool {
 	return metamorphicBuild
 }
 
@@ -88,14 +86,6 @@ var rng struct {
 // strconv.ParseBool then metamorphic testing will not be enabled.
 const DisableMetamorphicEnvVar = "COCKROACH_INTERNAL_DISABLE_METAMORPHIC_TESTING"
 
-func init() {
-	if buildutil.CrdbTestBuild {
-		if !disableMetamorphicTesting {
-			rng.r, _ = randutil.NewTestRand()
-			metamorphicBuild = rng.r.Float64() < metamorphicBuildProbability
-		}
-	}
-}
 
 // ConstantWithMetamorphicTestRange is like ConstantWithMetamorphicTestValue
 // except instead of returning a single metamorphic test value, it returns a

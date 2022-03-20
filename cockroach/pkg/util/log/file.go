@@ -14,7 +14,6 @@
 package log
 
 import (
-	"context"
 	"fmt"
 	"io/fs"
 	"math"
@@ -24,12 +23,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/errors/oserror"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
+	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
 )
 
 // File I/O for logs.
@@ -201,11 +198,6 @@ func (l *fileSink) output(b []byte, opts sinkOutputOptions) error {
 	return nil
 }
 
-// exitCode implements the logSink interface.
-func (l *fileSink) exitCode() exit.Code {
-	return exit.LoggingFileUnavailable()
-}
-
 // emergencyOutput implements the logSink interface.
 func (l *fileSink) emergencyOutput(b []byte) {
 	l.mu.Lock()
@@ -240,40 +232,6 @@ func (l *fileSink) lockAndFlushAndMaybeSync(doSync bool) {
 //
 // l.mu is held.
 func (l *fileSink) flushAndMaybeSyncLocked(doSync bool) {
-	if l.mu.file == nil {
-		return
-	}
-
-	// TODO(knz): the following stall detection code is misplaced.
-	// See: https://sqlfmt/cockroach/issues/56893
-	//
-	// If we can't flush or sync within this duration, exit the process.
-	t := time.AfterFunc(maxSyncDuration, func() {
-		// NB: the disk-stall-detected roachtest matches on this message.
-		//
-		// NB2: it is important to log this on the Ops channel to avoid a
-		// recursive back-and-forth between the copy of FATAL events to
-		// OPS and disk slowness detection here. (See the implementation
-		// of logfDepth for details.)
-		Ops.Shoutf(context.Background(), severity.FATAL,
-			"disk stall detected: unable to sync log files within %s", maxSyncDuration,
-		)
-	})
-	defer t.Stop()
-	// If we can't flush sync within this duration, print a warning to the log and to
-	// stderr.
-	t2 := time.AfterFunc(syncWarnDuration, func() {
-		// See the comment above about why we use the OPS channel here.
-		Ops.Shoutf(context.Background(), severity.WARNING,
-			"disk slowness detected: unable to sync log files within %s", syncWarnDuration,
-		)
-	})
-	defer t2.Stop()
-
-	_ = l.mu.file.Flush() // ignore error
-	if doSync {
-		_ = l.mu.file.Sync() // ignore error
-	}
 }
 
 var errDirectoryNotSet = errors.New("log: log directory not set")

@@ -13,6 +13,7 @@ package stop
 import (
 	"context"
 	"fmt"
+
 	"net/http"
 	"runtime/debug"
 	"sync"
@@ -20,19 +21,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/roachpb"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/leaktest"
+	"github.com/cockroachdb/errors"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logcrash"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/quotapool"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/tracing"
-	"github.com/cockroachdb/errors"
 )
-
-func init() {
-	leaktest.PrintLeakedStoppers = PrintLeakedStoppers
-}
 
 // ErrThrottled is returned from RunAsyncTaskEx in the event that there
 // is no more capacity for async tasks, as limited by the semaphore.
@@ -40,7 +34,7 @@ var ErrThrottled = errors.New("throttled on async limiting semaphore")
 
 // ErrUnavailable indicates that the server is quiescing and is unable to
 // process new work.
-var ErrUnavailable = &roachpb.NodeUnavailableError{}
+var ErrUnavailable = errors.New("1")
 
 func register(s *Stopper) {
 	trackedStoppers.Lock()
@@ -247,7 +241,7 @@ func (s *Stopper) Recover(ctx context.Context) {
 			s.onPanic(r)
 			return
 		}
-		logcrash.ReportPanicWithGlobalSettings(ctx, r, 1)
+		//logcrash.ReportPanicWithGlobalSettings(ctx, r, 1)
 		panic(r)
 	}
 }

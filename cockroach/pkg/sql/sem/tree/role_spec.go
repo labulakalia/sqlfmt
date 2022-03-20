@@ -13,12 +13,8 @@ package tree
 import (
 	"fmt"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
+	//"github.com/labulakalia/sqlfmt/cockroach/pkg/security"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/lexbase"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgcode"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/pgwire/pgerror"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sessiondata"
-	"github.com/cockroachdb/errors"
 )
 
 // RoleSpecType represents whether the RoleSpec is represented by
@@ -64,40 +60,40 @@ func MakeRoleSpecWithRoleName(name string) RoleSpec {
 }
 
 // ToSQLUsername converts a RoleSpec to a security.SQLUsername.
-func (r RoleSpec) ToSQLUsername(
-	sessionData *sessiondata.SessionData, purpose security.UsernamePurpose,
-) (security.SQLUsername, error) {
-	if r.RoleSpecType == CurrentUser {
-		return sessionData.User(), nil
-	} else if r.RoleSpecType == SessionUser {
-		return sessionData.SessionUser(), nil
-	}
-	username, err := security.MakeSQLUsernameFromUserInput(r.Name, purpose)
-	if err != nil {
-		if errors.Is(err, security.ErrUsernameTooLong) {
-			err = pgerror.WithCandidateCode(err, pgcode.NameTooLong)
-		} else if errors.IsAny(err, security.ErrUsernameInvalid, security.ErrUsernameEmpty) {
-			err = pgerror.WithCandidateCode(err, pgcode.InvalidName)
-		}
-		return username, errors.Wrapf(err, "%q", username)
-	}
-	return username, nil
-}
+//func (r RoleSpec) ToSQLUsername(
+//	sessionData *sessiondata.SessionData, purpose security.UsernamePurpose,
+//) (security.SQLUsername, error) {
+//	if r.RoleSpecType == CurrentUser {
+//		return sessionData.User(), nil
+//	} else if r.RoleSpecType == SessionUser {
+//		return sessionData.SessionUser(), nil
+//	}
+//	username, err := security.MakeSQLUsernameFromUserInput(r.Name, purpose)
+//	if err != nil {
+//		if errors.Is(err, security.ErrUsernameTooLong) {
+//			err = pgerror.WithCandidateCode(err, pgcode.NameTooLong)
+//		} else if errors.IsAny(err, security.ErrUsernameInvalid, security.ErrUsernameEmpty) {
+//			err = pgerror.WithCandidateCode(err, pgcode.InvalidName)
+//		}
+//		return username, errors.Wrapf(err, "%q", username)
+//	}
+//	return username, nil
+//}
 
 // ToSQLUsernames converts a RoleSpecList to a slice of security.SQLUsername.
-func (l RoleSpecList) ToSQLUsernames(
-	sessionData *sessiondata.SessionData, purpose security.UsernamePurpose,
-) ([]security.SQLUsername, error) {
-	targetRoles := make([]security.SQLUsername, len(l))
-	for i, role := range l {
-		user, err := role.ToSQLUsername(sessionData, purpose)
-		if err != nil {
-			return nil, err
-		}
-		targetRoles[i] = user
-	}
-	return targetRoles, nil
-}
+//func (l RoleSpecList) ToSQLUsernames(
+//	sessionData *sessiondata.SessionData, purpose security.UsernamePurpose,
+//) ([]security.SQLUsername, error) {
+//	targetRoles := make([]security.SQLUsername, len(l))
+//	for i, role := range l {
+//		user, err := role.ToSQLUsername(sessionData, purpose)
+//		if err != nil {
+//			return nil, err
+//		}
+//		targetRoles[i] = user
+//	}
+//	return targetRoles, nil
+//}
 
 // Undefined returns if RoleSpec is undefined.
 func (r RoleSpec) Undefined() bool {

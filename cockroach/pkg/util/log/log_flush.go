@@ -15,7 +15,6 @@ import (
 	"io"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/sysutil"
 )
 
@@ -52,7 +51,7 @@ const syncInterval = 30
 // In practice, even a fraction of that would indicate a problem. This metric's
 // default should ideally match its sister metric in the storage engine, set by
 // COCKROACH_ENGINE_MAX_SYNC_DURATION.
-var maxSyncDuration = envutil.EnvOrDefaultDuration("COCKROACH_LOG_MAX_SYNC_DURATION", 60*time.Second)
+//var maxSyncDuration = envutil.EnvOrDefaultDuration("COCKROACH_LOG_MAX_SYNC_DURATION", 60*time.Second)
 
 // syncWarnDuration is the threshold after which a slow disk warning is written
 // to the log and to stderr.

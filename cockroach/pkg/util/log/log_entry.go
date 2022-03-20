@@ -18,15 +18,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/build"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/caller"
+	"github.com/cockroachdb/logtags"
+	"github.com/cockroachdb/redact"
+	"github.com/cockroachdb/redact/interfaces"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/eventpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/logpb"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/timeutil"
-	"github.com/cockroachdb/logtags"
-	"github.com/cockroachdb/redact"
-	"github.com/cockroachdb/redact/interfaces"
 	"github.com/petermattis/goid"
 )
 
@@ -197,12 +195,10 @@ func makeEntry(ctx context.Context, s Severity, c Channel, depth int) (res logEn
 		ts:        timeutil.Now().UnixNano(),
 		sev:       s,
 		ch:        c,
-		version:   build.BinaryVersion(),
 		gid:       goid.Get(),
 	}
 
 	// Populate file/lineno.
-	res.file, res.line, _ = caller.Lookup(depth + 1)
 
 	return res
 }
@@ -278,7 +274,6 @@ func (l *sinkInfo) getStartLines(now time.Time) []*buffer {
 	messages = append(messages,
 		makeStartLine(f, "file created at: %s", redact.Safe(now.Format("2006/01/02 15:04:05"))),
 		makeStartLine(f, "running on machine: %s", fullHostName),
-		makeStartLine(f, "binary: %s", redact.Safe(build.GetInfo().Short())),
 		makeStartLine(f, "arguments: %s", os.Args),
 	)
 

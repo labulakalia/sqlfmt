@@ -12,9 +12,3 @@
 // +build !metamorphic_disable
 
 package util
-
-import "github.com/labulakalia/sqlfmt/cockroach/pkg/util/envutil"
-
-// disableMetamorphicTesting can be used to disable metamorphic tests. If it
-// is set to true then metamorphic testing will not be enabled.
-var disableMetamorphicTesting = envutil.EnvOrDefaultBool(DisableMetamorphicEnvVar, false)

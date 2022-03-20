@@ -10,11 +10,6 @@
 
 package tree
 
-import (
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/server/telemetry"
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/sql/sqltelemetry"
-)
-
 // AlterType represents an ALTER TYPE statement.
 type AlterType struct {
 	Type *UnresolvedObjectName
@@ -34,7 +29,6 @@ type AlterTypeCmd interface {
 	alterTypeCmd()
 	// TelemetryCounter returns the telemetry counter to increment
 	// when this command is used.
-	TelemetryCounter() telemetry.Counter
 }
 
 func (*AlterTypeAddValue) alterTypeCmd()    {}
@@ -75,10 +69,6 @@ func (node *AlterTypeAddValue) Format(ctx *FmtCtx) {
 	}
 }
 
-// TelemetryCounter implements the AlterTypeCmd interface.
-func (node *AlterTypeAddValue) TelemetryCounter() telemetry.Counter {
-	return sqltelemetry.SchemaChangeAlterCounterWithExtra("type", "add_value")
-}
 
 // AlterTypeAddValuePlacement represents the placement clause for an ALTER
 // TYPE ADD VALUE command ([BEFORE | AFTER] value).
@@ -101,10 +91,6 @@ func (node *AlterTypeRenameValue) Format(ctx *FmtCtx) {
 	ctx.FormatNode(&node.NewVal)
 }
 
-// TelemetryCounter implements the AlterTypeCmd interface.
-func (node *AlterTypeRenameValue) TelemetryCounter() telemetry.Counter {
-	return sqltelemetry.SchemaChangeAlterCounterWithExtra("type", "rename_value")
-}
 
 // AlterTypeDropValue represents an ALTER TYPE DROP VALUE command.
 type AlterTypeDropValue struct {
@@ -117,10 +103,6 @@ func (node *AlterTypeDropValue) Format(ctx *FmtCtx) {
 	ctx.FormatNode(&node.Val)
 }
 
-// TelemetryCounter implements the AlterTypeCmd interface.
-func (node *AlterTypeDropValue) TelemetryCounter() telemetry.Counter {
-	return sqltelemetry.SchemaChangeAlterCounterWithExtra("type", "drop_value")
-}
 
 // AlterTypeRename represents an ALTER TYPE RENAME command.
 type AlterTypeRename struct {
@@ -133,10 +115,6 @@ func (node *AlterTypeRename) Format(ctx *FmtCtx) {
 	ctx.FormatNode(&node.NewName)
 }
 
-// TelemetryCounter implements the AlterTypeCmd interface.
-func (node *AlterTypeRename) TelemetryCounter() telemetry.Counter {
-	return sqltelemetry.SchemaChangeAlterCounterWithExtra("type", "rename")
-}
 
 // AlterTypeSetSchema represents an ALTER TYPE SET SCHEMA command.
 type AlterTypeSetSchema struct {
@@ -149,10 +127,7 @@ func (node *AlterTypeSetSchema) Format(ctx *FmtCtx) {
 	ctx.FormatNode(&node.Schema)
 }
 
-// TelemetryCounter implements the AlterTypeCmd interface.
-func (node *AlterTypeSetSchema) TelemetryCounter() telemetry.Counter {
-	return sqltelemetry.SchemaChangeAlterCounterWithExtra("type", "set_schema")
-}
+
 
 // AlterTypeOwner represents an ALTER TYPE OWNER TO command.
 type AlterTypeOwner struct {
@@ -165,7 +140,3 @@ func (node *AlterTypeOwner) Format(ctx *FmtCtx) {
 	ctx.FormatNode(&node.Owner)
 }
 
-// TelemetryCounter implements the AlterTypeCmd interface.
-func (node *AlterTypeOwner) TelemetryCounter() telemetry.Counter {
-	return sqltelemetry.SchemaChangeAlterCounterWithExtra("type", "owner")
-}

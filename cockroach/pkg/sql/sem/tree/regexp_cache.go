@@ -13,7 +13,6 @@ package tree
 import (
 	"regexp"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/cache"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
 
@@ -31,22 +30,9 @@ type RegexpCacheKey interface {
 // cache with no capacity.
 type RegexpCache struct {
 	mu    syncutil.Mutex
-	cache *cache.UnorderedCache
 }
 
-// NewRegexpCache creates a new RegexpCache of the given size.
-// The underlying cache internally uses a hash map, so lookups
-// are cheap.
-func NewRegexpCache(size int) *RegexpCache {
-	return &RegexpCache{
-		cache: cache.NewUnorderedCache(cache.Config{
-			Policy: cache.CacheLRU,
-			ShouldEvict: func(s int, key, value interface{}) bool {
-				return s > size
-			},
-		}),
-	}
-}
+
 
 // GetRegexp consults the cache for the regular expressions stored for
 // the given key, compiling the key's pattern if it is not already
@@ -80,11 +66,7 @@ func (rc *RegexpCache) GetRegexp(key RegexpCacheKey) (*regexp.Regexp, error) {
 func (rc *RegexpCache) lookup(key RegexpCacheKey) *regexp.Regexp {
 	rc.mu.Lock()
 	defer rc.mu.Unlock()
-	v, ok := rc.cache.Get(key)
-	if !ok {
-		return nil
-	}
-	return v.(*regexp.Regexp)
+	return nil
 }
 
 // update invalidates the regular expression for the given pattern.
@@ -92,10 +74,6 @@ func (rc *RegexpCache) lookup(key RegexpCacheKey) *regexp.Regexp {
 func (rc *RegexpCache) update(key RegexpCacheKey, re *regexp.Regexp) {
 	rc.mu.Lock()
 	defer rc.mu.Unlock()
-	rc.cache.Del(key)
-	if re != nil {
-		rc.cache.Add(key, re)
-	}
 }
 
 // Len returns the number of compiled regular expressions in the cache.
@@ -105,5 +83,5 @@ func (rc *RegexpCache) Len() int {
 	}
 	rc.mu.Lock()
 	defer rc.mu.Unlock()
-	return rc.cache.Len()
+	return 0
 }

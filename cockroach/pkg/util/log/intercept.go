@@ -16,7 +16,6 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/labulakalia/sqlfmt/cockroach/pkg/cli/exit"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/log/severity"
 	"github.com/labulakalia/sqlfmt/cockroach/pkg/util/syncutil"
 )
@@ -57,7 +56,6 @@ type Interceptor interface {
 
 func (l *loggingT) newInterceptorSinkInfo() *sinkInfo {
 	si := &sinkInfo{
-		sink:       &l.interceptor,
 		editor:     getEditor(WithMarkedSensitiveData),
 		formatter:  formatInterceptor{},
 		redact:     false, // do not redact sensitive information
@@ -130,4 +128,3 @@ func (i *interceptorSink) output(b []byte, _ sinkOutputOptions) error {
 }
 
 func (i *interceptorSink) attachHints(stacks []byte) []byte { return stacks }
-func (i *interceptorSink) exitCode() exit.Code              { return exit.UnspecifiedError() }
